@@ -1,11 +1,11 @@
 
- OurMorale 146
- MoraleEnemy 130
- The opponent used the card accession to Food
+ OurMorale 149
+ MoraleEnemy 154
+ The opponent used the card harvest to Material
 
- OurMorale 146
+ OurMorale 149
  MoraleEnemy 146
- We used the card elections to Material
+ We used the card energyExpansion to Material
 
  OurMorale 155
  MoraleEnemy 146
