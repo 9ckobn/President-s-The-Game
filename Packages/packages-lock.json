@@ -1,13 +1,7 @@
 {
   "dependencies": {
-    "com.unity.2d.sprite": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {}
-    },
     "com.unity.collab-proxy": {
-      "version": "1.15.17",
+      "version": "1.15.12",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -22,31 +16,17 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.feature.development": {
-      "version": "1.0.1",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.ide.visualstudio": "2.0.15",
-        "com.unity.ide.rider": "3.0.14",
-        "com.unity.ide.vscode": "1.2.5",
-        "com.unity.editorcoroutines": "1.0.0",
-        "com.unity.performance.profile-analyzer": "1.1.1",
-        "com.unity.test-framework": "1.1.31",
-        "com.unity.testtools.codecoverage": "1.1.1"
-      }
-    },
     "com.unity.ide.rider": {
-      "version": "3.0.14",
+      "version": "2.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.ext.nunit": "1.0.6"
+        "com.unity.test-framework": "1.1.1"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.15",
+      "version": "2.0.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -55,7 +35,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.2.5",
+      "version": "1.2.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -71,7 +51,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.31",
+      "version": "1.1.29",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -91,7 +71,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.7.1",
+      "version": "1.4.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -110,16 +90,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "com.unity.visualscripting": {
-      "version": "1.7.8",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
