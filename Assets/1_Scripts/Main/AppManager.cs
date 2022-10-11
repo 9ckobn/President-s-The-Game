@@ -50,15 +50,10 @@ namespace Core
         public async void AfterControllersInit()
         {
             BoxController.GetController<LogController>().SetIsNeedLog = isNeedLog;
-            BoxController.GetController<LogController>().Log("AfterControllersInit");
 
             if (isUseMoralis)
             {
-                BoxController.GetController<LogController>().Log("Before InitializeAsync");
-
                 await authenticationKit.InitializeAsync();
-
-                BoxController.GetController<LogController>().Log("After InitializeAsync");
 
                 if (isQrStartMoralis)
                 {
@@ -94,6 +89,7 @@ namespace Core
             else
             {
                 ConnectToMetaverse();
+                UIManager.instance.ShowWindow<ConnectLobbyWindow>();
             }
         }
 
@@ -133,6 +129,7 @@ namespace Core
         public void LoadStartScene()
         {
             UIManager.instance.HideWindow<BackgroundWindow>();
+            UIManager.instance.HideWindow<ConnectLobbyWindow>();
         }
 
         public void GoToMainPageMetaverse()
