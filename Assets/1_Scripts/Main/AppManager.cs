@@ -6,6 +6,7 @@ using NaughtyAttributes;
 using System.Collections;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Core
 {
@@ -92,7 +93,7 @@ namespace Core
             }
             else
             {
-               // UIManager.instance.ShowWindow<ProfileWindow>();
+                ConnectToMetaverse();
             }
         }
 
@@ -104,7 +105,7 @@ namespace Core
 
             if (moralisUser != null)
             {
-                //UIManager.instance.ShowWindow<ProfileWindow>();
+                ConnectToMetaverse();
             }
             else
             {
@@ -120,13 +121,18 @@ namespace Core
         }
 
         public void ConnectToMetaverse()
-        {            
-            lobbyManager.Connect();
+        {
+            SceneManager.LoadScene(1);
+            //lobbyManager.Connect();
         }
 
         public void CancelConnectMetaverse()
         {
+        }
 
+        public void LoadStartScene()
+        {
+            UIManager.instance.HideWindow<BackgroundWindow>();
         }
 
         public void GoToMainPageMetaverse()

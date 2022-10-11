@@ -1,11 +1,3 @@
 
- OurMorale 149
- MoraleEnemy 154
- The opponent used the card harvest to Material
-
- OurMorale 149
- MoraleEnemy 146
- We used the card energyExpansion to Material
-
  OurMorale 155
  MoraleEnemy 146

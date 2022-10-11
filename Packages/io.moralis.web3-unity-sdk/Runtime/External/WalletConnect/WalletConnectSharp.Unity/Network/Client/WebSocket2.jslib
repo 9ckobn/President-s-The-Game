@@ -7,7 +7,7 @@ var LibraryWebSocket = {
 		 * Instance structure:
 		 * {
 		 * 	url: string,
-		 * 	ws: WebSocket
+		 * 	ws: WebSocket2
 		 * }
 		 */
 		instances: {},

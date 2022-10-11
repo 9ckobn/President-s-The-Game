@@ -155,7 +155,7 @@ public class FightRules : MonoBehaviour
  //   private int _deltaMorale = 0;
  //   private int _deltaMoraleEnemy = 0;
 
-    private string path = Application.streamingAssetsPath + "/" + "log.txt"; // создали лог-файл 
+    private string path = "Result";// Application.streamingAssetsPath + "/" + "log.txt"; // создали лог-файл 
 
     void Start() // заносим в массивы все карты сцены, места для карт за столом, выбираем рандомные, помещаем за стол 
     {
@@ -1351,12 +1351,15 @@ public class FightRules : MonoBehaviour
     IEnumerator Pause4() // пауза перед завершением 
     {
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
     void SaveTXT() // пишем Лог 
     {
-        File.WriteAllText(path, ""); // очистили файл 
-        File.WriteAllText(path, _testText2); // записали в лог 
+        PlayerPrefs.DeleteKey(path);
+        PlayerPrefs.SetString(path, _testText2);
+
+        //File.WriteAllText(path, ""); // очистили файл 
+        //File.WriteAllText(path, _testText2); // записали в лог 
     }
 
     void TextForCard(Transform Card)
