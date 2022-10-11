@@ -92,7 +92,7 @@ namespace Core
             }
             else
             {
-                UIManager.instance.ShowWindow<ProfileWindow>();
+               // UIManager.instance.ShowWindow<ProfileWindow>();
             }
         }
 
@@ -104,7 +104,7 @@ namespace Core
 
             if (moralisUser != null)
             {
-                UIManager.instance.ShowWindow<ProfileWindow>();
+                //UIManager.instance.ShowWindow<ProfileWindow>();
             }
             else
             {
@@ -147,7 +147,7 @@ namespace Core
                 if (result)
                 {
                     BoxController.GetController<LogController>().Log($"Изменили имя на {newNick}");
-                    BoxController.GetController<HubController>().NewNickName(newNick);
+                    //BoxController.GetController<HubController>().NewNickName(newNick);
                 }
                 else
                 {
