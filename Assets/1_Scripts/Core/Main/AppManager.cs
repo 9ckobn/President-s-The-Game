@@ -5,7 +5,6 @@ using NaughtyAttributes;
 using System.Collections;
 using UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Core
 {
@@ -23,15 +22,12 @@ namespace Core
         [BoxGroup("Moralis")]
         [SerializeField] private GameObject qrObject, buttonObject;
 
-        private MoralisUser moralisUser;
-        public MoralisUser GetMoralisUser { get => moralisUser; }
-
-        public bool GetIsUseMoralis { get => isUseMoralis; }
-
         #region START_APP
 
         private IEnumerator Start()
         {
+            DataBaseManager.Instance.SetIsUseMoralis = isUseMoralis;
+
             if (!SceneControllers.instance.GetIsInit)
             {
                 while (!SceneControllers.instance.GetIsInit)
@@ -49,10 +45,15 @@ namespace Core
         public async void AfterControllersInit()
         {
             BoxController.GetController<LogController>().SetIsNeedLog = isNeedLog;
+            BoxController.GetController<LogController>().Log("AfterControllersInit");
 
             if (isUseMoralis)
             {
+                BoxController.GetController<LogController>().Log("Before InitializeAsync");
+
                 await authenticationKit.InitializeAsync();
+
+                BoxController.GetController<LogController>().Log("After InitializeAsync");
 
                 if (isQrStartMoralis)
                 {
@@ -87,8 +88,9 @@ namespace Core
             }
             else
             {
-                ConnectToMetaverse();
-                UIManager.instance.ShowWindow<ConnectLobbyWindow>();
+                DataBaseManager.Instance.OnInit.AddListener(AfterInitDataBase);
+                DataBaseManager.Instance.SetMoralisUser = null;
+                DataBaseManager.Instance.FakeInitialize();
             }
         }
 
@@ -96,16 +98,23 @@ namespace Core
         {
             BoxController.GetController<LogController>().Log("On connect to moralis");
 
-            moralisUser = await Moralis.GetUserAsync();
+            MoralisUser moralisUser = await Moralis.GetUserAsync();
 
             if (moralisUser != null)
             {
-                ConnectToMetaverse();
+                DataBaseManager.Instance.OnInit.AddListener(AfterInitDataBase);
+                DataBaseManager.Instance.SetMoralisUser = moralisUser;
+                DataBaseManager.Instance.Initialize();
             }
             else
             {
                 BoxController.GetController<LogController>().LogError($"User not connect to moralis!");
             }
+        }
+
+        private void AfterInitDataBase()
+        {
+            DataBaseManager.Instance.OnInit.RemoveListener(AfterInitDataBase);
         }
 
         #endregion
@@ -117,45 +126,17 @@ namespace Core
 
         public void ConnectToMetaverse()
         {
-            SceneManager.LoadScene(1);
-            //lobbyManager.Connect();
+            lobbyManager.Connect();
         }
 
         public void CancelConnectMetaverse()
         {
-        }
 
-        public void LoadStartScene()
-        {
-            UIManager.instance.HideWindow<BackgroundWindow>();
-            UIManager.instance.HideWindow<ConnectLobbyWindow>();
         }
 
         public void GoToMainPageMetaverse()
         {
             //Application.OpenURL(URL_Data.RARITIGRAM_URL);
-        }
-
-        public async void ChangeNick(string newNick)
-        {
-            if (isUseMoralis)
-            {
-                BoxController.GetController<LogController>().Log($"Меняем Ник");
-
-                moralisUser.username = newNick;
-
-                var result = await moralisUser.SaveAsync();
-
-                if (result)
-                {
-                    BoxController.GetController<LogController>().Log($"Изменили имя на {newNick}");
-                    //BoxController.GetController<HubController>().NewNickName(newNick);
-                }
-                else
-                {
-                    BoxController.GetController<LogController>().LogError($"Ошибка сохранения нового ника!");
-                }
-            }
         }
     }
 }

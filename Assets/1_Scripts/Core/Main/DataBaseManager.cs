@@ -6,11 +6,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Core
 {
     public class DataBaseManager : Singleton<DataBaseManager>
     {
+        public UnityEvent OnInit;
+
         private bool isUseMoralis;
         private MoralisUser moralisUser;
 
@@ -23,6 +26,18 @@ namespace Core
                 moralisUser = value;
                 UpdateDataUser();
             }
+        }
+
+        public void Initialize()
+        {
+            // TODO: Get NFT data
+
+            OnInit?.Invoke();
+        }
+
+        public void FakeInitialize()
+        {
+            OnInit?.Invoke();
         }
 
         public async void ChangeNick(string newNick)
