@@ -1,4 +1,3 @@
-using Data;
 using MoralisUnity;
 using MoralisUnity.Kits.AuthenticationKit;
 using MoralisUnity.Platform.Objects;
@@ -134,7 +133,7 @@ namespace Core
 
         public void GoToMainPageMetaverse()
         {
-            Application.OpenURL(URL_Data.RARITIGRAM_URL);
+            //Application.OpenURL(URL_Data.RARITIGRAM_URL);
         }
 
         public async void ChangeNick(string newNick)
