@@ -1,9 +1,11 @@
+using Cards;
 using Cysharp.Threading.Tasks;
 using MoralisUnity;
 using MoralisUnity.Platform.Objects;
 using MoralisUnity.Platform.Queries;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,6 +19,8 @@ namespace Core
 
         private bool isUseMoralis;
         private MoralisUser moralisUser;
+
+        private CardsList cardsPresident = new CardsList();
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
 
@@ -38,7 +42,7 @@ namespace Core
 
         public void FakeInitialize()
         {
-
+            cardsPresident = JsonUtility.FromJson<CardsList>(File.ReadAllText(Application.streamingAssetsPath + "/JSON_PresidentInfo.json"));
 
             OnInit?.Invoke();
         }

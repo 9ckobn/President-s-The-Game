@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Cards
 {
-    public class PresidentCard : CardBase
+    public class CardPresident : CardBase
     {
         public string Name { get; private set; }
         public int Level { get; private set; }
@@ -35,7 +35,7 @@ namespace Cards
         public int BUFFhealth;
         public int BUFFfood;
 
-        public PresidentCard(int id) : base(id)
+        public CardPresident(int id) : base(id)
         {
 
         }
