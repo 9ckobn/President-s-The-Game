@@ -6,11 +6,6 @@ namespace Cards
 {
     public class CardBase : MonoBehaviour
     {
-        public int ID { get; private set; }
-
-        public CardBase(int id)
-        {
-
-        }
+        
     }
 }

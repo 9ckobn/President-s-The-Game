@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Cards
+{
+    public class CardDataBase : MonoBehaviour
+    {
+        public int ID { get; private set; }
+
+        public CardDataBase(int id)
+        {
+
+        }
+    }
+}

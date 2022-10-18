@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Cards
 {
     [Serializable]
-    public class CardSerialize : MonoBehaviour
+    public class CardDataSerialize : MonoBehaviour
     {
         public string id;
         public string name;
@@ -29,6 +29,6 @@ namespace Cards
     [System.Serializable]
     public class CardsList
     {
-        public CardSerialize[] player;
+        public CardDataSerialize[] player;
     }
 }
