@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/0_Scenes/0_InitScene.unity
     guid: 4e6107b0ac90ed3439a51e2efbd087d9
   - enabled: 1
-    path: Assets/0_Scenes/1_Start.unity
+    path: Assets/0_Scenes/1_OLD.unity
     guid: f43b211b8b8fc634ebe6a1902b19827f
   - enabled: 1
-    path: Assets/0_Scenes/3_FightScene.unity
+    path: Assets/0_Scenes/2_OLD.unity
     guid: b0d1e367a9160724080160513169c5ed
   - enabled: 1
-    path: Assets/0_Scenes/4_Exit.unity
+    path: Assets/0_Scenes/3_OLD.unity
     guid: 3730688f130d0454c85cf590ec36e6c7
   m_configObjects: {}
