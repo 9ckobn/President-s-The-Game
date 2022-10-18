@@ -12,6 +12,7 @@ namespace Core
 {
     public class DataBaseManager : Singleton<DataBaseManager>
     {
+        [HideInInspector]
         public UnityEvent OnInit;
 
         private bool isUseMoralis;
@@ -37,6 +38,8 @@ namespace Core
 
         public void FakeInitialize()
         {
+
+
             OnInit?.Invoke();
         }
 
@@ -63,25 +66,25 @@ namespace Core
 
         private void UpdateDataUser()
         {
-            PersonDataManager dataManager = PersonDataManager.Instance;
+            //PersonDataManager dataManager = PersonDataManager.Instance;
 
-            if (isUseMoralis)
-            {
-                dataManager.NickUser = moralisUser.username;
-            }
-            else
-            {
-                dataManager.NickUser = "Player " + Random.Range(0, 1000);
-            }
+            //if (isUseMoralis)
+            //{
+            //    dataManager.NickUser = moralisUser.username;
+            //}
+            //else
+            //{
+            //    dataManager.NickUser = "Player " + Random.Range(0, 1000);
+            //}
 
-            if (isUseMoralis)
-            {
-                dataManager.KeyUser = moralisUser.ethAddress;
-            }
-            else
-            {
-                dataManager.KeyUser = "101101101101101";
-            }
+            //if (isUseMoralis)
+            //{
+            //    dataManager.KeyUser = moralisUser.ethAddress;
+            //}
+            //else
+            //{
+            //    dataManager.KeyUser = "101101101101101";
+            //}
         }
 
         public async void GetTestData()
