@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards
@@ -9,6 +7,10 @@ namespace Cards
     public class CardPresident : CardBase
     {
         public CardPresidentData SetCardData { set => data = value; }
-        public CardPresidentView SetCardView { set => view = value; }
+
+        protected override void AfterAwake()
+        {
+            (view as CardPresidentView).SetData(data as CardPresidentData);
+        }
     }
 }

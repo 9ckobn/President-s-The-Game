@@ -20,9 +20,10 @@ namespace Core
         private bool isUseMoralis;
         private MoralisUser moralisUser;
 
-        private CardsList cardsPresident = new CardsList();
+        private CardsPresidentsList cardsPresident = new CardsPresidentsList();
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
+        public CardsPresidentsList GetCardsPresident { get => cardsPresident; }
 
         public MoralisUser SetMoralisUser
         {
@@ -42,7 +43,7 @@ namespace Core
 
         public void FakeInitialize()
         {
-            cardsPresident = JsonUtility.FromJson<CardsList>(File.ReadAllText(Application.streamingAssetsPath + "/JSON_PresidentInfo.json"));
+            cardsPresident = JsonUtility.FromJson<CardsPresidentsList>(File.ReadAllText(Application.streamingAssetsPath + "/JSON_PresidentInfo.json"));
 
             OnInit?.Invoke();
         }

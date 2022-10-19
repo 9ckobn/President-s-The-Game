@@ -1,12 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards
 {
-    public class CardBase : MonoBehaviour
+    public abstract class CardBase : MonoBehaviour
     {
         protected CardDataBase data;
         protected CardViewBase view;
+
+        private void Awake()
+        {
+            view = GetComponent<CardViewBase>();
+
+            AfterAwake();
+        }
+
+        protected abstract void AfterAwake();
     }
 }

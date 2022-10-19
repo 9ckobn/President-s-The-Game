@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core
 {
-    [CreateAssetMenu(fileName = "LogController", menuName = "Controllers/LogController")]
+    [CreateAssetMenu(fileName = "LogController", menuName = "Controllers/Core/LogController")]
     public class LogController : BaseController
     {
         private bool isNeedLog = false;

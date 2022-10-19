@@ -37,28 +37,25 @@ namespace Cards
         public int BUFFhealth { get; private set; }
         public int BUFFfood { get; private set; }
 
-        public CardPresidentData(int id, string name, int level, TypeClimate climate,
-            int buff_diplomation, int buff_diplomation_delta, int buff_fortune, int buff_fortune_delta, int buff_protection, int buff_protection_delta, int buff_attack, int buff_attack_delta,
-            string factor_materials, string factor_economic,
-            string factor_health, string factor_food) : base(id)
+        public CardPresidentData(CardPresidentDataSerialize data) : base(data.id)
         {
             Name = name;
-            Factor_materials = factor_materials;
-            Factor_economic = factor_economic;
-            Factor_health = factor_health;
-            Factor_food = factor_food;
+            Factor_materials = data.factor_materials;
+            Factor_economic = data.factor_economic;
+            Factor_health = data.factor_health;
+            Factor_food = data.factor_food;
 
-            Level = level;
-            Climate = climate;
+            Level = data.level;
+            DefineClimate(data.climate);
 
-            Buff_diplomation = buff_diplomation + START_BUFF;
-            Buff_diplomation_delta = buff_diplomation_delta;
-            Buff_fortune = buff_fortune + START_BUFF;
-            Buff_fortune_delta = buff_fortune_delta;
-            Buff_protection = buff_protection + START_BUFF;
-            Buff_protection_delta = buff_protection_delta;
-            Buff_attack = buff_attack + START_BUFF;
-            Buff_attack_delta = buff_attack_delta;
+            Buff_diplomation = data.buff_diplomation + START_BUFF;
+            //Buff_diplomation_delta = data.buff_diplomation_delta;
+            Buff_fortune = data.buff_fortune + START_BUFF;
+            //Buff_fortune_delta = data.buff_fortune_delta;
+            Buff_protection = data.buff_protection + START_BUFF;
+            //Buff_protection_delta = buff_protection_delta;
+            Buff_attack = data.buff_attack + START_BUFF;
+            //Buff_attack_delta = buff_attack_delta;
 
             BUFFmaterials = (Buff_fortune + Buff_attack) / 2;
             BUFFeconomic = (Buff_attack + Buff_diplomation) / 2;
@@ -70,7 +67,7 @@ namespace Cards
 
         private void CalculateClimate()
         {
-            if (Climate == BoxController.GetController<DataGameController>().GetTypeClimate)
+            if (Climate == BoxController.GetController<DeckBuildController>().GetTypeClimate)
             {
                 Buff_attack_delta += BUFF_CLIMATE; // Климат совпал
                 Buff_diplomation_delta += BUFF_CLIMATE;
@@ -83,6 +80,22 @@ namespace Cards
                 Buff_diplomation_delta = Buff_diplomation_delta - DEBUFF_CLIMATE;
                 Buff_fortune_delta = Buff_fortune_delta - DEBUFF_CLIMATE;
                 Buff_protection_delta = Buff_protection_delta - DEBUFF_CLIMATE;
+            }
+        }
+
+        private void DefineClimate(string climate)
+        {
+            if (climate == "temperate")
+            {
+                Climate = TypeClimate.Temperate;
+            }
+            else if (climate == "equatorial")
+            {
+                Climate = TypeClimate.Equatorial;
+            }
+            else if (climate == "tropical")
+            {
+                Climate = TypeClimate.Tropical;
             }
         }
     }

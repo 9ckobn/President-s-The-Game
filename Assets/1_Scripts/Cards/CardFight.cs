@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards
@@ -10,5 +8,8 @@ namespace Cards
     {
         public CardFightData SetCardData { set => data = value; }
 
+        protected override void AfterAwake()
+        {
+        }
     }
 }

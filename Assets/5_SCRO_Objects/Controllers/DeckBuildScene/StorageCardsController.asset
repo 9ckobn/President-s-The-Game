@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc04e626e4aaff54a968026220a1610e, type: 3}
-  m_Name: DataGameController
+  m_Script: {fileID: 11500000, guid: f48c13c4a96af914dae2c2fd5cae30e7, type: 3}
+  m_Name: StorageCardsController
   m_EditorClassIdentifier: 
   NeedInstantiate: 0
