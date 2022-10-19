@@ -12,5 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027c4f06370acaa46a12c64ee2c6f683, type: 3}
   m_Name: StorageCardImages
   m_EditorClassIdentifier: 
-  PresidentImages: {fileID: 0}
-  FightImages: {fileID: 0}
+  PresidentImages:
+  - {fileID: 0}
+  FightImages:
+  - {fileID: 11400000, guid: fdfa3a706fa6fd549b6365291fb333e3, type: 2}
+  - {fileID: 11400000, guid: 23d3dafd0d53f6241ba94cf5bc8c42c4, type: 2}
+  - {fileID: 11400000, guid: 1c527ad0a1a73cf47b0435ea257b3f43, type: 2}
+  - {fileID: 11400000, guid: d4c8fd012027bca4c82ad799fb24c843, type: 2}
+  - {fileID: 11400000, guid: 914a9366bb9f1f149ab7ae9e71439550, type: 2}
+  - {fileID: 11400000, guid: c8f727cedce51a045ae3e20b542616cc, type: 2}
+  - {fileID: 11400000, guid: 79fc5ada7db049f44a9cc7e85fff4225, type: 2}
+  - {fileID: 11400000, guid: e00ca488125229a4e9ec9ef94aeae4ed, type: 2}
+  - {fileID: 11400000, guid: 344d3993ed2b8c645b15a89d93a5ef95, type: 2}
+  - {fileID: 11400000, guid: d55e1a0efa0cdfb4cbcd9ac68d910297, type: 2}
+  - {fileID: 11400000, guid: bde7e7ca589ec0e4b8ac4df875b9b864, type: 2}
+  - {fileID: 11400000, guid: 1eeb0f930e3455347aec24dd85979a91, type: 2}
+  - {fileID: 11400000, guid: dcdddb43e0d22bf46aa4f0fea46f2b3c, type: 2}
+  - {fileID: 11400000, guid: 7415fadf5f894b942858c752f034e054, type: 2}
+  - {fileID: 11400000, guid: 03227359a6ee9ee47a0ed569face7e59, type: 2}
+  - {fileID: 11400000, guid: 35c4d786acb427a4ba761afbf8186aca, type: 2}
+  - {fileID: 11400000, guid: 19014d60aef342740a851410b9fe90cc, type: 2}

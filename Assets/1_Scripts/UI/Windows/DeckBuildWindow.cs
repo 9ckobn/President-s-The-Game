@@ -15,7 +15,8 @@ namespace UI
         [BoxGroup("Parent")]
         [SerializeField] private GameObject parentCardPresident, parentCardFight;
 
-        private List<CardPresident> cardsPresident;
+        private List<CardPresident> cardsPresident = new List<CardPresident>();
+        private List<CardFight> cardsFight = new List<CardFight>();
 
         protected override void BeforeShow()
         {

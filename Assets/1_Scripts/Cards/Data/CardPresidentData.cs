@@ -1,5 +1,6 @@
 using Core;
 using Gameplay;
+using UnityEngine;
 
 namespace Cards
 {
@@ -37,7 +38,7 @@ namespace Cards
         public int BUFFhealth { get; private set; }
         public int BUFFfood { get; private set; }
 
-        public CardPresidentData(CardPresidentDataSerialize data) : base(data.id)
+        public CardPresidentData(CardPresidentDataSerialize data, Sprite image) : base(data.id, image)
         {
             Name = name;
             Factor_materials = data.factor_materials;
