@@ -1,8 +1,5 @@
 using Core;
 using Gameplay;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Cards
 {
@@ -11,10 +8,10 @@ namespace Cards
         private const int START_BUFF = 10, BUFF_CLIMATE = 2, DEBUFF_CLIMATE = -1;
 
         public string Name { get; private set; }
-        public string Factor_materials = "";
-        public string Factor_economic = "";
-        public string Factor_health = "";
-        public string Factor_food = "";
+        public string Factor_materials { get; private set; }
+        public string Factor_economic { get; private set; }
+        public string Factor_health { get; private set; }
+        public string Factor_food { get; private set; }
 
         public int Level { get; private set; }
         public TypeClimate Climate { get; private set; }
@@ -28,17 +25,17 @@ namespace Cards
         public int Buff_attack { get; private set; }
         public int Buff_attack_delta { get; private set; }
 
-        public int Materials_ability_protect = 0;
-        public int Economic_ability_protect = 0;
-        public int Economic_ability_attack = 0;
-        public int Health_ability_protect = 0;
-        public int Food_ability_protect = 0;
-        public int Food_ability_attack = 0;
+        public int Materials_ability_protect { get; private set; }
+        public int Economic_ability_protect { get; private set; }
+        public int Economic_ability_attack { get; private set; }
+        public int Health_ability_protect { get; private set; }
+        public int Food_ability_protect { get; private set; }
+        public int Food_ability_attack { get; private set; }
 
-        public int BUFFmaterials;
-        public int BUFFeconomic;
-        public int BUFFhealth;
-        public int BUFFfood;
+        public int BUFFmaterials { get; private set; }
+        public int BUFFeconomic { get; private set; }
+        public int BUFFhealth { get; private set; }
+        public int BUFFfood { get; private set; }
 
         public CardPresidentData(int id, string name, int level, TypeClimate climate,
             int buff_diplomation, int buff_diplomation_delta, int buff_fortune, int buff_fortune_delta, int buff_protection, int buff_protection_delta, int buff_attack, int buff_attack_delta,
@@ -73,7 +70,7 @@ namespace Cards
 
         private void CalculateClimate()
         {
-            if(Climate == BoxController.GetController<DataGameController>().GetTypeClimate)
+            if (Climate == BoxController.GetController<DataGameController>().GetTypeClimate)
             {
                 Buff_attack_delta += BUFF_CLIMATE; // Климат совпал
                 Buff_diplomation_delta += BUFF_CLIMATE;

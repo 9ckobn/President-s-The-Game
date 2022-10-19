@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Cards
 {
     public class CardFightView : CardViewBase
     {
-        [SerializeField] private TextMeshProUGUI costText, descriptionText;
+        [SerializeField] private Text costText, descriptionText;
 
     }
 }
