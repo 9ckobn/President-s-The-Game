@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Cards
 {
-    public class CardDataPresident : CardDataBase
+    public class CardPresidentData : CardDataBase
     {
         private const int START_BUFF = 10, BUFF_CLIMATE = 2, DEBUFF_CLIMATE = -1;
 
@@ -40,7 +40,7 @@ namespace Cards
         public int BUFFhealth;
         public int BUFFfood;
 
-        public CardDataPresident(int id, string name, int level, TypeClimate climate,
+        public CardPresidentData(int id, string name, int level, TypeClimate climate,
             int buff_diplomation, int buff_diplomation_delta, int buff_fortune, int buff_fortune_delta, int buff_protection, int buff_protection_delta, int buff_attack, int buff_attack_delta,
             string factor_materials, string factor_economic,
             string factor_health, string factor_food) : base(id)
