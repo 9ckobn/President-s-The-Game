@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bedeced1101746479194eab096085bf, type: 3}
-  m_Name: airStrike_CardImage
+  m_Name: energyExpansion_CardImage
   m_EditorClassIdentifier: 
-  ID: airStrike
-  Sprite: {fileID: 21300000, guid: 72c26344c43c34c40bfd1d3157ee4deb, type: 3}
+  ID: energyExpansion
+  Sprite: {fileID: 21300000, guid: 4b9f5f45de9864845bb50afaf4719440, type: 3}
