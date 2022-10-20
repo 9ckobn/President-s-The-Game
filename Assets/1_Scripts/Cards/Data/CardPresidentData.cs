@@ -38,9 +38,9 @@ namespace Cards
         public int BUFFhealth { get; private set; }
         public int BUFFfood { get; private set; }
 
-        public CardPresidentData(CardPresidentDataSerialize data, Sprite image) : base(data.id, image)
+        public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id, sprite)
         {
-            Name = name;
+            Name = data.name;
             Factor_materials = data.factor_materials;
             Factor_economic = data.factor_economic;
             Factor_health = data.factor_health;

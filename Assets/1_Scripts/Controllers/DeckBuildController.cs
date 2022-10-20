@@ -14,6 +14,9 @@ namespace Gameplay
 
         public override void OnStart()
         {
+            UIManager.Instance.OnInitialize();
+            UIManager.Instance.OnStart();
+
             UIManager.Instance.ShowWindow<DeckBuildWindow>();
         }
     }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bedeced1101746479194eab096085bf, type: 3}
-  m_Name: Lincoln_CardImage
+  m_Name: CheGuevara_CardImage
   m_EditorClassIdentifier: 
-  ID: Lincoln
-  Sprite: {fileID: 21300000, guid: 3086334a8a2e0804a91d84167f287f9c, type: 3}
+  ID: CheGuevara
+  Sprite: {fileID: 21300000, guid: 290bd4d36dd07034381dca7a3ad1015b, type: 3}

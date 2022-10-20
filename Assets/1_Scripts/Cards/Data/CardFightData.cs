@@ -6,7 +6,7 @@ namespace Cards
     {
         public int Cost { get; private set; }
 
-        public CardFightData(CardFightSCRO data, Sprite image) : base(data.ID, image)
+        public CardFightData(CardFightSCRO data, Sprite sprite) : base(data.ID, sprite)
         {
 
         }

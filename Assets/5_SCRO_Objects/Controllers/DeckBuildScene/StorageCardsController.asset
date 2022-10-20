@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: StorageCardsController
   m_EditorClassIdentifier: 
   NeedInstantiate: 0
+  storageImages: {fileID: 11400000, guid: cc971439d1712ef44ad75a78ac16342d, type: 2}
+  cardFightSCRO:
+  - {fileID: 11400000, guid: 3a4b80677e932d24f8c119f5ff98df4c, type: 2}
+  - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}

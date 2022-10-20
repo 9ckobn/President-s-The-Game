@@ -6,11 +6,14 @@ namespace Cards
     [RequireComponent(typeof(CardPresidentView))]
     public class CardPresident : CardBase
     {
-        public CardPresidentData SetCardData { set => data = value; }
-
-        protected override void AfterAwake()
+        public CardPresidentData SetCardData 
         {
-            (view as CardPresidentView).SetData(data as CardPresidentData);
+            set
+            { 
+                data = value;
+
+                (view as CardPresidentView).SetData(data as CardPresidentData, data.Sprite);
+            }
         }
     }
 }

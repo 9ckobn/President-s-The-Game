@@ -1,10 +1,9 @@
 using System;
-using UnityEngine;
 
 namespace Cards
 {
     [Serializable]
-    public class CardPresidentDataSerialize : MonoBehaviour
+    public class CardPresidentDataSerialize
     {
         public string id;
         public string name;

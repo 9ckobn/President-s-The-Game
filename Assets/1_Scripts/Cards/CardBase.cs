@@ -10,10 +10,6 @@ namespace Cards
         private void Awake()
         {
             view = GetComponent<CardViewBase>();
-
-            AfterAwake();
         }
-
-        protected abstract void AfterAwake();
     }
 }

@@ -23,8 +23,8 @@ namespace Cards
 
             foreach (var card in cardList.player)
             {
-                Sprite image = storageImages.GetPresidentSprite(card.id);
-                CardPresidentData cardData = new CardPresidentData(card, image);
+                Sprite sprite = storageImages.GetPresidentSprite(card.id);
+                CardPresidentData cardData = new CardPresidentData(card, sprite);
 
                 cardsPresidentData.Add(cardData);
             }

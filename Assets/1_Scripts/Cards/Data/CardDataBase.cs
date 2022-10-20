@@ -5,12 +5,12 @@ namespace Cards
     public class CardDataBase : MonoBehaviour
     {
         public string ID { get; private set; }
-        public Sprite Image { get; private set; }
+        public Sprite Sprite { get; private set; }
 
-        public CardDataBase(string id, Sprite image)
+        public CardDataBase(string id, Sprite sprite)
         {
             ID = id;
-            Image = image;
+            Sprite = sprite;
         }
     }
 }

@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027c4f06370acaa46a12c64ee2c6f683, type: 3}
   m_Name: StorageCardImages
   m_EditorClassIdentifier: 
+  NeedInstantiate: 0
   PresidentImages:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0819711c5fb4dc8408ec1e0e509dc282, type: 2}
+  - {fileID: 11400000, guid: 6f117faaf5975b4438bc0447ce0f6af6, type: 2}
+  - {fileID: 11400000, guid: 6de6ade4a6b9c2c49a143a2671529851, type: 2}
+  - {fileID: 11400000, guid: 70ed99cf782a7e94b9cbe2d00793f78a, type: 2}
+  - {fileID: 11400000, guid: 49160bc3bf8fa6e41988a2a9b9a35309, type: 2}
+  - {fileID: 11400000, guid: b875c5800d0b6394da9273cbddf7ee8c, type: 2}
   FightImages:
   - {fileID: 11400000, guid: fdfa3a706fa6fd549b6365291fb333e3, type: 2}
   - {fileID: 11400000, guid: 23d3dafd0d53f6241ba94cf5bc8c42c4, type: 2}

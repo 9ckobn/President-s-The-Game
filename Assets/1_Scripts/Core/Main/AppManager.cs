@@ -115,6 +115,8 @@ namespace Core
         private void AfterInitDataBase()
         {
             DataBaseManager.Instance.OnInit.RemoveListener(AfterInitDataBase);
+
+            LoadSceneManager.instance.LoadDeckBuildScene();
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace Cards
         [BoxGroup("Info images")]
         [SerializeField] private Image attackImage, protectionImage, fortuneImage, diplomationImage;
 
-        public void SetData(CardPresidentData data)
+        public void SetData(CardPresidentData data, Sprite sprite)
         {
         }
     }

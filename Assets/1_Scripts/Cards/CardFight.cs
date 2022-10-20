@@ -7,9 +7,5 @@ namespace Cards
     public class CardFight : CardBase
     {
         public CardFightData SetCardData { set => data = value; }
-
-        protected override void AfterAwake()
-        {
-        }
     }
 }
