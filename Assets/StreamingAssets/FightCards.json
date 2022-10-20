@@ -1,0 +1,243 @@
+{
+	"fight_card": [
+		{
+			"id": "airStrike",
+			"cost": 1, 
+			"materials": 1,
+			"economic": 0,
+			"health": 0, 
+			"food": 0, 
+			"attack": 1, 
+			"protect":0,
+			"diplomation":0, 
+			"fortune": 0,
+			"deltamorale_positive": 7, 
+			"deltamorale_negative": 0
+		}, 
+		
+		{
+			"id": "accession",
+			"cost": 2, 
+			"materials": 0,
+			"economic": 0,
+			"health": 1, 
+			"food": 1, 
+			"attack": 0, 
+			"protect":1,
+			"diplomation":0, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 10
+		}, 
+		
+		{
+			"id": "customsReform",
+			"cost": 1, 
+			"materials": 0,
+			"economic": 0,
+			"health": 0, 
+			"food": 1, 
+			"attack": 0, 
+			"protect":1,
+			"diplomation":0, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 5
+		}, 
+
+		{
+			"id": "diplomaticImmunty",
+			"cost": 2, 
+			"materials": 0,
+			"economic": 0,
+			"health": 1, 
+			"food": 0, 
+			"attack": 0, 
+			"protect":0,
+			"diplomation":1, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 0
+		}, 
+
+		{
+			"id": "educationalInfrastructure",
+			"cost": 2,
+			"materials": 1,
+			"economic": 0,
+			"health": 0, 
+			"food": 1, 
+			"attack": 0, 
+			"protect": 0,
+			"diplomation": 0, 
+			"fortune": 1, 
+			"deltamorale_positive": 5, 
+			"deltamorale_negative": 0
+		}, 
+
+		{
+			"id": "elections",
+			"cost": 2,
+			"materials": 0,
+			"economic": 0,
+			"health": 0, 
+			"food": 1, 
+			"attack": 0, 
+			"protect": 0,
+			"diplomation":0, 
+			"fortune": 1, 
+			"deltamorale_positive": 10, 
+			"deltamorale_negative": -5
+		}, 
+
+		{
+			"id": "energyExpansion",
+			"cost": 2, 
+			"materials": 0,
+			"economic": 1,
+			"health": 1, 
+			"food": 0, 
+			"attack": 0, 
+			"protect":0,
+			"diplomation": 1, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 0
+		}, 
+
+		{
+			"id": "harvest",
+			"cost": 1, 
+			"materials": 1,
+			"economic": 0,
+			"health": 0, 
+			"food": 0, 
+			"attack": 0, 
+			"protect":0,
+			"diplomation":0, 
+			"fortune": 1, 
+			"deltamorale_positive": 10, 
+			"deltamorale_negative": -5 
+		}, 
+
+		{
+				"id": "intelligenceData",
+			"cost": 2, 
+			"materials": 1,
+			"economic": 0,
+			"health": 0, 
+			"food": 0, 
+			"attack": 1, 
+			"protect": 0,
+			"diplomation": 0, 
+			"fortune": 0, 
+			"deltamorale_positive": 5, 
+			"deltamorale_negative": 0
+		}, 
+
+			{
+				"id": "isolation",
+			"cost": 2, 
+			"materials": 1,
+			"economic": 0,
+			"health": 0, 
+			"food": 0, 
+			"attack": 1, 
+			"protect": 0,
+			"diplomation":0, 
+			"fortune": 0, 
+			"deltamorale_positive": 24, 
+			"deltamorale_negative": 0
+		}, 
+		
+		{
+			"id": "militaryPosition",
+			"cost": 2, 
+			"materials": 0,
+			"economic": 0,
+			"health": 0, 
+			"food": 1, 
+			"attack": 0, 
+			"protect":1,
+			"diplomation":0, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 5 
+		}, 
+
+		{
+			"id": "patronage",
+			"cost": 1, 
+			"materials": 0,
+			"economic": 1,
+			"health": 0, 
+			"food": 0, 
+			"attack": 0, 
+			"protect":0,
+			"diplomation": 1, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 0
+		}, 
+		
+		{
+			"id": "pestControl",
+			"cost": 2, 
+			"materials": 0,
+			"economic": 0,
+			"health": 1, 
+			"food": 0, 
+			"attack": 0, 
+			"protect": 1,
+			"diplomation":0, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 5 
+		}, 
+
+		{
+			"id": "strategicLoan",
+			"cost": 1,
+			"materials": 0,
+			"economic": 1,
+			"health": 1, 
+			"food": 0, 
+			"attack": 0, 
+			"protect": 0,
+			"diplomation": 1, 
+			"fortune": 0, 
+			"deltamorale_positive": 0, 
+			"deltamorale_negative": 0
+		}, 
+		
+		{
+				"id": "sunction",
+			"cost": 2, 
+			"materials": 0,
+			"economic": 1,
+			"health": 0, 
+			"food": 0, 
+			"attack": 1, 
+			"protect":0,
+			"diplomation":0, 
+			"fortune": 0, 
+			"deltamorale_positive": 1, 
+			"deltamorale_negative": 0
+		}, 
+
+		{
+			"id": "techological",
+			"cost": 1, 
+			"materials": 1,
+			"economic": 0,
+			"health": 0, 
+			"food": 1, 
+			"attack": 0, 
+			"protect": 0,
+			"diplomation":0, 
+			"fortune": 1, 
+			"deltamorale_positive": 2, 
+			"deltamorale_negative": 0
+		}
+	]
+}

@@ -3,6 +3,7 @@ using Core;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -12,11 +13,21 @@ namespace UI
         [SerializeField] private CardPresident presidentCardPrefab;
         [BoxGroup("Cards")]
         [SerializeField] private CardFight fightCardPrefab;
-        [BoxGroup("Parent")]
+        [BoxGroup("Cards")]
         [SerializeField] private GameObject parentCardPresident, parentCardFight;
+        [BoxGroup("Buttons")]
+        [SerializeField] private Button choosePresidentCards, chooseFightCards;
+        [BoxGroup("Scroll rect cards")]
+        [SerializeField] private ScrollRect scrollRectCards;
 
         private List<CardPresident> cardsPresident = new List<CardPresident>();
         private List<CardFight> cardsFight = new List<CardFight>();
+
+        protected override void AfterInitialization()
+        {
+            choosePresidentCards.onClick.AddListener(ShowPresidentCards);
+            chooseFightCards.onClick.AddListener(ShowFightCards);
+        }
 
         protected override void BeforeShow()
         {
@@ -28,6 +39,16 @@ namespace UI
                 cardsPresident.Add(card);
                 card.SetCardData = data;
             }
+        }
+
+        private void ShowPresidentCards()
+        {
+
+        }
+
+        private void ShowFightCards()
+        {
+
         }
     }
 }
