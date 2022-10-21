@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,10 +21,11 @@ namespace Core
         private bool isUseMoralis;
         private MoralisUser moralisUser;
 
-        private CardsPresidentsList cardsPresident = new CardsPresidentsList();
+        private List<CardPresidentDataSerialize> cardsPresidentsData = new List<CardPresidentDataSerialize>();
+        //private CardsPresidentsList cardsPresident = new CardsPresidentsList();
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
-        public CardsPresidentsList GetCardsPresident { get => cardsPresident; }
+        public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
 
         public MoralisUser SetMoralisUser
         {
@@ -43,7 +45,24 @@ namespace Core
 
         public void FakeInitialize()
         {
-            cardsPresident = JsonUtility.FromJson<CardsPresidentsList>(File.ReadAllText(Application.streamingAssetsPath + "/JSON_PresidentInfo.json"));
+            //cardsPresident = JsonUtility.FromJson<CardsPresidentsList>(File.ReadAllText(Application.streamingAssetsPath + "/JSON_PresidentInfo.json"));
+
+            LoadDataFromServer();
+
+        }
+
+        private async void LoadDataFromServer()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                for (int i = 1; i < 7; i++)
+                {
+                    var json = await httpClient.GetStringAsync("https://nft.raritygram.io/nfts/presidents/" + i);
+
+                    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
+                    cardsPresidentsData.Add(cardData);
+                }
+            }
 
             OnInit?.Invoke();
         }

@@ -19,11 +19,11 @@ namespace Cards
 
         public override void OnInitialize()
         {
-            CardsPresidentsList cardList = DataBaseManager.Instance.GetCardsPresident;
+            List<CardPresidentDataSerialize> cardList = DataBaseManager.Instance.GetCardsPresidentData;
 
-            foreach (var card in cardList.player)
+            foreach (var card in cardList)
             {
-                Sprite sprite = storageImages.GetPresidentSprite(card.id);
+                Sprite sprite = storageImages.GetPresidentSprite(card.id.ToString());
                 CardPresidentData cardData = new CardPresidentData(card, sprite);
 
                 cardsPresidentData.Add(cardData);

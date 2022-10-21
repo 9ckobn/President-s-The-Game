@@ -1,243 +1,346 @@
 {
-	"fight_card": [
-		{
-			"id": "airStrike",
-			"cost": 1, 
-			"materials": 1,
-			"economic": 0,
-			"health": 0, 
-			"food": 0, 
-			"attack": 1, 
-			"protect":0,
-			"diplomation":0, 
-			"fortune": 0,
-			"deltamorale_positive": 7, 
-			"deltamorale_negative": 0
-		}, 
-		
-		{
-			"id": "accession",
-			"cost": 2, 
-			"materials": 0,
-			"economic": 0,
-			"health": 1, 
-			"food": 1, 
-			"attack": 0, 
-			"protect":1,
-			"diplomation":0, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 10
-		}, 
-		
-		{
-			"id": "customsReform",
-			"cost": 1, 
-			"materials": 0,
-			"economic": 0,
-			"health": 0, 
-			"food": 1, 
-			"attack": 0, 
-			"protect":1,
-			"diplomation":0, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 5
-		}, 
+  "fightCards": [
+    {
+      "id": "airStrike",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "rawMaterials",
+              "cost": 1
+            }
+          ],
+          "typeEffect": "attack",
+          "targetPlayer": "enemy",
+          "targetObject": [
+            {
+              "0": "allExceptMorality"
+            }
+          ],
+          "value": 3,
+          "typeAttribute": "attack",
+          "valueAttribute": 25,
+          "timeStart": 0,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "intelligenceData",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "rawMaterials",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "buffAttack",
+          "targetPlayer": "himself",
+          "targetObject": [
 
-		{
-			"id": "diplomaticImmunty",
-			"cost": 2, 
-			"materials": 0,
-			"economic": 0,
-			"health": 1, 
-			"food": 0, 
-			"attack": 0, 
-			"protect":0,
-			"diplomation":1, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 0
-		}, 
-
-		{
-			"id": "educationalInfrastructure",
-			"cost": 2,
-			"materials": 1,
-			"economic": 0,
-			"health": 0, 
-			"food": 1, 
-			"attack": 0, 
-			"protect": 0,
-			"diplomation": 0, 
-			"fortune": 1, 
-			"deltamorale_positive": 5, 
-			"deltamorale_negative": 0
-		}, 
-
-		{
-			"id": "elections",
-			"cost": 2,
-			"materials": 0,
-			"economic": 0,
-			"health": 0, 
-			"food": 1, 
-			"attack": 0, 
-			"protect": 0,
-			"diplomation":0, 
-			"fortune": 1, 
-			"deltamorale_positive": 10, 
-			"deltamorale_negative": -5
-		}, 
-
-		{
-			"id": "energyExpansion",
-			"cost": 2, 
-			"materials": 0,
-			"economic": 1,
-			"health": 1, 
-			"food": 0, 
-			"attack": 0, 
-			"protect":0,
-			"diplomation": 1, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 0
-		}, 
-
-		{
-			"id": "harvest",
-			"cost": 1, 
-			"materials": 1,
-			"economic": 0,
-			"health": 0, 
-			"food": 0, 
-			"attack": 0, 
-			"protect":0,
-			"diplomation":0, 
-			"fortune": 1, 
-			"deltamorale_positive": 10, 
-			"deltamorale_negative": -5 
-		}, 
-
-		{
-				"id": "intelligenceData",
-			"cost": 2, 
-			"materials": 1,
-			"economic": 0,
-			"health": 0, 
-			"food": 0, 
-			"attack": 1, 
-			"protect": 0,
-			"diplomation": 0, 
-			"fortune": 0, 
-			"deltamorale_positive": 5, 
-			"deltamorale_negative": 0
-		}, 
-
-			{
-				"id": "isolation",
-			"cost": 2, 
-			"materials": 1,
-			"economic": 0,
-			"health": 0, 
-			"food": 0, 
-			"attack": 1, 
-			"protect": 0,
-			"diplomation":0, 
-			"fortune": 0, 
-			"deltamorale_positive": 24, 
-			"deltamorale_negative": 0
-		}, 
-		
-		{
-			"id": "militaryPosition",
-			"cost": 2, 
-			"materials": 0,
-			"economic": 0,
-			"health": 0, 
-			"food": 1, 
-			"attack": 0, 
-			"protect":1,
-			"diplomation":0, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 5 
-		}, 
-
-		{
-			"id": "patronage",
-			"cost": 1, 
-			"materials": 0,
-			"economic": 1,
-			"health": 0, 
-			"food": 0, 
-			"attack": 0, 
-			"protect":0,
-			"diplomation": 1, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 0
-		}, 
-		
-		{
-			"id": "pestControl",
-			"cost": 2, 
-			"materials": 0,
-			"economic": 0,
-			"health": 1, 
-			"food": 0, 
-			"attack": 0, 
-			"protect": 1,
-			"diplomation":0, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 5 
-		}, 
-
-		{
-			"id": "strategicLoan",
-			"cost": 1,
-			"materials": 0,
-			"economic": 1,
-			"health": 1, 
-			"food": 0, 
-			"attack": 0, 
-			"protect": 0,
-			"diplomation": 1, 
-			"fortune": 0, 
-			"deltamorale_positive": 0, 
-			"deltamorale_negative": 0
-		}, 
-		
-		{
-				"id": "sunction",
-			"cost": 2, 
-			"materials": 0,
-			"economic": 1,
-			"health": 0, 
-			"food": 0, 
-			"attack": 1, 
-			"protect":0,
-			"diplomation":0, 
-			"fortune": 0, 
-			"deltamorale_positive": 1, 
-			"deltamorale_negative": 0
-		}, 
-
-		{
-			"id": "techological",
-			"cost": 1, 
-			"materials": 1,
-			"economic": 0,
-			"health": 0, 
-			"food": 1, 
-			"attack": 0, 
-			"protect": 0,
-			"diplomation":0, 
-			"fortune": 1, 
-			"deltamorale_positive": 2, 
-			"deltamorale_negative": 0
-		}
-	]
+          ],
+          "value": 2,
+          "typeAttribute": "attack",
+          "valueAttribute": 17,
+          "timeStart": 0,
+          "durationt": -1
+        }
+      ]
+    },
+    {
+      "id": "sunction",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "economic",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "addAdditionalAttack",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "morality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "targetAttribute",
+          "valueAttribute": 50,
+          "timeStart": 0,
+          "duration": -1
+        }
+      ]
+    },
+    {
+      "id": "isolation",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "economic",
+              "cost": 2
+            },
+            {
+              "typeCost": "rawMaterials",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "attack",
+          "targetPlayer": "enemy",
+          "targetObject": [
+            {
+              "0": "allExceptMorality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "attack",
+          "valueAttribute": 50,
+          "timeStart": 0,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "customsReform",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "food",
+              "cost": 1
+            }
+          ],
+          "typeEffect": "protect",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "economic"
+            }
+          ],
+          "value": -1,
+          "typeAttribute":,
+          "valueAttribute": 0,
+          "timeStart": 0,
+          "duration": -1
+        },
+        {
+          "cost": [
+            {
+              "typeCost": "",
+              "cost": 0
+            }
+          ],
+          "typeEffect": "attack",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "morality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "morality",
+          "valueAttribute": 5,
+          "timeStart": 0,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "militaryPosition",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "food",
+              "cost": 1
+            }
+          ],
+          "typeEffect": "protect",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "rawMaterials"
+            }
+          ],
+          "value": -1,
+          "typeAttribute":,
+          "valueAttribute": 0,
+          "timeStart": 0,
+          "duration": -1
+        },
+        {
+          "cost": [
+            {
+              "typeCost": "",
+              "cost": 0
+            }
+          ],
+          "typeEffect": "attack",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "morality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "morality",
+          "valueAttribute": 5,
+          "timeStart": 0,
+          "duration": 0
+        }
+      ]
+    },{
+      "id": "pestControl",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "medicine",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "protect",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "food"
+            }
+          ],
+          "value": -1,
+          "typeAttribute":,
+          "valueAttribute": 0,
+          "timeStart": 0,
+          "duration": -1
+        },
+        {
+          "cost": [
+            {
+              "typeCost": "",
+              "cost": 0
+            }
+          ],
+          "typeEffect": "attack",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "morality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "morality",
+          "valueAttribute": 5,
+          "timeStart": 0,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "joiningUnion",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "medicine",
+              "cost": 2
+            },
+            {
+              "typeCost": "food",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "protect",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "rawMaterials",
+              "1": "economic",
+              "2": "food",
+              "3": "medicine"
+            }
+          ],
+          "value": -1,
+          "typeAttribute":,
+          "valueAttribute": 0,
+          "timeStart": 0,
+          "duration": -1
+        },
+        {
+          "cost": [
+            {
+              "typeCost": "",
+              "cost": 0
+            }
+          ],
+          "typeEffect": "attack",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "morality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "morality",
+          "valueAttribute": 10,
+          "timeStart": 0,
+          "duration": 0
+        }
+      ]
+    },
+    {
+      "id": "bountifulHarvest",
+      "description": "description",
+      "effects": [
+        {
+          "cost": [
+            {
+              "typeCost": "rawMaterials",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "randomGood",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "morality"
+            }
+          ],
+          "value": 0,
+          "typeAttribute": "morality",
+          "valueAttribute": 20,
+          "timeStart": 0,
+          "duration": 0
+        },
+        {
+          "cost": [
+            {
+              "typeCost": "rawMaterials",
+              "cost": 2
+            }
+          ],
+          "typeEffect": "randomBad",
+          "targetPlayer": "himself",
+          "targetObject": [
+            {
+              "0": "rawMaterials"
+            }
+          ],
+          "value": -1,
+          "typeAttribute":,
+          "valueAttribute": 0,
+          "timeStart": 0,
+          "duration": -1
+        }
+      ]
+    }
+  ]
 }

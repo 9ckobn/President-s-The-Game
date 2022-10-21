@@ -22,7 +22,7 @@ namespace UI.Components
 
         private int CountLines(int countCards)
         {
-
+            return 0;
         }
     }
 }

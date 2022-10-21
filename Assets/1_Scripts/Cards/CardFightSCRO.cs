@@ -6,6 +6,7 @@ namespace Cards
     public class CardFightSCRO : ScriptableObject
     {
         public string ID;
+        public string Name;
         public int Cost;
     }
 }
