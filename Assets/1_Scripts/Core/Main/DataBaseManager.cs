@@ -22,7 +22,6 @@ namespace Core
         private MoralisUser moralisUser;
 
         private List<CardPresidentDataSerialize> cardsPresidentsData = new List<CardPresidentDataSerialize>();
-        //private CardsPresidentsList cardsPresident = new CardsPresidentsList();
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
         public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
@@ -45,10 +44,7 @@ namespace Core
 
         public void FakeInitialize()
         {
-            //cardsPresident = JsonUtility.FromJson<CardsPresidentsList>(File.ReadAllText(Application.streamingAssetsPath + "/JSON_PresidentInfo.json"));
-
             LoadDataFromServer();
-
         }
 
         private async void LoadDataFromServer()

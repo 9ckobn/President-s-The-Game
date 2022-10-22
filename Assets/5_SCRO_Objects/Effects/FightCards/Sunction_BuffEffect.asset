@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d45e5579210499468e064e48831eeea, type: 3}
+  m_Name: Sunction_BuffEffect
+  m_EditorClassIdentifier: 
+  TypeTarget: 0
+  RightNow: 1
+  TimeStart: 0
+  TimeDuration: 0
+  TypeBuff: 0
+  TypeTargetObject: 
+  BaseValue: 2
+  TypeAttribute: 0
+  ValueAttribute: 17

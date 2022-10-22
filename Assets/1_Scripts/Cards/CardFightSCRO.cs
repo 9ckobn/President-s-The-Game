@@ -1,3 +1,5 @@
+using EffectSystem;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Cards
@@ -5,8 +7,14 @@ namespace Cards
     [CreateAssetMenu(fileName = "CardFightSCRO", menuName = "Data/Card/CardFightSCRO")]
     public class CardFightSCRO : ScriptableObject
     {
-        public string ID;
-        public string Name;
+        [BoxGroup("Data")]
+        public string ID,Name, Description;
+        [BoxGroup("Data")]
+        public TypeFactor TypeCost;
+        [BoxGroup("Data")]
         public int Cost;
+
+        [BoxGroup("Effects")]
+        public SCRO_Effect Effects;
     }
 }
