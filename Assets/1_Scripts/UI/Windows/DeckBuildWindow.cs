@@ -1,7 +1,11 @@
 using Cards;
+using Cards.Data;
 using Core;
+using Gameplay;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using UI.Buttons;
+using UI.Components;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,31 +17,49 @@ namespace UI
         [SerializeField] private CardPresident presidentCardPrefab;
         [BoxGroup("Cards")]
         [SerializeField] private CardFight fightCardPrefab;
-        [BoxGroup("Cards")]
-        [SerializeField] private GameObject parentCardPresident, parentCardFight;
         [BoxGroup("Buttons")]
         [SerializeField] private Button choosePresidentCards, chooseFightCards;
         [BoxGroup("Scroll rect cards")]
-        [SerializeField] private ScrollRect scrollRectCards;
+        [SerializeField] private ScrollCards scrollCards;
+        [BoxGroup("Deck buttons")]
+        [SerializeField] private DeckButton[] deckButtons;
+
+        private DeckBuildController deckController;
 
         private List<CardPresident> cardsPresident = new List<CardPresident>();
         private List<CardFight> cardsFight = new List<CardFight>();
 
+        private DeckButton selectedDeckButton;
+
         protected override void AfterInitialization()
         {
+            deckController = BoxController.GetController<DeckBuildController>();
+
             choosePresidentCards.onClick.AddListener(ShowPresidentCards);
             chooseFightCards.onClick.AddListener(ShowFightCards);
         }
 
         protected override void BeforeShow()
         {
-            List<CardPresidentData> dataCards = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
+            List<DeckData> decks = deckController.GetAllDecks;
 
-            foreach (var data in dataCards)
+            for (int i = 0; i < decks.Count; i++)
             {
-                CardPresident card = Instantiate(presidentCardPrefab, parentCardPresident.transform);
-                cardsPresident.Add(card);
-                card.SetCardData = data;
+                deckButtons[i].SetNameDeck = decks[i].Name;
+            }
+
+            scrollCards.SetCards(deckController.GetSelectedDeck.PresidentsData)
+        }
+
+        public void ClickDeckButton(DeckButton deckButton)
+        {
+            if (selectedDeckButton == deckButton)
+            {
+                // TODO: rename deck
+            }
+            else
+            {
+                selectedDeckButton = deckButton;
             }
         }
 

@@ -1,3 +1,4 @@
+using Cards.Data;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;

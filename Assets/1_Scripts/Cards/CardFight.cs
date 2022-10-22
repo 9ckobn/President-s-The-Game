@@ -1,3 +1,4 @@
+using Cards.Data;
 using UnityEngine;
 
 namespace Cards

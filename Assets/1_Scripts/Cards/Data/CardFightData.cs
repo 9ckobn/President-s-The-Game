@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Cards
+namespace Cards.Data
 {
     public class CardFightData : CardDataBase
     {

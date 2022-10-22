@@ -6,7 +6,7 @@ namespace UI.Components
     {
         [SerializeField] private GameObject[] positionsCards;
 
-        public void DisposeCards(GameObject[] cards)
+        public void AddCards(GameObject[] cards)
         {
             for (int i = 0; i < cards.Length; i++)
             {
