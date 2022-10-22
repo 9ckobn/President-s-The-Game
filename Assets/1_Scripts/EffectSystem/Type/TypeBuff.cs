@@ -3,6 +3,7 @@ namespace EffectSystem
     public enum TypeBuff
     {
         UpAttack,
-        AdditionalDamage
+        AdditionalDamage,
+        CostReduction
     }
 }

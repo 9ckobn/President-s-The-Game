@@ -14,10 +14,12 @@ namespace EffectSystem
         [BoxGroup("Time")]
         [Label("Сработает в этот раунд")]
         public bool RightNow = true;
+
         [BoxGroup("Time")]
         [HideIf("RightNow")]
         [Label("Время старта эффекта")]
         public int TimeStart;
+
         [BoxGroup("Time")]
         [HideIf("RightNow")]
         [Label("Время продолжительности эффекта")]

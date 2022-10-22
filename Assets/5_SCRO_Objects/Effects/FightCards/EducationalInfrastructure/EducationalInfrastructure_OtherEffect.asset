@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d45e5579210499468e064e48831eeea, type: 3}
-  m_Name: Sunction_BuffEffect
+  m_Script: {fileID: 11500000, guid: b8a0861817669d64c826921aef7c6d50, type: 3}
+  m_Name: EducationalInfrastructure_OtherEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  RightNow: 1
+  RightNow: 0
   TimeStart: 0
-  TimeDuration: 0
-  TypeBuff: 0
-  TypeTargetObject: 
-  BaseValue: 2
-  TypeAttribute: 0
-  ValueAttribute: 17
+  TimeDuration: 2
+  TypeOtherEffect: 0
+  ProcentAttack: 10
+  UpAttribute: 6

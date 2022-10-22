@@ -9,8 +9,10 @@ namespace Cards
     {
         [BoxGroup("Data")]
         public string ID,Name, Description;
+
         [BoxGroup("Data")]
-        public TypeFactor TypeCost;
+        public TypeAttribute TypeCost;
+
         [BoxGroup("Data")]
         public int Cost;
 

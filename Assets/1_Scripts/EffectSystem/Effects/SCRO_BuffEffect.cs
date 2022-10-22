@@ -10,9 +10,9 @@ namespace EffectSystem
         [Label("Какой buff")]
         public TypeBuff TypeBuff;
         [BoxGroup("Buff")]
-        [ShowIf("TypeBuff", TypeBuff.AdditionalDamage)]
+        [HideIf("TypeBuff", TypeBuff.UpAttack)]
         [Label("Объект на который действует бафф")]
-        public TypeFactor[] TypeTargetObject;
+        public TypeAttribute[] TypeTargetObject;
         [BoxGroup("Buff")]
         [Label("Базовое значение бафа")]
         public int BaseValue;

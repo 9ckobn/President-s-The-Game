@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb76aab0e09b1ee4e96119374120ea90, type: 3}
-  m_Name: AirStrike_AttackEffect
+  m_Name: CustomsReform_AttackEffect
   m_EditorClassIdentifier: 
-  TypeTarget: 1
+  TypeTarget: 0
   RightNow: 1
   TimeStart: 0
   TimeDuration: 0
-  TypeSelectTarget: 0
-  TypeTargetObject: 01000000
-  BaseValue: 3
+  TypeSelectTarget: 1
+  TypeTargetObject: 06000000
+  BaseValue: 0
   IsNeedAttribute: 1
-  TypeAttribute: 0
-  ValueAttribute: 25
+  TypeAttribute: 6
+  ValueAttribute: 5

@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d45e5579210499468e064e48831eeea, type: 3}
-  m_Name: IntelligenceData_BuffEffect
+  m_Script: {fileID: 11500000, guid: 50937545361e1ff40bffde0b2dd5fa3e, type: 3}
+  m_Name: JoiningUnion_ProtectEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
   RightNow: 1
   TimeStart: 0
   TimeDuration: 0
-  TypeBuff: 0
-  TypeTargetObject: 
-  BaseValue: 2
-  TypeAttribute: 0
-  ValueAttribute: 17
+  TypeProtect: 3
+  Immortal: 1
+  ValueProtect: 0
+  DurationProtect: 1
