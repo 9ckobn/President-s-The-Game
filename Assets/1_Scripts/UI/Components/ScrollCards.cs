@@ -1,5 +1,4 @@
-using Cards.Data;
-using System.Collections;
+using Cards;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,14 @@ namespace UI.Components
 
         private List<LineCard> linesCard = new List<LineCard>();
 
-        public void SetCards(List<GameObject> cardsData)
+        public void SetCards(List<CardFightUI> cardsData)
+        {
+            int countLines = CountLines(cardsData.Count);
+
+            Debug.Log($"countLines = {countLines}");
+        }
+
+        public void SetCards(List<CardPresidentUI> cardsData)
         {
             int countLines = CountLines(cardsData.Count);
 

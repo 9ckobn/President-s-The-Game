@@ -14,15 +14,17 @@ namespace UI
     public class DeckBuildWindow : Window
     {
         [BoxGroup("Cards")]
-        [SerializeField] private CardPresident presidentCardPrefab;
+        [SerializeField] private CardPresidentUI presidentCardPrefab;
         [BoxGroup("Cards")]
-        [SerializeField] private CardFight fightCardPrefab;
+        [SerializeField] private CardFightUI fightCardPrefab;
         [BoxGroup("Buttons")]
         [SerializeField] private Button choosePresidentCards, chooseFightCards;
         [BoxGroup("Scroll rect cards")]
         [SerializeField] private ScrollCards scrollCards;
         [BoxGroup("Deck buttons")]
         [SerializeField] private DeckButton[] deckButtons;
+        [BoxGroup("Parent cards")]
+        [SerializeField] private GameObject parentCards;
 
         private DeckBuildController deckController;
 
@@ -48,7 +50,7 @@ namespace UI
                 deckButtons[i].SetNameDeck = decks[i].Name;
             }
 
-            scrollCards.SetCards(deckController.GetSelectedDeck.PresidentsData)
+            ShowPresidentCards();
         }
 
         public void ClickDeckButton(DeckButton deckButton)
@@ -65,12 +67,32 @@ namespace UI
 
         private void ShowPresidentCards()
         {
+            List<CardPresidentData> cardsData = deckController.GetSelectedDeck.PresidentsData;
+            List<CardPresidentUI> cardsUI = new List<CardPresidentUI>();
 
+            foreach (var cardData in cardsData)
+            {
+                CardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
+                card.SetCardData = cardData;
+                cardsUI.Add(card);
+            }
+
+            scrollCards.SetCards(cardsUI);
         }
 
         private void ShowFightCards()
         {
+            List<CardFightData> cardsData = deckController.GetSelectedDeck.FightsData;
+            List<CardFightUI> cardsUI = new List<CardFightUI>();
 
+            foreach (var cardData in cardsData)
+            {
+                CardFightUI card = Instantiate(fightCardPrefab, parentCards.transform);
+                card.SetCardData = cardData;
+                cardsUI.Add(card);
+            }
+
+            scrollCards.SetCards(cardsUI);
         }
     }
 }

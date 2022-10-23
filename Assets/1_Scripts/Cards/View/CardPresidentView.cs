@@ -3,7 +3,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cards
+namespace Cards.View
 {
     public class CardPresidentView : CardViewBase
     {
@@ -12,7 +12,7 @@ namespace Cards
         [BoxGroup("Info images")]
         [SerializeField] private Image attackImage, protectionImage, fortuneImage, diplomationImage;
 
-        public void SetData(CardPresidentData data, Sprite sprite)
+        public void SetData(CardPresidentData data)
         {
         }
     }

@@ -10,7 +10,7 @@ namespace Cards
     public class StorageCardsController : BaseController
     {
         [SerializeField] private StorageCardImages storageImages;
-        [SerializeField] private CardFightSCRO[] cardFightSCRO;
+        [SerializeField] private SCRO_CardFight[] cardFightSCRO;
 
         private List<CardPresidentData> cardsPresidentData = new List<CardPresidentData>();
         private List<CardFightData> cardsFightData = new List<CardFightData>();

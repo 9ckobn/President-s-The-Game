@@ -22,6 +22,8 @@ namespace Cards.Data
 
         public TypeClimate Climate { get; private set; }
 
+        public CardPresidentData(string id) : base(id, null) { } // DELETE
+
         public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite)
         {
             Name = data.name;

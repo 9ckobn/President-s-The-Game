@@ -6,7 +6,9 @@ namespace Cards.Data
     {
         public int Cost { get; private set; }
 
-        public CardFightData(CardFightSCRO data, Sprite sprite) : base(data.ID.ToString(), sprite)
+        public CardFightData(string id) : base(id, null) { } // DELETE
+
+        public CardFightData(SCRO_CardFight data, Sprite sprite) : base(data.ID.ToString(), sprite)
         {
 
         }

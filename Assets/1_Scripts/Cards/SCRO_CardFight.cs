@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Cards
 {
     [CreateAssetMenu(fileName = "CardFightSCRO", menuName = "Data/Card/CardFightSCRO")]
-    public class CardFightSCRO : ScriptableObject
+    public class SCRO_CardFight : ScriptableObject
     {
         [BoxGroup("Data")]
         public string ID,Name, Description;
