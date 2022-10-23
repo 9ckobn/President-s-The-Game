@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Cards.Data
 {
-    public class CardDataBase : MonoBehaviour
+    public class CardDataBase
     {
         public string ID { get; private set; }
         public Sprite Sprite { get; private set; }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Cards
 {
-    [RequireComponent(typeof(CardPresidentData))]
     [RequireComponent(typeof(CardPresidentView))]
     public class CardPresident : CardBase
     {

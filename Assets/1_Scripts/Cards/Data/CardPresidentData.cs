@@ -1,3 +1,4 @@
+using Cards.Type;
 using Core;
 using Gameplay;
 using UnityEngine;
@@ -15,14 +16,33 @@ namespace Cards.Data
         public int Luck { get; private set; }
         public int Diplomatic { get; private set; }
 
-        public int BuffAttack { get; private set; }
-        public int BuffDefend { get; private set; }
-        public int BuffLuck { get; private set; }
-        public int BuffDiplomatic { get; private set; }
+        public BuffAttribute BuffAttack { get; private set; }
+        public BuffAttribute BuffDefend { get; private set; }
+        public BuffAttribute BuffLuck { get; private set; }
+        public BuffAttribute BuffDiplomatic { get; private set; }
 
         public TypeClimate Climate { get; private set; }
 
-        public CardPresidentData(string id) : base(id, null) { } // DELETE
+        public int CommonAttack { get => Attack + BuffAttack.GetValue; }
+        public int CommonDefend { get => Defend + BuffDefend.GetValue; }
+        public int CommonLuck { get => Luck + BuffLuck.GetValue; }
+        public int CommonDiplomatic { get => Diplomatic + BuffDiplomatic.GetValue; }
+
+        //
+        // DELETE
+        //
+        public CardPresidentData(string id) : base(id, null)
+        {
+            Name = "name";
+            Rarityrank = 1;
+            Attack = 5;
+            Defend = 5;
+            Luck = 5;
+            Diplomatic = 5;
+
+            DefineClimate("temperate");
+            CalculateClimate();
+        } 
 
         public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite)
         {
@@ -41,17 +61,17 @@ namespace Cards.Data
         {
             if (Climate == BoxController.GetController<DeckBuildController>().GetTypeClimate)
             {
-                BuffAttack += BUFF_CLIMATE;
-                BuffDefend += BUFF_CLIMATE;
-                BuffLuck += BUFF_CLIMATE;
-                BuffDiplomatic += BUFF_CLIMATE;
+                BuffAttack = new BuffAttribute(BUFF_CLIMATE);
+                BuffDefend = new BuffAttribute(BUFF_CLIMATE);
+                BuffLuck = new BuffAttribute(BUFF_CLIMATE);
+                BuffDiplomatic = new BuffAttribute(BUFF_CLIMATE);
             }
             else
             {
-                BuffAttack = DEBUFF_CLIMATE;
-                BuffDefend = DEBUFF_CLIMATE;
-                BuffLuck = DEBUFF_CLIMATE;
-                BuffDiplomatic = DEBUFF_CLIMATE;
+                BuffAttack = new BuffAttribute(DEBUFF_CLIMATE);
+                BuffDefend = new BuffAttribute(DEBUFF_CLIMATE);
+                BuffLuck = new BuffAttribute(DEBUFF_CLIMATE);
+                BuffDiplomatic = new BuffAttribute(DEBUFF_CLIMATE);
             }
         }
 

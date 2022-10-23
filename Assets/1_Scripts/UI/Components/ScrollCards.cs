@@ -15,15 +15,11 @@ namespace UI.Components
         public void SetCards(List<CardFightUI> cardsData)
         {
             int countLines = CountLines(cardsData.Count);
-
-            Debug.Log($"countLines = {countLines}");
         }
 
         public void SetCards(List<CardPresidentUI> cardsData)
         {
             int countLines = CountLines(cardsData.Count);
-
-            Debug.Log($"countLines = {countLines}");
         }
 
         private int CountLines(int countCards)

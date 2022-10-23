@@ -1,4 +1,4 @@
-namespace Cards
+namespace Cards.Type
 {
     public enum TypeClimate
     {

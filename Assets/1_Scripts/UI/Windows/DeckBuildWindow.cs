@@ -73,6 +73,7 @@ namespace UI
             foreach (var cardData in cardsData)
             {
                 CardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
+
                 card.SetCardData = cardData;
                 cardsUI.Add(card);
             }

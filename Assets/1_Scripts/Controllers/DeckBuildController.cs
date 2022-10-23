@@ -1,5 +1,5 @@
-using Cards;
 using Cards.Data;
+using Cards.Type;
 using Core;
 using System.Collections.Generic;
 using UI;

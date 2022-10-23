@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace Cards
 {
-    [RequireComponent(typeof(CardFightData))]
     [RequireComponent(typeof(CardFightView))]
     public class CardFightUI : CardBase
     {
