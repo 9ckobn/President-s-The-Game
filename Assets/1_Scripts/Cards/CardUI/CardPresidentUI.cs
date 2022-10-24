@@ -10,6 +10,8 @@ namespace Cards
     [RequireComponent(typeof(Button))]
     public class CardPresidentUI : CardUI
     {
+        public CardPresidentData GetData { get => data as CardPresidentData; }
+
         public CardPresidentData SetCardData
         {
             set

@@ -51,10 +51,34 @@ namespace Gameplay
             UIManager.Instance.ShowWindow<DeckBuildWindow>();
         }
 
-
-        public DeckData GetDeckData(int idDeck)
+        public bool CanAddCard(CardPresidentData card)
         {
-            return decks[idDeck];
+            return selectedDeck.CanAddPresidentData();
+        }
+
+        public bool CanAddCard(CardFightData card)
+        {
+            return selectedDeck.CanAddFightData();
+        }
+
+        public void AddCardInDeck(CardPresidentData card)
+        {
+            selectedDeck.AddPresidentCard(card);
+        }
+
+        public void AddCardInDeck(CardFightData card)
+        {
+            selectedDeck.AddFightCard(card);
+        }
+
+        public void RemoveCardInDeck(CardPresidentData card)
+        {
+            selectedDeck.RemovePresidentCard(card);
+        }
+
+        public void RemoveCardInDeck(CardFightData card)
+        {
+            selectedDeck.RemoveFightCard(card);
         }
     }
 }

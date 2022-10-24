@@ -30,8 +30,10 @@ namespace UI
 
         private DeckBuildController deckController;
 
-        private List<CardPresident> cardsPresident = new List<CardPresident>();
-        private List<CardFight> cardsFight = new List<CardFight>();
+        private List<CardPresidentUI> choiceCardsPresident = new List<CardPresidentUI>();
+        private List<CardPresidentUI> deckCardsPresident = new List<CardPresidentUI>();
+        private List<CardFightUI> choiceCardsFight = new List<CardFightUI>();
+        private List<CardFightUI> deckCardsFight = new List<CardFightUI>();
 
         private DeckButton selectedDeckButton;
 
@@ -39,8 +41,8 @@ namespace UI
         {
             deckController = BoxController.GetController<DeckBuildController>();
 
-            choosePresidentCards.onClick.AddListener(ShowPresidentCards);
-            chooseFightCards.onClick.AddListener(ShowFightCards);
+            choosePresidentCards.onClick.AddListener(CreatePresidentCards);
+            chooseFightCards.onClick.AddListener(CreateFightCards);
         }
 
         protected override void BeforeShow()
@@ -52,7 +54,7 @@ namespace UI
                 deckButtons[i].SetNameDeck = decks[i].Name;
             }
 
-            ShowPresidentCards();
+            CreatePresidentCards();
         }
 
         public void ClickDeckButton(DeckButton deckButton)
@@ -71,25 +73,68 @@ namespace UI
 
         public void SelectPresidentCard(CardPresidentUI card)
         {
-            currentDeckUI.AddCard(card.gameObject);
+            CreatePresidentCardInDeck(card.GetData);
         }
 
         public void SelectFightCard(CardFightUI card)
         {
+            CreateFightCardInDeck(card.GetData);
         }
 
         public void DeSelectPresidentCard(CardPresidentUI card)
         {
-            currentDeckUI.AddCard(card.gameObject);
+            CardPresidentUI deleteCard = null;
+
+            foreach (var deckCard in deckCardsPresident)
+            {
+                if(deckCard.GetData == card.GetData)
+                {
+                    deleteCard = deckCard;
+                }
+            }
+
+            if(deleteCard == null)
+            {
+                BoxController.GetController<LogController>().LogError($"Not have card for delete in deck president UI. card id = {card.GetData.ID}");
+            }
+            else
+            {
+                удалять карту из колоды
+
+                deckCardsPresident.Remove(deleteCard);
+                Destroy(deleteCard.gameObject);
+            }
         }
 
         public void DeSelectFightCard(CardFightUI card)
         {
+            CardFightUI deleteCard = null;
+
+            foreach (var deckCard in deckCardsFight)
+            {
+                if (deckCard.GetData == card.GetData)
+                {
+                    deleteCard = deckCard;
+                }
+            }
+
+            if (deleteCard == null)
+            {
+                BoxController.GetController<LogController>().LogError($"Not have card for delete in deck fight UI. card id = {card.GetData.ID}");
+            }
+            else
+            {
+                удалять карту из колоды
+                deckCardsFight.Remove(deleteCard);
+                Destroy(deleteCard);
+            }
         }
 
         #endregion
 
-        private void ShowPresidentCards()
+        #region CREATE_CARDS_UI
+
+        private void CreatePresidentCards()
         {
             List<CardPresidentData> cardsData = deckController.GetSelectedDeck.PresidentsData;
             List<CardBase> cardsUI = new List<CardBase>();
@@ -99,13 +144,14 @@ namespace UI
                 CardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
 
                 card.SetCardData = cardData;
+                card.SetInDeck = false;
                 cardsUI.Add(card);
             }
 
             scrollCards.SetCards(cardsUI);
         }
 
-        private void ShowFightCards()
+        private void CreateFightCards()
         {
             List<CardFightData> cardsData = deckController.GetSelectedDeck.FightsData;
             List<CardBase> cardsUI = new List<CardBase>();
@@ -114,10 +160,33 @@ namespace UI
             {
                 CardFightUI card = Instantiate(fightCardPrefab, parentCards.transform);
                 card.SetCardData = cardData;
+                card.SetInDeck = false;
                 cardsUI.Add(card);
             }
 
             scrollCards.SetCards(cardsUI);
         }
+
+        private void CreatePresidentCardInDeck(CardPresidentData data)
+        {
+            CardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
+            card.SetCardData = data;
+            card.SetInDeck = true;
+            deckCardsPresident.Add(card);
+
+            currentDeckUI.AddCard(card.gameObject);
+        }
+
+        private void CreateFightCardInDeck(CardFightData data)
+        {
+            CardFightUI card = Instantiate(fightCardPrefab, parentCards.transform);
+            card.SetCardData = data;
+            card.SetInDeck = true;
+            deckCardsFight.Add(card);
+
+            currentDeckUI.AddCard(card.gameObject);
+        }
+
+        #endregion
     }
 }

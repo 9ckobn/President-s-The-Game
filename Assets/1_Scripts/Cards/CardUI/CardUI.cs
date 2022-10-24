@@ -7,24 +7,23 @@ namespace Cards
     {
         [SerializeField] protected Image cardImage;
 
-        private bool isSelectCard = false;
+        protected bool inDeck = false;
+        public bool SetInDeck { set => inDeck = value; }
 
         protected override void AfterAwake()
         {
-            GetComponent<Button>().onClick.AddListener(SelectCard);
+            GetComponent<Button>().onClick.AddListener(ClickCard);
         }
 
         protected void ClickCard()
         {
-            isSelectCard = !isSelectCard;
-
-            if (isSelectCard)
+            if (inDeck)
             {
-                SelectCard();
+                DeSelectCard();
             }
             else
             {
-                DeSelectCard();
+                SelectCard();
             }
 
         }
