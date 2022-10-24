@@ -16,5 +16,10 @@ namespace Cards
                 (view as CardPresidentView).SetData(data as CardPresidentData);
             }
         }
+
+        protected override void AfterAwake()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

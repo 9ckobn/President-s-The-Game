@@ -25,6 +25,8 @@ namespace UI
         [SerializeField] private DeckButton[] deckButtons;
         [BoxGroup("Parent cards")]
         [SerializeField] private GameObject parentCards;
+        [BoxGroup("Current deck")]
+        [SerializeField] private CurrentDeckUI currentDeckUI;
 
         private DeckBuildController deckController;
 
@@ -64,6 +66,28 @@ namespace UI
                 selectedDeckButton = deckButton;
             }
         }
+
+        #region SELECT_DESELECT_CARD
+
+        public void SelectPresidentCard(CardPresidentUI card)
+        {
+            currentDeckUI.AddCard(card.gameObject);
+        }
+
+        public void SelectFightCard(CardFightUI card)
+        {
+        }
+
+        public void DeSelectPresidentCard(CardPresidentUI card)
+        {
+            currentDeckUI.AddCard(card.gameObject);
+        }
+
+        public void DeSelectFightCard(CardFightUI card)
+        {
+        }
+
+        #endregion
 
         private void ShowPresidentCards()
         {

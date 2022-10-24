@@ -32,7 +32,7 @@ namespace UI.Components
                 line.AddCard(cardsData[c].gameObject);
 
                 countCards++;
-                if (countCards >= 3)
+                if (countCards >= CARDS_IN_LINE)
                 {
                     countCards = 0;
                 }

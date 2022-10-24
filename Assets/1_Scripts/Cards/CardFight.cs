@@ -16,5 +16,10 @@ namespace Cards
                 (view as CardFightView).SetData(data as CardFightData);
             }
         }
+
+        protected override void AfterAwake()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
