@@ -19,9 +19,9 @@ namespace Cards.View
             nameText.text = data.Name;
             
             attackAttribute.SetData(data.CommonAttack, data.BuffAttack.GetState);
-            luckAttribute.SetData(data., data..GetState);
-            defendAttribute.SetData(data., data..GetState);
-            diplomaticAttribute.SetData(data., data..GetState);
+            luckAttribute.SetData(data.CommonLuck, data.BuffLuck.GetState);
+            defendAttribute.SetData(data.CommonDefend, data.BuffDefend.GetState);
+            diplomaticAttribute.SetData(data.CommonDiplomatic, data.BuffDiplomatic.GetState);
         }
     }
 }

@@ -6,13 +6,13 @@ namespace UI.Components
     {
         [SerializeField] private GameObject[] positionsCards;
 
-        public void AddCards(GameObject[] cards)
+        private int counterPositions;
+
+        public void AddCard(GameObject cards)
         {
-            for (int i = 0; i < cards.Length; i++)
-            {
-                cards[0].transform.parent = this.transform;
-                cards[0].transform.position = positionsCards[0].transform.position;
-            }
+            cards.transform.parent = this.transform;
+            cards.transform.position = positionsCards[counterPositions].transform.position;
+            counterPositions++;
         }
     }
 }

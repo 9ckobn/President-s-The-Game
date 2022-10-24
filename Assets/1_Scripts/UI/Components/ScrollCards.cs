@@ -9,29 +9,31 @@ namespace UI.Components
         private const int CARD_ID_LINE = 3;
 
         [SerializeField] private LineCard prefabLineCard;
+        [SerializeField] private GameObject linesParent;
 
         private List<LineCard> linesCard = new List<LineCard>();
 
-        public void SetCards(List<CardFightUI> cardsData)
+        public void SetCards(List<CardBase> cardsData)
         {
-            int countLines = CountLines(cardsData.Count);
-        }
+            int countCards = 0;
+            LineCard line = null;
 
-        public void SetCards(List<CardPresidentUI> cardsData)
-        {
-            int countLines = CountLines(cardsData.Count);
-        }
-
-        private int CountLines(int countCards)
-        {
-            int count = countCards / CARD_ID_LINE;
-
-            if(countCards % CARD_ID_LINE != 0)
+            for (int c = 0; c < cardsData.Count; c++)
             {
-                count++;
-            }
+                if (countCards == 0)
+                {
+                    line = Instantiate(prefabLineCard, linesParent.transform);
+                    linesCard.Add(line);
+                }
 
-            return count;
+                line.AddCard(cardsData[c].gameObject);
+
+                countCards++;
+                if (countCards >= 3)
+                {
+                    countCards = 0;
+                }
+            }
         }
     }
 }

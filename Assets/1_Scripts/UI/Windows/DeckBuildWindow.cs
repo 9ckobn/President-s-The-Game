@@ -68,7 +68,7 @@ namespace UI
         private void ShowPresidentCards()
         {
             List<CardPresidentData> cardsData = deckController.GetSelectedDeck.PresidentsData;
-            List<CardPresidentUI> cardsUI = new List<CardPresidentUI>();
+            List<CardBase> cardsUI = new List<CardBase>();
 
             foreach (var cardData in cardsData)
             {
@@ -84,7 +84,7 @@ namespace UI
         private void ShowFightCards()
         {
             List<CardFightData> cardsData = deckController.GetSelectedDeck.FightsData;
-            List<CardFightUI> cardsUI = new List<CardFightUI>();
+            List<CardBase> cardsUI = new List<CardBase>();
 
             foreach (var cardData in cardsData)
             {
