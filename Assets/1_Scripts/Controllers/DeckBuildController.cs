@@ -26,18 +26,6 @@ namespace Gameplay
             {
                 DeckData deckData = new DeckData(i, null, null);
                 decks.Add(deckData);
-
-                for (int c = 0; c < 6; c++)
-                {
-                    CardPresidentData cardData = new CardPresidentData(c.ToString());
-                    deckData.AddPresidentCard(cardData);
-                }
-
-                for (int c = 0; c < 12; c++)
-                {
-                    CardFightData cardData = new CardFightData(c.ToString());
-                    deckData.AddFightCard(cardData);
-                }
             }
 
             selectedDeck = decks[0];
@@ -53,11 +41,15 @@ namespace Gameplay
 
         public bool CanAddCard(CardPresidentData card)
         {
+            Debug.Log($"add president = {selectedDeck.CanAddPresidentData()}");
             return selectedDeck.CanAddPresidentData();
         }
 
         public bool CanAddCard(CardFightData card)
         {
+            Debug.Log($"add fight = {selectedDeck.CanAddFightData()}");
+
+
             return selectedDeck.CanAddFightData();
         }
 

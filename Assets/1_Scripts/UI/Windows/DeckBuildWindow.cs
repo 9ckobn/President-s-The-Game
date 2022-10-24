@@ -182,7 +182,7 @@ namespace UI
 
         private void CreatePresidentCards()
         {
-            List<CardPresidentData> cardsData = deckController.GetSelectedDeck.PresidentsData;
+            List<CardPresidentData> cardsData = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
             showCardsPresident = new List<CardPresidentUI>();
 
             foreach (var cardData in cardsData)
@@ -199,7 +199,7 @@ namespace UI
 
         private void CreateFightCards()
         {
-            List<CardFightData> cardsData = deckController.GetSelectedDeck.FightsData;
+            List<CardFightData> cardsData = BoxController.GetController<StorageCardsController>().GetCardsFightData;
             showCardsFight = new List<CardFightUI>();
 
             foreach (var cardData in cardsData)
