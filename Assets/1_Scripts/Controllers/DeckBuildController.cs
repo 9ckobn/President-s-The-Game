@@ -46,7 +46,6 @@ namespace Gameplay
 
         public bool CanAddCard(CardFightData card)
         {
-
             return selectedDeck.CanAddFightData();
         }
 

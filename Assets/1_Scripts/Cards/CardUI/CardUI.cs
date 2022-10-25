@@ -1,13 +1,15 @@
+using UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Cards
 {
-    public abstract class CardUI : CardBase
+    public abstract class CardUI : CardBase, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] protected Image cardImage;
 
-        protected bool inDeck = false;
+        private bool inDeck = false, isPreview;
         public bool SetInDeck { set => inDeck = value; }
 
         protected override void AfterAwake()
@@ -26,6 +28,26 @@ namespace Cards
                 SelectCard();
             }
 
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (inDeck)
+            {
+                isPreview = true;
+
+                UIManager.Instance.GetWindow<DeckBuildWindow>().PointerEnterOnCard(this);
+            }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (inDeck && isPreview)
+            {
+                isPreview = false;
+
+                UIManager.Instance.GetWindow<DeckBuildWindow>().PointerExitOnCard();
+            }
         }
 
         protected abstract void SelectCard();

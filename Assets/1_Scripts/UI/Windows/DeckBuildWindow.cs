@@ -24,7 +24,7 @@ namespace UI
         [BoxGroup("Deck buttons")]
         [SerializeField] private DeckButton[] deckButtons;
         [BoxGroup("Parent cards")]
-        [SerializeField] private GameObject parentCards;
+        [SerializeField] private GameObject parentCards, parentPreviewCard;
         [BoxGroup("Current deck")]
         [SerializeField] private CurrentDeckUI currentDeckUI;
 
@@ -36,6 +36,7 @@ namespace UI
         private List<CardFightUI> showCardsFight = new List<CardFightUI>();
         private List<CardFightUI> deckCardsFight = new List<CardFightUI>();
 
+        private CardUI previewCard;
         private DeckButton selectedDeckButton;
         private bool presidentsCardsNow;
 
@@ -118,6 +119,31 @@ namespace UI
             {
                 selectedDeckButton = deckButton;
             }
+        }
+
+        public void PointerEnterOnCard(CardUI cardUI)
+        {
+            if (presidentsCardsNow)
+            {
+                CardPresidentUI card = Instantiate(presidentCardPrefab, parentPreviewCard.transform);
+                card.transform.position = parentPreviewCard.transform.position;
+                card.SetCardData = (cardUI as CardPresidentUI).GetData;
+
+                previewCard = card;
+            }
+            else
+            {
+                CardFightUI card = Instantiate(fightCardPrefab, parentPreviewCard.transform);
+                card.transform.position = parentPreviewCard.transform.position;
+                card.SetCardData = (cardUI as CardFightUI).GetData;
+
+                previewCard = card;
+            }
+        }
+
+        public void PointerExitOnCard()
+        {
+            Destroy(previewCard.gameObject);
         }
 
         #endregion
