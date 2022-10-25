@@ -107,7 +107,6 @@ namespace Core
 
         private async void LoadDataFromServer(List<int> idPresidents)
         {
-            Debug.Log(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
             using (var httpClient = new HttpClient())
             {
                 for (int i = 0; i < idPresidents.Count; i++)
