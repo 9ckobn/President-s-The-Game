@@ -90,7 +90,7 @@ namespace Core
             {
                 DataBaseManager.Instance.OnInit.AddListener(AfterInitDataBase);
                 DataBaseManager.Instance.SetMoralisUser = null;
-                DataBaseManager.Instance.FakeInitialize();
+                DataBaseManager.Instance.Initialize();
             }
         }
 

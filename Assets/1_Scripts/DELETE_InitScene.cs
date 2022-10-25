@@ -11,7 +11,7 @@ public class DELETE_InitScene : MonoBehaviour
         UIManager.Instance.OnStart();
 
         DataBaseManager.Instance.OnInit.AddListener(StartGame);
-        DataBaseManager.Instance.FakeInitialize();
+        DataBaseManager.Instance.Initialize();
     }
 
     private void StartGame() 

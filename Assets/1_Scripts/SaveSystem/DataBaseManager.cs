@@ -1,8 +1,12 @@
 using Cards;
+using Cards.Data;
 using Cysharp.Threading.Tasks;
+using Gameplay;
 using MoralisUnity;
 using MoralisUnity.Platform.Objects;
 using MoralisUnity.Platform.Queries;
+using SaveSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +19,8 @@ namespace Core
 {
     public class DataBaseManager : Singleton<DataBaseManager>
     {
+        private const string PARTH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json";
+
         [HideInInspector]
         public UnityEvent OnInit;
 
@@ -37,31 +43,96 @@ namespace Core
 
         public void Initialize()
         {
-            // TODO: Get id presidents card data from base Moralis
+            List<int> idPresidents = new List<int>();
 
-            OnInit?.Invoke();
+            for (int i = 1; i < 7; i++)
+            {
+                idPresidents.Add(i);
+            }
+
+            if (isUseMoralis)
+            {
+                // TODO: Get id presidents card data from base Moralis
+
+                LoadDataFromServer(idPresidents);
+
+                OnInit?.Invoke();
+            }
+            else
+            {
+                LoadDataFromServer(idPresidents);
+            }
         }
 
-        public void FakeInitialize()
+        public void SaveDecksData()
         {
-            LoadDataFromServer();
+            List<DeckData> decks = BoxController.GetController<DeckBuildController>().GetAllDecks;
+            AllDecksDataJson decksData = new AllDecksDataJson();
+            decksData.Decks = new DeckDataJson[decks.Count];
+
+            for (int d = 0; d < decks.Count; d++)
+            {
+                DeckDataJson deckJson = new DeckDataJson();
+                string[] idPresidentsCards = new string[decks[d].PresidentsData.Count];
+                string[] idFightCards = new string[decks[d].FightsData.Count];
+
+                for (int i = 0; i < decks[d].PresidentsData.Count; i++)
+                {
+                    idPresidentsCards[i] = decks[d].PresidentsData[i].ID;
+                }
+
+                for (int i = 0; i < decks[d].FightsData.Count; i++)
+                {
+                    idFightCards[i] = decks[d].FightsData[i].ID;
+                }
+
+                deckJson.NameDeck = decks[d].Name;
+                deckJson.IdPresidentCards = idPresidentsCards;
+                deckJson.IdFightCards = idFightCards;
+
+                decksData.Decks[d] = deckJson;
+            }
+
+            string jsonString = JsonUtility.ToJson(decksData);
+
+            try
+            {
+                File.WriteAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA, jsonString);
+            }
+            catch (Exception ex)
+            {
+                BoxController.GetController<LogController>().LogError($"Не удалось сохранить игру - {ex}");
+            }
         }
 
-        private async void LoadDataFromServer()
+        private async void LoadDataFromServer(List<int> idPresidents)
         {
+            Debug.Log(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
             using (var httpClient = new HttpClient())
             {
-                for (int i = 1; i < 7; i++)
+                for (int i = 0; i < idPresidents.Count; i++)
                 {
-                    var json = await httpClient.GetStringAsync("https://nft.raritygram.io/nfts/presidents/" + i);
+                    var json = await httpClient.GetStringAsync(PARTH_PRESIDENTS + idPresidents[i]);
 
                     CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
                     cardsPresidentsData.Add(cardData);
                 }
             }
 
+            if (isUseMoralis)
+            {
+                // TODO: Get deka data  from base Moralis
+
+            }
+            else
+            {
+
+            }
+
             OnInit?.Invoke();
         }
+
+
 
         public async void ChangeNick(string newNick)
         {
@@ -111,21 +182,21 @@ namespace Core
         {
             if (isUseMoralis)
             {
-                    //MoralisQuery<TestMoralisObject> query = await Moralis.GetClient().Query<TestMoralisObject>();
-                    //IEnumerable<TestMoralisObject> getData = await query.FindAsync();
+                //MoralisQuery<TestMoralisObject> query = await Moralis.GetClient().Query<TestMoralisObject>();
+                //IEnumerable<TestMoralisObject> getData = await query.FindAsync();
 
-                    //var testObjects = getData.ToList();
+                //var testObjects = getData.ToList();
 
-                    //Debug.Log($"COUNT TEST OBJECT = {testObjects.Count}");
+                //Debug.Log($"COUNT TEST OBJECT = {testObjects.Count}");
 
-                    //if (!testObjects.Any())
-                    //    return;
+                //if (!testObjects.Any())
+                //    return;
 
 
-                    //foreach (var testObj in testObjects)
-                    //{
-                    //    Debug.Log($"string = {testObj.StringTest} int = {testObj.IntTest}");
-                    //}
+                //foreach (var testObj in testObjects)
+                //{
+                //    Debug.Log($"string = {testObj.StringTest} int = {testObj.IntTest}");
+                //}
             }
         }
 
