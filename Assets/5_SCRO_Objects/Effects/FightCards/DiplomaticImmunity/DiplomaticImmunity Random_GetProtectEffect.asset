@@ -9,18 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb76aab0e09b1ee4e96119374120ea90, type: 3}
-  m_Name: JoiningUnion_AttackEffect
+  m_Script: {fileID: 11500000, guid: fe6e89dab80390949bcae823ed44c7d7, type: 3}
+  m_Name: DiplomaticImmunity Random_GetProtectEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
   TimeApply: 0
   TimeStart: 0
-  TimeDuration: 0
+  TimeDuration: 3
   Condition: 0
   TypeAttributeAttack: 0
   TypeSelectTarget: 1
-  TypeTargetObject: 06000000
-  BaseValue: 0
-  IsNeedAttribute: 1
-  TypeAttribute: 6
-  ValueAttribute: 10
+  ProtectAttributes: 0200000004000000
+  RandomAttribute: 10

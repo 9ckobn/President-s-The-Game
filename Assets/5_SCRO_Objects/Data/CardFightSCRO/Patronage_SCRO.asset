@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: You will provide customs concessions favorable for trading. There
     will be no point in attacking you. The chosen factor with (Diplomacy value)%
     will not take damage on the next 3 turns
-  TypeCost: 0200000004000000
+  TypeCost: 03000000
   Cost: 1
-  Effects: []
+  Effects:
+  - {fileID: 11400000, guid: fe7150379bba0c6418772ab3403faba6, type: 2}

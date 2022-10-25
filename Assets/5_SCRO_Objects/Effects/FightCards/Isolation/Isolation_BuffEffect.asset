@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Isolation_BuffEffect
   m_EditorClassIdentifier: 
   TypeTarget: 1
-  TypeSelectTarget: 1
   TimeApply: 0
   TimeStart: 0
   TimeDuration: 0
   Condition: 0
   TypeAttributeAttack: 0
+  TypeSelectTarget: 1
   TypeTargetObject: 02000000030000000400000005000000
   BaseValue: 0
   IsNeedAttribute: 1

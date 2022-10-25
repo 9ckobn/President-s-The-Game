@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: elections_SCRO
+  m_Name: Elections_SCRO
   m_EditorClassIdentifier: 
-  ID: elections
+  ID: Elections
   Name: Elections
   Description: You will hold an early election to prove to the opposition how much
     you are loved by the citizens. With a chance equal to (10 + your health care)%

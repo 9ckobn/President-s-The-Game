@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: militaryPosition_SCRO
+  m_Name: MilitaryPosition_SCRO
   m_EditorClassIdentifier: 
-  ID: militaryPosition
+  ID: MilitaryPosition
   Name: Military Position
   Description: Strategic facilities and raw material resources will be protected.
     But the citizens will be frightened. Raw resources will not take the damage from

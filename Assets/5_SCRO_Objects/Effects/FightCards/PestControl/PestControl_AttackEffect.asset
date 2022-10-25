@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PestControl_AttackEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  TypeSelectTarget: 1
   TimeApply: 0
   TimeStart: 0
   TimeDuration: 0
   Condition: 0
   TypeAttributeAttack: 0
+  TypeSelectTarget: 1
   TypeTargetObject: 06000000
   BaseValue: 0
   IsNeedAttribute: 1

@@ -9,10 +9,6 @@ namespace EffectSystem
         [Label("Игрок на которого действует эффект")]
         public TypeTargetEffect TypeTarget;
 
-        [BoxGroup("Target")]
-        [Label("Кто выбирает цель эффекта")]
-        public TypeSelectTarget TypeSelectTarget;
-
         #region TIME
 
         [BoxGroup("Time")]

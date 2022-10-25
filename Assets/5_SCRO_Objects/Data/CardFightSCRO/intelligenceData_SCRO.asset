@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: intelligenceData_SCRO
+  m_Name: IntelligenceData_SCRO
   m_EditorClassIdentifier: 
-  ID: intelligenceData
+  ID: IntelligenceData
   Name: Intelligence Data
   Description: Scoting will pass valuable data about the movement of enemy troops.
     Damage from the next attack will be increased by (2+ Half Attribute Attack)

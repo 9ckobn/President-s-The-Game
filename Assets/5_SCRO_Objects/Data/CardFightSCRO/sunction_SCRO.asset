@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: sunction_SCRO
+  m_Name: Sunction_SCRO
   m_EditorClassIdentifier: 
-  ID: sunction
+  ID: Sunction
   Name: Sunction
   Description: Your decision to impose sanctions will be supported by leaders from
     around the world. The next attack will cause additional damage to Morale, equal

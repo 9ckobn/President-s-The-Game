@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Patronage_RandomGetProtectEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  TypeSelectTarget: 1
+  TypeSelectTarget: 0
   TimeApply: 0
   TimeStart: 0
   TimeDuration: 3
