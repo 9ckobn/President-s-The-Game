@@ -29,6 +29,7 @@ namespace UI
         [SerializeField] private CurrentDeckUI currentDeckUI;
 
         private DeckBuildController deckController;
+        private StorageCardsController storageCards;
 
         private List<CardPresidentUI> showCardsPresident = new List<CardPresidentUI>();
         private List<CardPresidentUI> deckCardsPresident = new List<CardPresidentUI>();
@@ -41,6 +42,7 @@ namespace UI
         protected override void AfterInitialization()
         {
             deckController = BoxController.GetController<DeckBuildController>();
+            storageCards = BoxController.GetController<StorageCardsController>();
 
             choosePresidentCards.onClick.AddListener(ClickShowPresidentsCards);
             chooseFightCards.onClick.AddListener(ClickShowFightCards);
@@ -72,7 +74,14 @@ namespace UI
                 }
 
                 scrollCards.ClearLines();
+                currentDeckUI.RemoveAllCards();
+
                 CreatePresidentCards();
+
+                foreach (var cardData in deckController.GetSelectedDeck.PresidentsData)
+                {
+                    CreatePresidentCardInDeck(cardData);
+                }
             }
         }
 
@@ -88,7 +97,14 @@ namespace UI
                 }
 
                 scrollCards.ClearLines();
+                currentDeckUI.RemoveAllCards();
+
                 CreateFightCards();
+
+                foreach (var cardData in deckController.GetSelectedDeck.FightsData)
+                {
+                    CreateFightCardInDeck(cardData);
+                }
             }
         }
 
@@ -148,7 +164,7 @@ namespace UI
             {
                 deckController.RemoveCardInDeck(deleteCard.GetData);
                 deckCardsPresident.Remove(deleteCard);
-                Destroy(deleteCard.gameObject);
+                currentDeckUI.RemoveCard(deleteCard);
             }
         }
 
@@ -172,7 +188,7 @@ namespace UI
             {
                 deckController.RemoveCardInDeck(deleteCard.GetData);
                 deckCardsFight.Remove(deleteCard);
-                Destroy(deleteCard);
+                currentDeckUI.RemoveCard(deleteCard);
             }
         }
 
@@ -182,7 +198,7 @@ namespace UI
 
         private void CreatePresidentCards()
         {
-            List<CardPresidentData> cardsData = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
+            List<CardPresidentData> cardsData = storageCards.GetCardsPresidentData;
             showCardsPresident = new List<CardPresidentUI>();
 
             foreach (var cardData in cardsData)
@@ -199,7 +215,7 @@ namespace UI
 
         private void CreateFightCards()
         {
-            List<CardFightData> cardsData = BoxController.GetController<StorageCardsController>().GetCardsFightData;
+            List<CardFightData> cardsData = storageCards.GetCardsFightData;
             showCardsFight = new List<CardFightUI>();
 
             foreach (var cardData in cardsData)
@@ -220,7 +236,7 @@ namespace UI
             card.SetInDeck = true;
             deckCardsPresident.Add(card);
 
-            currentDeckUI.AddCard(card.gameObject);
+            currentDeckUI.AddCard(card);
         }
 
         private void CreateFightCardInDeck(CardFightData data)
@@ -230,7 +246,7 @@ namespace UI
             card.SetInDeck = true;
             deckCardsFight.Add(card);
 
-            currentDeckUI.AddCard(card.gameObject);
+            currentDeckUI.AddCard(card);
         }
 
         #endregion

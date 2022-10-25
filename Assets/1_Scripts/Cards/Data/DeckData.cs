@@ -5,7 +5,7 @@ namespace Cards.Data
 {
     public class DeckData
     {
-        private const int MAX_PRESIDENTS = 4;
+        private const int MAX_PRESIDENTS = 3;
         private const int MAX_FIGHTS = 9;
 
         public List<CardPresidentData> PresidentsData { get; private set; }

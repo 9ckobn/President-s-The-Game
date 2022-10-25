@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bedeced1101746479194eab096085bf, type: 3}
-  m_Name: FidelCastro_CardImage
+  m_Name: 5_President_CardImage
   m_EditorClassIdentifier: 
-  ID: FidelCastro
-  Sprite: {fileID: 21300000, guid: df43b5b857c2ac54f9c6fa483ecf99e5, type: 3}
+  ID: 5
+  Sprite: {fileID: 21300000, guid: 417651cc770960240b55c08fb6c1291d, type: 3}
