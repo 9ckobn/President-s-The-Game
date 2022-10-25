@@ -3,8 +3,8 @@ using NaughtyAttributes;
 
 namespace EffectSystem
 {
-    [CreateAssetMenu(fileName = "RandomEffect", menuName = "Effects/RandomEffect")]
-    public class SCRO_RandomEffect : SCRO_Effect
+    [CreateAssetMenu(fileName = "RandomUpAttributeEffect", menuName = "Effects/RandomUpAttributeEffect")]
+    public class SCRO_RandomUpAttributeEffect : SCRO_Effect
     {
         [BoxGroup("Random")]
         [Label("Базовое значение рандома")]

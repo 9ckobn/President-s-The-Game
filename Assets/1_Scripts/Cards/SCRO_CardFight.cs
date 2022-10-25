@@ -11,12 +11,12 @@ namespace Cards
         public string ID,Name, Description;
 
         [BoxGroup("Data")]
-        public TypeAttribute TypeCost;
+        public TypeAttribute[] TypeCost;
 
         [BoxGroup("Data")]
         public int Cost;
 
         [BoxGroup("Effects")]
-        public SCRO_Effect Effects;
+        public SCRO_Effect[] Effects;
     }
 }

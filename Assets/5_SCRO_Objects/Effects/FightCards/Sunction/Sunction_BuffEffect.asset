@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Sunction_BuffEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  RightNow: 1
+  TypeSelectTarget: 1
+  TimeApply: 2
   TimeStart: 0
   TimeDuration: 0
+  Condition: 1
+  TypeAttributeAttack: 3
   TypeBuff: 1
   TypeTargetObject: 06000000
   BaseValue: 0

@@ -7,7 +7,7 @@ namespace EffectSystem
     public class SCRO_OtherEffect : SCRO_Effect
     {
         [BoxGroup("Type effect")]
-        [Label("Кто выбирает цель эффекта")]
+        [Label("Тип эффекта")]
         public TypeOtherEffect TypeOtherEffect;
 
         [BoxGroup("UpAttributeAfterAttack")]

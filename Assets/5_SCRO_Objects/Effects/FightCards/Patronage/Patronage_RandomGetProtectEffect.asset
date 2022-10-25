@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: accession_SCRO
+  m_Script: {fileID: 11500000, guid: fe6e89dab80390949bcae823ed44c7d7, type: 3}
+  m_Name: Patronage_RandomGetProtectEffect
   m_EditorClassIdentifier: 
-  ID: accession
-  Name: Accession
-  Description: 
-  TypeCost: 0
-  Cost: 2
-  Effects: {fileID: 0}
+  TypeTarget: 0
+  TypeSelectTarget: 1
+  TimeApply: 0
+  TimeStart: 0
+  TimeDuration: 3
+  Condition: 0
+  TypeAttributeAttack: 0
+  RandomAttribute: 10

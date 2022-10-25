@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: JoiningUnion_ProtectEffect_3
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  RightNow: 1
+  TypeSelectTarget: 1
+  TimeApply: 0
   TimeStart: 0
   TimeDuration: 0
+  Condition: 0
+  TypeAttributeAttack: 0
   TypeProtect: 4
   Immortal: 1
   ValueProtect: 0

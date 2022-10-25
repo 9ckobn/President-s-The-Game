@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: EducationalInfrastructure_OtherEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  RightNow: 0
+  TypeSelectTarget: 1
+  TimeApply: 0
   TimeStart: 0
   TimeDuration: 2
+  Condition: 0
+  TypeAttributeAttack: 0
   TypeOtherEffect: 0
   ProcentAttack: 10
   UpAttribute: 6

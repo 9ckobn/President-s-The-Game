@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
+  m_Name: joiningUnion_SCRO
+  m_EditorClassIdentifier: 
+  ID: joiningUnion
+  Name: Joining Union
+  Description: You will manage to negotiate alliances with other States. Not all
+    citizens will support this course of action. All Factors will not take the damage
+    from the next attack, but your Morale will be reduced by 10 units
+  TypeCost: 03000000
+  Cost: 2
+  Effects:
+  - {fileID: 11400000, guid: f73314e3e51329c469c1edf55c45116d, type: 2}
+  - {fileID: 11400000, guid: 816eb48d5ad0cb244b286b041040f2d8, type: 2}
+  - {fileID: 11400000, guid: 9aa3e106e796ba240b4904b541630daf, type: 2}
+  - {fileID: 11400000, guid: fe143169dd2f975458ddda1c5cff6170, type: 2}
+  - {fileID: 11400000, guid: 8cee10cb4d3f647428ccc7cdbb513d4d, type: 2}

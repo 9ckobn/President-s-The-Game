@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: airStrike_SCRO
+  m_Name: sunction_SCRO
   m_EditorClassIdentifier: 
-  ID: airStrike
-  Name: Air Strike
-  Description: Will strike the enemy. Targets will hit successfully. Enemy will take
-    (3+ Attribute Attacks) Morale damage
-  TypeCost: 02000000
-  Cost: 1
+  ID: sunction
+  Name: Sunction
+  Description: Your decision to impose sanctions will be supported by leaders from
+    around the world. The next attack will cause additional damage to Morale, equal
+    to half of the damage to Factor
+  TypeCost: 03000000
+  Cost: 2
   Effects:
-  - {fileID: 11400000, guid: 64e707e68b3ead14780fa1dd7a8f8a75, type: 2}
+  - {fileID: 11400000, guid: 294005b8007523143810393c11cbeea4, type: 2}

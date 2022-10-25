@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: TechnologicalBreakthrough_BuffEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
-  RightNow: 0
+  TypeSelectTarget: 1
+  TimeApply: 0
   TimeStart: 0
   TimeDuration: -1
+  Condition: 0
+  TypeAttributeAttack: 0
   TypeBuff: 0
   TypeTargetObject: 
   BaseValue: 0

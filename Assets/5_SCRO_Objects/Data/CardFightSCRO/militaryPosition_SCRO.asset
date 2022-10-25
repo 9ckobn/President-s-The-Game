@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
+  m_Name: militaryPosition_SCRO
+  m_EditorClassIdentifier: 
+  ID: militaryPosition
+  Name: Military Position
+  Description: Strategic facilities and raw material resources will be protected.
+    But the citizens will be frightened. Raw resources will not take the damage from
+    the next attack, but your Morale will be reduced by 5 units
+  TypeCost: 04000000
+  Cost: 2
+  Effects:
+  - {fileID: 11400000, guid: 201cd3c1611be8b49ba17099211ab77e, type: 2}
+  - {fileID: 11400000, guid: 280a07f5873e57b46ae8cb592fda182b, type: 2}

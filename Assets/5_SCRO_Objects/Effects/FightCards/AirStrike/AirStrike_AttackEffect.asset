@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: AirStrike_AttackEffect
   m_EditorClassIdentifier: 
   TypeTarget: 1
-  RightNow: 1
+  TimeApply: 0
   TimeStart: 0
   TimeDuration: 0
+  Condition: 0
+  TypeAttributeAttack: 0
   TypeSelectTarget: 0
   TypeTargetObject: 02000000030000000400000005000000
   BaseValue: 3
