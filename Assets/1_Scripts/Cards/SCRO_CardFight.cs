@@ -10,6 +10,9 @@ namespace Cards
         [BoxGroup("Data")]
         public string ID,Name, Description;
 
+        [BoxGroup("Sprite")]
+        public Sprite Sprite;
+
         [BoxGroup("Data")]
         public TypeAttribute[] TypeCost;
 

@@ -7,7 +7,6 @@ namespace Cards.Storage
     public class StorageCardImages : BaseController
     {
         public CardImage[] PresidentImages;
-        public CardImage[] FightImages;
 
         public Sprite GetPresidentSprite(string id)
         {
@@ -20,20 +19,6 @@ namespace Cards.Storage
             }
 
             BoxController.GetController<LogController>().LogError($"Not have CardImage president with id {id}");
-
-            return null;
-        }
-        public Sprite GetFightSprite(string id)
-        {
-            foreach (var fight in FightImages)
-            {
-                if (fight.ID == id)
-                {
-                    return fight.Sprite;
-                }
-            }
-
-            BoxController.GetController<LogController>().LogError($"Not have CardImage fight with id {id}");
 
             return null;
         }

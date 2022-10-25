@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: The agricultural sector will show excellent results. With a certain
     chance (Equals 10 + Luck %) you may get +10 to Morale, if you lose your Morale
     will be reduced by 5 units
+  Sprite: {fileID: 21300000, guid: 2b27e3cbe20f6fd40adb9955f46a53e4, type: 3}
   TypeCost: 02000000
   Cost: 1
   Effects:

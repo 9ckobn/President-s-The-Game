@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Customs control reform will enable more successful deals, but not
     everyone will be happy with it. The Economy Factor will not take the following
     damage, but your Morale will be reduced by 5 units
+  Sprite: {fileID: 21300000, guid: 0fcbde3b0fee5ae43b7c2b72721878b2, type: 3}
   TypeCost: 04000000
   Cost: 1
   Effects:

@@ -32,8 +32,7 @@ namespace Cards
 
             foreach (var card in cardFightSCRO)
             {
-                Sprite image = storageImages.GetFightSprite(card.ID);
-                CardFightData cardData = new CardFightData(card, image);
+                CardFightData cardData = new CardFightData(card, card.Sprite);
 
                 cardsFightData.Add(cardData);
             }

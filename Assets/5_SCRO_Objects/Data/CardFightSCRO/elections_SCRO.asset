@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: You will hold an early election to prove to the opposition how much
     you are loved by the citizens. With a chance equal to (10 + your health care)%
     you will get + 10 to Morale or - 5 to Morale
+  Sprite: {fileID: 21300000, guid: 57b971eabbfeba343a00569ad82cca7a, type: 3}
   TypeCost: 04000000
   Cost: 2
   Effects:
