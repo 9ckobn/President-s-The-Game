@@ -9,7 +9,6 @@ namespace Cards
     [CreateAssetMenu(fileName = "StorageCardsController", menuName = "Controllers/Gameplay/StorageCardsController")]
     public class StorageCardsController : BaseController
     {
-        создать остальные карты и сделать фейковою загрузку для deckBuildScene
         [SerializeField] private StorageCardImages storageImages;
         [SerializeField] private SCRO_CardFight[] cardFightSCRO;
 

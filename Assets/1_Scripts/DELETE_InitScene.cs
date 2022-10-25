@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using UI;
 using UnityEngine;
@@ -9,12 +10,23 @@ public class DELETE_InitScene : MonoBehaviour
         UIManager.Instance.OnInitialize();
         UIManager.Instance.OnStart();
 
-        StartCoroutine(CoStart());
+        DataBaseManager.Instance.OnInit.AddListener(StartGame);
+        DataBaseManager.Instance.FakeInitialize();
     }
 
-    private IEnumerator CoStart()
+    private void StartGame() 
+    {
+        DataBaseManager.Instance.OnInit.RemoveListener(StartGame);
+        SceneControllers.Instance.InitControllers();
+
+        StartCoroutine(CoStartGame());
+    }
+
+    private IEnumerator CoStartGame()
     {
         yield return new WaitForSeconds(1f);
+        Debug.Log("<color=red>Delete init scene!</color>");
+
         UIManager.Instance.ShowWindow<DeckBuildWindow>();
     }
 }

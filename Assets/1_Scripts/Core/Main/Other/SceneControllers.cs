@@ -9,7 +9,7 @@ namespace Core
         private bool isInit;
         public bool GetIsInit { get => isInit; }
 
-        protected override void AfterAwaik()
+        public void InitControllers()
         {
             BoxController.Init(Controllers);
 

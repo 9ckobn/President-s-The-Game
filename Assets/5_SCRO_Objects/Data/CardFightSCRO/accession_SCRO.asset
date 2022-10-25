@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: accession_SCRO
   m_EditorClassIdentifier: 
   ID: accession
+  Name: Accession
+  Description: 
+  TypeCost: 0
   Cost: 2
+  Effects: {fileID: 0}

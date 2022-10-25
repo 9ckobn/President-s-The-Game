@@ -37,7 +37,7 @@ namespace Core
 
         public void Initialize()
         {
-            // TODO: Get NFT data
+            // TODO: Get id presidents card data from base Moralis
 
             OnInit?.Invoke();
         }

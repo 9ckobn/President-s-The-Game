@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: airStrike_SCRO
   m_EditorClassIdentifier: 
   ID: airStrike
+  Name: Air Strike
+  Description: 
+  TypeCost: 0
   Cost: 2
+  Effects: {fileID: 0}
