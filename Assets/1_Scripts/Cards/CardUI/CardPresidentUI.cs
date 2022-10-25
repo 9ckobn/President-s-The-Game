@@ -19,6 +19,8 @@ namespace Cards
                 data = value;
 
                 (view as CardPresidentView).SetData(data as CardPresidentData);
+
+                cardImage.sprite = data.Sprite;
             }
         }
 

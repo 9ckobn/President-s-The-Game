@@ -92,8 +92,6 @@ namespace UI
             }
         }
 
-        #endregion
-
         public void ClickDeckButton(DeckButton deckButton)
         {
             if (selectedDeckButton == deckButton)
@@ -105,6 +103,8 @@ namespace UI
                 selectedDeckButton = deckButton;
             }
         }
+
+        #endregion
 
         #region SELECT_DESELECT_CARD
 

@@ -10,7 +10,17 @@ namespace Cards
     {
         public CardFightData GetData { get => data as CardFightData; }
 
-        public CardFightData SetCardData { set => data = value; }
+        public CardFightData SetCardData
+        {
+            set
+            {
+                data = value;
+
+                (view as CardFightView).SetData(data as CardFightData);
+
+                cardImage.sprite = data.Sprite;
+            }
+        }
 
         protected override void SelectCard()
         {

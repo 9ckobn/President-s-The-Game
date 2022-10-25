@@ -9,7 +9,6 @@ namespace Cards.Data
     {
         private const int BUFF_CLIMATE = 2, DEBUFF_CLIMATE = -1;
 
-        public string Name { get; private set; }
         public int Rarityrank { get; private set; }
         public int Attack { get; private set; }
         public int Defend { get; private set; }
@@ -31,9 +30,8 @@ namespace Cards.Data
         //
         // DELETE
         //
-        public CardPresidentData(string id) : base(id, null)
+        public CardPresidentData(string id) : base(id, null, "president card")
         {
-            Name = "name";
             Rarityrank = 1;
             Attack = 5;
             Defend = 5;
@@ -42,11 +40,10 @@ namespace Cards.Data
 
             DefineClimate("temperate");
             CalculateClimate();
-        } 
+        }
 
-        public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite)
+        public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite, data.name)
         {
-            Name = data.name;
             Rarityrank = data.rarityrank;
             Attack = data.attack;
             Defend = data.defend;
