@@ -22,7 +22,7 @@ namespace Gameplay
         {
             // TODO: load decks
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 DeckData deckData = new DeckData(i, null, null);
                 decks.Add(deckData);

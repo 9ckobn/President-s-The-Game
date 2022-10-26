@@ -17,8 +17,10 @@ namespace UI
         [SerializeField] private CardPresidentUI presidentCardPrefab;
         [BoxGroup("Cards")]
         [SerializeField] private CardFightUI fightCardPrefab;
-        [BoxGroup("Buttons")]
+        [BoxGroup("Buttons Type")]
         [SerializeField] private Button choosePresidentCards, chooseFightCards;
+        [BoxGroup("Buttons Type")]
+        [SerializeField] private Sprite enableChooseSprite, disableChooseSprite;
         [BoxGroup("Scroll rect cards")]
         [SerializeField] private ScrollCards scrollCards;
         [BoxGroup("Deck buttons")]
@@ -49,8 +51,8 @@ namespace UI
             deckController = BoxController.GetController<DeckBuildController>();
             storageCards = BoxController.GetController<StorageCardsController>();
 
-            choosePresidentCards.onClick.AddListener(ClickShowPresidentsCards);
-            chooseFightCards.onClick.AddListener(ClickShowFightCards);
+            choosePresidentCards.onClick.AddListener(()=>{ ClickShowCards(true); }); //ClickShowPresidentsCards);
+            chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });//ClickShowFightCards);
         }
 
         protected override void BeforeShow()
@@ -62,52 +64,55 @@ namespace UI
                 deckButtons[i].SetNameDeck = decks[i].Name;
             }
 
-            ClickShowPresidentsCards();
+            foreach (var cardData in deckController.GetSelectedDeck.PresidentsData)
+            {
+                CreatePresidentCardInDeck(cardData);
+            }
+
+            foreach (var cardData in deckController.GetSelectedDeck.FightsData)
+            {
+                CreateFightCardInDeck(cardData);
+            }
+
+            ClickShowCards(true);
         }
 
         #region CLICK_BUTTONS
 
-        private void ClickShowPresidentsCards()
+        private void ClickShowCards(bool isPresidentCards)
         {
-            if (!presidentsCardsNow)
+            if (presidentsCardsNow != isPresidentCards)
             {
-                presidentsCardsNow = true;
+                presidentsCardsNow = isPresidentCards;
 
-                foreach (var card in showCardsFight)
+                if (presidentsCardsNow)
                 {
-                    Destroy(card.gameObject);
+                    foreach (var card in showCardsFight)
+                    {
+                        Destroy(card.gameObject);
+                    }
+                }
+                else
+                {
+                    foreach (var card in showCardsPresident)
+                    {
+                        Destroy(card.gameObject);
+                    }
                 }
 
                 scrollCards.ClearLines();
 
-                CreatePresidentCards();
-
-                foreach (var cardData in deckController.GetSelectedDeck.PresidentsData)
+                if (presidentsCardsNow)
                 {
-                    CreatePresidentCardInDeck(cardData);
+                    CreatePresidentCards();
                 }
-            }
-        }
-
-        private void ClickShowFightCards()
-        {
-            if (presidentsCardsNow)
-            {
-                presidentsCardsNow = false;
-
-                foreach (var card in showCardsPresident)
+                else
                 {
-                    Destroy(card.gameObject);
+                    CreateFightCards();
                 }
 
-                scrollCards.ClearLines();
-
-                CreateFightCards();
-
-                foreach (var cardData in deckController.GetSelectedDeck.FightsData)
-                {
-                    CreateFightCardInDeck(cardData);
-                }
+                choosePresidentCards.GetComponent<Image>().sprite = presidentsCardsNow ? enableChooseSprite : disableChooseSprite;
+                chooseFightCards.GetComponent<Image>().sprite = !presidentsCardsNow ? enableChooseSprite : disableChooseSprite;
             }
         }
 
