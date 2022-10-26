@@ -46,7 +46,7 @@ namespace Cards
             {
                 isPreview = false;
 
-                UIManager.Instance.GetWindow<DeckBuildWindow>().PointerExitOnCard();
+                UIManager.Instance.GetWindow<DeckBuildWindow>().DeletePreviewCard();
             }
         }
 

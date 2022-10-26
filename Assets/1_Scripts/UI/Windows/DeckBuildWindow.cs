@@ -51,7 +51,7 @@ namespace UI
             deckController = BoxController.GetController<DeckBuildController>();
             storageCards = BoxController.GetController<StorageCardsController>();
 
-            choosePresidentCards.onClick.AddListener(()=>{ ClickShowCards(true); }); //ClickShowPresidentsCards);
+            choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); }); //ClickShowPresidentsCards);
             chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });//ClickShowFightCards);
         }
 
@@ -130,7 +130,7 @@ namespace UI
 
         public void PointerEnterOnCard(CardUI cardUI)
         {
-            if (presidentsCardsNow)
+            if (cardUI is CardPresidentUI)
             {
                 CardPresidentUI card = Instantiate(presidentCardPrefab, parentPreviewCard.transform);
                 card.transform.position = parentPreviewCard.transform.position;
@@ -148,7 +148,7 @@ namespace UI
             }
         }
 
-        public void PointerExitOnCard()
+        public void DeletePreviewCard()
         {
             Destroy(previewCard.gameObject);
         }
@@ -179,50 +179,20 @@ namespace UI
 
         public void DeSelectPresidentCard(CardPresidentUI card)
         {
-            CardPresidentUI deleteCard = null;
+            DeletePreviewCard();
 
-            foreach (var deckCard in deckCardsPresident)
-            {
-                if (deckCard.GetData == card.GetData)
-                {
-                    deleteCard = deckCard;
-                }
-            }
-
-            if (deleteCard == null)
-            {
-                BoxController.GetController<LogController>().LogError($"Not have card for delete in deck president UI. card id = {card.GetData.ID}");
-            }
-            else
-            {
-                deckController.RemoveCardInDeck(deleteCard.GetData);
-                deckCardsPresident.Remove(deleteCard);
-                currentPresidentsUI.RemoveCard(deleteCard);
-            }
+            deckController.RemoveCardInDeck(card.GetData);
+            deckCardsPresident.Remove(card);
+            currentPresidentsUI.RemoveCard(card);
         }
 
         public void DeSelectFightCard(CardFightUI card)
         {
-            CardFightUI deleteCard = null;
+            DeletePreviewCard();
 
-            foreach (var deckCard in deckCardsFight)
-            {
-                if (deckCard.GetData == card.GetData)
-                {
-                    deleteCard = deckCard;
-                }
-            }
-
-            if (deleteCard == null)
-            {
-                BoxController.GetController<LogController>().LogError($"Not have card for delete in deck fight UI. card id = {card.GetData.ID}");
-            }
-            else
-            {
-                deckController.RemoveCardInDeck(deleteCard.GetData);
-                deckCardsFight.Remove(deleteCard);
-                currentPresidentsUI.RemoveCard(deleteCard);
-            }
+            deckController.RemoveCardInDeck(card.GetData);
+            deckCardsFight.Remove(card);
+            currentFightsUI.RemoveCard(card);
         }
 
         #endregion
