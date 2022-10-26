@@ -6,12 +6,12 @@ namespace UI.Components
 {
     public class ScrollCards : MonoBehaviour
     {
-        private const int CARDS_IN_LINE = 3, HEIGHT_LINE = 300;
+        private const int CARDS_IN_BLOCK = 6, WIDTH_BLOCK = 990;
 
-        [SerializeField] private LineCard prefabLineCard;
+        [SerializeField] private BlockCards prefabLineCard;
         [SerializeField] private GameObject contentLinesParent;
 
-        private List<LineCard> linesCard = new List<LineCard>();
+        private List<BlockCards> linesCard = new List<BlockCards>();
         private List<GameObject> cards;
 
         public void ClearLines()
@@ -51,10 +51,10 @@ namespace UI.Components
 
         private void AddCards()
         {
-            linesCard = new List<LineCard>();
+            linesCard = new List<BlockCards>();
 
             int countCards = 0;
-            LineCard line = null;
+            BlockCards line = null;
 
             for (int c = 0; c < cards.Count; c++)
             {
@@ -63,14 +63,15 @@ namespace UI.Components
                     line = Instantiate(prefabLineCard, contentLinesParent.transform);
                     linesCard.Add(line);
 
-                    float prevHeight = contentLinesParent.GetComponent<RectTransform>().rect.height;
-                    contentLinesParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, prevHeight + HEIGHT_LINE);
+                    float prevWidth = contentLinesParent.GetComponent<RectTransform>().rect.width;
+                    contentLinesParent.GetComponent<RectTransform>().sizeDelta = new Vector2(prevWidth + WIDTH_BLOCK, 0);
+                    cards[c].gameObject.GetComponent<RectTransform>().localScale = new Vector2(1.1f, 1.1f);
                 }
 
                 line.AddCard(cards[c].gameObject);
 
                 countCards++;
-                if (countCards >= CARDS_IN_LINE)
+                if (countCards >= CARDS_IN_BLOCK)
                 {
                     countCards = 0;
                 }

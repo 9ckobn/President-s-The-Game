@@ -5,10 +5,10 @@ namespace UI.Components
 {
     public class ScrollViewCards : MonoBehaviour
     {
-        [SerializeField] private LineCard lineCardPrefab;
+        [SerializeField] private BlockCards lineCardPrefab;
         [SerializeField] private GameObject content;
 
-        private List<LineCard> lines = new List<LineCard>();
+        private List<BlockCards> lines = new List<BlockCards>();
 
         public void DisposeCards(GameObject[] cards)
         {
