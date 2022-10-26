@@ -23,10 +23,14 @@ namespace UI
         [SerializeField] private ScrollCards scrollCards;
         [BoxGroup("Deck buttons")]
         [SerializeField] private DeckButton[] deckButtons;
+        [BoxGroup("Deck buttons")]
+        [SerializeField] private Button createNewDeckButton;
         [BoxGroup("Parent cards")]
         [SerializeField] private GameObject parentCards, parentPreviewCard;
         [BoxGroup("Current deck")]
-        [SerializeField] private CurrentDeckUI currentDeckUI;
+        [SerializeField] private CurrentDeckUI currentPresidentsUI, currentFightsUI;
+        [BoxGroup("Exit button")]
+        [SerializeField] private Button exitButton;
 
         private DeckBuildController deckController;
         private StorageCardsController storageCards;
@@ -75,7 +79,6 @@ namespace UI
                 }
 
                 scrollCards.ClearLines();
-                currentDeckUI.RemoveAllCards();
 
                 CreatePresidentCards();
 
@@ -98,7 +101,6 @@ namespace UI
                 }
 
                 scrollCards.ClearLines();
-                currentDeckUI.RemoveAllCards();
 
                 CreateFightCards();
 
@@ -190,7 +192,7 @@ namespace UI
             {
                 deckController.RemoveCardInDeck(deleteCard.GetData);
                 deckCardsPresident.Remove(deleteCard);
-                currentDeckUI.RemoveCard(deleteCard);
+                currentPresidentsUI.RemoveCard(deleteCard);
             }
         }
 
@@ -214,7 +216,7 @@ namespace UI
             {
                 deckController.RemoveCardInDeck(deleteCard.GetData);
                 deckCardsFight.Remove(deleteCard);
-                currentDeckUI.RemoveCard(deleteCard);
+                currentPresidentsUI.RemoveCard(deleteCard);
             }
         }
 
@@ -262,7 +264,7 @@ namespace UI
             card.SetInDeck = true;
             deckCardsPresident.Add(card);
 
-            currentDeckUI.AddCard(card);
+            currentPresidentsUI.AddCard(card);
         }
 
         private void CreateFightCardInDeck(CardFightData data)
@@ -272,7 +274,7 @@ namespace UI
             card.SetInDeck = true;
             deckCardsFight.Add(card);
 
-            currentDeckUI.AddCard(card);
+            currentFightsUI.AddCard(card);
         }
 
         #endregion
