@@ -2,9 +2,9 @@
 
 namespace UI.Components
 {
-    public class MoveLineInventory : MoveObject
+    public class MoveScrollCards : MoveObject
     {
-        private const float valueMove = 330f;
+        private const float VALUE_MOVE = 990f;
 
         private float startXPos = 0f;
 
@@ -19,7 +19,7 @@ namespace UI.Components
         public void MoveRight()
         {
             Vector3 nextPos = GetNextPos;
-            nextPos.x -= valueMove;
+            nextPos.x -= VALUE_MOVE;
             SetNextPosositionForMove(nextPos);
         }
 
@@ -29,7 +29,7 @@ namespace UI.Components
         public void MoveLeft()
         {
             Vector3 nextPos = GetNextPos;
-            nextPos.x += valueMove;
+            nextPos.x += VALUE_MOVE;
             SetNextPosositionForMove(nextPos);
         }
 

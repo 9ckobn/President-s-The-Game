@@ -1,27 +1,38 @@
 using Cards;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Components
 {
-    public class ScrollCards : MonoBehaviour
+    public class ScrollCards : MoveObject
     {
         private const int CARDS_IN_BLOCK = 6, WIDTH_BLOCK = 990;
 
         [SerializeField] private BlockCards prefabLineCard;
         [SerializeField] private GameObject contentLinesParent;
+        [SerializeField] private Button leftLeafButton, rightLeafButton;
+        [SerializeField] private MoveScrollCards moveScrollCards;
 
-        private List<BlockCards> linesCard = new List<BlockCards>();
+        private List<BlockCards> blocksCard = new List<BlockCards>();
         private List<GameObject> cards;
+
+        private int currentBlock = 0;
+
+        private void Awake()
+        {
+            leftLeafButton.onClick.AddListener(LeaftLeft);
+            rightLeafButton.onClick.AddListener(LeadRight);
+        }
 
         public void ClearLines()
         {
-            for (int i = linesCard.Count - 1; i >= 0; i--)
+            for (int i = blocksCard.Count - 1; i >= 0; i--)
             {
-                Destroy(linesCard[i].gameObject);
+                Destroy(blocksCard[i].gameObject);
             }
 
-            linesCard.Clear();
+            blocksCard.Clear();
             contentLinesParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         }
 
@@ -35,6 +46,7 @@ namespace UI.Components
             }
 
             AddCards();
+            CheckLeafButtons();
         }
 
         public void AddCards(List<CardFightUI> cardsFight)
@@ -47,11 +59,12 @@ namespace UI.Components
             }
 
             AddCards();
+            CheckLeafButtons();
         }
 
         private void AddCards()
         {
-            linesCard = new List<BlockCards>();
+            blocksCard = new List<BlockCards>();
 
             int countCards = 0;
             BlockCards line = null;
@@ -61,12 +74,13 @@ namespace UI.Components
                 if (countCards == 0)
                 {
                     line = Instantiate(prefabLineCard, contentLinesParent.transform);
-                    linesCard.Add(line);
+                    blocksCard.Add(line);
 
                     float prevWidth = contentLinesParent.GetComponent<RectTransform>().rect.width;
                     contentLinesParent.GetComponent<RectTransform>().sizeDelta = new Vector2(prevWidth + WIDTH_BLOCK, 0);
-                    cards[c].gameObject.GetComponent<RectTransform>().localScale = new Vector2(1.1f, 1.1f);
                 }
+
+                cards[c].gameObject.GetComponent<RectTransform>().localScale = new Vector2(1.12f, 1.12f);
 
                 line.AddCard(cards[c].gameObject);
 
@@ -74,6 +88,49 @@ namespace UI.Components
                 if (countCards >= CARDS_IN_BLOCK)
                 {
                     countCards = 0;
+                }
+            }
+        }
+
+        private void LeaftLeft()
+        {
+            moveScrollCards.MoveLeft();
+            currentBlock--;
+            CheckLeafButtons();
+        }
+
+        private void LeadRight()
+        {
+            moveScrollCards.MoveRight();
+            currentBlock++;
+            CheckLeafButtons();
+        }
+
+        private void CheckLeafButtons()
+        {
+            leftLeafButton.gameObject.SetActive(false);
+            rightLeafButton.gameObject.SetActive(false);
+
+            if (currentBlock > 0)
+            {
+                leftLeafButton.gameObject.SetActive(true);
+
+                if (currentBlock == blocksCard.Count - 1)
+                {
+                    rightLeafButton.gameObject.SetActive(false);
+                }
+                else
+                {
+                    rightLeafButton.gameObject.SetActive(true);
+                }
+            }
+            else if (currentBlock == 0)
+            {
+                leftLeafButton.gameObject.SetActive(false);
+
+                if(blocksCard.Count > 1)
+                {
+                    rightLeafButton.gameObject.SetActive(true);
                 }
             }
         }
