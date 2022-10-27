@@ -13,6 +13,9 @@ namespace Cards
         [BoxGroup("Sprite")]
         public Sprite Sprite;
 
+        [BoxGroup("Model")]
+        public GameObject Model;
+
         [BoxGroup("Data")]
         public TypeAttribute[] TypeCost;
 

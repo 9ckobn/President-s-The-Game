@@ -7,5 +7,6 @@ namespace Cards.Storage
     {
         public string ID;
         public Sprite Sprite;
+        public GameObject Model;
     }
 }
