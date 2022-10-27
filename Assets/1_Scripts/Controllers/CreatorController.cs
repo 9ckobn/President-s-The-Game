@@ -10,7 +10,6 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "CreatorController", menuName = "Controllers/Gameplay/CreatorController")]
     public class CreatorController : BaseController
     {
-        создать префабы карт
         [BoxGroup("Prefabs")]
         [SerializeField] private CardPresident presidentPrefab;
         [BoxGroup("Prefabs")]
