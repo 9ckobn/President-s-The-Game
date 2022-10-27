@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Cards.Data
 {
@@ -8,64 +7,64 @@ namespace Cards.Data
         private const int MAX_PRESIDENTS = 3;
         private const int MAX_FIGHTS = 9;
 
-        public List<CardPresidentData> PresidentsData { get; private set; }
-        public List<CardFightData> FightsData { get; private set; }
+        public List<string> PresidentsId { get; private set; }
+        public List<string> FightsId { get; private set; }
 
         public int Id { get; private set; }
         public string Name { get; private set; }
 
-        public DeckData(int id, List<CardPresidentData> presidents, List<CardFightData> fights)
+        public DeckData(int id, string name, List<string> presidents, List<string> fights)
         {
             Id = id;
-            Name = id.ToString();
+            Name = name;
 
             if (presidents == null)
             {
-                PresidentsData = new List<CardPresidentData>();
+                PresidentsId = new List<string>();
             }
             else
             {
-                PresidentsData = presidents;
+                PresidentsId = presidents;
             }
 
             if (fights == null)
             {
-                FightsData = new List<CardFightData>();
+                FightsId = new List<string>();
             }
             else
             {
-                FightsData = fights;
+                FightsId = fights;
             }
         }
 
         public bool CanAddPresidentData()
         {
-            return PresidentsData.Count < MAX_PRESIDENTS;
+            return PresidentsId.Count < MAX_PRESIDENTS;
         }
 
         public bool CanAddFightData()
         {
-            return FightsData.Count < MAX_FIGHTS;
+            return FightsId.Count < MAX_FIGHTS;
         }
 
-        public void AddPresidentCard(CardPresidentData data)
+        public void AddPresidentCard(string idCards)
         {
-            PresidentsData.Add(data);
+            PresidentsId.Add(idCards);
         }
 
-        public void AddFightCard(CardFightData data)
+        public void AddFightCard(string idCards)
         {
-            FightsData.Add(data);
+            FightsId.Add(idCards);
         }
 
-        public void RemovePresidentCard(CardPresidentData data)
+        public void RemovePresidentCard(string idCards)
         {
-            PresidentsData.Remove(data);
+            PresidentsId.Remove(idCards);
         }
 
-        public void RemoveFightCard(CardFightData data)
+        public void RemoveFightCard(string idCards)
         {
-            FightsData.Remove(data);
+            FightsId.Remove(idCards);
         }
     }
 }

@@ -20,12 +20,15 @@ namespace Gameplay
 
         public override void OnInitialize()
         {
-            // TODO: load decks
+            decks = DataBaseManager.Instance.GetDecksData;
 
-            for (int i = 0; i < 3; i++)
+            if (decks.Count == 0)
             {
-                DeckData deckData = new DeckData(i, null, null);
-                decks.Add(deckData);
+                for (int i = 0; i < 3; i++)
+                {
+                    DeckData deckData = new DeckData(i, "deck", null, null);
+                    decks.Add(deckData);
+                }
             }
 
             selectedDeck = decks[0];
@@ -51,22 +54,22 @@ namespace Gameplay
 
         public void AddCardInDeck(CardPresidentData card)
         {
-            selectedDeck.AddPresidentCard(card);
+            selectedDeck.AddPresidentCard(card.ID);
         }
 
         public void AddCardInDeck(CardFightData card)
         {
-            selectedDeck.AddFightCard(card);
+            selectedDeck.AddFightCard(card.ID);
         }
 
         public void RemoveCardInDeck(CardPresidentData card)
         {
-            selectedDeck.RemovePresidentCard(card);
+            selectedDeck.RemovePresidentCard(card.ID);
         }
 
         public void RemoveCardInDeck(CardFightData card)
         {
-            selectedDeck.RemoveFightCard(card);
+            selectedDeck.RemoveFightCard(card.ID);
         }
     }
 }

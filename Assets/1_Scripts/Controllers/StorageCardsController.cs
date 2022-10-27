@@ -45,5 +45,35 @@ namespace Cards
                 }
             }
         }
+
+        public CardPresidentData GetPresidentData(string id)
+        {
+            foreach (var cardData in cardsPresidentData)
+            {
+                if(cardData.ID == id)
+                {
+                    return cardData;
+                }
+            }
+
+            BoxController.GetController<LogController>().LogError($"Not have president card with id - {id}");
+
+            return null;
+        }
+
+        public CardFightData GetFightData(string id)
+        {
+            foreach (var cardData in cardsFightData)
+            {
+                if (cardData.ID == id)
+                {
+                    return cardData;
+                }
+            }
+
+            BoxController.GetController<LogController>().LogError($"Not have fight card with id - {id}");
+
+            return null;
+        }
     }
 }

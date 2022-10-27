@@ -117,7 +117,6 @@ namespace Core
             else
             {
                 // Load deck data from json
-
                 try
                 {
                     AllDecksDataJson deckDataJson;
@@ -127,9 +126,10 @@ namespace Core
                         string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
                         deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
 
-                        foreach (var deckData in deckDataJson)
+                        foreach (var deckJson in deckDataJson.Decks)
                         {
-                            DeckData deck = new DeckData(deckData.id, deckData.pre);
+                            DeckData deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IdPresidentCards, deckJson.IdFightCards);
+                            decksData.Add(deck);
                         }
                     }
                     else
@@ -157,17 +157,17 @@ namespace Core
             for (int d = 0; d < decks.Count; d++)
             {
                 DeckDataJson deckJson = new DeckDataJson();
-                string[] idPresidentsCards = new string[decks[d].PresidentsData.Count];
-                string[] idFightCards = new string[decks[d].FightsData.Count];
+                List<string> idPresidentsCards = new List<string>();
+                List<string> idFightCards = new List<string>();
 
-                for (int i = 0; i < decks[d].PresidentsData.Count; i++)
+                for (int i = 0; i < decks[d].PresidentsId.Count; i++)
                 {
-                    idPresidentsCards[i] = decks[d].PresidentsData[i].ID;
+                    idPresidentsCards[i] = decks[d].PresidentsId[i];
                 }
 
-                for (int i = 0; i < decks[d].FightsData.Count; i++)
+                for (int i = 0; i < decks[d].FightsId.Count; i++)
                 {
-                    idFightCards[i] = decks[d].FightsData[i].ID;
+                    idFightCards[i] = decks[d].FightsId[i];
                 }
 
                 deckJson.NameDeck = decks[d].Name;

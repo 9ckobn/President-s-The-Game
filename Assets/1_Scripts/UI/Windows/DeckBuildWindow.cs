@@ -64,14 +64,14 @@ namespace UI
                 deckButtons[i].SetNameDeck = decks[i].Name;
             }
 
-            foreach (var cardData in deckController.GetSelectedDeck.PresidentsData)
+            foreach (var cardId in deckController.GetSelectedDeck.PresidentsId)
             {
-                CreatePresidentCardInDeck(cardData);
+                CreatePresidentCardInDeck(storageCards.GetPresidentData(cardId));
             }
 
-            foreach (var cardData in deckController.GetSelectedDeck.FightsData)
+            foreach (var cardId in deckController.GetSelectedDeck.FightsId)
             {
-                CreateFightCardInDeck(cardData);
+                CreateFightCardInDeck(storageCards.GetFightData(cardId));
             }
 
             ClickShowCards(true);
