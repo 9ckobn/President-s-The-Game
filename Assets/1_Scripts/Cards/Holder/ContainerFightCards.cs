@@ -2,9 +2,9 @@ using Core;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cards.Ñontainer
+namespace Cards.Container
 {
-    public class ÑontainerFightCards : ÑontainerCards
+    public class ContainerFightCards : ContainerCards
     {
         private List<CardFight> cards;
 

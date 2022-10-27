@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Cards.Ñontainer
+namespace Cards.Container
 {
-    public class ÑontainerCards : MonoBehaviour
+    public class ContainerCards : MonoBehaviour
     {
         protected int maxCards, countCards = 0;
 

@@ -1,4 +1,4 @@
-using Cards.Ñontainer;
+using Cards.Container;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -9,13 +9,13 @@ namespace SceneObjects
         [BoxGroup("Spwan position")]
         [SerializeField] private GameObject spawnPosition;
         [BoxGroup("Containers")]
-        [SerializeField] private ÑontainerFightCards containerFights;
+        [SerializeField] private ContainerFightCards containerFights;
         [BoxGroup("Containers")]
-        [SerializeField] private ÑontainerPresidentCards playerPresidents, enemyPresidents;
+        [SerializeField] private ContainerPresidentCards playerPresidents, enemyPresidents;
 
         public GameObject GetSpawnPosition { get => spawnPosition; }
-        public ÑontainerFightCards GetContainerFights { get => containerFights; }
-        public ÑontainerPresidentCards GetContainerPlayerPresidents { get => playerPresidents; }
-        public ÑontainerPresidentCards GetContainerEnemyPresidents { get => enemyPresidents; }
+        public ContainerFightCards GetContainerFights { get => containerFights; }
+        public ContainerPresidentCards GetContainerPlayerPresidents { get => playerPresidents; }
+        public ContainerPresidentCards GetContainerEnemyPresidents { get => enemyPresidents; }
     }
 }

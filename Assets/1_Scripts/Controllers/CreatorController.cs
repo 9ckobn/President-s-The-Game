@@ -1,6 +1,7 @@
 using Cards;
 using Cards.Data;
 using Core;
+using NaughtyAttributes;
 using SceneObjects;
 using UnityEngine;
 
@@ -9,8 +10,14 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "CreatorController", menuName = "Controllers/Gameplay/CreatorController")]
     public class CreatorController : BaseController
     {
+        создать префабы карт
+        [BoxGroup("Prefabs")]
         [SerializeField] private CardPresident presidentPrefab;
+        [BoxGroup("Prefabs")]
         [SerializeField] private CardFight fightPrefab;
+
+        [BoxGroup("Models")]
+        [SerializeField] private GameObject[] modelPresident, modelsFights;
 
         public CardPresident CreateCardPresident(CardPresidentData cardData)
         {
