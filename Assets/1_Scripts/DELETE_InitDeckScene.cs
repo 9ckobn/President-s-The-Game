@@ -1,4 +1,5 @@
 using Core;
+using Gameplay;
 using System.Collections;
 using UI;
 using UnityEngine;
@@ -27,6 +28,6 @@ public class DELETE_InitDeckScene : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Debug.Log("<color=red>Delete init scene!</color>");
 
-        UIManager.Instance.ShowWindow<DeckBuildWindow>();
+        BoxController.GetController<FightSceneController>().StartGame();
     }
 }
