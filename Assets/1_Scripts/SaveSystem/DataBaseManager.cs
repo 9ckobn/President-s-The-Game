@@ -134,12 +134,14 @@ namespace Core
                     }
                     else
                     {
-                        BoxController.GetController<LogController>().Log($"Not have file save");
+                        // TODO: Error LogController because init logController after this comit
+
+                        Debug.Log($"Not have file save");
                     }
                 }
                 catch (Exception ex)
                 {
-                    BoxController.GetController<LogController>().LogError($"Error load file save - {ex}");
+                    Debug.Log($"Error load file save - {ex}");
                 }
             }
 
@@ -150,42 +152,51 @@ namespace Core
 
         public void SaveDecksData()
         {
-            List<DeckData> decks = BoxController.GetController<DeckBuildController>().GetAllDecks;
-            AllDecksDataJson decksData = new AllDecksDataJson();
-            decksData.Decks = new DeckDataJson[decks.Count];
-
-            for (int d = 0; d < decks.Count; d++)
+            if (isUseMoralis)
             {
-                DeckDataJson deckJson = new DeckDataJson();
-                List<string> idPresidentsCards = new List<string>();
-                List<string> idFightCards = new List<string>();
+                // TODO: save data in moralis base
+            }
+            else
+            {
+                // Save data on disk
 
-                for (int i = 0; i < decks[d].PresidentsId.Count; i++)
+                List<DeckData> decks = BoxController.GetController<DeckBuildController>().GetAllDecks;
+                AllDecksDataJson decksData = new AllDecksDataJson();
+                decksData.Decks = new DeckDataJson[decks.Count];
+
+                for (int d = 0; d < decks.Count; d++)
                 {
-                    idPresidentsCards[i] = decks[d].PresidentsId[i];
+                    DeckDataJson deckJson = new DeckDataJson();
+                    List<string> idPresidentsCards = new List<string>();
+                    List<string> idFightCards = new List<string>();
+
+                    for (int i = 0; i < decks[d].PresidentsId.Count; i++)
+                    {
+                        idPresidentsCards.Add(decks[d].PresidentsId[i]);
+                    }
+
+                    for (int i = 0; i < decks[d].FightsId.Count; i++)
+                    {
+                        idFightCards.Add(decks[d].FightsId[i]);
+                    }
+
+                    deckJson.NameDeck = decks[d].Name;
+                    deckJson.IdPresidentCards = idPresidentsCards;
+                    deckJson.IdFightCards = idFightCards;
+
+                    decksData.Decks[d] = deckJson;
                 }
 
-                for (int i = 0; i < decks[d].FightsId.Count; i++)
+                string jsonString = JsonUtility.ToJson(decksData);
+
+                try
                 {
-                    idFightCards[i] = decks[d].FightsId[i];
+                    File.WriteAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA, jsonString);
                 }
-
-                deckJson.NameDeck = decks[d].Name;
-                deckJson.IdPresidentCards = idPresidentsCards;
-                deckJson.IdFightCards = idFightCards;
-
-                decksData.Decks[d] = deckJson;
-            }
-
-            string jsonString = JsonUtility.ToJson(decksData);
-
-            try
-            {
-                File.WriteAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA, jsonString);
-            }
-            catch (Exception ex)
-            {
-                BoxController.GetController<LogController>().LogError($"Error save Deck data - {ex}");
+                catch (Exception ex)
+                {
+                    BoxController.GetController<LogController>().LogError($"Error save Deck data - {ex}");
+                }
             }
         }
 

@@ -51,8 +51,10 @@ namespace UI
             deckController = BoxController.GetController<DeckBuildController>();
             storageCards = BoxController.GetController<StorageCardsController>();
 
-            choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); }); //ClickShowPresidentsCards);
-            chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });//ClickShowFightCards);
+            choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); }); 
+            chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });
+
+            exitButton.onClick.AddListener(ClickExitButton);
         }
 
         protected override void BeforeShow()
@@ -151,6 +153,11 @@ namespace UI
         public void DeletePreviewCard()
         {
             Destroy(previewCard.gameObject);
+        }
+
+        private void ClickExitButton()
+        {
+            DataBaseManager.Instance.SaveDecksData();
         }
 
         #endregion
