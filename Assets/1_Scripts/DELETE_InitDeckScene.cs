@@ -3,7 +3,7 @@ using System.Collections;
 using UI;
 using UnityEngine;
 
-public class DELETE_InitScene : MonoBehaviour
+public class DELETE_InitDeckScene : MonoBehaviour
 {
     private void Start()
     {
