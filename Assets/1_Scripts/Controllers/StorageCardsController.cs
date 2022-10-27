@@ -30,11 +30,19 @@ namespace Cards
                 cardsPresidentData.Add(cardData);
             }
 
-            foreach (var card in cardFightSCRO)
-            {
-                CardFightData cardData = new CardFightData(card, card.Sprite);
+            List<string> idFightsCards = DataBaseManager.Instance.GetCardsFightID;
 
-                cardsFightData.Add(cardData);
+            foreach (var id in idFightsCards)
+            {
+                foreach (var card in cardFightSCRO)
+                {
+                    if (card.ID == id)
+                    {
+                        CardFightData cardData = new CardFightData(card, card.Sprite);
+
+                        cardsFightData.Add(cardData);
+                    }
+                }
             }
         }
     }

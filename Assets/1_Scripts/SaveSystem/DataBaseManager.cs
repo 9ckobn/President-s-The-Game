@@ -28,9 +28,12 @@ namespace Core
         private MoralisUser moralisUser;
 
         private List<CardPresidentDataSerialize> cardsPresidentsData = new List<CardPresidentDataSerialize>();
+        private List<string> cardsFightID = new List<string>();
+
+        public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
+        public List<string> GetCardsFightID { get => cardsFightID; }
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
-        public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
 
         public MoralisUser SetMoralisUser
         {
@@ -50,17 +53,33 @@ namespace Core
                 idPresidents.Add(i);
             }
 
+            cardsFightID.Add("AirStrike");
+            cardsFightID.Add("BountifulHarvest");
+            cardsFightID.Add("CustomsReform");
+            cardsFightID.Add("DiplomaticImmunity");
+            cardsFightID.Add("EducationalInfrastructure");
+            cardsFightID.Add("Elections");
+            cardsFightID.Add("IntelligenceData");
+            cardsFightID.Add("Isolation");
+            cardsFightID.Add("JoiningUnion");
+            cardsFightID.Add("MilitaryPosition");
+            cardsFightID.Add("Patronage");
+            cardsFightID.Add("PestControl");
+            cardsFightID.Add("StrategicLoan ");
+            cardsFightID.Add("Sunction");
+            cardsFightID.Add("TechnologicalBreakthrough");
+
             if (isUseMoralis)
             {
-                // TODO: Get id presidents card data from base Moralis
+                // TODO: Get id presidents card data from base Moralis                
 
-                LoadDataFromServer(idPresidents);
+                // TODO: Get id fight cards from server
 
-                OnInit?.Invoke();
+                LoadPresidentDataFromServer(idPresidents);
             }
             else
             {
-                LoadDataFromServer(idPresidents);
+                LoadPresidentDataFromServer(idPresidents);
             }
         }
 
@@ -105,7 +124,7 @@ namespace Core
             }
         }
 
-        private async void LoadDataFromServer(List<int> idPresidents)
+        private async void LoadPresidentDataFromServer(List<int> idPresidents)
         {
             using (var httpClient = new HttpClient())
             {
@@ -131,7 +150,7 @@ namespace Core
             OnInit?.Invoke();
         }
 
-
+        #region OLD
 
         public async void ChangeNick(string newNick)
         {
@@ -216,5 +235,7 @@ namespace Core
             //    Debug.Log("ERROR   ERROR   SAVE TEST OBJECT");
             //}
         }
+
+        #endregion
     }
 }
