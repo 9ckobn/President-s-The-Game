@@ -36,7 +36,7 @@ namespace Cards
             {
                 foreach (var card in cardFightSCRO)
                 {
-                    if (card.ID == id)
+                    if (card.Id == id)
                     {
                         CardFightData cardData = new CardFightData(card, card.Sprite);
 
@@ -50,7 +50,7 @@ namespace Cards
         {
             foreach (var cardData in cardsPresidentData)
             {
-                if(cardData.ID == id)
+                if(cardData.Id == id)
                 {
                     return cardData;
                 }
@@ -65,7 +65,7 @@ namespace Cards
         {
             foreach (var cardData in cardsFightData)
             {
-                if (cardData.ID == id)
+                if (cardData.Id == id)
                 {
                     return cardData;
                 }
@@ -73,6 +73,34 @@ namespace Cards
 
             BoxController.GetController<LogController>().LogError($"Not have fight card with id - {id}");
 
+            return null;
+        }
+
+        public GameObject GetPresidentModel(string id)
+        {
+            foreach (var imageData in storageImages.PresidentImages)
+            {
+                if(imageData.ID == id)
+                {
+                    return imageData.Model;
+                }
+            }
+
+            BoxController.GetController<LogController>().LogError($"Not have president model with id {id} in storageImages");
+            return null;
+        }
+
+        public GameObject GetFightModel(string id)
+        {
+            foreach (var cardFight in cardFightSCRO)
+            {
+                if (cardFight.Id == id)
+                {
+                    return cardFight.Model;
+                }
+            }
+
+            BoxController.GetController<LogController>().LogError($"Not have fight model with id {id} in storageImages");
             return null;
         }
     }

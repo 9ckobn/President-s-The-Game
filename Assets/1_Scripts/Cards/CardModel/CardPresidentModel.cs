@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Cards
 {
     [RequireComponent(typeof(CardPresidentView))]
-    public class CardPresident : CardModel
+    public class CardPresidentModel : CardModel
     {
         public CardPresidentData SetCardData 
         {

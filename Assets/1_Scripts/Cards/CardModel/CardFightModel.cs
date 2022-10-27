@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Cards
 {
     [RequireComponent(typeof(CardFightView))]
-    public class CardFight : CardModel
+    public class CardFightModel : CardModel
     {
         public CardFightData SetCardData 
         {

@@ -6,9 +6,9 @@ namespace Cards.Container
 {
     public class ContainerPresidentCards : ContainerCards
     {
-        private List<CardPresident> cards;
+        private List<CardPresidentModel> cards;
 
-        public void AddCard(CardPresident card)
+        public void AddCard(CardPresidentModel card)
         {
             if(countCards + 1 > maxCards)
             {

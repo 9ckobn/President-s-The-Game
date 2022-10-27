@@ -54,22 +54,22 @@ namespace Gameplay
 
         public void AddCardInDeck(CardPresidentData card)
         {
-            selectedDeck.AddPresidentCard(card.ID);
+            selectedDeck.AddPresidentCard(card.Id);
         }
 
         public void AddCardInDeck(CardFightData card)
         {
-            selectedDeck.AddFightCard(card.ID);
+            selectedDeck.AddFightCard(card.Id);
         }
 
         public void RemoveCardInDeck(CardPresidentData card)
         {
-            selectedDeck.RemovePresidentCard(card.ID);
+            selectedDeck.RemovePresidentCard(card.Id);
         }
 
         public void RemoveCardInDeck(CardFightData card)
         {
-            selectedDeck.RemoveFightCard(card.ID);
+            selectedDeck.RemoveFightCard(card.Id);
         }
     }
 }

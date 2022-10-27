@@ -11,29 +11,35 @@ namespace Gameplay
     public class CreatorController : BaseController
     {
         [BoxGroup("Prefabs")]
-        [SerializeField] private CardPresident presidentPrefab;
+        [SerializeField] private CardPresidentModel presidentPrefab;
         [BoxGroup("Prefabs")]
-        [SerializeField] private CardFight fightPrefab;
+        [SerializeField] private CardFightModel fightPrefab;
 
         [BoxGroup("Models")]
         [SerializeField] private GameObject[] modelPresident, modelsFights;
 
-        public CardPresident CreateCardPresident(CardPresidentData cardData)
+        public CardPresidentModel CreateCardPresident(CardPresidentData cardData)
         {
             Transform spawnTransform = ObjectsOnScene.Instance.GetSpawnPosition.transform;
+            GameObject modelPrefab = BoxController.GetController<StorageCardsController>().GetPresidentModel(cardData.Id);
 
-            CardPresident card = Instantiate(presidentPrefab, spawnTransform);
+            CardPresidentModel card = Instantiate(presidentPrefab, spawnTransform);
             card.SetCardData = cardData;
+            GameObject model = Instantiate(modelPrefab, spawnTransform);
+            card.SetMode = model;
 
             return card;
         }
 
-        public CardFight CreateCardFight(CardFightData cardData)
+        public CardFightModel CreateCardFight(CardFightData cardData)
         {
             Transform spawnTransform = ObjectsOnScene.Instance.GetSpawnPosition.transform;
+            GameObject modelPrefab = BoxController.GetController<StorageCardsController>().GetFightModel(cardData.Id);
 
-            CardFight card = Instantiate(fightPrefab, spawnTransform);
+            CardFightModel card = Instantiate(fightPrefab, spawnTransform);
             card.SetCardData = cardData;
+            GameObject model = Instantiate(modelPrefab, spawnTransform);
+            card.SetMode = model;
 
             return card;
         }

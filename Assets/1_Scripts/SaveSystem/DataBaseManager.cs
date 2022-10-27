@@ -19,7 +19,7 @@ namespace Core
 {
     public class DataBaseManager : Singleton<DataBaseManager>
     {
-        private const string PARTH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json";
+        private const string PARTH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json"; // C:\Users\unity\AppData\LocalLow\DefaultCompany
 
         [HideInInspector]
         public UnityEvent OnInit;
@@ -120,7 +120,7 @@ namespace Core
                 try
                 {
                     AllDecksDataJson deckDataJson;
-
+                    Debug.Log(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
                     if (File.Exists(Application.persistentDataPath + PATH_LOCAL_DECK_DATA))
                     {
                         string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);

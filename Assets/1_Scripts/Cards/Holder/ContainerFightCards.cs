@@ -6,9 +6,9 @@ namespace Cards.Container
 {
     public class ContainerFightCards : ContainerCards
     {
-        private List<CardFight> cards;
+        private List<CardFightModel> cards;
 
-        public void AddCard(CardFight card)
+        public void AddCard(CardFightModel card)
         {
             if (countCards + 1 > maxCards)
             {

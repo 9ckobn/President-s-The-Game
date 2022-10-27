@@ -9,7 +9,7 @@ namespace Cards.Data
 
         public CardFightData(string id) : base(id, null, "fight card") { } // DELETE
 
-        public CardFightData(SCRO_CardFight data, Sprite sprite) : base(data.ID.ToString(), sprite, data.name)
+        public CardFightData(SCRO_CardFight data, Sprite sprite) : base(data.Id.ToString(), sprite, data.name)
         {
             Description = data.Description;
             Cost = data.Cost;
