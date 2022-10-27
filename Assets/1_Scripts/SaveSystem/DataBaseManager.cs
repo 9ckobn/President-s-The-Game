@@ -29,9 +29,11 @@ namespace Core
 
         private List<CardPresidentDataSerialize> cardsPresidentsData = new List<CardPresidentDataSerialize>();
         private List<string> cardsFightID = new List<string>();
+        private List<DeckData> decksData = new List<DeckData>();
 
         public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
         public List<string> GetCardsFightID { get => cardsFightID; }
+        public List<DeckData> GetDecksData { get => decksData; }
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
 
@@ -44,44 +46,107 @@ namespace Core
             }
         }
 
+        #region INITIALIZE
+
         public void Initialize()
+        {
+            LoadDataFromServer();
+        }
+
+        private async void LoadDataFromServer()
         {
             List<int> idPresidents = new List<int>();
 
-            for (int i = 1; i < 7; i++)
-            {
-                idPresidents.Add(i);
-            }
-
-            cardsFightID.Add("AirStrike");
-            cardsFightID.Add("BountifulHarvest");
-            cardsFightID.Add("CustomsReform");
-            cardsFightID.Add("DiplomaticImmunity");
-            cardsFightID.Add("EducationalInfrastructure");
-            cardsFightID.Add("Elections");
-            cardsFightID.Add("IntelligenceData");
-            cardsFightID.Add("Isolation");
-            cardsFightID.Add("JoiningUnion");
-            cardsFightID.Add("MilitaryPosition");
-            cardsFightID.Add("Patronage");
-            cardsFightID.Add("PestControl");
-            cardsFightID.Add("StrategicLoan ");
-            cardsFightID.Add("Sunction");
-            cardsFightID.Add("TechnologicalBreakthrough");
-
             if (isUseMoralis)
             {
-                // TODO: Get id presidents card data from base Moralis                
-
-                // TODO: Get id fight cards from server
-
-                LoadPresidentDataFromServer(idPresidents);
+                // TODO: Get id presidents card data from base Moralis
             }
             else
             {
-                LoadPresidentDataFromServer(idPresidents);
+                // Create Fake id presidents 
+
+                for (int i = 1; i < 7; i++)
+                {
+                    idPresidents.Add(i);
+                }
             }
+
+            // Get data presidents from base
+            using (var httpClient = new HttpClient())
+            {
+                for (int i = 0; i < idPresidents.Count; i++)
+                {
+                    var json = await httpClient.GetStringAsync(PARTH_PRESIDENTS + idPresidents[i]);
+
+                    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
+                    cardsPresidentsData.Add(cardData);
+                }
+            }
+
+            if (isUseMoralis)
+            {
+                // TODO: Get id fight cards from server
+
+            }
+            else
+            {
+                // Create Fake id fights cards 
+
+                cardsFightID.Add("AirStrike");
+                cardsFightID.Add("BountifulHarvest");
+                cardsFightID.Add("CustomsReform");
+                cardsFightID.Add("DiplomaticImmunity");
+                cardsFightID.Add("EducationalInfrastructure");
+                cardsFightID.Add("Elections");
+                cardsFightID.Add("IntelligenceData");
+                cardsFightID.Add("Isolation");
+                cardsFightID.Add("JoiningUnion");
+                cardsFightID.Add("MilitaryPosition");
+                cardsFightID.Add("Patronage");
+                cardsFightID.Add("PestControl");
+                cardsFightID.Add("StrategicLoan ");
+                cardsFightID.Add("Sunction");
+                cardsFightID.Add("TechnologicalBreakthrough");
+            }
+
+            if (isUseMoralis)
+            {
+                // TODO: Get deka data from base Moralis
+
+            }
+            else
+            {
+                // Load deck data from json
+
+                try
+                {
+                    AllDecksDataJson deckDataJson;
+
+                    if (File.Exists(Application.persistentDataPath + PATH_LOCAL_DECK_DATA))
+                    {
+                        string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
+                        deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
+
+                        foreach (var deckData in deckDataJson)
+                        {
+                            DeckData deck = new DeckData(deckData.id, deckData.pre);
+                        }
+                    }
+                    else
+                    {
+                        BoxController.GetController<LogController>().Log($"Not have file save");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    BoxController.GetController<LogController>().LogError($"Error load file save - {ex}");
+                }
+            }
+
+            OnInit?.Invoke();
         }
+
+        #endregion
 
         public void SaveDecksData()
         {
@@ -120,34 +185,8 @@ namespace Core
             }
             catch (Exception ex)
             {
-                BoxController.GetController<LogController>().LogError($"Не удалось сохранить игру - {ex}");
+                BoxController.GetController<LogController>().LogError($"Error save Deck data - {ex}");
             }
-        }
-
-        private async void LoadPresidentDataFromServer(List<int> idPresidents)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                for (int i = 0; i < idPresidents.Count; i++)
-                {
-                    var json = await httpClient.GetStringAsync(PARTH_PRESIDENTS + idPresidents[i]);
-
-                    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
-                    cardsPresidentsData.Add(cardData);
-                }
-            }
-
-            if (isUseMoralis)
-            {
-                // TODO: Get deka data  from base Moralis
-
-            }
-            else
-            {
-
-            }
-
-            OnInit?.Invoke();
         }
 
         #region OLD
