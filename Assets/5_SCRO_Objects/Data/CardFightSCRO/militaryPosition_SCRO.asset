@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
   m_Name: militaryPosition_SCRO
   m_EditorClassIdentifier: 
-  ID: MilitaryPosition
+  Id: MilitaryPosition
   Name: Military Position
   Description: Strategic facilities and raw material resources will be protected.
     But the citizens will be frightened. Raw resources will not take the damage from
     the next attack, but your Morale will be reduced by 5 units
   Sprite: {fileID: 21300000, guid: 1bdb90ada7653654abbee27a522ff422, type: 3}
+  Model: {fileID: 6556688820997052367, guid: 9a4d442bf569f8947a11c88c81e7bbcd, type: 3}
   TypeCost: 04000000
   Cost: 2
   Effects:

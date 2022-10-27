@@ -38,8 +38,6 @@ namespace Gameplay
         {
             UIManager.Instance.OnInitialize();
             UIManager.Instance.OnStart();
-
-            UIManager.Instance.ShowWindow<DeckBuildWindow>();
         }
 
         public bool CanAddCard(CardPresidentData card)

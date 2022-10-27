@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
   m_Name: StrategicLoan _SCRO
   m_EditorClassIdentifier: 
-  ID: 'StrategicLoan '
+  Id: 'StrategicLoan '
   Name: 'Strategic Loan '
   Description: Lacking resources? You will take a loan of (your diplomacy) for 2
     turns. At the end of these turns, you will receive half of the loan as damage
     to the economy and health
   Sprite: {fileID: 21300000, guid: fdecbd252c94c9545a5dd1f7e4f92794, type: 3}
+  Model: {fileID: 6556688820997052367, guid: 9a4d442bf569f8947a11c88c81e7bbcd, type: 3}
   TypeCost: 0300000005000000
   Cost: 1
   Effects: []

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
   m_Name: joiningUnion_SCRO
   m_EditorClassIdentifier: 
-  ID: JoiningUnion
+  Id: JoiningUnion
   Name: Joining Union
   Description: You will manage to negotiate alliances with other States. Not all
     citizens will support this course of action. All Factors will not take the damage
     from the next attack, but your Morale will be reduced by 10 units
   Sprite: {fileID: 21300000, guid: cc9d62c096ddf4d439aebf091fa47cda, type: 3}
+  Model: {fileID: 6556688820997052367, guid: 9a4d442bf569f8947a11c88c81e7bbcd, type: 3}
   TypeCost: 03000000
   Cost: 2
   Effects:

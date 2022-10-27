@@ -12,6 +12,8 @@ namespace Cards.View
 
         public void SetData(CardFightData data)
         {
+            Debug.Log($"nameText = {nameText}");
+            Debug.Log($"data = {data}");
             nameText.text = data.Name;
             descriptionText.text = data.Description;
             costText.text = data.Cost.ToString();

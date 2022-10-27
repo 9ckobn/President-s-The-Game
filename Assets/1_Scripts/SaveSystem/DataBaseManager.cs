@@ -120,7 +120,7 @@ namespace Core
                 try
                 {
                     AllDecksDataJson deckDataJson;
-                    Debug.Log(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
+
                     if (File.Exists(Application.persistentDataPath + PATH_LOCAL_DECK_DATA))
                     {
                         string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);

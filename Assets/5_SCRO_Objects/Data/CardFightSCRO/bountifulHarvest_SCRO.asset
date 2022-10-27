@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
   m_Name: bountifulHarvest_SCRO
   m_EditorClassIdentifier: 
-  ID: BountifulHarvest
+  Id: BountifulHarvest
   Name: Bountiful Harvest
   Description: The agricultural sector will show excellent results. With a certain
     chance (Equals 10 + Luck %) you may get +10 to Morale, if you lose your Morale
     will be reduced by 5 units
   Sprite: {fileID: 21300000, guid: 2b27e3cbe20f6fd40adb9955f46a53e4, type: 3}
+  Model: {fileID: 6556688820997052367, guid: 9a4d442bf569f8947a11c88c81e7bbcd, type: 3}
   TypeCost: 02000000
   Cost: 1
   Effects:
