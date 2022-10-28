@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Scoting will pass valuable data about the movement of enemy troops.
     Damage from the next attack will be increased by (2+ Half Attribute Attack)
   Sprite: {fileID: 21300000, guid: 2c9511938df4b5e45b5e18e888d1695d, type: 3}
-  Model: {fileID: 6556688820997052367, guid: 9a4d442bf569f8947a11c88c81e7bbcd, type: 3}
+  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
   TypeCost: 02000000
   Cost: 2
   Effects:

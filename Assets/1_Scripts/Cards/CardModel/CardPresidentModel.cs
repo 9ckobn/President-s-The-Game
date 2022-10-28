@@ -17,8 +17,14 @@ namespace Cards
             }
         }
 
-        protected override void AfterAwake()
+        protected override void PointerEnter()
         {
+            throw new System.NotImplementedException();
+        }
+
+        protected override void PointerExit()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

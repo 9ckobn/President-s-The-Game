@@ -1,5 +1,7 @@
 using Cards.Data;
 using Cards.View;
+using Core;
+using Gameplay;
 using UnityEngine;
 
 namespace Cards
@@ -17,7 +19,12 @@ namespace Cards
             }
         }
 
-        protected override void AfterAwake()
+        protected override void PointerEnter()
+        {
+            BoxController.GetController<CardsController>().SelectFightCard(this);
+        }
+
+        protected override void PointerExit()
         {
         }
     }

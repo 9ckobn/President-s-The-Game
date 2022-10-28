@@ -837,7 +837,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Table2
+    path: Main
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves: []
@@ -1699,7 +1699,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.x
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2528,7 +2528,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.y
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3357,7 +3357,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.z
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4186,7 +4186,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalRotation.w
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -4215,7 +4215,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesBaked.x
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4243,7 +4243,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesBaked.y
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4271,7 +4271,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesBaked.z
-    path: Table2
+    path: Main
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 1

@@ -10,7 +10,7 @@ namespace Cards.Container
 
         private int maxCards, countCards = 0;
 
-        private List<CardBase> cards;
+        private List<CardBase> cards = new List<CardBase>();
 
         public int SetMaxCards { set => maxCards = value; }
 
@@ -18,12 +18,13 @@ namespace Cards.Container
         {
             if (countCards + 1 > maxCards)
             {
-                BoxController.GetController<LogController>().LogError($"Max cards {maxCards}. Can add card!");
+                BoxController.GetController<LogController>().LogError($"Max cards {maxCards}. Can not add card!");
             }
             else
             {
                 cards.Add(card);
                 card.transform.position = positions[countCards].transform.position;
+                card.transform.rotation = positions[countCards].transform.rotation;
                 card.transform.SetParent(gameObject.transform);
 
                 countCards++;

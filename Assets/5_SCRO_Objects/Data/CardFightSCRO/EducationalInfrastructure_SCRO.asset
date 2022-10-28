@@ -18,7 +18,7 @@ MonoBehaviour:
     Your scientists will work on the first frontier of knowledge. On your next turn,
     any attack you make will give you Morale equal to 10% of the damage dealt
   Sprite: {fileID: 21300000, guid: 4c01486d85d4b3a4eb75885334e72b29, type: 3}
-  Model: {fileID: 6556688820997052367, guid: 9a4d442bf569f8947a11c88c81e7bbcd, type: 3}
+  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
   TypeCost: 0200000004000000
   Cost: 2
   Effects:

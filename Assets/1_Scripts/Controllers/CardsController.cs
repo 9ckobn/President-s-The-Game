@@ -15,6 +15,8 @@ namespace Gameplay
         private List<CardPresidentModel> presidentCards = new List<CardPresidentModel>();
         private List<CardFightModel> fightCards = new List<CardFightModel>();
 
+        private CardFightModel selectedFightCard;
+
         public override void OnStart()
         {
             List<CardPresidentData> cardsPresidentData = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
@@ -23,6 +25,9 @@ namespace Gameplay
             CreatorController creator = BoxController.GetController<CreatorController>();
             ContainerPresidentCards containerPlayerPresidents = ObjectsOnScene.Instance.GetContainerPlayerPresidents;
             ContainerFightCards containerFightCards = ObjectsOnScene.Instance.GetContainerFights;
+
+            containerFightCards.SetMaxCards = MainData.MAX_FIGHT_CARDS;
+            containerPlayerPresidents.SetMaxCards = MainData.MAX_PRESIDENT_CARDS;
 
             foreach (var cardData in cardsPresidentData)
             {
@@ -45,9 +50,11 @@ namespace Gameplay
             {
                 containerFightCards.AddCard(fightCards[i]);
             }
+        }
 
-            containerFightCards.SetMaxCards = MainData.MAX_FIGHT_CARDS;
-            containerPlayerPresidents.SetMaxCards = MainData.MAX_PRESIDENT_CARDS;
+        public void SelectFightCard(CardFightModel card)
+        {
+            selectedFightCard = card;
         }
     }
 }
