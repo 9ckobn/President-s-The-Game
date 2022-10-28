@@ -28,11 +28,11 @@ namespace Core
         private MoralisUser moralisUser;
 
         private List<CardPresidentDataSerialize> cardsPresidentsData = new List<CardPresidentDataSerialize>();
-        private List<string> cardsFightID = new List<string>();
+        private List<string> cardsFightId = new List<string>();
         private List<DeckData> decksData = new List<DeckData>();
 
         public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
-        public List<string> GetCardsFightID { get => cardsFightID; }
+        public List<string> GetCardsFightID { get => cardsFightId; }
         public List<DeckData> GetDecksData { get => decksData; }
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
@@ -55,68 +55,21 @@ namespace Core
 
         private async void LoadDataFromServer()
         {
-            List<int> idPresidents = new List<int>();
+            List<string> idPresidents = new List<string>();
 
             if (isUseMoralis)
             {
                 // TODO: Get id presidents card data from base Moralis
-            }
-            else
-            {
-                // Create Fake id presidents 
 
-                for (int i = 1; i < 7; i++)
-                {
-                    idPresidents.Add(i);
-                }
-            }
+                // TODO: Get deka data from base Moralis
 
-            // Get data presidents from base
-            using (var httpClient = new HttpClient())
-            {
-                for (int i = 0; i < idPresidents.Count; i++)
-                {
-                    var json = await httpClient.GetStringAsync(PARTH_PRESIDENTS + idPresidents[i]);
-
-                    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
-                    cardsPresidentsData.Add(cardData);
-                }
-            }
-
-            if (isUseMoralis)
-            {
                 // TODO: Get id fight cards from server
 
             }
             else
             {
-                // Create Fake id fights cards 
+                // Load data from json
 
-                cardsFightID.Add("AirStrike");
-                cardsFightID.Add("BountifulHarvest");
-                cardsFightID.Add("CustomsReform");
-                cardsFightID.Add("DiplomaticImmunity");
-                cardsFightID.Add("EducationalInfrastructure");
-                cardsFightID.Add("Elections");
-                cardsFightID.Add("IntelligenceData");
-                cardsFightID.Add("Isolation");
-                cardsFightID.Add("JoiningUnion");
-                cardsFightID.Add("MilitaryPosition");
-                cardsFightID.Add("Patronage");
-                cardsFightID.Add("PestControl");
-                cardsFightID.Add("StrategicLoan ");
-                cardsFightID.Add("Sunction");
-                cardsFightID.Add("TechnologicalBreakthrough");
-            }
-
-            if (isUseMoralis)
-            {
-                // TODO: Get deka data from base Moralis
-
-            }
-            else
-            {
-                // Load deck data from json
                 try
                 {
                     AllDecksDataJson deckDataJson;
@@ -125,18 +78,66 @@ namespace Core
                     {
                         string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
                         deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
+                        DeckData deck = null;
 
                         foreach (var deckJson in deckDataJson.Decks)
                         {
-                            DeckData deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IdPresidentCards, deckJson.IdFightCards);
+                            deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IdPresidentCards, deckJson.IdFightCards);
                             decksData.Add(deck);
                         }
+
+                        foreach (var cardId in deck.FightsId)
+                        {
+                            cardsFightId.Add(cardId);
+                        }
+
+                        foreach (var cardId in deck.PresidentsId)
+                        {
+                            idPresidents.Add(cardId);
+                        }
+
+                        Debug.Log($"cardsFightId = {cardsFightId.Count}");
                     }
                     else
                     {
                         // TODO: Error LogController because init logController after this comit
 
                         Debug.Log($"Not have file save");
+
+                        // Create Fake id presidents 
+                        for (int i = 1; i < 7; i++)
+                        {
+                            idPresidents.Add(i.ToString());
+                        }
+
+                        // Create all cards
+                        cardsFightId.Add("AirStrike");
+                        cardsFightId.Add("BountifulHarvest");
+                        cardsFightId.Add("CustomsReform");
+                        cardsFightId.Add("DiplomaticImmunity");
+                        cardsFightId.Add("EducationalInfrastructure");
+                        cardsFightId.Add("Elections");
+                        cardsFightId.Add("IntelligenceData");
+                        cardsFightId.Add("Isolation");
+                        cardsFightId.Add("JoiningUnion");
+                        cardsFightId.Add("MilitaryPosition");
+                        cardsFightId.Add("Patronage");
+                        cardsFightId.Add("PestControl");
+                        cardsFightId.Add("StrategicLoan ");
+                        cardsFightId.Add("Sunction");
+                        cardsFightId.Add("TechnologicalBreakthrough");
+                    }
+
+                    // Get data presidents from base
+                    using (var httpClient = new HttpClient())
+                    {
+                        for (int i = 0; i < idPresidents.Count; i++)
+                        {
+                            var json = await httpClient.GetStringAsync(PARTH_PRESIDENTS + idPresidents[i]);
+
+                            CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
+                            cardsPresidentsData.Add(cardData);
+                        }
                     }
                 }
                 catch (Exception ex)

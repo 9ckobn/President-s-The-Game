@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CreatorController
   m_EditorClassIdentifier: 
   NeedInstantiate: 0
-  presidentPrefab: {fileID: 8341543071119675167, guid: e97a59b9fc045e84ea22604ed69fec52, type: 3}
+  presidentPrefab: {fileID: 3474622592091327362, guid: e97a59b9fc045e84ea22604ed69fec52, type: 3}
   fightPrefab: {fileID: 450274328717428808, guid: 2e2628ba3114a47469b666c8b993fdaa, type: 3}
   modelPresident: []
   modelsFights: []

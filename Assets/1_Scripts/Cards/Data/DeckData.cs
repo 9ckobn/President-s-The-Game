@@ -1,17 +1,18 @@
+using Data;
 using System.Collections.Generic;
 
 namespace Cards.Data
 {
     public class DeckData
     {
-        private const int MAX_PRESIDENTS = 3;
-        private const int MAX_FIGHTS = 9;
-
         public List<string> PresidentsId { get; private set; }
         public List<string> FightsId { get; private set; }
 
         public int Id { get; private set; }
         public string Name { get; private set; }
+
+        private int maxPresidents = 3;
+        private int maxFights = 9;
 
         public DeckData(int id, string name, List<string> presidents, List<string> fights)
         {
@@ -35,16 +36,19 @@ namespace Cards.Data
             {
                 FightsId = fights;
             }
+
+            maxPresidents = MainData.MAX_PRESIDENT_CARDS;
+            maxFights = MainData.MAX_FIGHT_CARDS;
         }
 
         public bool CanAddPresidentData()
         {
-            return PresidentsId.Count < MAX_PRESIDENTS;
+            return PresidentsId.Count < maxPresidents;
         }
 
         public bool CanAddFightData()
         {
-            return FightsId.Count < MAX_FIGHTS;
+            return FightsId.Count < maxFights;
         }
 
         public void AddPresidentCard(string idCards)

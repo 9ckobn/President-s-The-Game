@@ -1,16 +1,33 @@
+using Core;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards.Container
 {
     public class ContainerCards : MonoBehaviour
     {
-        protected int maxCards, countCards = 0;
-
         [SerializeField] protected GameObject[] positions;
 
-        public void SetData(int maxCards)
+        private int maxCards, countCards = 0;
+
+        private List<CardBase> cards;
+
+        public int SetMaxCards { set => maxCards = value; }
+
+        public void AddCard(CardBase card)
         {
-            this.maxCards = maxCards;
+            if (countCards + 1 > maxCards)
+            {
+                BoxController.GetController<LogController>().LogError($"Max cards {maxCards}. Can add card!");
+            }
+            else
+            {
+                cards.Add(card);
+                card.transform.position = positions[countCards].transform.position;
+                card.transform.SetParent(gameObject.transform);
+
+                countCards++;
+            }
         }
     }
 }

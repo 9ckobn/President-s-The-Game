@@ -25,7 +25,7 @@ public class DELETE_InitDeckScene : MonoBehaviour
 
     private IEnumerator CoStartGame()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Debug.Log("<color=red>Delete init scene!</color>");
 
         BoxController.GetController<FightSceneController>().StartGame();

@@ -15,9 +15,6 @@ namespace Gameplay
         [BoxGroup("Prefabs")]
         [SerializeField] private CardFightModel fightPrefab;
 
-        [BoxGroup("Models")]
-        [SerializeField] private GameObject[] modelPresident, modelsFights;
-
         public CardPresidentModel CreateCardPresident(CardPresidentData cardData)
         {
             Transform spawnTransform = ObjectsOnScene.Instance.GetSpawnPosition.transform;
