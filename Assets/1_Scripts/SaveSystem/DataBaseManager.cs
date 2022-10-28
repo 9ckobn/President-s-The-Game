@@ -80,6 +80,12 @@ namespace Core
                         deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
                         DeckData deck = null;
 
+                        if(deckDataJson.Decks.Length > 1)
+                        {
+                            Debug.LogError("Decks > 1. Create logics!");
+                            return;
+                        }
+
                         foreach (var deckJson in deckDataJson.Decks)
                         {
                             deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IdPresidentCards, deckJson.IdFightCards);
@@ -95,8 +101,6 @@ namespace Core
                         {
                             idPresidents.Add(cardId);
                         }
-
-                        Debug.Log($"cardsFightId = {cardsFightId.Count}");
                     }
                     else
                     {

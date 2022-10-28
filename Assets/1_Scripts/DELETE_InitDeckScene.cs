@@ -28,6 +28,6 @@ public class DELETE_InitDeckScene : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Debug.Log("<color=red>Delete init scene!</color>");
 
-        BoxController.GetController<FightSceneController>().StartGame();
+        UIManager.Instance.ShowWindow<DeckBuildWindow>();
     }
 }
