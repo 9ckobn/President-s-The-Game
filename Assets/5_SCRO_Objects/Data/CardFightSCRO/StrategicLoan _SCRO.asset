@@ -18,7 +18,7 @@ MonoBehaviour:
     turns. At the end of these turns, you will receive half of the loan as damage
     to the economy and health
   Sprite: {fileID: 21300000, guid: fdecbd252c94c9545a5dd1f7e4f92794, type: 3}
-  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
+  Model: {fileID: 3194983723496282082, guid: e50ea2ae54fdb534f986d2d0719cc605, type: 3}
   TypeCost: 0300000005000000
   Cost: 1
   Effects: []

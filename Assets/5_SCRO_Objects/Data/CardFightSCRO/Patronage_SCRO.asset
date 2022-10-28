@@ -18,7 +18,7 @@ MonoBehaviour:
     will be no point in attacking you. The chosen factor with (Diplomacy value)%
     will not take damage on the next 3 turns
   Sprite: {fileID: 21300000, guid: b13a6b3b7c2c9d7448fa8a9e92eb5075, type: 3}
-  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
+  Model: {fileID: 3194983723496282082, guid: a528c867afec9d24f802dc71c772fa53, type: 3}
   TypeCost: 03000000
   Cost: 1
   Effects:

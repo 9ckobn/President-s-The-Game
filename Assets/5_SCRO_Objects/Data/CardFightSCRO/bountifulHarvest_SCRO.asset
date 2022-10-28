@@ -18,7 +18,7 @@ MonoBehaviour:
     chance (Equals 10 + Luck %) you may get +10 to Morale, if you lose your Morale
     will be reduced by 5 units
   Sprite: {fileID: 21300000, guid: 2b27e3cbe20f6fd40adb9955f46a53e4, type: 3}
-  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
+  Model: {fileID: 3194983723496282082, guid: 319ab313d05cd4a4b8795c649efc7ae6, type: 3}
   TypeCost: 02000000
   Cost: 1
   Effects:

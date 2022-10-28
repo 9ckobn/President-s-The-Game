@@ -18,7 +18,7 @@ MonoBehaviour:
     from attack cards will be increased by half your Luck. Economy consumption will
     be reduced by 2 units next turn
   Sprite: {fileID: 21300000, guid: 80af085100fbb834583571c11cef51a8, type: 3}
-  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
+  Model: {fileID: 3194983723496282082, guid: d58656c97474113498e26bbf7cee7fab, type: 3}
   TypeCost: 0200000004000000
   Cost: 1
   Effects:

@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Will strike the enemy. Targets will hit successfully. Enemy will take
     (3+ Attribute Attacks) Morale damage
   Sprite: {fileID: 21300000, guid: 72c26344c43c34c40bfd1d3157ee4deb, type: 3}
-  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
+  Model: {fileID: 3194983723496282082, guid: 34099368cd3e2274ea48a35db2925d61, type: 3}
   TypeCost: 02000000
   Cost: 1
   Effects:

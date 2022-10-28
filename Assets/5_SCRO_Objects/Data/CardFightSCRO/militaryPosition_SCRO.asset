@@ -18,7 +18,7 @@ MonoBehaviour:
     But the citizens will be frightened. Raw resources will not take the damage from
     the next attack, but your Morale will be reduced by 5 units
   Sprite: {fileID: 21300000, guid: 1bdb90ada7653654abbee27a522ff422, type: 3}
-  Model: {fileID: 1989920155144276300, guid: 0ee778a7c7f107e4ab4283978e7324b2, type: 3}
+  Model: {fileID: 3194983723496282082, guid: 7705d383fdef0794b8b1820e6e0a26fa, type: 3}
   TypeCost: 04000000
   Cost: 2
   Effects:
