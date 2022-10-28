@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 450274328717428917}
   - component: {fileID: 450274328717428808}
   - component: {fileID: 450274328717428919}
+  - component: {fileID: 1139406022201793000}
   m_Layer: 5
   m_Name: CardFightPrefab
   m_TagString: Untagged
@@ -103,6 +104,19 @@ MonoBehaviour:
   nameText: {fileID: 4025880976397222501}
   descriptionText: {fileID: 4025880977659628321}
   costText: {fileID: 4025880977613824924}
+--- !u!65 &1139406022201793000
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450274328717428918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 0.98, z: 0.05}
+  m_Center: {x: 0, y: 0, z: -0.035}
 --- !u!1 &4025880976397222499
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +379,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4025880978271401685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.02}
+  m_LocalPosition: {x: 0, y: 0, z: -0.04}
   m_LocalScale: {x: 0.004, y: 0.004, z: 0.004}
   m_Children:
   - {fileID: 4025880976397222500}

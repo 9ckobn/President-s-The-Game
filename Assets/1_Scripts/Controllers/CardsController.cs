@@ -56,5 +56,15 @@ namespace Gameplay
         {
             selectedFightCard = card;
         }
+
+        public void DeselectFightCard(CardFightModel card)
+        {
+            selectedFightCard = null;
+        }
+
+        public void ClickFightCard(CardFightModel card)
+        {
+
+        }
     }
 }

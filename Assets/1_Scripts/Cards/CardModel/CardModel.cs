@@ -1,16 +1,16 @@
+using Gameplay;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Cards
 {
-    public abstract class CardModel : CardBase, IPointerEnterHandler, IPointerExitHandler
+    public abstract class CardModel : CardBase
     {
         [SerializeField] private float startScele = 1f;
-
         [SerializeField] private GameObject parentModel;
 
         protected GameObject model;
-        private bool pointerEnter = false;
+        private bool pointerEnter = false, isSelected;
 
         public GameObject SetMode
         {
@@ -25,24 +25,35 @@ namespace Cards
 
         protected override void AfterAwake() { }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        private void OnMouseEnter()
         {
-            pointerEnter = true;
-
-            PointerEnter();
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            if (pointerEnter)
+            if (!pointerEnter)
             {
-                pointerEnter = false;
+                pointerEnter = true;
 
-                PointerExit();
+                MouseEnter();
             }
         }
 
-        protected abstract void PointerEnter();
-        protected abstract void PointerExit();
+        private void OnMouseExit()
+        {
+            if (pointerEnter && !isSelected)
+            {
+                pointerEnter = false;
+
+                MouseExit();
+            }
+        }
+
+        private void OnMouseDown()
+        {
+            isSelected = true;
+
+            MouseDown();
+        }
+
+        protected abstract void MouseEnter();
+        protected abstract void MouseExit();
+        protected abstract void MouseDown();
     }
 }

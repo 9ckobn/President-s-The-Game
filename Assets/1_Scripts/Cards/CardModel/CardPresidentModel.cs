@@ -17,14 +17,18 @@ namespace Cards
             }
         }
 
-        protected override void PointerEnter()
+        protected override void MouseEnter()
         {
             throw new System.NotImplementedException();
         }
 
-        protected override void PointerExit()
+        protected override void MouseExit()
         {
             throw new System.NotImplementedException();
+        }
+
+        protected override void MouseDown()
+        {
         }
     }
 }
