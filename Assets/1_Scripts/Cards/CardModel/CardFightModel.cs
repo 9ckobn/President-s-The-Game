@@ -11,7 +11,7 @@ namespace Cards
     {
         private const float SCALE_ANIM_VALUE = 1.5f, POS_Z = 0.1f;
 
-        public CardFightData SetCardData 
+        public CardFightData SetCardData
         {
             set
             {
@@ -20,6 +20,9 @@ namespace Cards
                 (view as CardFightView).SetData(data as CardFightData);
             }
         }
+        public CardFightData GetFightData { get => data as CardFightData; }
+
+        #region INTERACTION
 
         protected override void MouseEnter()
         {
@@ -46,6 +49,13 @@ namespace Cards
         protected override void MouseDown()
         {
             BoxController.GetController<CardsController>().ClickFightCard(this);
+        }
+
+        #endregion
+
+        public bool CanUseCard()
+        {
+            return GetFightData.CurrentReloading == 0;
         }
     }
 }

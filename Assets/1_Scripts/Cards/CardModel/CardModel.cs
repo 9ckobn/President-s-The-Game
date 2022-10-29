@@ -1,6 +1,4 @@
-using Gameplay;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Cards
 {

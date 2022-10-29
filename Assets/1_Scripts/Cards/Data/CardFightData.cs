@@ -11,12 +11,23 @@ namespace Cards.Data
         public string Description { get; private set; }
         public int Cost { get; private set; }
 
+        private int reloading;
         private List<Effect> effects = new List<Effect>();
+
+        public int CurrentReloading { get; private set; }
+        public List<Effect> GetEffects { get => effects; }
 
         public CardFightData(SCRO_CardFight data, Sprite sprite, SCRO_Effect[] effects) : base(data.Id.ToString(), sprite, data.name)
         {
             Description = data.Description;
             Cost = data.Cost;
+            reloading = data.Reloading;
+            CurrentReloading = 0;
+
+            if(effects.Length == 0)
+            {
+                BoxController.GetController<LogController>().LogError($"Not have effects in {data.Name}");
+            }
 
             foreach (var dataEffect in effects)
             {
@@ -55,6 +66,19 @@ namespace Cards.Data
                 {
                     this.effects.Add(effect);
                 }
+            }
+        }
+
+        public void UpdateReloading()
+        {
+            CurrentReloading = reloading;
+        }
+
+        public void DecreaseReloading()
+        {
+            if (CurrentReloading > 0)
+            {
+                CurrentReloading--;
             }
         }
     }

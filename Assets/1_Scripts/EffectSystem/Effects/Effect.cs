@@ -4,25 +4,25 @@ namespace EffectSystem
 {
     public class Effect
     {
-        public TypeTargetEffect typeTarget { get; private set; } // Игрок на которого действует эффект
-        public TypeTimeApply timeApply { get; private set; } // Когда применяется эффект?
+        public TypeTargetEffect TypeTarget { get; private set; } // Игрок на которого действует эффект
+        public TypeTimeApply TimeApply { get; private set; } // Когда применяется эффект?
 
-        public int timeStart { get; private set; }
-        public int timeDuration { get; private set; } // -1: бесконечно, 0: этот раунд, 2: этот и следующий раунд
+        public int TimeStart { get; private set; }
+        public int TimeDuration { get; private set; } // -1: бесконечно, 0: этот раунд, 2: этот и следующий раунд
 
-        public TypeCondition condition { get; private set; }
-        public TypeAttribute typeAttributeAttack { get; private set; }
+        public TypeCondition Condition { get; private set; }
+        public TypeAttribute TypeAttributeAttack { get; private set; }
 
         public Effect(SCRO_Effect data)
         {
-            typeTarget = data.TypeTarget;
-            timeApply = data.TimeApply;
+            TypeTarget = data.TypeTarget;
+            TimeApply = data.TimeApply;
 
-            timeStart = data.TimeStart;
-            timeDuration = data.TimeDuration;
+            TimeStart = data.TimeStart;
+            TimeDuration = data.TimeDuration;
 
-            condition = data.Condition;
-            typeAttributeAttack = data.TypeAttributeAttack;
+            Condition = data.Condition;
+            TypeAttributeAttack = data.TypeAttributeAttack;
         }
     }
 }

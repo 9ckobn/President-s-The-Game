@@ -25,5 +25,9 @@ namespace Cards
 
         [BoxGroup("Effects")]
         public SCRO_Effect[] Effects;
+
+        [BoxGroup("Time")]
+        [Label("Время перезарядки карты")]
+        public int Reloading = 1; // 0 - можно использовать несколько раз за ход, 1 - можно использовать каждый ход, 2 - через один ход
     }
 }

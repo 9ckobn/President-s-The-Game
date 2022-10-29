@@ -23,7 +23,7 @@ namespace EffectSystem.SCRO
         [BoxGroup("Time")]
         [Label("Время продолжительности эффекта")]
         public int TimeDuration = 1; // -1: бесконечно, 0: этот раунд, 2: этот и следующий раунд
-
+       
         #endregion
 
         #region CONDITION

@@ -3,6 +3,7 @@ using Cards.Container;
 using Cards.Data;
 using Core;
 using Data;
+using EffectSystem;
 using SceneObjects;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,7 +65,10 @@ namespace Gameplay
 
         public void ClickFightCard(CardFightModel card)
         {
-
+            if (card.CanUseCard())
+            {
+                BoxController.GetController<EffectsController>().ApplyFightCardEffects(card);
+            }
         }
     }
 }
