@@ -1,4 +1,5 @@
 using EffectSystem;
+using EffectSystem.SCRO;
 using NaughtyAttributes;
 using UnityEngine;
 

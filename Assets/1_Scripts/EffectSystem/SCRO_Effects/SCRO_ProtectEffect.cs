@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace EffectSystem
+namespace EffectSystem.SCRO
 {
     [CreateAssetMenu(fileName = "ProtectEffect", menuName = "Effects/ProtectEffect")]
     public class SCRO_ProtectEffect : SCRO_Effect
@@ -16,7 +16,7 @@ namespace EffectSystem
 
         [BoxGroup("Protect")]
         [HideIf("Immortal")]
-        [Label("Сколько защиты получает")]
+        [Label("Сколько % защиты получает")]
         public int ValueProtect;
 
         [BoxGroup("Protect")]

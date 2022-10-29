@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace EffectSystem
+namespace EffectSystem.SCRO
 {
     [CreateAssetMenu(fileName = "RandomGetProtectEffect", menuName = "Effects/RandomGetProtectEffect")]
     public class SCRO_RandomGetProtectEffect : SCRO_Effect

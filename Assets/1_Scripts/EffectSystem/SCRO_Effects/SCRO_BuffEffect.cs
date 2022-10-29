@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace EffectSystem
+namespace EffectSystem.SCRO
 {
     [CreateAssetMenu(fileName = "BuffEffect", menuName = "Effects/BuffEffect")]
     public class SCRO_BuffEffect : SCRO_Effect
@@ -20,7 +20,7 @@ namespace EffectSystem
         public int BaseValue;
 
         [BoxGroup("Buff")]
-        [Label("Добавляем значение атрибута")]
+        [Label("Добавляем значение атрибута?")]
         public TypeAttribute TypeAttribute;
 
         [BoxGroup("Buff")]

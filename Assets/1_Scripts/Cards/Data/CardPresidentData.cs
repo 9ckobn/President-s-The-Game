@@ -27,21 +27,6 @@ namespace Cards.Data
         public int CommonLuck { get => Luck + BuffLuck.GetValue; }
         public int CommonDiplomatic { get => Diplomatic + BuffDiplomatic.GetValue; }
 
-        //
-        // DELETE
-        //
-        public CardPresidentData(string id) : base(id, null, "president card")
-        {
-            Rarityrank = 1;
-            Attack = 5;
-            Defend = 5;
-            Luck = 5;
-            Diplomatic = 5;
-
-            DefineClimate("temperate");
-            CalculateClimate();
-        }
-
         public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite, data.name)
         {
             Rarityrank = data.rarityrank;

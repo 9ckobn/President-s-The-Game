@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace EffectSystem
+namespace EffectSystem.SCRO
 {
     [CreateAssetMenu(fileName = "AttackEffect", menuName = "Effects/AttackEffect")]
     public class SCRO_AttackEffect : SCRO_Effect

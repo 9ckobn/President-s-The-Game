@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using NaughtyAttributes;
 
-namespace EffectSystem
+namespace EffectSystem.SCRO
 {
     public class SCRO_Effect : ScriptableObject
     {

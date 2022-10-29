@@ -38,7 +38,7 @@ namespace Cards
                 {
                     if (card.Id == id)
                     {
-                        CardFightData cardData = new CardFightData(card, card.Sprite);
+                        CardFightData cardData = new CardFightData(card, card.Sprite, card.Effects);
 
                         cardsFightData.Add(cardData);
                     }

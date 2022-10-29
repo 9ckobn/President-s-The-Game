@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace EffectSystem
+namespace EffectSystem.SCRO
 {
     [CreateAssetMenu(fileName = "RandomUpAttributeEffect", menuName = "Effects/RandomUpAttributeEffect")]
     public class SCRO_RandomUpAttributeEffect : SCRO_Effect

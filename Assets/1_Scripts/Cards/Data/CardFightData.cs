@@ -1,3 +1,7 @@
+using Core;
+using EffectSystem;
+using EffectSystem.SCRO;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards.Data
@@ -7,12 +11,51 @@ namespace Cards.Data
         public string Description { get; private set; }
         public int Cost { get; private set; }
 
-        public CardFightData(string id) : base(id, null, "fight card") { } // DELETE
+        private List<Effect> effects = new List<Effect>();
 
-        public CardFightData(SCRO_CardFight data, Sprite sprite) : base(data.Id.ToString(), sprite, data.name)
+        public CardFightData(SCRO_CardFight data, Sprite sprite, SCRO_Effect[] effects) : base(data.Id.ToString(), sprite, data.name)
         {
             Description = data.Description;
             Cost = data.Cost;
+
+            foreach (var dataEffect in effects)
+            {
+                Effect effect = null;
+
+                if(dataEffect is SCRO_AttackEffect)
+                {
+                    effect = new AttackEffect(dataEffect as SCRO_AttackEffect);
+                }
+                else if(dataEffect is SCRO_BuffEffect)
+                {
+                    effect = new BuffEffect(dataEffect as SCRO_BuffEffect);
+                }
+                else if (dataEffect is SCRO_OtherEffect)
+                {
+                    effect = new OtherEffect(dataEffect as SCRO_OtherEffect);
+                }
+                else if (dataEffect is SCRO_ProtectEffect)
+                {
+                    effect = new ProtectEffect(dataEffect as SCRO_ProtectEffect);
+                }
+                else if (dataEffect is SCRO_RandomGetProtectEffect)
+                {
+                    effect = new RandomGetProtectEffect(dataEffect as SCRO_RandomGetProtectEffect);
+                }
+                else if (dataEffect is SCRO_RandomUpAttributeEffect)
+                {
+                    effect = new RandomUpAttributeEffect(dataEffect as SCRO_RandomUpAttributeEffect);
+                }
+
+                if(effect == null)
+                {
+                    BoxController.GetController<LogController>().LogError($"Effect not create! Effect name - {dataEffect.name}");
+                }
+                else
+                {
+                    this.effects.Add(effect);
+                }
+            }
         }
     }
 }
