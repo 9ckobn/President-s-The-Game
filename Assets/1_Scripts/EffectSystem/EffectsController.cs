@@ -19,6 +19,7 @@ namespace EffectSystem
         public override void OnInitialize()
         {
             canApply = new CanApplyEffect();
+            attackApply = new ApplyAttackEffect();
         }
 
         public void ApplyFightCardEffects(CardFightModel card)
@@ -30,8 +31,6 @@ namespace EffectSystem
 
         private void NextEffect()
         {
-            counterEffects++;
-
             if(counterEffects >= effects.Count)
             {
                 EndApplyAllEffects();
@@ -42,42 +41,45 @@ namespace EffectSystem
 
                 if (canApply.CheckApply(currentEffect))
                 {
-                    ApplyEffect(currentEffect);
+                    ApplyEffect();
                 }
             }
+
+            counterEffects++;
         }
 
-        private void ApplyEffect(Effect effect)
+        private void ApplyEffect()
         {
             currentApply = null;
 
-            if (effect is AttackEffect)
+            if (currentEffect is AttackEffect)
             {
                 currentApply = attackApply;
             }
-            else if (effect is BuffEffect)
+            else if (currentEffect is BuffEffect)
             {
             }
-            else if (effect is OtherEffect)
+            else if (currentEffect is OtherEffect)
             {
             }
-            else if (effect is ProtectEffect)
+            else if (currentEffect is ProtectEffect)
             {
             }
-            else if (effect is RandomGetProtectEffect)
+            else if (currentEffect is RandomGetProtectEffect)
             {
             }
-            else if (effect is RandomUpAttributeEffect)
+            else if (currentEffect is RandomUpAttributeEffect)
             {
             }
 
-            if(currentApply == null)
+            if (currentApply == null)
             {
-                BoxController.GetController<LogController>().LogError($"Not have apply effect! {effect}");
+                BoxController.GetController<LogController>().LogError($"Not have apply effect! {currentEffect}");
             }
             else
             {
                 currentApply.EndApply += EndApplyEffect;
+                currentApply.Apply(currentEffect);
             }
         }
 

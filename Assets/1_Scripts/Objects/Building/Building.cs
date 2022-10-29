@@ -11,6 +11,10 @@ namespace Buildings
         [SerializeField] private GameObject effectExplosion;
         [SerializeField] private TypeAttribute typeBuilding;
 
+        public TypeAttribute GetTypeBuilding{ get => typeBuilding; }
+
+        private bool isTarget;
+
         private void OnMouseUp()
         {
             
@@ -19,6 +23,13 @@ namespace Buildings
         private void OnMouseDown()
         {
             
+        }
+
+        public void EnableStateTarget()
+        {
+            isTarget = true;
+
+            Debug.Log("state target");
         }
     }
 }

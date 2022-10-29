@@ -1,3 +1,7 @@
+using Buildings;
+using SceneObjects;
+using UnityEngine;
+
 namespace EffectSystem
 {
     public class ApplyAttackEffect : ApplyEffect
@@ -25,7 +29,12 @@ namespace EffectSystem
 
         private void PlayerSelectTarget()
         {
+            Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
 
+            foreach (var building in buildings)
+            {
+                building.EnableStateTarget();
+            }
         }
     }
 }
