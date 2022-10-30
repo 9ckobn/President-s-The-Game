@@ -10,7 +10,7 @@ namespace EffectSystem
         Medicine,
         Morality,
         Attack,
-        Protect,
+        Defend,
         Luck,
         Diplomacy
     }

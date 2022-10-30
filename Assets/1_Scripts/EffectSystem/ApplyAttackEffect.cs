@@ -7,6 +7,7 @@ namespace EffectSystem
     public class ApplyAttackEffect : ApplyEffect
     {
         private AttackEffect effect;
+        private Building targetBuilding;
 
         public override void Apply(Effect currentEffect)
         {
@@ -24,6 +25,7 @@ namespace EffectSystem
 
         public override void SelectTargetBuilding(Building building)
         {
+            targetBuilding = building;
             Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
 
             foreach (var buildingAnim in buildings)
@@ -33,7 +35,7 @@ namespace EffectSystem
 
             ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(false);
 
-
+            Apply();
         }
 
         private void GameSelectTarget()
@@ -52,6 +54,11 @@ namespace EffectSystem
 
             ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(true);
             ObjectsOnScene.Instance.GetArrowTarget.SetPositions(BoxController.GetController<EffectsController>().GetCurrentCardFight.gameObject, buildings[0].gameObject);
+        }
+
+        private void Apply()
+        {
+
         }
     }
 }

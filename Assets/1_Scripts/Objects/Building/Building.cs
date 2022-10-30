@@ -24,11 +24,6 @@ namespace Buildings
             mySequence = DOTween.Sequence();
         }
 
-        private void OnMouseUp()
-        {
-
-        }
-
         private void OnMouseDown()
         {
             if (isTarget)
@@ -65,6 +60,16 @@ namespace Buildings
             {
                 isTarget = false;
             }
+        }
+
+        public void GetDamage()
+        {
+
+        }
+
+        public void GetHealth()
+        {
+
         }
     }
 }
