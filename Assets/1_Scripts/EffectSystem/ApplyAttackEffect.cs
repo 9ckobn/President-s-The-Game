@@ -1,6 +1,6 @@
 using Buildings;
+using Core;
 using SceneObjects;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -22,6 +22,20 @@ namespace EffectSystem
             }
         }
 
+        public override void SelectTargetBuilding(Building building)
+        {
+            Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+
+            foreach (var buildingAnim in buildings)
+            {
+                buildingAnim.DisableStateTarget();
+            }
+
+            ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(false);
+
+
+        }
+
         private void GameSelectTarget()
         {
 
@@ -35,6 +49,9 @@ namespace EffectSystem
             {
                 building.EnableStateTarget();
             }
+
+            ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(true);
+            ObjectsOnScene.Instance.GetArrowTarget.SetPositions(BoxController.GetController<EffectsController>().GetCurrentCardFight.gameObject, buildings[0].gameObject);
         }
     }
 }

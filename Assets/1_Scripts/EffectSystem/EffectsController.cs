@@ -1,3 +1,4 @@
+using Buildings;
 using Cards;
 using Core;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ namespace EffectSystem
         private List<Effect> effects;
         private Effect currentEffect;
         private ApplyEffect currentApply;
+        private CardFightModel currentCardFight;
         private int counterEffects = 0;
+
+        public CardFightModel GetCurrentCardFight { get => currentCardFight; }
 
         public override void OnInitialize()
         {
@@ -24,9 +28,15 @@ namespace EffectSystem
 
         public void ApplyFightCardEffects(CardFightModel card)
         {
+            currentCardFight = card;
             effects = card.GetFightData.GetEffects;
 
             NextEffect();
+        }
+
+        public void SelectTargetBuilding(Building building)
+        {
+            currentApply.SelectTargetBuilding(building);
         }
 
         private void NextEffect()

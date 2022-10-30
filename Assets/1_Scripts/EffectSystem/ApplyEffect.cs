@@ -1,3 +1,5 @@
+using Buildings;
+
 namespace EffectSystem
 {
     public abstract class ApplyEffect
@@ -6,5 +8,6 @@ namespace EffectSystem
         public event AfterApply EndApply;
 
         public abstract void Apply(Effect currentEffect);
+        public abstract void SelectTargetBuilding(Building building);
     }
 }
