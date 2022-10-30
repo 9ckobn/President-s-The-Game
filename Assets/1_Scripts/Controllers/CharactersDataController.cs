@@ -21,14 +21,13 @@ namespace Gameplay
 
         public override void OnInitialize()
         {
-            playerData = new CharacterData(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
-            enemyData = new CharacterData(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
-
-            CreateAttributes();
+            playerData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings, true);
+            enemyData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings, false);
         }
 
-        private void CreateAttributes()
+        private Dictionary<TypeAttribute, int> CreateAttributes()
         {
+            Dictionary<TypeAttribute, int> attributes = new Dictionary<TypeAttribute, int>();
             List<CardPresidentData> playersPresidents = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
 
             int attack = DEFAULT_VALUE;
@@ -50,25 +49,17 @@ namespace Gameplay
             int medicine = defend / 2 + diplomatic / 2;
             int morality = economic + food + rawMaterials + medicine;
 
-            playerData.AddAttribute(TypeAttribute.Attack, attack);
-            playerData.AddAttribute(TypeAttribute.Defend, defend);
-            playerData.AddAttribute(TypeAttribute.Luck, luck);
-            playerData.AddAttribute(TypeAttribute.Diplomacy, diplomatic);
-            playerData.AddAttribute(TypeAttribute.Economic, economic);
-            playerData.AddAttribute(TypeAttribute.Food, food);
-            playerData.AddAttribute(TypeAttribute.RawMaterials, rawMaterials);
-            playerData.AddAttribute(TypeAttribute.Medicine, medicine);
-            playerData.AddAttribute(TypeAttribute.Morality, morality);
+            attributes.Add(TypeAttribute.Attack, attack);
+            attributes.Add(TypeAttribute.Defend, defend);
+            attributes.Add(TypeAttribute.Luck, luck);
+            attributes.Add(TypeAttribute.Diplomacy, diplomatic);
+            attributes.Add(TypeAttribute.Economic, economic);
+            attributes.Add(TypeAttribute.Food, food);
+            attributes.Add(TypeAttribute.RawMaterials, rawMaterials);
+            attributes.Add(TypeAttribute.Medicine, medicine);
+            attributes.Add(TypeAttribute.Morality, morality);
 
-            enemyData.AddAttribute(TypeAttribute.Attack, attack);
-            enemyData.AddAttribute(TypeAttribute.Defend, defend);
-            enemyData.AddAttribute(TypeAttribute.Luck, luck);
-            enemyData.AddAttribute(TypeAttribute.Diplomacy, diplomatic);
-            enemyData.AddAttribute(TypeAttribute.Economic, economic);
-            enemyData.AddAttribute(TypeAttribute.Food, food);
-            enemyData.AddAttribute(TypeAttribute.RawMaterials, rawMaterials);
-            enemyData.AddAttribute(TypeAttribute.Medicine, medicine);
-            enemyData.AddAttribute(TypeAttribute.Morality, morality);
+            return attributes;
         }
     }
 }

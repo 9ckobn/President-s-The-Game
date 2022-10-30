@@ -9,6 +9,10 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "FightSceneController", menuName = "Controllers/Gameplay/FightSceneController")]
     public class FightSceneController : BaseController
     {
+        private bool isPlayerNow = true;
+
+        public bool GetIsPlayerNow { get => isPlayerNow; }
+
         public override void OnStart()
         {
 

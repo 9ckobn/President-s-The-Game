@@ -1,6 +1,9 @@
 using Buildings;
 using Core;
+using Data;
+using Gameplay;
 using SceneObjects;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -58,7 +61,17 @@ namespace EffectSystem
 
         private void Apply()
         {
+            int damage = effect.BaseValue;
 
+            if (effect.IsNeedAttribute)
+            {
+                CharacterData data = BoxController.GetController<CharactersDataController>().GetPlayerData;
+
+                damage += data.GetValueAttribute(effect.TypeAttribute);
+            }
+
+            CharacterData enemyData = BoxController.GetController<CharactersDataController>().GetEnemyData;
+            enemyData.DownAttribute(targetBuilding.GetTypeBuilding, damage);
         }
     }
 }
