@@ -65,9 +65,19 @@ namespace Gameplay
 
         public void ClickFightCard(CardFightModel card)
         {
-            if (card.CanUseCard())
+            if (card.CheckCanUseCard())
             {
                 BoxController.GetController<EffectsController>().ApplyFightCardEffects(card);
+            }
+        }
+
+        public void EndUseCard(CardFightModel card)
+        {
+            card.EndUseCard();
+
+            if(!card.CheckCanUseCard())
+            {
+                card.BlockCard();
             }
         }
     }

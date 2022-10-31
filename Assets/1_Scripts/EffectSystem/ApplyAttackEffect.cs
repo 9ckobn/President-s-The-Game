@@ -72,6 +72,8 @@ namespace EffectSystem
 
             CharacterData enemyData = BoxController.GetController<CharactersDataController>().GetEnemyData;
             enemyData.DownAttribute(targetBuilding.GetTypeBuilding, damage);
+
+            EndApply();
         }
     }
 }

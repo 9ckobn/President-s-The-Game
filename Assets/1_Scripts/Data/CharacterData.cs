@@ -48,6 +48,7 @@ namespace Data
                 }
             }
 
+            CountMorality();
             RedrawData();
         }
 
@@ -63,7 +64,21 @@ namespace Data
                 }
             }
 
+            CountMorality();
             RedrawData();
+        }
+
+        private void CountMorality()
+        {
+            int morality = attributes[TypeAttribute.Economic] + attributes[TypeAttribute.Food] +
+                attributes[TypeAttribute.Medicine] + attributes[TypeAttribute.RawMaterials];
+
+            attributes[TypeAttribute.Morality] = morality;
+
+            if(morality <= 0)
+            {
+                BoxController.GetController<LogController>().LogError($"Character DEATH. Need logic death!");
+            }
         }
 
         private void RedrawData()

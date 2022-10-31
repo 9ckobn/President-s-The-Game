@@ -9,6 +9,7 @@ namespace Cards
 
         protected GameObject model;
         private bool pointerEnter = false, isSelected;
+        protected bool isCanInteraction = true;
 
         public GameObject SetMode
         {
@@ -25,7 +26,7 @@ namespace Cards
 
         private void OnMouseEnter()
         {
-            if (!pointerEnter)
+            if (!pointerEnter && isCanInteraction)
             {
                 pointerEnter = true;
 
@@ -35,7 +36,7 @@ namespace Cards
 
         private void OnMouseExit()
         {
-            if (pointerEnter && !isSelected)
+            if (pointerEnter && !isSelected && isCanInteraction)
             {
                 pointerEnter = false;
 
@@ -45,9 +46,12 @@ namespace Cards
 
         private void OnMouseDown()
         {
-            isSelected = true;
+            if (isCanInteraction)
+            {
+                isSelected = true;
 
-            MouseDown();
+                MouseDown();
+            }
         }
 
         protected abstract void MouseEnter();

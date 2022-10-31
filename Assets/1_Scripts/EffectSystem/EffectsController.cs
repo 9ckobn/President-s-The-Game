@@ -1,6 +1,7 @@
 using Buildings;
 using Cards;
 using Core;
+using Gameplay;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -88,21 +89,21 @@ namespace EffectSystem
             }
             else
             {
-                currentApply.EndApply += EndApplyEffect;
+                currentApply.EndApplyEvent += EndApplyEffect;
                 currentApply.Apply(currentEffect);
             }
         }
 
         private void EndApplyEffect()
         {
-            currentApply.EndApply -= EndApplyEffect;
+            currentApply.EndApplyEvent -= EndApplyEffect;
 
             NextEffect();
         }
 
         private void EndApplyAllEffects()
         {
-
+            BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
         }
     }
 }
