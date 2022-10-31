@@ -13,6 +13,7 @@ namespace EffectSystem
         private CanApplyEffect canApply;
         private ApplyAttackEffect attackApply;
         private ApplyDefendEffect defendApply;
+        private ApplyRandomEffect randomApply;
 
         private List<Effect> effects;
         private Effect currentEffect;
@@ -27,6 +28,7 @@ namespace EffectSystem
             canApply = new CanApplyEffect();
             attackApply = new ApplyAttackEffect();
             defendApply = new ApplyDefendEffect();
+            randomApply = new ApplyRandomEffect();
         }
 
         public void ApplyFightCardEffects(CardFightModel card)
@@ -84,6 +86,7 @@ namespace EffectSystem
             }
             else if (currentEffect is RandomUpAttributeEffect)
             {
+                currentApply = randomApply;
             }
 
             if (currentApply == null)
