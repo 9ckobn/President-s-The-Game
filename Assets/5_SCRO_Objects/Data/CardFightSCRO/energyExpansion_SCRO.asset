@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: EnergyExpansion_SCRO
+  m_Name: energyExpansion_SCRO
   m_EditorClassIdentifier: 
   Id: energyExpansion
   Name: Energy expansion
@@ -21,3 +21,4 @@ MonoBehaviour:
   Cost: 2
   Effects:
   - {fileID: 0}
+  Reloading: 1

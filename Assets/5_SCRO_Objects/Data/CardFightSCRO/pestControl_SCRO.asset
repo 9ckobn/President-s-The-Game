@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: PestControl_SCRO
+  m_Name: pestControl_SCRO
   m_EditorClassIdentifier: 
   Id: PestControl
   Name: Pest Control
@@ -24,3 +24,4 @@ MonoBehaviour:
   Effects:
   - {fileID: 11400000, guid: 44bff6b771f4b524dacf2ac355e78b54, type: 2}
   - {fileID: 11400000, guid: 026f5e15198f15b4aac5afb936c4f440, type: 2}
+  Reloading: 1

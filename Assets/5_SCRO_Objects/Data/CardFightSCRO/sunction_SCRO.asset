@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: Sunction_SCRO
+  m_Name: sunction_SCRO
   m_EditorClassIdentifier: 
   Id: Sunction
   Name: Sunction
@@ -23,3 +23,4 @@ MonoBehaviour:
   Cost: 2
   Effects:
   - {fileID: 11400000, guid: 294005b8007523143810393c11cbeea4, type: 2}
+  Reloading: 1

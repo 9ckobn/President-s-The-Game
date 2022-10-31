@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: JoiningUnion_SCRO
+  m_Name: joiningUnion_SCRO
   m_EditorClassIdentifier: 
   Id: JoiningUnion
   Name: Joining Union
@@ -27,3 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9aa3e106e796ba240b4904b541630daf, type: 2}
   - {fileID: 11400000, guid: fe143169dd2f975458ddda1c5cff6170, type: 2}
   - {fileID: 11400000, guid: 8cee10cb4d3f647428ccc7cdbb513d4d, type: 2}
+  Reloading: 1

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
-  m_Name: Isolation_SCRO
+  m_Name: isolation_SCRO
   m_EditorClassIdentifier: 
   Id: Isolation
   Name: Isolation
@@ -22,3 +22,4 @@ MonoBehaviour:
   Cost: 2
   Effects:
   - {fileID: 11400000, guid: 859cf46a777dbd44199dca8f7a5d7861, type: 2}
+  Reloading: 1
