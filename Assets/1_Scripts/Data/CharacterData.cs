@@ -14,6 +14,8 @@ namespace Data
         private Dictionary<TypeAttribute, int> attributes = new Dictionary<TypeAttribute, int>();
         private Building[] myBuildings;
 
+        private List<Effect> temporaryEffect = new List<Effect>();
+
         public CharacterData(Dictionary<TypeAttribute, int> attributes, Building[] buildings, bool isPlayer)
         {
             this.attributes = attributes;
@@ -22,6 +24,8 @@ namespace Data
 
             RedrawData();
         }
+
+        #region ATTRIBUTES
 
         public int GetValueAttribute(TypeAttribute attribute)
         {
@@ -44,7 +48,7 @@ namespace Data
             {
                 if(building.GetTypeBuilding == type)
                 {
-                    building.GetHealth();
+                    building.ShowHealth();
                 }
             }
 
@@ -60,7 +64,7 @@ namespace Data
             {
                 if (building.GetTypeBuilding == type)
                 {
-                    building.GetDamage();
+                    building.ShowDamage();
                 }
             }
 
@@ -100,5 +104,29 @@ namespace Data
                 UIManager.Instance.GetWindow<AttributesCharactersWindow>().RedrawEnemyData(data);
             }
         }
+
+        #endregion
+
+        #region EFFECTS
+
+        public void AddTemporaryEffect(Effect effect)
+        {
+            // TODO: check if effect alredy add are update duration this effect
+
+            temporaryEffect.Add(effect);
+        }
+
+        public void ShowDefend(TypeAttribute type)
+        {
+            foreach (var building in myBuildings)
+            {
+                if(building.GetTypeBuilding == type)
+                {
+                    building.ShowDefend();
+                }
+            }
+        }
+
+        #endregion
     }
 }

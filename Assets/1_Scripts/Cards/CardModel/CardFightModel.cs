@@ -72,7 +72,6 @@ namespace Cards
         {
             isCanInteraction = false;
 
-            Vector3 rotation = transform.rotation.eulerAngles;
             Tween tween = transform.DORotate(blockPosition, 0.7f);
             tween.Play();
         }
@@ -81,7 +80,6 @@ namespace Cards
         {
             isCanInteraction = true;
 
-            Vector3 rotation = transform.rotation.eulerAngles;
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
             tween.Play();
         }

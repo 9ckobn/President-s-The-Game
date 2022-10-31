@@ -1,7 +1,5 @@
-using Cards;
-using Cards.Data;
 using Core;
-using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 namespace Gameplay
@@ -10,17 +8,14 @@ namespace Gameplay
     public class FightSceneController : BaseController
     {
         private bool isPlayerNow = true;
+        private CharacterData currentCharacter;
 
         public bool GetIsPlayerNow { get => isPlayerNow; }
-
-        public override void OnStart()
-        {
-
-        }
+        public CharacterData GetCurrentCharacter { get => currentCharacter; }
 
         public void StartGame()
         {
-
+            currentCharacter = BoxController.GetController<CharactersDataController>().GetPlayerData;
         }
     }
 }

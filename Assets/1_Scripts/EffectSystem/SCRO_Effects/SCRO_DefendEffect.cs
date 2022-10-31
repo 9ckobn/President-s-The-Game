@@ -3,8 +3,8 @@ using NaughtyAttributes;
 
 namespace EffectSystem.SCRO
 {
-    [CreateAssetMenu(fileName = "ProtectEffect", menuName = "Effects/ProtectEffect")]
-    public class SCRO_ProtectEffect : SCRO_Effect
+    [CreateAssetMenu(fileName = "DefendEffect", menuName = "Effects/DefendEffect")]
+    public class SCRO_DefendEffect : SCRO_Effect
     {
         [BoxGroup("Protect")]
         [Label("Какой объект защищён")]

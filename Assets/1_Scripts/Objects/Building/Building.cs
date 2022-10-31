@@ -88,17 +88,17 @@ namespace Buildings
             }
         }
 
-        public void GetDamage()
+        public void ShowDamage()
         {
             StartCoroutine(CoShowEffect(effectDamage));
         }
 
-        public void GetHealth()
+        public void ShowHealth()
         {
             StartCoroutine(CoShowEffect(effectHealh));
         }
 
-        public void GetDefend()
+        public void ShowDefend()
         {
             StartCoroutine(CoShowEffect(effectDefend));
         }

@@ -12,6 +12,7 @@ namespace EffectSystem
     {
         private CanApplyEffect canApply;
         private ApplyAttackEffect attackApply;
+        private ApplyDefendEffect defendApply;
 
         private List<Effect> effects;
         private Effect currentEffect;
@@ -25,10 +26,12 @@ namespace EffectSystem
         {
             canApply = new CanApplyEffect();
             attackApply = new ApplyAttackEffect();
+            defendApply = new ApplyDefendEffect();
         }
 
         public void ApplyFightCardEffects(CardFightModel card)
         {
+            counterEffects = 0;
             currentCardFight = card;
             effects = card.GetFightData.GetEffects;
 
@@ -49,14 +52,13 @@ namespace EffectSystem
             else
             {
                 currentEffect = effects[counterEffects];
+                counterEffects++;
 
                 if (canApply.CheckApply(currentEffect))
                 {
                     ApplyEffect();
                 }
             }
-
-            counterEffects++;
         }
 
         private void ApplyEffect()
@@ -73,8 +75,9 @@ namespace EffectSystem
             else if (currentEffect is OtherEffect)
             {
             }
-            else if (currentEffect is ProtectEffect)
+            else if (currentEffect is DefendEffect)
             {
+                currentApply = defendApply;
             }
             else if (currentEffect is RandomGetProtectEffect)
             {
