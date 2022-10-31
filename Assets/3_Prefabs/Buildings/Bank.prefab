@@ -4958,6 +4958,9 @@ MonoBehaviour:
   logo: {fileID: 7514280887607013106}
   effectExplosion: {fileID: 151734304}
   typeBuilding: 3
+  meshLight: {fileID: 2721626839292009939}
+  defaultMaterial: {fileID: 2100000, guid: 77e03825c5694f649ba16ae599c9062c, type: 2}
+  lightMaterial: {fileID: 2100000, guid: e7af55756d50b8e439b1f8b4b83c3c22, type: 2}
 --- !u!1 &6928827233058291533
 GameObject:
   m_ObjectHideFlags: 0

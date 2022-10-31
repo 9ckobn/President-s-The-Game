@@ -2,16 +2,23 @@ using EffectSystem;
 using UnityEngine;
 using DG.Tweening;
 using Core;
+using NaughtyAttributes;
 
 namespace Buildings
 {
     [RequireComponent(typeof(BoxCollider))]
     public class Building : MonoBehaviour
     {
-        [SerializeField] private GameObject model;
-        [SerializeField] private GameObject logo;
+        [BoxGroup("Model parts")]
+        [SerializeField] private GameObject model, logo;
+        [BoxGroup("Effects")]
         [SerializeField] private GameObject effectExplosion;
+        [BoxGroup("Type building")]
         [SerializeField] private TypeAttribute typeBuilding;
+        [BoxGroup("Backlight effect")]
+        [SerializeField] private MeshRenderer meshLight;
+        [BoxGroup("Backlight effect")]
+        [SerializeField] private Material defaultMaterial, lightMaterial;
 
         private bool isTarget;
         private Sequence mySequence;
@@ -22,6 +29,22 @@ namespace Buildings
         private void Start()
         {
             mySequence = DOTween.Sequence();
+        }
+
+        private void OnMouseOver()
+        {
+            if (isTarget)
+            {
+                meshLight.material = lightMaterial;
+            }
+        }
+
+        private void OnMouseExit()
+        {
+            if (isTarget)
+            {
+                meshLight.material = defaultMaterial;
+            }
         }
 
         private void OnMouseDown()
@@ -59,6 +82,8 @@ namespace Buildings
             if (isTarget)
             {
                 isTarget = false;
+
+                meshLight.material = defaultMaterial;
             }
         }
 

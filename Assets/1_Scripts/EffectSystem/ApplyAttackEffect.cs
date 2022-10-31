@@ -36,7 +36,7 @@ namespace EffectSystem
                 buildingAnim.DisableStateTarget();
             }
 
-            ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(false);
+            //ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(false);
 
             Apply();
         }
@@ -55,8 +55,8 @@ namespace EffectSystem
                 building.EnableStateTarget();
             }
 
-            ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(true);
-            ObjectsOnScene.Instance.GetArrowTarget.SetPositions(BoxController.GetController<EffectsController>().GetCurrentCardFight.gameObject, buildings[0].gameObject);
+            //ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(true);
+            //ObjectsOnScene.Instance.GetArrowTarget.SetPositions(BoxController.GetController<EffectsController>().GetCurrentCardFight.gameObject, buildings[0].gameObject);
         }
 
         private void Apply()
