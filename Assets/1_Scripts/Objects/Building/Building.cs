@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using Core;
 using NaughtyAttributes;
+using System.Collections;
 
 namespace Buildings
 {
@@ -12,7 +13,7 @@ namespace Buildings
         [BoxGroup("Model parts")]
         [SerializeField] private GameObject model, logo;
         [BoxGroup("Effects")]
-        [SerializeField] private GameObject effectExplosion;
+        [SerializeField] private GameObject effectDamage, effectHealh, effectDefend;
         [BoxGroup("Type building")]
         [SerializeField] private TypeAttribute typeBuilding;
         [BoxGroup("Backlight effect")]
@@ -89,12 +90,24 @@ namespace Buildings
 
         public void GetDamage()
         {
-
+            StartCoroutine(CoShowEffect(effectDamage));
         }
 
         public void GetHealth()
         {
+            StartCoroutine(CoShowEffect(effectHealh));
+        }
 
+        public void GetDefend()
+        {
+            StartCoroutine(CoShowEffect(effectDefend));
+        }
+
+        private IEnumerator CoShowEffect(GameObject effect)
+        {
+            effect.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            effect.SetActive(false);
         }
     }
 }
