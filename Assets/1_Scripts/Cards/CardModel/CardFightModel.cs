@@ -56,24 +56,34 @@ namespace Cards
 
         #endregion
 
+        #region CHANGE_STATE
+
         public void EndUseCard()
         {
             MouseExit();
 
             GetFightData.UpdateReloading();
+
+            if (!CheckCanUseCard())
+            {
+                BlockCard(true);
+            }
         }
 
         public bool CheckCanUseCard()
         {
-            return GetFightData.CurrentReloading == 0;
+            return isCanInteraction && GetFightData.CurrentReloading == 0;
         }
 
-        public void BlockCard()
+        public void BlockCard(bool needRotate = false)
         {
             isCanInteraction = false;
 
-            Tween tween = transform.DORotate(blockPosition, 0.7f);
-            tween.Play();
+            if (needRotate)
+            {
+                Tween tween = transform.DORotate(blockPosition, 0.7f);
+                tween.Play();
+            }
         }
 
         public void UnlockCard()
@@ -83,5 +93,7 @@ namespace Cards
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
             tween.Play();
         }
+
+        #endregion
     }
 }

@@ -13,8 +13,11 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "CardsController", menuName = "Controllers/Gameplay/CardsController")]
     public class CardsController : BaseController
     {
-        private List<CardPresidentModel> presidentCards = new List<CardPresidentModel>();
-        private List<CardFightModel> fightCards = new List<CardFightModel>();
+        private List<CardPresidentModel> playerPresidentCards = new List<CardPresidentModel>();
+        private List<CardPresidentModel> enemyPresidentCards = new List<CardPresidentModel>();
+
+        private List<CardFightModel> playerFightCards = new List<CardFightModel>();
+        private List<CardFightModel>  enemyFightCards = new List<CardFightModel>();
 
         private CardFightModel selectedFightCard;
 
@@ -33,23 +36,23 @@ namespace Gameplay
             foreach (var cardData in cardsPresidentData)
             {
                 CardPresidentModel card = creator.CreateCardPresident(cardData);
-                presidentCards.Add(card);
+                playerPresidentCards.Add(card);
             }
 
             foreach (var cardData in GetCardsFightData)
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
-                fightCards.Add(card);
+                playerFightCards.Add(card);
             }
 
-            for (int i = 0; i < presidentCards.Count && i < MainData.MAX_PRESIDENT_CARDS; i++)
+            for (int i = 0; i < playerPresidentCards.Count && i < MainData.MAX_PRESIDENT_CARDS; i++)
             {
-                containerPlayerPresidents.AddCard(presidentCards[i]);
+                containerPlayerPresidents.AddCard(playerPresidentCards[i]);
             }
 
-            for (int i = 0; i < fightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
+            for (int i = 0; i < playerFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
             {
-                containerFightCards.AddCard(fightCards[i]);
+                containerFightCards.AddCard(playerFightCards[i]);
             }
         }
 
@@ -74,8 +77,11 @@ namespace Gameplay
         public void EndUseCard(CardFightModel card)
         {
             card.EndUseCard();
+        }
 
-            if(!card.CheckCanUseCard())
+        public void BlockAllCards()
+        {
+            foreach (var card in playerFightCards)
             {
                 card.BlockCard();
             }
