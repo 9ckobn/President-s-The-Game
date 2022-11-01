@@ -93,11 +93,13 @@ namespace Gameplay
         {
             if (isPlayer)
             {
-
+                ObjectsOnScene.Instance.GetContainerFights.gameObject.SetActive(true);
+                ObjectsOnScene.Instance.GetContainerAIFightCards.gameObject.SetActive(false);
             }
             else
             {
-
+                ObjectsOnScene.Instance.GetContainerFights.gameObject.SetActive(false);
+                ObjectsOnScene.Instance.GetContainerAIFightCards.gameObject.SetActive(true);
             }
         }
 
@@ -122,14 +124,10 @@ namespace Gameplay
         public void EndUseCard(CardFightModel card)
         {
             card.EndUseCard();
-        }
 
-        public void BlockAllCards()
-        {
-            foreach (var card in playerFightCards)
-            {
-                card.BlockCard();
-            }
+            selectedFightCard = null;
+
+            BoxController.GetController<FightSceneController>().AddCountUseCards();
         }
     }
 }
