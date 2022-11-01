@@ -1,6 +1,7 @@
 using Buildings;
 using Cards;
 using Core;
+using Data;
 using Gameplay;
 using System.Collections.Generic;
 using UnityEngine;
@@ -109,6 +110,15 @@ namespace EffectSystem
 
         private void EndApplyAllEffects()
         {
+            // Pay cost fight card
+
+            CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
+
+            foreach (var typeCost in currentCardFight.GetFightData.TypeCost)
+            {
+                characterData.DownAttribute(typeCost, currentCardFight.GetFightData.Cost);
+            }
+
             BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
         }
     }

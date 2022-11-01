@@ -77,6 +77,7 @@ namespace EffectSystem
         private void LoseRandom()
         {
             characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
+            characterData.ShowDamage(effect.TypeLoseAttribute);
 
             text += $"<color=red>отнимаем : {effect.TypeLoseAttribute} {effect.LoseProcent}</color>\n";
             UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);

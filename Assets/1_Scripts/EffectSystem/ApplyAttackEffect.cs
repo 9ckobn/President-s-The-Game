@@ -108,6 +108,7 @@ namespace EffectSystem
             foreach (var targetAttribute in targetAttributes)
             {
                 defendData.DownAttribute(targetAttribute, damage);
+                defendData.ShowDamage(targetAttribute);
             }
 
             EndApply();

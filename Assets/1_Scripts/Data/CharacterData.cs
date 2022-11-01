@@ -42,20 +42,7 @@ namespace Data
 
         public void UpAttribute(TypeAttribute type, int value)
         {
-            Debug.Log($"up type = {type} value = {value}");
-
             attributes[type] += value;
-
-            foreach (var building in myBuildings)
-            {
-                if(building.GetTypeBuilding == type)
-                {
-                    building.ShowHealth();
-                }
-            }
-
-            Debug.Log($" morality = {attributes[TypeAttribute.Morality]}");
-
 
             CountMorality();
             RedrawData();
@@ -63,19 +50,7 @@ namespace Data
 
         public void DownAttribute(TypeAttribute type, int value)
         {
-            Debug.Log($"down type = {type} value = {value}");
-
             attributes[type] -= value;
-
-            foreach (var building in myBuildings)
-            {
-                if (building.GetTypeBuilding == type)
-                {
-                    building.ShowDamage();
-                }
-            }
-
-            Debug.Log($" morality = {attributes[TypeAttribute.Morality]}");
 
             CountMorality();
             RedrawData();
@@ -125,11 +100,33 @@ namespace Data
             temporaryEffect.Add(effect);
         }
 
-        public void ShowDefend(TypeAttribute type)
+        public void ShowDamage(TypeAttribute typeBuilding)
         {
             foreach (var building in myBuildings)
             {
-                if(building.GetTypeBuilding == type)
+                if (building.GetTypeBuilding == typeBuilding)
+                {
+                    building.ShowDamage();
+                }
+            }
+        }
+
+        public void ShowHealth(TypeAttribute typeBuilding)
+        {
+            foreach (var building in myBuildings)
+            {
+                if (building.GetTypeBuilding == typeBuilding)
+                {
+                    building.ShowHealth();
+                }
+            }
+        }
+
+        public void ShowDefend(TypeAttribute typeBuilding)
+        {
+            foreach (var building in myBuildings)
+            {
+                if (building.GetTypeBuilding == typeBuilding)
                 {
                     building.ShowDefend();
                 }

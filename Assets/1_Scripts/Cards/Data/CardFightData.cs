@@ -9,6 +9,7 @@ namespace Cards.Data
     public class CardFightData : CardDataBase
     {
         public string Description { get; private set; }
+        public TypeAttribute[] TypeCost { get; private set; }
         public int Cost { get; private set; }
 
         private int reloading;
@@ -20,6 +21,7 @@ namespace Cards.Data
         public CardFightData(SCRO_CardFight data, Sprite sprite, SCRO_Effect[] effects) : base(data.Id.ToString(), sprite, data.name)
         {
             Description = data.Description;
+            TypeCost = data.TypeCost;
             Cost = data.Cost;
             reloading = data.Reloading;
             CurrentReloading = 0;
