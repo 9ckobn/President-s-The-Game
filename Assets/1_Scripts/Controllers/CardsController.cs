@@ -89,6 +89,18 @@ namespace Gameplay
             }
         }
 
+        public void ShowCardsCharacter(bool isPlayer)
+        {
+            if (isPlayer)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         public void SelectFightCard(CardFightModel card)
         {
             selectedFightCard = card;

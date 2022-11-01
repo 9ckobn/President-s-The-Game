@@ -35,6 +35,18 @@ namespace Gameplay
         private void ChangeCurrentPlayer()
         {
             BoxController.GetController<CardsController>().BlockAllCards();
+
+            if (isPlayerNow)
+            {
+                currentCharacter = BoxController.GetController<CharactersDataController>().GetEnemyData;
+            }
+            else
+            {
+                currentCharacter = BoxController.GetController<CharactersDataController>().GetPlayerData;
+            }
+
+            countUseCards = 0;
+            isPlayerNow = !isPlayerNow;
         }
     }
 }

@@ -387,7 +387,7 @@ PrefabInstance:
     - target: {fileID: -4976091478972420592, guid: 39ed5fbb21044db46900dabafc4136cf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a0bd3ac2f5a5f574fae9825b3d9e9e74, type: 2}
+      objectReference: {fileID: 2100000, guid: bb4cc72d570f1114d889dc89d346cdcb, type: 2}
     - target: {fileID: 919132149155446097, guid: 39ed5fbb21044db46900dabafc4136cf, type: 3}
       propertyPath: m_Name
       value: Warehouse (1)
