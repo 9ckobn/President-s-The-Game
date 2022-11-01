@@ -10,7 +10,7 @@ namespace SceneObjects
         [BoxGroup("Spwan position")]
         [SerializeField] private GameObject spawnPosition;
         [BoxGroup("Containers")]
-        [SerializeField] private ContainerFightCards containerFights;
+        [SerializeField] private ContainerFightCards containerFights, containerAIFightCards;
         [BoxGroup("Containers")]
         [SerializeField] private ContainerPresidentCards playerPresidents, enemyPresidents;
         [BoxGroup("Containers")]
@@ -20,6 +20,7 @@ namespace SceneObjects
 
         public GameObject GetSpawnPosition { get => spawnPosition; }
         public ContainerFightCards GetContainerFights { get => containerFights; }
+        public ContainerFightCards GetContainerAIFightCards { get => containerAIFightCards; }
         public ContainerPresidentCards GetContainerPlayerPresidents { get => playerPresidents; }
         public ContainerPresidentCards GetContainerEnemyPresidents { get => enemyPresidents; }
         public ArrowTargetController GetArrowTarget { get => arrowTarget; }

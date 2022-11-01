@@ -24,7 +24,7 @@ namespace Gameplay
         public override void OnStart()
         {
             List<CardPresidentData> cardsPresidentData = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
-            List<CardFightData> GetCardsFightData = BoxController.GetController<StorageCardsController>().GetCardsFightData;
+            List<CardFightData> cardsFightData = BoxController.GetController<StorageCardsController>().GetCardsFightData;
 
             CreatorController creator = BoxController.GetController<CreatorController>();
             ContainerPresidentCards containerPlayerPresidents = ObjectsOnScene.Instance.GetContainerPlayerPresidents;
@@ -39,7 +39,7 @@ namespace Gameplay
                 playerPresidentCards.Add(card);
             }
 
-            foreach (var cardData in GetCardsFightData)
+            foreach (var cardData in cardsFightData)
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
                 playerFightCards.Add(card);
@@ -53,6 +53,39 @@ namespace Gameplay
             for (int i = 0; i < playerFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
             {
                 containerFightCards.AddCard(playerFightCards[i]);
+            }
+
+            // Create enemy AI cards
+
+            List<CardPresidentData> enemyCardsPresidentData = new List<CardPresidentData>(cardsPresidentData);
+            List<CardFightData> enemyCardsFightData = new List<CardFightData>(cardsFightData);
+
+            ContainerPresidentCards containerEnemyPresidentCards = ObjectsOnScene.Instance.GetContainerEnemyPresidents;
+            ContainerFightCards containerEnemyFightCards = ObjectsOnScene.Instance.GetContainerAIFightCards;
+
+            containerEnemyFightCards.SetMaxCards = MainData.MAX_FIGHT_CARDS;
+            containerEnemyPresidentCards.SetMaxCards = MainData.MAX_PRESIDENT_CARDS;
+
+            foreach (var cardData in enemyCardsPresidentData)
+            {
+                CardPresidentModel card = creator.CreateCardPresident(cardData);
+                enemyPresidentCards.Add(card);
+            }
+
+            foreach (var cardData in enemyCardsFightData)
+            {
+                CardFightModel card = creator.CreateCardFight(cardData);
+                enemyFightCards.Add(card);
+            }
+
+            for (int i = 0; i < enemyPresidentCards.Count && i < MainData.MAX_PRESIDENT_CARDS; i++)
+            {
+                containerEnemyPresidentCards.AddCard(enemyPresidentCards[i]);
+            }
+
+            for (int i = 0; i < enemyFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
+            {
+                containerEnemyFightCards.AddCard(enemyFightCards[i]);
             }
         }
 
