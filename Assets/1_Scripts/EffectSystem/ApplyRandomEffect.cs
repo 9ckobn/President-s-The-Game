@@ -2,6 +2,7 @@ using Buildings;
 using Core;
 using Data;
 using Gameplay;
+using UI;
 using UnityEngine;
 
 namespace EffectSystem
@@ -12,14 +13,15 @@ namespace EffectSystem
 
         private RandomUpAttributeEffect effect;
         private CharacterData characterData;
+
+        private string text;
+
         public override void Apply(Effect currentEffect)
         {
+            text = "";
             effect = currentEffect as RandomUpAttributeEffect;
 
-            for (int i = 0; i < 10; i++)
-            {
-                CountRandom();
-            }
+            CountRandom();
         }
 
         public override void SelectTargetBuilding(Building building)
@@ -48,6 +50,10 @@ namespace EffectSystem
 
             bool lucky = randomsShake[Random.Range(0, randomsShake.Length)];
 
+            text += $"<color=green>Шанс :{chanceValue}</color>\n";
+            text += $"<color=red>против :{maxValue}</color>\n";
+            text += lucky ? "удача" : "Не удача" + "\n";
+
             if (lucky)
             {
                 WinRandom();
@@ -56,16 +62,24 @@ namespace EffectSystem
             {
                 LoseRandom();
             }
+
+            EndApply();
         }
 
         private void WinRandom()
         {
+            characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
 
+            text += $"<color=green>добавляем : {effect.TypeWinAttribute} {effect.WinProcent}</color>\n";
+            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
         }
 
         private void LoseRandom()
         {
+            characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
 
+            text += $"<color=red>отнимаем : {effect.TypeLoseAttribute} {effect.LoseProcent}</color>\n";
+            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
         }
     }
 }

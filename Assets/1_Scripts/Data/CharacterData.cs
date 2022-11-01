@@ -42,6 +42,8 @@ namespace Data
 
         public void UpAttribute(TypeAttribute type, int value)
         {
+            Debug.Log($"up type = {type} value = {value}");
+
             attributes[type] += value;
 
             foreach (var building in myBuildings)
@@ -52,12 +54,17 @@ namespace Data
                 }
             }
 
+            Debug.Log($" morality = {attributes[TypeAttribute.Morality]}");
+
+
             CountMorality();
             RedrawData();
         }
 
         public void DownAttribute(TypeAttribute type, int value)
         {
+            Debug.Log($"down type = {type} value = {value}");
+
             attributes[type] -= value;
 
             foreach (var building in myBuildings)
@@ -68,18 +75,20 @@ namespace Data
                 }
             }
 
+            Debug.Log($" morality = {attributes[TypeAttribute.Morality]}");
+
             CountMorality();
             RedrawData();
         }
 
         private void CountMorality()
         {
-            int morality = attributes[TypeAttribute.Economic] + attributes[TypeAttribute.Food] +
-                attributes[TypeAttribute.Medicine] + attributes[TypeAttribute.RawMaterials];
+            //int morality = attributes[TypeAttribute.Economic] + attributes[TypeAttribute.Food] +
+            //    attributes[TypeAttribute.Medicine] + attributes[TypeAttribute.RawMaterials];
 
-            attributes[TypeAttribute.Morality] = morality;
+            //attributes[TypeAttribute.Morality] = morality;
 
-            if(morality <= 0)
+            if(attributes[TypeAttribute.Morality] <= 0)
             {
                 BoxController.GetController<LogController>().LogError($"Character DEATH. Need logic death!");
             }

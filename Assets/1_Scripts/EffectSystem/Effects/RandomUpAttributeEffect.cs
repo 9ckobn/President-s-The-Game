@@ -19,6 +19,7 @@ namespace EffectSystem
             IsNeedAttribute = data.IsNeedAttribute;
             TypeAttribute = data.TypeAttribute;
             ValueAttribute = data.ValueAttribute;
+            TypeWinAttribute = data.TypeWinAttribute;
             WinProcent = data.WinProcent;
             TypeLoseAttribute = data.TypeLoseAttribute;
             LoseProcent = data.LoseProcent;
