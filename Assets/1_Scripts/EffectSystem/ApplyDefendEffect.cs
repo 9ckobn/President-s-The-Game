@@ -9,7 +9,7 @@ namespace EffectSystem
     {
         private DefendEffect effect;
 
-        public override void Apply(Effect currentEffect)
+        protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as DefendEffect;
 

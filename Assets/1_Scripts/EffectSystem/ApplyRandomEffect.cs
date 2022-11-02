@@ -16,7 +16,7 @@ namespace EffectSystem
 
         private string text;
 
-        public override void Apply(Effect currentEffect)
+        protected override void Apply(Effect currentEffect)
         {
             text = "";
             effect = currentEffect as RandomUpAttributeEffect;

@@ -97,7 +97,7 @@ namespace EffectSystem
             else
             {
                 currentApply.EndApplyEvent += EndApplyEffect;
-                currentApply.Apply(currentEffect);
+                currentApply.StartApply(currentEffect);
             }
         }
 

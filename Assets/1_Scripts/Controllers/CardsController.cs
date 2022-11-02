@@ -17,7 +17,7 @@ namespace Gameplay
         private List<CardPresidentModel> enemyPresidentCards = new List<CardPresidentModel>();
 
         private List<CardFightModel> playerFightCards = new List<CardFightModel>();
-        private List<CardFightModel>  enemyFightCards = new List<CardFightModel>();
+        private List<CardFightModel> enemyFightCards = new List<CardFightModel>();
 
         private CardFightModel selectedFightCard;
 
@@ -28,7 +28,7 @@ namespace Gameplay
 
             CreatorController creator = BoxController.GetController<CreatorController>();
             ContainerPresidentCards containerPlayerPresidents = ObjectsOnScene.Instance.GetContainerPlayerPresidents;
-            ContainerFightCards containerFightCards = ObjectsOnScene.Instance.GetContainerFights;
+            ContainerFightCards containerFightCards = ObjectsOnScene.Instance.GetContainerPlayerFights;
 
             containerFightCards.SetMaxCards = MainData.MAX_FIGHT_CARDS;
             containerPlayerPresidents.SetMaxCards = MainData.MAX_PRESIDENT_CARDS;
@@ -57,8 +57,10 @@ namespace Gameplay
 
             // Create enemy AI cards
 
+            // TODO: not use player data presidents data!!! Use enemy persidents data!!!
+
             List<CardPresidentData> enemyCardsPresidentData = new List<CardPresidentData>(cardsPresidentData);
-            List<CardFightData> enemyCardsFightData = new List<CardFightData>(cardsFightData);
+            List<CardFightData> cardsEnemyFightData = BoxController.GetController<StorageCardsController>().GetCardsEnemyFightData;
 
             ContainerPresidentCards containerEnemyPresidentCards = ObjectsOnScene.Instance.GetContainerEnemyPresidents;
             ContainerFightCards containerEnemyFightCards = ObjectsOnScene.Instance.GetContainerAIFightCards;
@@ -72,7 +74,7 @@ namespace Gameplay
                 enemyPresidentCards.Add(card);
             }
 
-            foreach (var cardData in enemyCardsFightData)
+            foreach (var cardData in cardsEnemyFightData)
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
                 enemyFightCards.Add(card);
@@ -91,15 +93,17 @@ namespace Gameplay
 
         public void ShowCardsCharacter(bool isPlayer)
         {
-            if (isPlayer)
+            ObjectsOnScene.Instance.GetContainerPlayerFights.gameObject.SetActive(isPlayer);
+            ObjectsOnScene.Instance.GetContainerAIFightCards.gameObject.SetActive(!isPlayer);
+
+            foreach (var card in playerPresidentCards)
             {
-                ObjectsOnScene.Instance.GetContainerFights.gameObject.SetActive(true);
-                ObjectsOnScene.Instance.GetContainerAIFightCards.gameObject.SetActive(false);
+                card.ChangeHighlight(isPlayer);
             }
-            else
+
+            foreach (var card in enemyPresidentCards)
             {
-                ObjectsOnScene.Instance.GetContainerFights.gameObject.SetActive(false);
-                ObjectsOnScene.Instance.GetContainerAIFightCards.gameObject.SetActive(true);
+                card.ChangeHighlight(!isPlayer);
             }
         }
 

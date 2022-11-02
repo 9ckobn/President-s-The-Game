@@ -10,7 +10,7 @@ namespace Gameplay
     {
         private const int MAX_USE_CARDS = 3;
 
-        private bool isPlayerNow = false;
+        private bool isPlayerNow = true;
         private CharacterData currentCharacter;
 
         private int countUseCards = 0;
@@ -38,12 +38,12 @@ namespace Gameplay
             if (isPlayerNow)
             {
                 currentCharacter = BoxController.GetController<CharactersDataController>().GetEnemyData;
-                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
+                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
             }
             else
             {
                 currentCharacter = BoxController.GetController<CharactersDataController>().GetPlayerData;
-                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
+                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
             }
 
             countUseCards = 0;

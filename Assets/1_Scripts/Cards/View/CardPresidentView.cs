@@ -11,7 +11,7 @@ namespace Cards.View
         [BoxGroup("Texts")]
         [SerializeField] private Text rarityrankText, nameText;
         [BoxGroup("Attributes")]
-        [SerializeField] private AttributePresidentUI attackAttribute, luckAttribute, defendAttribute, diplomaticAttribute;
+        [SerializeField] private AttributePresidentUI attackAttribute, luckAttribute, defendAttribute, diplomaticAttribute;        
 
         public void SetData(CardPresidentData data)
         {

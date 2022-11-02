@@ -3,7 +3,6 @@ using Core;
 using Data;
 using Gameplay;
 using SceneObjects;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -11,7 +10,7 @@ namespace EffectSystem
     {
         private AttackEffect effect;
 
-        public override void Apply(Effect currentEffect)
+        protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as AttackEffect;
             targetAttributes.Clear();
@@ -53,7 +52,15 @@ namespace EffectSystem
 
         private void CharacterSelectTarget()
         {
-            Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+            Building[] buildings;
+            if (isPlayer)
+            {
+                buildings= ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+            }
+            else
+            {
+                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
+            }
 
             foreach (var building in buildings)
             {
@@ -67,7 +74,6 @@ namespace EffectSystem
         private void Apply()
         {
             int damage = effect.BaseValue;
-            bool isPlayer = BoxController.GetController<FightSceneController>().GetIsPlayerNow;
             CharacterData attackData, defendData = null;
 
             if (isPlayer && effect.TypeTarget == TypeTargetEffect.Enemy)

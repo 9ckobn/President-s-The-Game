@@ -1,5 +1,6 @@
 using Cards.Data;
 using Cards.View;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Cards
@@ -7,6 +8,9 @@ namespace Cards
     [RequireComponent(typeof(CardPresidentView))]
     public class CardPresidentModel : CardModel
     {
+        [BoxGroup("Highlight")]
+        [SerializeField] private GameObject highlight;
+
         public CardPresidentData SetCardData 
         {
             set
@@ -29,6 +33,11 @@ namespace Cards
 
         protected override void MouseDown()
         {
+        }
+
+        public void ChangeHighlight(bool isActive)
+        {
+            highlight.gameObject.SetActive(isActive);
         }
     }
 }

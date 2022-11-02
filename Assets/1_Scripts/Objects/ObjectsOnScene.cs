@@ -19,7 +19,7 @@ namespace SceneObjects
         [SerializeField] private BuildingsStorage buildingsStorage;
 
         public GameObject GetSpawnPosition { get => spawnPosition; }
-        public ContainerFightCards GetContainerFights { get => containerFights; }
+        public ContainerFightCards GetContainerPlayerFights { get => containerFights; }
         public ContainerFightCards GetContainerAIFightCards { get => containerAIFightCards; }
         public ContainerPresidentCards GetContainerPlayerPresidents { get => playerPresidents; }
         public ContainerPresidentCards GetContainerEnemyPresidents { get => enemyPresidents; }

@@ -14,9 +14,11 @@ namespace Cards
 
         private List<CardPresidentData> cardsPresidentData = new List<CardPresidentData>();
         private List<CardFightData> cardsFightData = new List<CardFightData>();
+        private List<CardFightData> cardsEnemyFightData = new List<CardFightData>();
 
         public List<CardPresidentData> GetCardsPresidentData { get => cardsPresidentData; }
         public List<CardFightData> GetCardsFightData { get => cardsFightData; }
+        public List<CardFightData> GetCardsEnemyFightData { get => cardsEnemyFightData; }
 
         public override void OnInitialize()
         {
@@ -41,6 +43,19 @@ namespace Cards
                         CardFightData cardData = new CardFightData(card, card.Sprite, card.Effects);
 
                         cardsFightData.Add(cardData);
+                    }
+                }
+            }
+
+            foreach (var id in idFightsCards)
+            {
+                foreach (var card in cardFightSCRO)
+                {
+                    if (card.Id == id)
+                    {
+                        CardFightData cardData = new CardFightData(card, card.Sprite, card.Effects);
+
+                        cardsEnemyFightData.Add(cardData);
                     }
                 }
             }

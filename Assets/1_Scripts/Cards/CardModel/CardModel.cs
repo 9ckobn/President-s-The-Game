@@ -1,10 +1,13 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Cards
 {
     public abstract class CardModel : CardBase
     {
+        [BoxGroup("Start scale")]
         [SerializeField] private float startScele = 1f;
+        [BoxGroup("Parent model")]
         [SerializeField] private GameObject parentModel;
 
         protected GameObject model;
