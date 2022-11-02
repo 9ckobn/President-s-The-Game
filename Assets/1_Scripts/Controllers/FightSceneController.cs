@@ -1,5 +1,6 @@
 using Core;
 using Data;
+using UI;
 using UnityEngine;
 
 namespace Gameplay
@@ -37,10 +38,12 @@ namespace Gameplay
             if (isPlayerNow)
             {
                 currentCharacter = BoxController.GetController<CharactersDataController>().GetEnemyData;
+                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
             }
             else
             {
                 currentCharacter = BoxController.GetController<CharactersDataController>().GetPlayerData;
+                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
             }
 
             countUseCards = 0;

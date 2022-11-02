@@ -9,7 +9,7 @@ namespace Cards
 
         protected GameObject model;
         private bool pointerEnter = false, isSelected;
-        [SerializeField]protected bool isCanInteraction = true;
+        protected bool isCanInteraction = true;
 
         public GameObject SetMode
         {
