@@ -28,7 +28,17 @@ namespace EffectSystem
         public override void SelectTargetBuilding(Building building)
         {
             targetAttributes.Add(building.GetTypeBuilding);
-            Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+
+            Building[] buildings;
+
+            if (isPlayer)
+            {
+                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+            }
+            else
+            {
+                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
+            }
 
             foreach (var buildingAnim in buildings)
             {

@@ -57,6 +57,12 @@ namespace Cards
             }
         }
 
+        private void OnDisable()
+        {
+            pointerEnter = false;
+            isSelected = false;
+        }
+
         protected abstract void MouseEnter();
         protected abstract void MouseExit();
         protected abstract void MouseDown();

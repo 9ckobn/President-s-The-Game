@@ -2,7 +2,9 @@ using Cards.Data;
 using Cards.View;
 using Core;
 using DG.Tweening;
+using EffectSystem;
 using Gameplay;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cards
@@ -12,7 +14,7 @@ namespace Cards
     {
         private const float SCALE_ANIM_VALUE = 1.5f, POS_Z = 0.1f;
 
-        private Vector3 blockPosition = new Vector3(-20, 0, 0), unblockPosition = new Vector3(-20, 0, 0);
+        private Vector3 blockPosition = new Vector3(-20, 0, 0), unblockPosition = new Vector3(20, 180, 0);
 
         public CardFightData SetCardData
         {
@@ -23,7 +25,15 @@ namespace Cards
                 (view as CardFightView).SetData(data as CardFightData);
             }
         }
-        public CardFightData GetFightData { get => data as CardFightData; }
+        private CardFightData getFightData { get => data as CardFightData; }
+
+        #region GET_DATA
+
+        public List<Effect> GetEffects { get => getFightData.GetEffects; }
+        public TypeAttribute[] GetTypeCost { get => getFightData.TypeCost; }
+        public int GetValueCost { get => getFightData.Cost; }
+
+        #endregion
 
         #region INTERACTION
 
@@ -62,7 +72,7 @@ namespace Cards
         {
             MouseExit();
 
-            GetFightData.UpdateReloading();
+            getFightData.UpdateReloading();
 
             if (!CheckCanUseCard())
             {
@@ -72,7 +82,7 @@ namespace Cards
 
         public bool CheckCanUseCard()
         {
-            return isCanInteraction && GetFightData.CurrentReloading == 0;
+            return isCanInteraction && getFightData.CurrentReloading == 0;
         }
 
         public void BlockCard(bool needRotate = false)
@@ -88,10 +98,21 @@ namespace Cards
 
         public void UnlockCard()
         {
+            Debug.Log("unlock");
             isCanInteraction = true;
 
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
             tween.Play();
+        }
+
+        public void DecreaseReloading()
+        {
+            getFightData.DecreaseReloading();
+
+            if(getFightData.CurrentReloading == 0)
+            {
+                UnlockCard();
+            }
         }
 
         #endregion

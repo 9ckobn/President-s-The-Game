@@ -133,5 +133,23 @@ namespace Gameplay
 
             BoxController.GetController<FightSceneController>().AddCountUseCards();
         }
+
+        public void DecreaseReloadingCharacterCards(bool isPlayer)
+        {
+            if (isPlayer)
+            {
+                foreach (var card in playerFightCards)
+                {
+                    card.DecreaseReloading();
+                }
+            }
+            else
+            {
+                foreach (var card in enemyFightCards)
+                {
+                    card.DecreaseReloading();
+                }
+            }
+        }
     }
 }

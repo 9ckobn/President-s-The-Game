@@ -36,7 +36,7 @@ namespace EffectSystem
         {
             counterEffects = 0;
             currentCardFight = card;
-            effects = card.GetFightData.GetEffects;
+            effects = card.GetEffects;
 
             NextEffect();
         }
@@ -114,9 +114,9 @@ namespace EffectSystem
 
             CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
-            foreach (var typeCost in currentCardFight.GetFightData.TypeCost)
+            foreach (var typeCost in currentCardFight.GetTypeCost)
             {
-                characterData.DownAttribute(typeCost, currentCardFight.GetFightData.Cost);
+                characterData.DownAttribute(typeCost, currentCardFight.GetValueCost);
             }
 
             BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
