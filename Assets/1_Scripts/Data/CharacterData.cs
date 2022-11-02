@@ -58,11 +58,6 @@ namespace Data
 
         private void CountMorality()
         {
-            //int morality = attributes[TypeAttribute.Economic] + attributes[TypeAttribute.Food] +
-            //    attributes[TypeAttribute.Medicine] + attributes[TypeAttribute.RawMaterials];
-
-            //attributes[TypeAttribute.Morality] = morality;
-
             if(attributes[TypeAttribute.Morality] <= 0)
             {
                 BoxController.GetController<LogController>().LogError($"Character DEATH. Need logic death!");
@@ -91,7 +86,7 @@ namespace Data
 
         #endregion
 
-        #region EFFECTS
+        #region CERD_EFFECTS
 
         public void AddTemporaryEffect(Effect effect)
         {
@@ -100,13 +95,32 @@ namespace Data
             temporaryEffect.Add(effect);
         }
 
+        public List<Effect> GetDefendEffects()
+        {
+            List<Effect> defendEffects = new List<Effect>();
+
+            foreach (var effect in temporaryEffect)
+            {
+                if(effect is DefendEffect || effect is RandomGetProtectEffect)
+                {
+                    defendEffects.Add(effect);
+                }
+            }
+
+            return defendEffects;
+        }
+
+        #endregion
+
+        #region VISUAL_EFFECTS
+
         public void ShowDamage(TypeAttribute typeBuilding)
         {
             foreach (var building in myBuildings)
             {
                 if (building.GetTypeBuilding == typeBuilding)
                 {
-                    building.ShowDamage();
+                    building.ShowGetDamage();
                 }
             }
         }
@@ -117,7 +131,7 @@ namespace Data
             {
                 if (building.GetTypeBuilding == typeBuilding)
                 {
-                    building.ShowHealth();
+                    building.ShowGetHealth();
                 }
             }
         }
@@ -128,7 +142,7 @@ namespace Data
             {
                 if (building.GetTypeBuilding == typeBuilding)
                 {
-                    building.ShowDefend();
+                    building.ShowGetDefend();
                 }
             }
         }

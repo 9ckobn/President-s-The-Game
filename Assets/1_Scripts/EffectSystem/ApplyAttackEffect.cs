@@ -3,12 +3,16 @@ using Core;
 using Data;
 using Gameplay;
 using SceneObjects;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EffectSystem
 {
     public class ApplyAttackEffect : ApplyEffect
     {
         private AttackEffect effect;
+
+        private List<Building> targetBuildings, defendBuilding, immortalBuilding;
 
         protected override void Apply(Effect currentEffect)
         {
@@ -62,19 +66,66 @@ namespace EffectSystem
 
         private void CharacterSelectTarget()
         {
-            Building[] buildings;
+            CharacterData defendData;
+            defendBuilding = new List<Building>();
+            immortalBuilding = new List<Building>();
+
             if (isPlayer)
             {
-                buildings= ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+                targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
+                defendData = BoxController.GetController<CharactersDataController>().GetEnemyData;
             }
             else
             {
-                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
+                targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
+                defendData = BoxController.GetController<CharactersDataController>().GetPlayerData;
             }
 
-            foreach (var building in buildings)
+            // Check effects defend buildings
+
+            List<Effect> defendEffects = defendData.GetDefendEffects();
+
+            if (defendEffects.Count > 0)
             {
-                building.EnableStateTarget();
+                foreach (var effect in defendEffects)
+                {
+                    if (effect is DefendEffect)
+                    {
+                        DefendEffect defendEffect = effect as DefendEffect;
+
+                        if (defendEffect.Immortal)
+                        {
+                            for (int i = 0; i < targetBuildings.Count; i++)
+                            {
+                                if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefend)
+                                {
+                                    immortalBuilding.Add(targetBuildings[i]);
+                                    targetBuildings[i].ShowDefend();
+                                    targetBuildings.Remove(targetBuildings[i]);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < targetBuildings.Count; i++)
+                            {
+                                if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefend)
+                                {
+                                    defendBuilding.Add(targetBuildings[i]);
+                                    targetBuildings[i].ShowDefend(defendEffect.ValueDefend);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (var building in targetBuildings)
+            {
+                if (building != null)
+                {
+                    building.EnableStateTarget();
+                }
             }
 
             //ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(true);

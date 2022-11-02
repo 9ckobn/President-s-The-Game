@@ -4,6 +4,7 @@ using DG.Tweening;
 using Core;
 using NaughtyAttributes;
 using System.Collections;
+using SceneObjects;
 
 namespace Buildings
 {
@@ -13,7 +14,9 @@ namespace Buildings
         [BoxGroup("Model parts")]
         [SerializeField] private GameObject model, logo;
         [BoxGroup("Effects")]
-        [SerializeField] private GameObject effectDamage, effectHealh, effectDefend;
+        [SerializeField] private VisualEffectDefend effectDefend;
+        [BoxGroup("Effects")]
+        [SerializeField] private GameObject effectDamage, effectHealh;
         [BoxGroup("Type building")]
         [SerializeField] private TypeAttribute typeBuilding;
         [BoxGroup("Backlight effect")]
@@ -88,19 +91,28 @@ namespace Buildings
             }
         }
 
-        public void ShowDamage()
+
+        #region VISUAL_EFFECTS
+
+        public void ShowGetDamage()
         {
             StartCoroutine(CoShowEffect(effectDamage));
         }
 
-        public void ShowHealth()
+        public void ShowGetHealth()
         {
             StartCoroutine(CoShowEffect(effectHealh));
         }
 
-        public void ShowDefend()
+        public void ShowGetDefend()
         {
-            StartCoroutine(CoShowEffect(effectDefend));
+            if (effectDefend != null)
+                effectDefend.ShowGetDefend();
+        }
+
+        public void ShowDefend(int value = 100)
+        {
+            effectDefend.ShowDefend(value);
         }
 
         private IEnumerator CoShowEffect(GameObject effect)
@@ -109,5 +121,7 @@ namespace Buildings
             yield return new WaitForSeconds(1.5f);
             effect.SetActive(false);
         }
+
+        #endregion
     }
 }

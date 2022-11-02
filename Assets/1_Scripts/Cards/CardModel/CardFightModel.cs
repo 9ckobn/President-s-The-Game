@@ -98,7 +98,6 @@ namespace Cards
 
         public void UnlockCard()
         {
-            Debug.Log("unlock");
             isCanInteraction = true;
 
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
