@@ -15,9 +15,5 @@ namespace EffectSystem.SCRO
         [HideIf("Immortal")]
         [Label("Сколько % защиты получает")]
         public int ValueProtect = 100; // 100 - immortal
-
-        [BoxGroup("Protect")]
-        [Label("Сколько атак длится защита")]
-        public int DurationProtect;
     }
 }

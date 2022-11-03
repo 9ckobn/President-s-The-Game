@@ -86,7 +86,7 @@ namespace Data
 
         #endregion
 
-        #region CERD_EFFECTS
+        #region CARD_EFFECTS
 
         public void AddTemporaryEffect(Effect effect)
         {

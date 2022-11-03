@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeTarget: 0
   TypeSelectTarget: 1
-  TimeApply: 2
+  TimeApply: 0
   TimeStart: 0
-  TypeTimeDuration: 1
-  TimeDuration: -1
-  Condition: 1
-  TypeAttributeAttack: 3
+  TimeCancel: 2
+  TimeDurationEffect: 0
+  ApplyCondition: 0
+  TypeAttributeApplyCondition: 
+  CancelCondition: 1
+  TypeAttributeCancelCondition: 03000000
+  CountTimes: 1
   TypeBuff: 1
   TypeTargetObject: 06000000
   BaseValue: 0

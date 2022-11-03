@@ -4,6 +4,7 @@ using Data;
 using Gameplay;
 using SceneObjects;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -183,7 +184,7 @@ namespace EffectSystem
 
             if (effect.IsNeedAttribute)
             {
-                damage += attackData.GetValueAttribute(effect.TypeAttribute) / 100 * effect.ValueAttribute;
+                damage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
             }
 
             foreach (var targetAttribute in targetAttributes)

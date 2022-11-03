@@ -16,10 +16,12 @@ MonoBehaviour:
   TypeSelectTarget: 1
   TimeApply: 1
   TimeStart: 1
-  TypeTimeDuration: 0
-  TimeDuration: 2
-  Condition: 0
-  TypeAttributeAttack: 0
+  TimeCancel: 1
+  TimeDurationEffect: 1
+  ApplyCondition: 0
+  TypeAttributeApplyCondition: 
+  CancelCondition: 0
+  TypeAttributeCancelCondition: 
   TypeOtherEffect: 0
   ProcentAttack: 10
   UpAttribute: 6

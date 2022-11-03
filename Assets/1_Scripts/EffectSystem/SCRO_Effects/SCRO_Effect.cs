@@ -25,14 +25,14 @@ namespace EffectSystem.SCRO
         public int TimeStart;
 
         [BoxGroup("Time")]
-        [Label("До какого момента будет продолжаться")]
-        public TypeTimeDuration TypeTimeDuration;
+        [Label("Время отмены эфекта")]
+        public TypeTimeApply TimeCancel;
 
         [BoxGroup("Time")]
-        [ShowIf("TypeTimeDuration", TypeTimeDuration.Time)]
-        [Label("Время продолжительности эффекта")]
-        public int TimeDuration = 1; // -1:бесконечно, 1: этот раунд, 2: этот и следующий раунд
-       
+        [ShowIf("TimeCancel", TypeTimeApply.AfterTime)]
+        [Label("Активен в течении n раундов")]
+        public int TimeDurationEffect;
+
         #endregion
 
         #region CONDITION
@@ -40,12 +40,27 @@ namespace EffectSystem.SCRO
         [BoxGroup("Condition")]
         [ShowIf("TimeApply", TypeTimeApply.Condition)]
         [Label("Тип условия применения")]
-        public TypeCondition Condition = TypeCondition.None;
+        public TypeCondition ApplyCondition = TypeCondition.None;
 
         [BoxGroup("Condition")]
-        [ShowIf("Condition", TypeCondition.Attack)]
-        [Label("Какой объект атакуется?")]
-        public TypeAttribute TypeAttributeAttack;
+        [ShowIf("TimeApply", TypeTimeApply.Condition)]
+        [Label("На какие объекты действует применение эфекта")]
+        public TypeAttribute[] TypeAttributeApplyCondition;
+
+        [BoxGroup("Condition")]
+        [ShowIf("TimeCancel", TypeTimeApply.Condition)]
+        [Label("Тип условия отмены")]
+        public TypeCondition CancelCondition = TypeCondition.None;
+
+        [BoxGroup("Condition")]
+        [ShowIf("TimeCancel", TypeTimeApply.Condition)]
+        [Label("На какие объекты действует отмена эфекта")]
+        public TypeAttribute[] TypeAttributeCancelCondition;
+
+        [BoxGroup("Condition")]
+        [ShowIf("TimeCancel", TypeTimeApply.Condition)]
+        [Label("Сколько раз должно примениться")]
+        public int CountTimes = 1;
 
         #endregion
     }
