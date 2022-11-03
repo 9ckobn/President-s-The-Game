@@ -2,17 +2,19 @@ using EffectSystem.SCRO;
 
 namespace EffectSystem
 {
-    public class RandomGetProtectEffect : Effect
+    public class RandomGetDefendEffect : Effect
     {
         public TypeSelectTarget TypeSelectTarget; // Кто выбирает цель эффекта?
-        public TypeAttribute[] ProtectAttributes; // Какие объекты под защитой?
+        public TypeAttribute[] DefendAttributes; // Какие объекты под защитой?
         public TypeAttribute RandomAttribute; // Какой атрибут использовать для рандома?
 
-        public RandomGetProtectEffect(SCRO_RandomGetProtectEffect data) : base(data)
+        public RandomGetDefendEffect(SCRO_RandomGetDefendEffect data) : base(data)
         {
             TypeSelectTarget = data.TypeSelectTarget;
-            ProtectAttributes = data.ProtectAttributes;
+            DefendAttributes = data.ProtectAttributes;
             RandomAttribute = data.RandomAttribute;
         }
+
+        public object TypeWinAttribute { get; internal set; }
     }
 }

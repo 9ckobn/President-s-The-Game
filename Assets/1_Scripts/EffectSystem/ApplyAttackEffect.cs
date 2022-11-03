@@ -4,7 +4,6 @@ using Data;
 using Gameplay;
 using SceneObjects;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -12,7 +11,8 @@ namespace EffectSystem
     {
         private AttackEffect effect;
 
-        private List<Building> targetBuildings, defendBuilding, immortalBuilding;
+        private List<Building> targetBuildings, immortalBuilding;
+        private Dictionary<TypeAttribute, Effect> randomDefendBuilbinds = new Dictionary<TypeAttribute, Effect>();
 
         protected override void Apply(Effect currentEffect)
         {
@@ -31,27 +31,28 @@ namespace EffectSystem
 
         public override void SelectTargetBuilding(Building building)
         {
-            targetAttributes.Add(building.GetTypeBuilding);
+            // Building have random defend. Count random
 
-            Building[] buildings;
+            //if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
+            //{
+            //    // Random true
+            //    if (BoxController.GetController<EffectsController>().ChecrkRandomEffect(randomDefendBuilbinds[building.GetTypeBuilding]))
+            //    {
+            //        LoseAttack();
+            //    }
+            //    else // Random false
+            //    {
+            //        targetAttributes.Add(building.GetTypeBuilding);
 
-            if (isPlayer)
-            {
-                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
-            }
-            else
-            {
-                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
-            }
+            //        Apply();
+            //    }
+            //}
+            //else // Attack building
+            //{
+                targetAttributes.Add(building.GetTypeBuilding);
 
-            foreach (var buildingAnim in buildings)
-            {
-                buildingAnim.DisableStateTarget();
-            }
-
-            //ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(false);
-
-            Apply();
+                Apply();
+            //}
         }
 
         private void GameSelectTarget()
@@ -67,7 +68,7 @@ namespace EffectSystem
         private void CharacterSelectTarget()
         {
             CharacterData defendData;
-            defendBuilding = new List<Building>();
+            randomDefendBuilbinds = new Dictionary<TypeAttribute, Effect>();
             immortalBuilding = new List<Building>();
 
             if (isPlayer)
@@ -111,7 +112,7 @@ namespace EffectSystem
                             {
                                 if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefend)
                                 {
-                                    defendBuilding.Add(targetBuildings[i]);
+                                    randomDefendBuilbinds.Add(targetBuildings[i].GetTypeBuilding, effect);
                                     targetBuildings[i].ShowDefend(defendEffect.ValueDefend);
                                 }
                             }
@@ -127,13 +128,12 @@ namespace EffectSystem
                     building.EnableStateTarget();
                 }
             }
-
-            //ObjectsOnScene.Instance.GetArrowTarget.gameObject.SetActive(true);
-            //ObjectsOnScene.Instance.GetArrowTarget.SetPositions(BoxController.GetController<EffectsController>().GetCurrentCardFight.gameObject, buildings[0].gameObject);
         }
 
         private void Apply()
         {
+            DisableStateTarget();
+
             int damage = effect.BaseValue;
             CharacterData attackData, defendData = null;
 
@@ -179,6 +179,32 @@ namespace EffectSystem
             }
 
             EndApply();
+        }
+
+        private void LoseAttack()
+        {
+            DisableStateTarget();
+
+            EndApply();
+        }
+
+        private void DisableStateTarget()
+        {
+            Building[] buildings;
+
+            if (isPlayer)
+            {
+                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings;
+            }
+            else
+            {
+                buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
+            }
+
+            foreach (var buildingAnim in buildings)
+            {
+                buildingAnim.DisableStateTarget();
+            }
         }
     }
 }

@@ -1,45 +1,24 @@
 using Buildings;
-using Core;
 using Data;
-using Gameplay;
-using UI;
 using UnityEngine;
 
 namespace EffectSystem
 {
-    public class ApplyRandomEffect : ApplyEffect
+    public abstract class ApplyRandomEffect : ApplyEffect
     {
-        private const int MAX_VALUE = 100, COUNT_SHAKE = 5;
+        protected const int MAX_VALUE = 100, COUNT_SHAKE = 5;
 
-        private RandomUpAttributeEffect effect;
-        private CharacterData characterData;
+        protected CharacterData characterData;
 
-        private string text;
-
-        protected override void Apply(Effect currentEffect)
-        {
-            text = "";
-            effect = currentEffect as RandomUpAttributeEffect;
-
-            CountRandom();
-        }
+        protected int maxValue, chanceValue;
+        protected string text;        
 
         public override void SelectTargetBuilding(Building building)
         {
         }
 
-        private void CountRandom()
+        protected void CountRandom()
         {
-            characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
-
-            int maxValue = MAX_VALUE;
-            int chanceValue = effect.Value;
-
-            if (effect.IsNeedAttribute)
-            {
-                chanceValue += characterData.GetValueAttribute(effect.TypeAttribute);
-            }
-
             bool[] randomsShake = new bool[COUNT_SHAKE];
 
             for (int i = 0; i < COUNT_SHAKE; i++)
@@ -66,21 +45,7 @@ namespace EffectSystem
             EndApply();
         }
 
-        private void WinRandom()
-        {
-            characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
-
-            text += $"<color=green>добавляем : {effect.TypeWinAttribute} {effect.WinProcent}</color>\n";
-            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
-        }
-
-        private void LoseRandom()
-        {
-            characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
-            characterData.ShowDamage(effect.TypeLoseAttribute);
-
-            text += $"<color=red>отнимаем : {effect.TypeLoseAttribute} {effect.LoseProcent}</color>\n";
-            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
-        }
+        protected abstract void WinRandom();
+        protected abstract void LoseRandom();
     }
 }

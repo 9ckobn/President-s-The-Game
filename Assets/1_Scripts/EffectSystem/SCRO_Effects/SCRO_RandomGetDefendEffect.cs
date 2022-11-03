@@ -3,8 +3,8 @@ using NaughtyAttributes;
 
 namespace EffectSystem.SCRO
 {
-    [CreateAssetMenu(fileName = "RandomGetProtectEffect", menuName = "Effects/RandomGetProtectEffect")]
-    public class SCRO_RandomGetProtectEffect : SCRO_Effect
+    [CreateAssetMenu(fileName = "RandomGetDefendEffect", menuName = "Effects/RandomGetDefendEffect")]
+    public class SCRO_RandomGetDefendEffect : SCRO_Effect
     {
         [BoxGroup("Target")]
         [Label("Кто выбирает цель эффекта")]

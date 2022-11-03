@@ -14,7 +14,8 @@ namespace EffectSystem
         private CanApplyEffect canApply;
         private ApplyAttackEffect attackApply;
         private ApplyDefendEffect defendApply;
-        private ApplyRandomEffect randomApply;
+        private ApplyRandomUpAttrinuteEffect randomUpAttributeApply;
+        private ApplyRandomGetDefendEffect randomGetDefendApply;
 
         private List<Effect> effects;
         private Effect currentEffect;
@@ -29,8 +30,11 @@ namespace EffectSystem
             canApply = new CanApplyEffect();
             attackApply = new ApplyAttackEffect();
             defendApply = new ApplyDefendEffect();
-            randomApply = new ApplyRandomEffect();
+            randomUpAttributeApply = new ApplyRandomUpAttrinuteEffect();
+            randomGetDefendApply = new ApplyRandomGetDefendEffect();
         }
+
+        #region EFFECTS_AFTER_CKICK_CARD
 
         public void ApplyFightCardEffects(CardFightModel card)
         {
@@ -82,12 +86,13 @@ namespace EffectSystem
             {
                 currentApply = defendApply;
             }
-            else if (currentEffect is RandomGetProtectEffect)
+            else if (currentEffect is RandomGetDefendEffect)
             {
+                currentApply = randomGetDefendApply;
             }
             else if (currentEffect is RandomUpAttributeEffect)
             {
-                currentApply = randomApply;
+                currentApply = randomUpAttributeApply;
             }
 
             if (currentApply == null)
@@ -121,5 +126,7 @@ namespace EffectSystem
 
             BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
         }
+
+        #endregion
     }
 }
