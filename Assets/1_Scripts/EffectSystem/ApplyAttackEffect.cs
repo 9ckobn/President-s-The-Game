@@ -12,7 +12,7 @@ namespace EffectSystem
         private AttackEffect effect;
 
         private List<Building> targetBuildings, immortalBuilding;
-        private Dictionary<TypeAttribute, Effect> randomDefendBuilbinds = new Dictionary<TypeAttribute, Effect>();
+        private Dictionary<TypeAttribute, RandomDefendEffect> randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
 
         protected override void Apply(Effect currentEffect)
         {
@@ -33,26 +33,26 @@ namespace EffectSystem
         {
             // Building have random defend. Count random
 
-            //if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
-            //{
-            //    // Random true
-            //    if (BoxController.GetController<EffectsController>().ChecrkRandomEffect(randomDefendBuilbinds[building.GetTypeBuilding]))
-            //    {
-            //        LoseAttack();
-            //    }
-            //    else // Random false
-            //    {
-            //        targetAttributes.Add(building.GetTypeBuilding);
+            if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
+            {
+                // Random true
+                if (BoxController.GetController<EffectsController>().CherkRandomDefendEffect(randomDefendBuilbinds[building.GetTypeBuilding]))
+                {
+                    LoseAttack();
+                }
+                else // Random false
+                {
+                    targetAttributes.Add(building.GetTypeBuilding);
 
-            //        Apply();
-            //    }
-            //}
-            //else // Attack building
-            //{
+                    Apply();
+                }
+            }
+            else // Attack building
+            {
                 targetAttributes.Add(building.GetTypeBuilding);
 
                 Apply();
-            //}
+            }
         }
 
         private void GameSelectTarget()
@@ -68,7 +68,7 @@ namespace EffectSystem
         private void CharacterSelectTarget()
         {
             CharacterData defendData;
-            randomDefendBuilbinds = new Dictionary<TypeAttribute, Effect>();
+            randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
             immortalBuilding = new List<Building>();
 
             if (isPlayer)
@@ -90,30 +90,44 @@ namespace EffectSystem
             {
                 foreach (var effect in defendEffects)
                 {
-                    if (effect is DefendEffect)
+                    if (effect is RandomDefendEffect)
                     {
-                        DefendEffect defendEffect = effect as DefendEffect;
+                        RandomDefendEffect defendEffect = effect as RandomDefendEffect;
 
-                        if (defendEffect.Immortal)
+                        for (int i = 0; i < targetBuildings.Count; i++)
                         {
-                            for (int i = 0; i < targetBuildings.Count; i++)
+                            for (int d = 0; d < defendEffect.TypeDefends.Length; d++)
                             {
-                                if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefend)
+                                if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefends[d])
                                 {
-                                    immortalBuilding.Add(targetBuildings[i]);
-                                    targetBuildings[i].ShowDefend();
-                                    targetBuildings.Remove(targetBuildings[i]);
+                                    int procentRandom = defendData.GetValueAttribute(defendEffect.RandomAttribute);
+
+                                    randomDefendBuilbinds.Add(targetBuildings[i].GetTypeBuilding, defendEffect);
+                                    targetBuildings[i].ShowDefend(procentRandom);
                                 }
                             }
                         }
-                        else
+                    }
+                    else if (effect is DefendEffect)
+                    {
+                        DefendEffect defendEffect = effect as DefendEffect;
+
+                        for (int i = 0; i < targetBuildings.Count; i++)
                         {
-                            for (int i = 0; i < targetBuildings.Count; i++)
+                            for (int d = 0; d < defendEffect.TypeDefends.Length; d++)
                             {
-                                if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefend)
+                                if (targetBuildings[i].GetTypeBuilding == defendEffect.TypeDefends[d])
                                 {
-                                    randomDefendBuilbinds.Add(targetBuildings[i].GetTypeBuilding, effect);
-                                    targetBuildings[i].ShowDefend(defendEffect.ValueDefend);
+                                    if (defendEffect.ValueDefend == 100)
+                                    {
+                                        immortalBuilding.Add(targetBuildings[i]);
+                                        targetBuildings[i].ShowDefend();
+                                        targetBuildings.Remove(targetBuildings[i]);
+                                    }
+                                    else
+                                    {
+                                        BoxController.GetController<LogController>().LogError($"Not logic defend < 100% !!!");
+                                    }
                                 }
                             }
                         }

@@ -24,7 +24,11 @@ namespace EffectSystem
         {
             CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
             characterData.AddTemporaryEffect(effect);
-            characterData.ShowDefend(effect.TypeDefend);
+
+            foreach (var typeDefend in effect.TypeDefends)
+            {
+                characterData.ShowDefend(typeDefend);
+            }
 
             EndApply();
         }

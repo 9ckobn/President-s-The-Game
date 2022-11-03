@@ -4,16 +4,19 @@ using UI;
 
 namespace EffectSystem
 {
-    public class ApplyRandomGetDefendEffect : ApplyRandomEffect
+    public class ApplyRandomDefendEffect : ApplyRandomEffect
     {
-        private RandomGetDefendEffect effect;
+        private RandomDefendEffect effect;
+
+        private bool lucky;
+        public bool GetLucky { get => lucky; }
 
         protected override void Apply(Effect currentEffect)
         {
             characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
             text = "";
-            effect = currentEffect as RandomGetDefendEffect;
+            effect = currentEffect as RandomDefendEffect;
 
             maxValue = MAX_VALUE;
             chanceValue = characterData.GetValueAttribute(effect.RandomAttribute);
@@ -23,11 +26,7 @@ namespace EffectSystem
 
         protected override void WinRandom()
         {
-            foreach (var defendEffect in effect.DefendAttributes)
-            {
-                characterData.AddTemporaryEffect(effect);
-                characterData.ShowDefend(defendEffect);
-            }
+            lucky = true;
 
             text += $"<color=green>Рандом сработал</color>\n";
             UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
@@ -35,6 +34,8 @@ namespace EffectSystem
 
         protected override void LoseRandom()
         {
+            lucky = false;
+
             text += $"<color=red>Рандом не сработал</color>\n";
             UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
         }

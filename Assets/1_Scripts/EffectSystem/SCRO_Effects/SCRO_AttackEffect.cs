@@ -7,10 +7,6 @@ namespace EffectSystem.SCRO
     public class SCRO_AttackEffect : SCRO_Effect
     {
         [BoxGroup("Target")]
-        [Label("Кто выбирает цель эффекта")]
-        public TypeSelectTarget TypeSelectTarget;
-
-        [BoxGroup("Target")]
         [Label("Объект на который действует эффект")]
         public TypeAttribute[] TypeTargetObject;
 

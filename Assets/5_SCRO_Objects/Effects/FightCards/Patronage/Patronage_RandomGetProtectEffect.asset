@@ -16,7 +16,11 @@ MonoBehaviour:
   TypeSelectTarget: 0
   TimeApply: 0
   TimeStart: 0
+  TypeTimeDuration: 1
   TimeDuration: 3
   Condition: 0
   TypeAttributeAttack: 0
+  TypeDefends: 00000000
+  ValueProtect: 100
+  DurationProtect: 3
   RandomAttribute: 10

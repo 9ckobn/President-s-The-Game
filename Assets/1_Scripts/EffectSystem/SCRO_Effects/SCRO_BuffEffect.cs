@@ -24,7 +24,7 @@ namespace EffectSystem.SCRO
         public TypeAttribute TypeAttribute;
 
         [BoxGroup("Buff")]
-        [Label("Значение в % от аттрибута")]
+        [Label("Значение в % от атрибута")]
         public int ValueAttribute;
     }
 }

@@ -51,9 +51,9 @@ namespace Cards.Data
                 {
                     effect = new DefendEffect(dataEffect as SCRO_DefendEffect);
                 }
-                else if (dataEffect is SCRO_RandomGetDefendEffect)
+                else if (dataEffect is SCRO_RandomDefendEffect)
                 {
-                    effect = new RandomGetDefendEffect(dataEffect as SCRO_RandomGetDefendEffect);
+                    effect = new RandomDefendEffect(dataEffect as SCRO_RandomDefendEffect);
                 }
                 else if (dataEffect is SCRO_RandomUpAttributeEffect)
                 {

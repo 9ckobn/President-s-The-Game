@@ -16,7 +16,8 @@ MonoBehaviour:
   TypeSelectTarget: 1
   TimeApply: 2
   TimeStart: 0
-  TimeDuration: 0
+  TypeTimeDuration: 1
+  TimeDuration: -1
   Condition: 1
   TypeAttributeAttack: 3
   TypeBuff: 1

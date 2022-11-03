@@ -7,17 +7,14 @@ namespace EffectSystem.SCRO
     public class SCRO_DefendEffect : SCRO_Effect
     {
         [BoxGroup("Protect")]
-        [Label("Какой объект защищён")]
-        public TypeAttribute TypeProtect;
-
-        [BoxGroup("Protect")]
-        [Label("Совсем не получает урона?")]
-        public bool Immortal = true;
+        [ShowIf("TypeSelectTarget", TypeSelectTarget.Game)]
+        [Label("Какие объекты защищёны")]
+        public TypeAttribute[] TypeDefends;
 
         [BoxGroup("Protect")]
         [HideIf("Immortal")]
         [Label("Сколько % защиты получает")]
-        public int ValueProtect;
+        public int ValueProtect = 100; // 100 - immortal
 
         [BoxGroup("Protect")]
         [Label("Сколько атак длится защита")]

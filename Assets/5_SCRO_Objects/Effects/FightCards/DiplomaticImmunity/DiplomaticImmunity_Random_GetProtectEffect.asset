@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: DiplomaticImmunity_Random_GetProtectEffect
   m_EditorClassIdentifier: 
   TypeTarget: 0
+  TypeSelectTarget: 1
   TimeApply: 0
   TimeStart: 0
-  TimeDuration: 3
+  TypeTimeDuration: 1
+  TimeDuration: -1
   Condition: 0
   TypeAttributeAttack: 0
-  TypeSelectTarget: 1
-  ProtectAttributes: 0200000004000000
+  TypeDefends: 0200000004000000
+  ValueProtect: 100
+  DurationProtect: 3
   RandomAttribute: 10

@@ -4,7 +4,6 @@ namespace EffectSystem
 {
     public class AttackEffect : Effect
     {
-        public TypeSelectTarget TypeSelectTarget { get; private set; } // Кто выбирает цель эффекта
         public TypeAttribute[] TypeTargetObject { get; private set; }
         public int BaseValue { get; private set; }
         public bool IsNeedAttribute { get; private set; }
@@ -13,7 +12,6 @@ namespace EffectSystem
 
         public AttackEffect(SCRO_AttackEffect data) : base(data)
         {
-            TypeSelectTarget = data.TypeSelectTarget;
             TypeTargetObject = data.TypeTargetObject;
             BaseValue = data.BaseValue;
             IsNeedAttribute = data.IsNeedAttribute;

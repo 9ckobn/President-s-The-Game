@@ -5,6 +5,8 @@ namespace EffectSystem
     public class Effect
     {
         public TypeTargetEffect TypeTarget { get; private set; } // Игрок на которого действует эффект
+        public TypeSelectTarget TypeSelectTarget { get; private set; } // Кто выбирает цель эффекта
+        public TypeTimeDuration TypeTimeDuration { get; private set; } // До какого момента будет продолжаться
         public TypeTimeApply TimeApply { get; private set; } // Когда применяется эффект?
 
         public int TimeStart { get; private set; }
@@ -16,6 +18,8 @@ namespace EffectSystem
         public Effect(SCRO_Effect data)
         {
             TypeTarget = data.TypeTarget;
+            TypeSelectTarget = data.TypeSelectTarget;
+            TypeTimeDuration = data.TypeTimeDuration;
             TimeApply = data.TimeApply;
 
             TimeStart = data.TimeStart;

@@ -9,6 +9,10 @@ namespace EffectSystem.SCRO
         [Label("Игрок на которого действует эффект")]
         public TypeTargetEffect TypeTarget;
 
+        [BoxGroup("Target")]
+        [Label("Кто выбирает цель эффекта")]
+        public TypeSelectTarget TypeSelectTarget;
+
         #region TIME
 
         [BoxGroup("Time")]
@@ -21,8 +25,13 @@ namespace EffectSystem.SCRO
         public int TimeStart;
 
         [BoxGroup("Time")]
+        [Label("До какого момента будет продолжаться")]
+        public TypeTimeDuration TypeTimeDuration;
+
+        [BoxGroup("Time")]
+        [ShowIf("TypeTimeDuration", TypeTimeDuration.Time)]
         [Label("Время продолжительности эффекта")]
-        public int TimeDuration = 1; // -1: бесконечно, 0: этот раунд, 2: этот и следующий раунд
+        public int TimeDuration = 1; // -1:бесконечно, 1: этот раунд, 2: этот и следующий раунд
        
         #endregion
 
