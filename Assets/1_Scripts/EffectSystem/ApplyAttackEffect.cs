@@ -106,12 +106,12 @@ namespace EffectSystem
                         {
                             if (characterBuilding.GetTypeBuilding == typeDefend)
                             {
-                                if(effect is RandomDefendEffect)
+                                if (effect is RandomDefendEffect)
                                 {
                                     RandomDefendEffect randomEffect = effect as RandomDefendEffect;
 
                                     randomDefendBuilbinds.Add(characterBuilding.GetTypeBuilding, randomEffect);
-                                    characterBuilding.ShowDefend(randomEffect.ValueDefend);
+                                    characterBuilding.ShowDefend(defendData.GetValueAttribute(randomEffect.RandomAttribute));
                                 }
                                 else
                                 {
