@@ -8,7 +8,7 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "FightSceneController", menuName = "Controllers/Gameplay/FightSceneController")]
     public class FightSceneController : BaseController
     {
-        private const int MAX_USE_CARDS = 3;
+        private const int MAX_USE_CARDS = 1;
 
         private bool isPlayerNow = false;
         private CharacterData currentCharacter;

@@ -15,6 +15,9 @@ namespace Cards
         private const float SCALE_ANIM_VALUE = 1.5f, POS_Z = 0.1f;
 
         private Vector3 blockPosition = new Vector3(-20, 0, 0), unblockPosition = new Vector3(20, 180, 0);
+        private Vector3 startPosition;
+
+        private Sequence mySequence;
 
         public CardFightData SetCardData
         {
@@ -26,6 +29,11 @@ namespace Cards
             }
         }
         private CardFightData getFightData { get => data as CardFightData; }
+
+        private void Start()
+        {
+            startPosition = transform.localPosition;
+        }
 
         #region GET_DATA
 
@@ -41,22 +49,32 @@ namespace Cards
         {
             BoxController.GetController<CardsController>().SelectFightCard(this);
 
-            float scale = transform.localScale.x;
-            Vector3 position = transform.position;
+            float scale = startScale;
+            Vector3 position = startPosition;
 
-            transform.localScale = new Vector3(scale * SCALE_ANIM_VALUE, scale * SCALE_ANIM_VALUE, scale * SCALE_ANIM_VALUE);
-            transform.position = new Vector3(position.x, position.y + POS_Z, position.z + POS_Z);
+            mySequence = DOTween.Sequence();
+
+            mySequence.AppendCallback(() =>
+            {
+                transform.DOScale(new Vector3(scale * SCALE_ANIM_VALUE, scale * SCALE_ANIM_VALUE, scale * SCALE_ANIM_VALUE), 0.15f);
+                transform.DOLocalMove(new Vector3(position.x, position.y + POS_Z, position.z + POS_Z), 0.3f);
+            });
         }
 
         protected override void MouseExit()
         {
             BoxController.GetController<CardsController>().DeselectFightCard(this);
 
-            float scale = transform.localScale.x;
-            Vector3 position = transform.position;
+            float scale = startScale;
+            Vector3 position = startPosition;
 
-            transform.localScale = new Vector3(scale / SCALE_ANIM_VALUE, scale / SCALE_ANIM_VALUE, scale / SCALE_ANIM_VALUE);
-            transform.position = new Vector3(position.x, position.y - POS_Z, position.z - POS_Z);
+            mySequence = DOTween.Sequence();
+
+            mySequence.AppendCallback(() =>
+            {
+                transform.DOScale(new Vector3(scale, scale, scale), 0.15f);
+                transform.DOLocalMove(new Vector3(position.x, position.y, position.z), 0.3f);
+            });
         }
 
         protected override void UseCard()
@@ -95,7 +113,7 @@ namespace Cards
         {
             getFightData.DecreaseReloading();
 
-            if(getFightData.CurrentReloading == 0)
+            if (getFightData.CurrentReloading == 0)
             {
                 UnlockCard();
             }

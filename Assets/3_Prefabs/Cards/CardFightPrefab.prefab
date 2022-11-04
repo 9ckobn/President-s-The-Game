@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6063737461fa0469b842511ddb8d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScele: 0.47
+  startScale: 0.45
   parentModel: {fileID: 315088790040291171}
   highlight: {fileID: 5112559404141285417}
 --- !u!114 &450274328717428919

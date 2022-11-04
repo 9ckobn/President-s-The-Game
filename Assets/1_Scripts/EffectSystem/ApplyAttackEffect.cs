@@ -13,7 +13,7 @@ namespace EffectSystem
     {
         private AttackEffect effect;
 
-        private List<Building> targetBuildings;
+        private List<Building> characterDefendBuildings, targetBuildings = new List<Building>();
         private Dictionary<TypeAttribute, RandomDefendEffect> randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
 
         protected override void Apply(Effect currentEffect)
@@ -33,6 +33,8 @@ namespace EffectSystem
 
         public override void SelectTargetBuilding(Building building)
         {
+            DisableStateTarget();
+
             // Building have random defend. Count random
 
             if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
@@ -70,18 +72,18 @@ namespace EffectSystem
         private void CharacterSelectTarget()
         {
             CharacterData defendData;
-            List<Building> buildingsCharacter;
+
             randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
             targetBuildings = new List<Building>();
 
             if (isPlayer)
             {
-                buildingsCharacter = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
+                characterDefendBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
                 defendData = BoxController.GetController<CharactersDataController>().GetEnemyData;
             }
             else
             {
-                buildingsCharacter = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
+                characterDefendBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
                 defendData = BoxController.GetController<CharactersDataController>().GetPlayerData;
             }
 
@@ -97,16 +99,16 @@ namespace EffectSystem
                     {
                         RandomDefendEffect defendEffect = effect as RandomDefendEffect;
 
-                        for (int i = 0; i < buildingsCharacter.Count; i++)
+                        for (int i = 0; i < characterDefendBuildings.Count; i++)
                         {
                             for (int d = 0; d < defendEffect.TypeDefends.Length; d++)
                             {
-                                if (buildingsCharacter[i].GetTypeBuilding == defendEffect.TypeDefends[d])
+                                if (characterDefendBuildings[i].GetTypeBuilding == defendEffect.TypeDefends[d])
                                 {
                                     int procentRandom = defendData.GetValueAttribute(defendEffect.RandomAttribute);
 
-                                    randomDefendBuilbinds.Add(buildingsCharacter[i].GetTypeBuilding, defendEffect);
-                                    buildingsCharacter[i].ShowDefend(procentRandom);
+                                    randomDefendBuilbinds.Add(characterDefendBuildings[i].GetTypeBuilding, defendEffect);
+                                    characterDefendBuildings[i].ShowDefend(procentRandom);
                                 }
                             }
                         }
@@ -115,15 +117,15 @@ namespace EffectSystem
                     {
                         DefendEffect defendEffect = effect as DefendEffect;
 
-                        for (int i = 0; i < buildingsCharacter.Count; i++)
+                        for (int i = 0; i < characterDefendBuildings.Count; i++)
                         {
                             for (int d = 0; d < defendEffect.TypeDefends.Length; d++)
                             {
-                                if (buildingsCharacter[i].GetTypeBuilding == defendEffect.TypeDefends[d])
+                                if (characterDefendBuildings[i].GetTypeBuilding == defendEffect.TypeDefends[d])
                                 {
                                     if (defendEffect.ValueDefend == 100)
                                     {
-                                        buildingsCharacter[i].ShowDefend();
+                                        characterDefendBuildings[i].ShowDefend();
                                     }
                                     else
                                     {
@@ -137,7 +139,7 @@ namespace EffectSystem
             }
             else
             {
-                targetBuildings = buildingsCharacter;
+                targetBuildings = characterDefendBuildings;
             }
 
             // Show buildings which can attack
@@ -160,8 +162,6 @@ namespace EffectSystem
 
         private void Apply()
         {
-            DisableStateTarget();
-
             int damage = effect.BaseValue;
             CharacterData attackData, defendData = null;
 
@@ -218,9 +218,12 @@ namespace EffectSystem
 
         private void DisableStateTarget()
         {
-            foreach (var buildingAnim in targetBuildings)
+            if (characterDefendBuildings.Count > 0)
             {
-                buildingAnim.DisableStateTarget();
+                foreach (var buildingAnim in characterDefendBuildings)
+                {
+                    buildingAnim.DisableStateTarget();
+                }
             }
         }
 

@@ -6,13 +6,13 @@ namespace SceneObjects
 {
     public class VisualEffectDefend : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI textMeshPro;
+
         private GameObject model;
-        private TextMeshPro textMeshPro;
 
         private void Awake()
         {
             model = gameObject.transform.GetChild(0).gameObject;
-            textMeshPro = GetComponentInChildren<TextMeshPro>();
         }
 
         public void ShowGetDefend()
@@ -58,7 +58,8 @@ namespace SceneObjects
 
         public void HideDefend()
         {
-
+            model.SetActive(false);
+            textMeshPro.gameObject.SetActive(false);
         }
     }
 }

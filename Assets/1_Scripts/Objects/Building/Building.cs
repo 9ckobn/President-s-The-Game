@@ -25,15 +25,9 @@ namespace Buildings
         [SerializeField] private Material defaultMaterial, lightMaterial;
 
         private bool isTarget;
-        private Sequence mySequence;
         private Tween tween;
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
-
-        private void Start()
-        {
-            mySequence = DOTween.Sequence();
-        }
 
         private void OnMouseOver()
         {
@@ -83,12 +77,10 @@ namespace Buildings
 
         public void DisableStateTarget()
         {
-            if (isTarget)
-            {
-                isTarget = false;
+            isTarget = false;
 
-                meshLight.material = defaultMaterial;
-            }
+            meshLight.material = defaultMaterial;
+            effectDefend.HideDefend();
         }
 
 

@@ -8,7 +8,7 @@ namespace Cards
     public abstract class CardModel : CardBase
     {
         [BoxGroup("Start scale")]
-        [SerializeField] private float startScele = 1f;
+        [SerializeField] protected float startScale = 1f;
         [BoxGroup("Parent model")]
         [SerializeField] private GameObject parentModel;
         [BoxGroup("Highlight")]
@@ -27,7 +27,7 @@ namespace Cards
                 model = value;
                 model.transform.SetParent(parentModel.transform);
                 model.transform.position = parentModel.transform.position;
-                transform.localScale = new Vector3(startScele, startScele, startScele);
+                transform.localScale = new Vector3(startScale, startScale, startScale);
             }
         }
 
