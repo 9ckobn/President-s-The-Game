@@ -12,7 +12,6 @@ namespace EffectSystem.SCRO
         public TypeAttribute[] TypeDefends;
 
         [BoxGroup("Protect")]
-        [HideIf("Immortal")]
         [Label("Сколько % защиты получает")]
         public int ValueProtect = 100; // 100 - immortal
     }

@@ -23,7 +23,6 @@ namespace EffectSystem
         private void AddEffect()
         {
             CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
-            characterData.AddTemporaryEffect(effect);
 
             foreach (var typeDefend in effect.TypeDefends)
             {
@@ -31,6 +30,11 @@ namespace EffectSystem
             }
 
             EndApply();
+        }
+
+        public override void StopApplyEffect()
+        {
+            BoxController.GetController<LogController>().LogError("Not have logic stop apply effect");
         }
     }
 }

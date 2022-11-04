@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class RandomWindow : Window
+    public class InfoWindow : Window
     {
         [SerializeField] private GameObject substrate;
         [SerializeField] private Text text;

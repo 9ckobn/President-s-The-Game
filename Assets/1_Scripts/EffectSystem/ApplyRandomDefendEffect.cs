@@ -29,7 +29,7 @@ namespace EffectSystem
             lucky = true;
 
             text += $"<color=green>Рандом сработал</color>\n";
-            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
+            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
         }
 
         protected override void LoseRandom()
@@ -37,7 +37,12 @@ namespace EffectSystem
             lucky = false;
 
             text += $"<color=red>Рандом не сработал</color>\n";
-            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
+            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
+        }
+
+        public override void StopApplyEffect()
+        {
+            BoxController.GetController<LogController>().LogError("Not have logic stop apply effect");
         }
     }
 }

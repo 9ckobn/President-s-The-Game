@@ -8,8 +8,6 @@ namespace Cards
     [RequireComponent(typeof(CardPresidentView))]
     public class CardPresidentModel : CardModel
     {
-        [BoxGroup("Highlight")]
-        [SerializeField] private GameObject highlight;
 
         public CardPresidentData SetCardData 
         {
@@ -31,13 +29,12 @@ namespace Cards
             throw new System.NotImplementedException();
         }
 
-        protected override void MouseDown()
+        protected override void UseCard()
         {
         }
 
-        public void ChangeHighlight(bool isActive)
+        protected override void StopUseCard()
         {
-            highlight.gameObject.SetActive(isActive);
         }
     }
 }

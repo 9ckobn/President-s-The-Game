@@ -45,6 +45,13 @@ namespace EffectSystem
             NextEffect();
         }
 
+        public void StopUseFightCard()
+        {
+            currentApply.StopApplyEffect();
+
+            currentApply.EndApplyEvent -= EndApplyEffect;
+        }
+
         public void SelectTargetBuilding(Building building)
         {
             currentApply.SelectTargetBuilding(building);
@@ -52,7 +59,7 @@ namespace EffectSystem
 
         private void NextEffect()
         {
-            if(counterEffects >= effects.Count)
+            if (counterEffects >= effects.Count)
             {
                 EndApplyAllEffects();
             }
@@ -63,7 +70,10 @@ namespace EffectSystem
 
                 if (canApply.CheckApply(currentEffect))
                 {
-                    ApplyEffect();
+                    if (currentEffect.TimeApply == TypeTimeApply.RightNow)
+                    {
+                        ApplyEffect();
+                    }            
                 }
             }
         }
@@ -109,6 +119,12 @@ namespace EffectSystem
         private void EndApplyEffect()
         {
             currentApply.EndApplyEvent -= EndApplyEffect;
+
+            if (currentEffect.TimeApply != TypeTimeApply.RightNow || currentEffect.TimeCancel != TypeTimeApply.RightNow)
+            {
+                CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
+                characterData.AddTemporaryEffect(currentEffect);
+            }
 
             NextEffect();
         }

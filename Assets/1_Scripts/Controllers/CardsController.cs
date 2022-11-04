@@ -19,7 +19,9 @@ namespace Gameplay
         private List<CardFightModel> playerFightCards = new List<CardFightModel>();
         private List<CardFightModel> enemyFightCards = new List<CardFightModel>();
 
-        private CardFightModel selectedFightCard;
+        private CardFightModel selectedFightCard, useFightCard;
+
+        public bool CanSelectedCard { get => useFightCard == null; }
 
         public override void OnStart()
         {
@@ -117,12 +119,19 @@ namespace Gameplay
             selectedFightCard = null;
         }
 
-        public void ClickFightCard(CardFightModel card)
+        public void UseFightCard(CardFightModel card)
         {
             if (card.CheckCanUseCard())
             {
+                useFightCard = card;
                 BoxController.GetController<EffectsController>().ApplyFightCardEffects(card);
             }
+        }
+
+        public void StopUseFightCard(CardFightModel card)
+        {
+            useFightCard = null;
+            BoxController.GetController<EffectsController>().StopUseFightCard();
         }
 
         public void EndUseCard(CardFightModel card)
@@ -130,6 +139,7 @@ namespace Gameplay
             card.EndUseCard();
 
             selectedFightCard = null;
+            useFightCard = null;
 
             BoxController.GetController<FightSceneController>().AddCountUseCards();
         }

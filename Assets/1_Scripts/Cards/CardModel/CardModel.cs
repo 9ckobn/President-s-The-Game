@@ -1,3 +1,5 @@
+using Core;
+using Gameplay;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -9,10 +11,14 @@ namespace Cards
         [SerializeField] private float startScele = 1f;
         [BoxGroup("Parent model")]
         [SerializeField] private GameObject parentModel;
+        [BoxGroup("Highlight")]
+        [SerializeField] private GameObject highlight;
 
         protected GameObject model;
-        private bool pointerEnter = false, isSelected;
+        private bool isSelected = false, isUse;
         protected bool isCanInteraction = true;
+
+        protected CardsController cardController;
 
         public GameObject SetMode
         {
@@ -25,13 +31,16 @@ namespace Cards
             }
         }
 
-        protected override void AfterAwake() { }
+        protected override void AfterAwake()
+        {
+            cardController = BoxController.GetController<CardsController>();
+        }
 
         private void OnMouseEnter()
         {
-            if (!pointerEnter && isCanInteraction)
+            if (!isSelected && isCanInteraction && cardController.CanSelectedCard)
             {
-                pointerEnter = true;
+                isSelected = true;
 
                 MouseEnter();
             }
@@ -39,9 +48,9 @@ namespace Cards
 
         private void OnMouseExit()
         {
-            if (pointerEnter && !isSelected && isCanInteraction)
+            if (isSelected && !isUse)
             {
-                pointerEnter = false;
+                isSelected = false;
 
                 MouseExit();
             }
@@ -49,22 +58,39 @@ namespace Cards
 
         private void OnMouseDown()
         {
-            if (isCanInteraction)
+            if (isSelected && isCanInteraction)
             {
-                isSelected = true;
+                if (isUse)
+                {
+                    isUse = false;
+                    ChangeHighlight(false);
 
-                MouseDown();
+                    StopUseCard();
+                }
+                else
+                {
+                    isUse = true;
+                    ChangeHighlight(true);
+
+                    UseCard();
+                }
             }
         }
 
         private void OnDisable()
         {
-            pointerEnter = false;
             isSelected = false;
+            isUse = false;
+        }
+
+        public void ChangeHighlight(bool isActive)
+        {
+            highlight.gameObject.SetActive(isActive);
         }
 
         protected abstract void MouseEnter();
         protected abstract void MouseExit();
-        protected abstract void MouseDown();
+        protected abstract void UseCard();
+        protected abstract void StopUseCard();
     }
 }

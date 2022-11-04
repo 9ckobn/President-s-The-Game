@@ -31,7 +31,7 @@ namespace EffectSystem
             characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
 
             text += $"<color=green>добавляем : {effect.TypeWinAttribute} {effect.WinProcent}</color>\n";
-            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
+            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
         }
 
         protected override void LoseRandom()
@@ -40,7 +40,12 @@ namespace EffectSystem
             characterData.ShowDamage(effect.TypeLoseAttribute);
 
             text += $"<color=red>отнимаем : {effect.TypeLoseAttribute} {effect.LoseProcent}</color>\n";
-            UIManager.Instance.GetWindow<RandomWindow>().ShowText(text);
+            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
+        }
+
+        public override void StopApplyEffect()
+        {
+            BoxController.GetController<LogController>().LogError("Not have logic stop apply effect");
         }
     }
 }

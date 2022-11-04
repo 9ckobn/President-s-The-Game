@@ -24,4 +24,4 @@ MonoBehaviour:
   TypeAttributeCancelCondition: 03000000
   CountTimes: 1
   TypeDefends: 
-  ValueProtect: 0
+  ValueProtect: 100

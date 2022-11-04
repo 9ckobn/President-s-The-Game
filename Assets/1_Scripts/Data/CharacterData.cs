@@ -101,7 +101,7 @@ namespace Data
 
             foreach (var effect in temporaryEffect)
             {
-                if(effect is DefendEffect || effect is RandomDefendEffect)
+                if(effect is DefendEffect)
                 {
                     defendEffects.Add(effect);
                 }

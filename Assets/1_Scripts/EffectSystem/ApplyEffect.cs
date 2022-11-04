@@ -22,7 +22,8 @@ namespace EffectSystem
             Apply(effect);
         }
 
-        protected abstract void Apply(Effect currentEffect);
+        public abstract void StopApplyEffect();
+        protected abstract void Apply(Effect currentEffect);        
 
         protected void EndApply()
         {

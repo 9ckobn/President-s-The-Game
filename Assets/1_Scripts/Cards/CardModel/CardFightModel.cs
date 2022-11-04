@@ -59,9 +59,14 @@ namespace Cards
             transform.position = new Vector3(position.x, position.y - POS_Z, position.z - POS_Z);
         }
 
-        protected override void MouseDown()
+        protected override void UseCard()
         {
-            BoxController.GetController<CardsController>().ClickFightCard(this);
+            BoxController.GetController<CardsController>().UseFightCard(this);
+        }
+
+        protected override void StopUseCard()
+        {
+            BoxController.GetController<CardsController>().StopUseFightCard(this);
         }
 
         #endregion
@@ -73,6 +78,7 @@ namespace Cards
             MouseExit();
 
             getFightData.UpdateReloading();
+            ChangeHighlight(false);
 
             if (!CheckCanUseCard())
             {
@@ -85,7 +91,17 @@ namespace Cards
             return isCanInteraction && getFightData.CurrentReloading == 0;
         }
 
-        public void BlockCard(bool needRotate = false)
+        public void DecreaseReloading()
+        {
+            getFightData.DecreaseReloading();
+
+            if(getFightData.CurrentReloading == 0)
+            {
+                UnlockCard();
+            }
+        }
+
+        private void BlockCard(bool needRotate = false)
         {
             isCanInteraction = false;
 
@@ -96,22 +112,12 @@ namespace Cards
             }
         }
 
-        public void UnlockCard()
+        private void UnlockCard()
         {
             isCanInteraction = true;
 
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
             tween.Play();
-        }
-
-        public void DecreaseReloading()
-        {
-            getFightData.DecreaseReloading();
-
-            if(getFightData.CurrentReloading == 0)
-            {
-                UnlockCard();
-            }
         }
 
         #endregion
