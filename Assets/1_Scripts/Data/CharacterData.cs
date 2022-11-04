@@ -148,5 +148,13 @@ namespace Data
         }
 
         #endregion
+
+        public void EndRound()
+        {
+            if (temporaryEffect.Count > 0)
+            {
+                temporaryEffect = BoxController.GetController<EffectsController>().CheckEffectsAfterEndRound(temporaryEffect);
+            }
+        }
     }
 }

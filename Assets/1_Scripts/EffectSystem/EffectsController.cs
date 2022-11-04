@@ -155,5 +155,28 @@ namespace EffectSystem
         }
 
         #endregion
+
+        public List<Effect> CheckEffectsAfterEndRound(List<Effect> effects)
+        {
+            foreach (var effect in effects)
+            {
+                if(effect.TimeCancel == TypeTimeApply.AfterTime)
+                {
+                    effect.DecreaseCurrentTimeDuration();
+                }
+            }
+
+            List<Effect> activeEffects = new List<Effect>();
+
+            foreach (var effect in effects)
+            {
+                if(effect.CurrentTimeDuration > 0)
+                {
+                    activeEffects.Add(effect);
+                }
+            }
+
+            return activeEffects;
+        }
     }
 }

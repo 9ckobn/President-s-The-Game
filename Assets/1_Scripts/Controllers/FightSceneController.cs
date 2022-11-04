@@ -35,6 +35,9 @@ namespace Gameplay
 
         private void ChangeCurrentPlayer()
         {
+            BoxController.GetController<CharactersDataController>().GetPlayerData.EndRound();
+            BoxController.GetController<CharactersDataController>().GetEnemyData.EndRound();
+
             if (isPlayerNow)
             {
                 currentCharacter = BoxController.GetController<CharactersDataController>().GetEnemyData;
