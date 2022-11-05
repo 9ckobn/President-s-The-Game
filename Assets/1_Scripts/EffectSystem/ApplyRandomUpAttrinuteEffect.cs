@@ -27,7 +27,6 @@ namespace EffectSystem
             else
             {
                 characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
-                characterData.ShowDamage(effect.TypeLoseAttribute);
             }
 
             EndApply();

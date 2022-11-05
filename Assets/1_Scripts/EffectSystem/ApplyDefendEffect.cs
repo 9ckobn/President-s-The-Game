@@ -17,8 +17,7 @@ namespace EffectSystem
 
             foreach (var typeDefend in effect.TypeDefends)
             {
-                characterData.ShowGetDefend(typeDefend);
-                characterData.GetAttribute(typeDefend).SetDefend(false, effect.ValueDefend);
+                characterData.AddDefend(typeDefend, false, effect.ValueDefend);
             }
 
             EndApply();

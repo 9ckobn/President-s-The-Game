@@ -55,7 +55,7 @@ namespace SceneObjects
 
         private void ShowRandomDefend(int value)
         {
-            if (value < 100)
+            if (value > 0)
             {
                 textMeshPro.text = value.ToString();
                 textMeshPro.gameObject.SetActive(true);
@@ -70,7 +70,7 @@ namespace SceneObjects
         private IEnumerator CoLoseDefend()
         {
             brokenModel.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.9f);
             brokenModel.gameObject.SetActive(false);
         }
 

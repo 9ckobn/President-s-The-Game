@@ -17,10 +17,9 @@ namespace EffectSystem
 
             foreach (var typeDefend in effect.TypeDefends)
             {
-                int procentRandom = characterData.GetAttribute(effect.RandomAttribute).Value;
+                int procentRandom = characterData.GetValueAttribute(effect.RandomAttribute);
 
-                characterData.GetAttribute(typeDefend).SetDefend(true, effect.ValueDefend, procentRandom);
-                characterData.ShowGetDefend(typeDefend, procentRandom);
+                characterData.AddDefend(typeDefend, true, effect.ValueDefend, procentRandom);
             }
 
             EndApply();

@@ -101,9 +101,9 @@ namespace Buildings
             effectDefend.ShowGetDefend(randomDefend);
         }
 
-        public void ShowDefendWithRandom(int value)
+        public void ShowDefend(int randomDefend)
         {
-            effectDefend.ShowDefend(value);
+            effectDefend.ShowDefend(randomDefend);
         }
 
         public void ShowLoseDefend()

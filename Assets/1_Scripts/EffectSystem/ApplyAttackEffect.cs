@@ -71,18 +71,15 @@ namespace EffectSystem
 
             // Building have random defend. Count random
 
-            AttributeData attribute = defendData.GetAttribute(building.GetTypeBuilding);
-
-            if (attribute.IsHaveDefend)
+            if (defendData.AttributeHaveDefend(building.GetTypeBuilding))
             {
-                if (attribute.IsRandomDefend)
+                if (defendData.AttributeHaveRandomDefend(building.GetTypeBuilding))
                 {
-
+                    
                 }
                 else
                 {
-                    defendData.ShowLoseDefend(building.GetTypeBuilding);
-                    attribute.LoseDefend();
+                    defendData.LoseDefend(building.GetTypeBuilding);
 
                     EndApply();
                 }
@@ -166,8 +163,7 @@ namespace EffectSystem
 
             foreach (var targetAttribute in targetAttributes)
             {
-                defendData.DownAttribute(targetAttribute, damage);
-                defendData.ShowDamage(targetAttribute);
+                defendData.DownAttribute(targetAttribute, damage, true);
             }
 
             EndApply();

@@ -41,7 +41,7 @@ namespace Data
 
         #region ATTRIBUTES
 
-        public AttributeData GetAttribute(TypeAttribute type)
+        private AttributeData GetAttribute(TypeAttribute type)
         {
             foreach (var attribute in attributes)
             {
@@ -60,6 +60,16 @@ namespace Data
             return GetAttribute(type).Value;
         }
 
+        public bool AttributeHaveDefend(TypeAttribute type)
+        {
+            return GetAttribute(type).IsHaveDefend;
+        }
+
+        public bool AttributeHaveRandomDefend(TypeAttribute type)
+        {
+            return GetAttribute(type).IsRandomDefend;
+        }
+
         public void UpAttribute(TypeAttribute type, int value)
         {
             GetAttribute(type).AddValue(value);
@@ -68,12 +78,31 @@ namespace Data
             RedrawData();
         }
 
-        public void DownAttribute(TypeAttribute type, int value)
+        public void DownAttribute(TypeAttribute type, int value, bool showDamage = false)
         {
             GetAttribute(type).DecreaseValue(value);
 
+            if(showDamage && CheckTypeBuilding(type))
+            {
+                ShowDamage(type);
+            }
+
             CountMorality();
             RedrawData();
+        }
+
+        public void AddDefend(TypeAttribute type, bool randomDefend, int valueDefend, int valueRandomDefend = 0)
+        {
+            GetAttribute(type).SetDefend(randomDefend, valueDefend, valueRandomDefend);
+
+            ShowGetDefend(type, valueRandomDefend);
+        }
+
+        public void LoseDefend(TypeAttribute type)
+        {
+            GetAttribute(type).LoseDefend();
+
+            ShowLoseDefend(type);
         }
 
         private void CountMorality()
@@ -134,27 +163,40 @@ namespace Data
 
         #region VISUAL_EFFECTS
 
-        public void ShowDamage(TypeAttribute typeBuilding)
+        private bool CheckTypeBuilding(TypeAttribute type)
+        {
+            if (type == TypeAttribute.Economic||
+                type == TypeAttribute.Food ||
+                type == TypeAttribute.Medicine ||
+                type == TypeAttribute.RawMaterials)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void ShowDamage(TypeAttribute typeBuilding)
         {
             GetBuilding(typeBuilding).ShowGetDamage();
         }
 
-        public void ShowHealth(TypeAttribute typeBuilding)
+        private void ShowHealth(TypeAttribute typeBuilding)
         {
             GetBuilding(typeBuilding).ShowGetHealth();
         }
 
-        public void ShowGetDefend(TypeAttribute typeBuilding, int randomDefend = 0)
+        private void ShowGetDefend(TypeAttribute typeBuilding, int randomDefend = 0)
         {
             GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
         }
 
-        public void ShowDefend(TypeAttribute typeBuilding, int randomDefend = 0)
+        private void ShowDefend(TypeAttribute typeBuilding, int randomDefend = 0)
         {
             GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
         }
 
-        public void ShowLoseDefend(TypeAttribute typeBuilding)
+        private void ShowLoseDefend(TypeAttribute typeBuilding)
         {
             GetBuilding(typeBuilding).ShowLoseDefend();
         }
