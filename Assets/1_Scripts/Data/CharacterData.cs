@@ -153,6 +153,17 @@ namespace Data
             }
         }
 
+        public void ShowLoseDefend(TypeAttribute typeBuilding)
+        {
+            foreach (var building in myBuildings)
+            {
+                if (building.GetTypeBuilding == typeBuilding)
+                {
+                    building.ShowLoseDefend();
+                }
+            }
+        }
+
         #endregion
 
         public void EndRound()

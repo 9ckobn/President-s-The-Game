@@ -14,7 +14,6 @@ namespace EffectSystem
         private AttackEffect effect;
         private CharacterData attackData, defendData;
         private List<Building> targetBuildings;
-        //private Dictionary<TypeAttribute, RandomDefendEffect> randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
 
         protected override void Apply(Effect currentEffect)
         {
@@ -76,13 +75,23 @@ namespace EffectSystem
 
             if (attribute.IsHaveDefend)
             {
+                if (attribute.IsRandomDefend)
+                {
 
+                }
+                else
+                {
+                    defendData.ShowLoseDefend(building.GetTypeBuilding);
+                    attribute.LoseDefend();
+
+                    EndApply();
+                }
             }
             else
             {
                 targetAttributes.Add(building.GetTypeBuilding);
 
-                Apply();
+                ApplyDamage();
             }
 
             //if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
@@ -114,14 +123,11 @@ namespace EffectSystem
                 targetAttributes.Add(type);
             }
 
-            Apply();
+            ApplyDamage();
         }
 
         private void CharacterSelectTarget()
         {
-
-            //randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
-
             if (isPlayer)
             {
                 targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
@@ -130,53 +136,6 @@ namespace EffectSystem
             {
                 targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
             }
-
-            //targetBuildings = new List<Building>();
-            //foreach (var building in characterDefendBuildings)
-            //{
-            //    targetBuildings.Add(building);
-            //}
-
-            // Check effects defend buildings
-
-            //List<Effect> defendEffects = defendData.GetDefendEffects();
-
-            //if (defendEffects.Count > 0)
-            //{
-            //    foreach (var effect in defendEffects)
-            //    {
-            //        foreach (var characterBuilding in characterDefendBuildings)
-            //        {
-            //            foreach (var typeDefend in (effect as DefendEffect).TypeDefends)
-            //            {
-            //                if (characterBuilding.GetTypeBuilding == typeDefend)
-            //                {
-            //                    if (effect is RandomDefendEffect)
-            //                    {
-            //                        RandomDefendEffect randomEffect = effect as RandomDefendEffect;
-
-            //                        randomDefendBuilbinds.Add(characterBuilding.GetTypeBuilding, randomEffect);
-            //                        characterBuilding.ShowDefend(defendData.GetValueAttribute(randomEffect.RandomAttribute));
-            //                    }
-            //                    else
-            //                    {
-            //                        DefendEffect defendEffect = effect as DefendEffect;
-
-            //                        if (defendEffect.ValueDefend == 100)
-            //                        {
-            //                            characterBuilding.ShowDefend();
-            //                            targetBuildings.Remove(characterBuilding);
-            //                        }
-            //                        else
-            //                        {
-            //                            BoxController.GetController<LogController>().LogError($"Not logic defend < 100% !!!");
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
 
             // Show buildings which can attack
 
@@ -196,7 +155,7 @@ namespace EffectSystem
             }
         }
 
-        private void Apply()
+        private void ApplyDamage()
         {
             int damage = effect.BaseValue;               
 

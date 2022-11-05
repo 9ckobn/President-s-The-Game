@@ -67,5 +67,13 @@ namespace Data
             ValueDefend = valueDefend;
             ValueRandomDefend = valueRandomDefend;
         }
+
+        public void LoseDefend()
+        {
+            IsHaveDefend = false;
+            IsRandomDefend = false;
+            ValueDefend = 0;
+            ValueRandomDefend = 0;
+        }
     }
 }

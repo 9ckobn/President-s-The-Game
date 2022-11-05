@@ -107,6 +107,11 @@ namespace Buildings
             effectDefend.ShowDefend(value);
         }
 
+        public void ShowLoseDefend()
+        {
+            effectDefend.LoseDefend();
+        }
+
         private IEnumerator CoShowEffect(GameObject effect)
         {
             effect.SetActive(true);

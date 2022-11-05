@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,13 +8,7 @@ namespace SceneObjects
     public class VisualEffectDefend : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI textMeshPro;
-
-        private GameObject model;
-
-        private void Awake()
-        {
-            model = gameObject.transform.GetChild(0).gameObject;
-        }
+        [SerializeField] private GameObject model, brokenModel;
 
         public void ShowGetDefend()
         {
@@ -54,6 +49,18 @@ namespace SceneObjects
                 textMeshPro.text = value.ToString();
                 textMeshPro.gameObject.SetActive(true);
             }
+        }
+
+        public void LoseDefend()
+        {
+            StartCoroutine(CoLoseDefend());
+        }
+
+        private IEnumerator CoLoseDefend()
+        {
+            brokenModel.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            brokenModel.gameObject.SetActive(false);
         }
 
         public void HideDefend()
