@@ -4,6 +4,7 @@ namespace EffectSystem
 {
     public class Effect
     {
+        public int Id { get; private set; }
         public TypeTargetEffect TypeTarget { get; private set; } // Игрок на которого действует эффект
         public TypeSelectTarget TypeSelectTarget { get; private set; } // Кто выбирает цель эффекта
 
@@ -26,6 +27,7 @@ namespace EffectSystem
 
         public Effect(SCRO_Effect data)
         {
+            Id = data.Id;
             TypeTarget = data.TypeTarget;
             TypeSelectTarget = data.TypeSelectTarget;
 

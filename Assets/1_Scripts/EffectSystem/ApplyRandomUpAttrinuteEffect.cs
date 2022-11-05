@@ -12,35 +12,29 @@ namespace EffectSystem
         {
             characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
-            text = "";
-            effect = currentEffect as RandomUpAttributeEffect;
+            //text = "";
+            //effect = currentEffect as RandomUpAttributeEffect;
 
-            maxValue = MAX_VALUE;
-            chanceValue = effect.Value;
+            //maxValue = MAX_VALUE;
+            //chanceValue = effect.Value;
 
-            if (effect.IsNeedAttribute)
-            {
-                chanceValue += characterData.GetValueAttribute(effect.TypeAttribute);
-            }
+            //if (effect.IsNeedAttribute)
+            //{
+            //    chanceValue += characterData.GetValueAttribute(effect.TypeAttribute);
+            //}
 
-            CountRandom();
-        }
+            //CountRandom();
 
-        protected override void WinRandom()
-        {
-            characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
+            //if (lucky)
+            //{
+            //    characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
 
-            text += $"<color=green>добавляем : {effect.TypeWinAttribute} {effect.WinProcent}</color>\n";
-            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
-        }
-
-        protected override void LoseRandom()
-        {
-            characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
-            characterData.ShowDamage(effect.TypeLoseAttribute);
-
-            text += $"<color=red>отнимаем : {effect.TypeLoseAttribute} {effect.LoseProcent}</color>\n";
-            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
+            //}
+            //else
+            //{
+            //    characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
+            //    characterData.ShowDamage(effect.TypeLoseAttribute);
+            //}
         }
 
         public override void StopApplyEffect()

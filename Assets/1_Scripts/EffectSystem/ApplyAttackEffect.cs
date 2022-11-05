@@ -12,14 +12,16 @@ namespace EffectSystem
     public class ApplyAttackEffect : ApplyEffect
     {
         private AttackEffect effect;
-
-        private List<Building> characterDefendBuildings, targetBuildings;
-        private Dictionary<TypeAttribute, RandomDefendEffect> randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
+        private CharacterData attackData, defendData;
+        private List<Building> targetBuildings;
+        //private Dictionary<TypeAttribute, RandomDefendEffect> randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
 
         protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as AttackEffect;
             targetAttributes.Clear();
+
+            SetAttackdefendData();
 
             if (effect.TypeSelectTarget == TypeSelectTarget.Game)
             {
@@ -31,131 +33,8 @@ namespace EffectSystem
             }
         }
 
-        public override void SelectTargetBuilding(Building building)
+        private void SetAttackdefendData()
         {
-            DisableStateTarget();
-
-            // Building have random defend. Count random
-
-            if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
-            {
-                // Random true
-                if (BoxController.GetController<EffectsController>().CherkRandomDefendEffect(randomDefendBuilbinds[building.GetTypeBuilding]))
-                {
-                    LoseAttack();
-                }
-                else // Random false
-                {
-                    targetAttributes.Add(building.GetTypeBuilding);
-
-                    Apply();
-                }
-            }
-            else // Attack building
-            {
-                targetAttributes.Add(building.GetTypeBuilding);
-
-                Apply();
-            }
-        }
-
-        private void GameSelectTarget()
-        {
-            foreach (var type in effect.TypeTargetObject)
-            {
-                targetAttributes.Add(type);
-            }
-
-            Apply();
-        }
-
-        private void CharacterSelectTarget()
-        {
-            CharacterData defendData;
-
-            randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
-
-            if (isPlayer)
-            {
-                characterDefendBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
-                defendData = BoxController.GetController<CharactersDataController>().GetEnemyData;
-            }
-            else
-            {
-                characterDefendBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
-                defendData = BoxController.GetController<CharactersDataController>().GetPlayerData;
-            }
-
-            targetBuildings = new List<Building>();
-            foreach (var building in characterDefendBuildings)
-            {
-                targetBuildings.Add(building);
-            }
-
-            // Check effects defend buildings
-
-            List<Effect> defendEffects = defendData.GetDefendEffects();
-
-            if (defendEffects.Count > 0)
-            {
-                foreach (var effect in defendEffects)
-                {
-                    foreach (var characterBuilding in characterDefendBuildings)
-                    {
-                        foreach (var typeDefend in (effect as DefendEffect).TypeDefends)
-                        {
-                            if (characterBuilding.GetTypeBuilding == typeDefend)
-                            {
-                                if (effect is RandomDefendEffect)
-                                {
-                                    RandomDefendEffect randomEffect = effect as RandomDefendEffect;
-
-                                    randomDefendBuilbinds.Add(characterBuilding.GetTypeBuilding, randomEffect);
-                                    characterBuilding.ShowDefend(defendData.GetValueAttribute(randomEffect.RandomAttribute));
-                                }
-                                else
-                                {
-                                    DefendEffect defendEffect = effect as DefendEffect;
-
-                                    if (defendEffect.ValueDefend == 100)
-                                    {
-                                        characterBuilding.ShowDefend();
-                                        targetBuildings.Remove(characterBuilding);
-                                    }
-                                    else
-                                    {
-                                        BoxController.GetController<LogController>().LogError($"Not logic defend < 100% !!!");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Show buildings which can attack
-
-            if (targetBuildings.Count > 0)
-            {
-                foreach (var building in targetBuildings)
-                {
-                    if (building != null)
-                    {
-                        building.EnableStateTarget();
-                    }
-                }
-            }
-            else
-            {
-                UIManager.Instance.GetWindow<InfoWindow>().ShowText("Все здания под защитой. Не получится атаковать.");
-            }
-        }
-
-        private void Apply()
-        {
-            int damage = effect.BaseValue;
-            CharacterData attackData, defendData = null;
-
             if (isPlayer && effect.TypeTarget == TypeTargetEffect.Enemy)
             {
                 defendData = BoxController.GetController<CharactersDataController>().GetEnemyData;
@@ -185,6 +64,141 @@ namespace EffectSystem
             {
                 attackData = BoxController.GetController<CharactersDataController>().GetEnemyData;
             }
+        }
+
+        public override void SelectTargetBuilding(Building building)
+        {
+            DisableStateTarget();
+
+            // Building have random defend. Count random
+
+            AttributeData attribute = defendData.GetAttribute(building.GetTypeBuilding);
+
+            if (attribute.IsHaveDefend)
+            {
+
+            }
+            else
+            {
+                targetAttributes.Add(building.GetTypeBuilding);
+
+                Apply();
+            }
+
+            //if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
+            //{
+            //    // Random true
+            //    if (BoxController.GetController<EffectsController>().CherkRandomDefendEffect(randomDefendBuilbinds[building.GetTypeBuilding]))
+            //    {
+            //        LoseAttack();
+            //    }
+            //    else // Random false
+            //    {
+            //        targetAttributes.Add(building.GetTypeBuilding);
+
+            //        Apply();
+            //    }
+            //}
+            //else // Attack building
+            //{
+            //    targetAttributes.Add(building.GetTypeBuilding);
+
+            //    Apply();
+            //}
+        }
+
+        private void GameSelectTarget()
+        {
+            foreach (var type in effect.TypeTargetObject)
+            {
+                targetAttributes.Add(type);
+            }
+
+            Apply();
+        }
+
+        private void CharacterSelectTarget()
+        {
+
+            //randomDefendBuilbinds = new Dictionary<TypeAttribute, RandomDefendEffect>();
+
+            if (isPlayer)
+            {
+                targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
+            }
+            else
+            {
+                targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
+            }
+
+            //targetBuildings = new List<Building>();
+            //foreach (var building in characterDefendBuildings)
+            //{
+            //    targetBuildings.Add(building);
+            //}
+
+            // Check effects defend buildings
+
+            //List<Effect> defendEffects = defendData.GetDefendEffects();
+
+            //if (defendEffects.Count > 0)
+            //{
+            //    foreach (var effect in defendEffects)
+            //    {
+            //        foreach (var characterBuilding in characterDefendBuildings)
+            //        {
+            //            foreach (var typeDefend in (effect as DefendEffect).TypeDefends)
+            //            {
+            //                if (characterBuilding.GetTypeBuilding == typeDefend)
+            //                {
+            //                    if (effect is RandomDefendEffect)
+            //                    {
+            //                        RandomDefendEffect randomEffect = effect as RandomDefendEffect;
+
+            //                        randomDefendBuilbinds.Add(characterBuilding.GetTypeBuilding, randomEffect);
+            //                        characterBuilding.ShowDefend(defendData.GetValueAttribute(randomEffect.RandomAttribute));
+            //                    }
+            //                    else
+            //                    {
+            //                        DefendEffect defendEffect = effect as DefendEffect;
+
+            //                        if (defendEffect.ValueDefend == 100)
+            //                        {
+            //                            characterBuilding.ShowDefend();
+            //                            targetBuildings.Remove(characterBuilding);
+            //                        }
+            //                        else
+            //                        {
+            //                            BoxController.GetController<LogController>().LogError($"Not logic defend < 100% !!!");
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+            // Show buildings which can attack
+
+            if (targetBuildings.Count > 0)
+            {
+                foreach (var building in targetBuildings)
+                {
+                    if (building != null)
+                    {
+                        building.EnableStateTarget();
+                    }
+                }
+            }
+            else
+            {
+                UIManager.Instance.GetWindow<InfoWindow>().ShowText("Все здания под защитой. Не получится атаковать.");
+            }
+        }
+
+        private void Apply()
+        {
+            int damage = effect.BaseValue;               
 
             if (effect.IsNeedAttribute)
             {
@@ -209,9 +223,9 @@ namespace EffectSystem
 
         private void DisableStateTarget()
         {
-            if (characterDefendBuildings.Count > 0)
+            if (targetBuildings.Count > 0)
             {
-                foreach (var buildingAnim in characterDefendBuildings)
+                foreach (var buildingAnim in targetBuildings)
                 {
                     buildingAnim.DisableStateTarget();
                 }

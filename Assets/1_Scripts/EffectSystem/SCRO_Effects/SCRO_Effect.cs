@@ -5,6 +5,9 @@ namespace EffectSystem.SCRO
 {
     public class SCRO_Effect : ScriptableObject
     {
+        [BoxGroup("Id")]
+        public int Id;
+
         [BoxGroup("Target")]
         [Label("Игрок на которого действует эффект")]
         public TypeTargetEffect TypeTarget;

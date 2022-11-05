@@ -25,7 +25,7 @@ namespace Data
             ValueRandomDefend = 0;
         }
 
-        public void AddEffect(int id)
+        public void AddIdEffect(int id)
         {
             if (idMyEffect.Contains(id))
             {
@@ -60,7 +60,7 @@ namespace Data
             Value -= value;
         }
 
-        public void SetDefend(bool randomDefend, int valueDefend, int valueRandomDefend)
+        public void SetDefend(bool randomDefend, int valueDefend, int valueRandomDefend = 0)
         {
             IsHaveDefend = true;
             IsRandomDefend = randomDefend;

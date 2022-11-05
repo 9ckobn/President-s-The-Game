@@ -15,29 +15,11 @@ namespace EffectSystem
         {
             characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
-            text = "";
             effect = currentEffect as RandomDefendEffect;
 
-            maxValue = MAX_VALUE;
-            chanceValue = characterData.GetValueAttribute(effect.RandomAttribute);
+            //maxValue = MAX_VALUE;
+            //chanceValue = characterData.GetValueAttribute(effect.RandomAttribute);
 
-            CountRandom();
-        }
-
-        protected override void WinRandom()
-        {
-            lucky = true;
-
-            text += $"<color=green>Рандом сработал</color>\n";
-            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
-        }
-
-        protected override void LoseRandom()
-        {
-            lucky = false;
-
-            text += $"<color=red>Рандом не сработал</color>\n";
-            UIManager.Instance.GetWindow<InfoWindow>().ShowText(text);
         }
 
         public override void StopApplyEffect()

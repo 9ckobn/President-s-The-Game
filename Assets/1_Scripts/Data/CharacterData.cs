@@ -27,7 +27,7 @@ namespace Data
 
         #region ATTRIBUTES
 
-        private AttributeData GetAttribute(TypeAttribute type)
+        public AttributeData GetAttribute(TypeAttribute type)
         {
             foreach (var attribute in attributes)
             {

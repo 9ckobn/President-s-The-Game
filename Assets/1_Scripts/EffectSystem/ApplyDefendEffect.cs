@@ -13,23 +13,19 @@ namespace EffectSystem
         {
             effect = currentEffect as DefendEffect;
 
-            AddEffect();
-        }
-
-        public override void SelectTargetBuilding(Building building)
-        {
-        }
-
-        private void AddEffect()
-        {
             CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
             foreach (var typeDefend in effect.TypeDefends)
             {
                 characterData.ShowDefend(typeDefend);
+                characterData.GetAttribute(typeDefend).SetDefend(false, effect.ValueDefend);
             }
 
             EndApply();
+        }
+
+        public override void SelectTargetBuilding(Building building)
+        {
         }
 
         public override void StopApplyEffect()
