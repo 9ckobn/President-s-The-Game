@@ -1,6 +1,5 @@
 using Core;
 using Gameplay;
-using UI;
 
 namespace EffectSystem
 {
@@ -13,13 +12,18 @@ namespace EffectSystem
 
         protected override void Apply(Effect currentEffect)
         {
+            effect = currentEffect as RandomDefendEffect;
             characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
-            effect = currentEffect as RandomDefendEffect;
+            foreach (var typeDefend in effect.TypeDefends)
+            {
+                int procentRandom = characterData.GetAttribute(effect.RandomAttribute).Value;
 
-            //maxValue = MAX_VALUE;
-            //chanceValue = characterData.GetValueAttribute(effect.RandomAttribute);
+                characterData.GetAttribute(typeDefend).SetDefend(true, effect.ValueDefend, procentRandom);
+                characterData.ShowGetDefend(typeDefend, procentRandom);
+            }
 
+            EndApply();
         }
 
         public override void StopApplyEffect()

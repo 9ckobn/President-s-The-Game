@@ -96,13 +96,12 @@ namespace Buildings
             StartCoroutine(CoShowEffect(effectHealh));
         }
 
-        public void ShowGetDefend()
+        public void ShowGetDefend(int randomDefend)
         {
-            if (effectDefend != null)
-                effectDefend.ShowGetDefend();
+            effectDefend.ShowGetDefend(randomDefend);
         }
 
-        public void ShowDefend(int value = 100)
+        public void ShowDefendWithRandom(int value)
         {
             effectDefend.ShowDefend(value);
         }

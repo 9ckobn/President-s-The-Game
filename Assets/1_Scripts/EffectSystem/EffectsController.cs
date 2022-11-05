@@ -73,7 +73,7 @@ namespace EffectSystem
                     if (currentEffect.TimeApply == TypeTimeApply.RightNow)
                     {
                         ApplyEffect();
-                    }            
+                    }
                 }
             }
         }
@@ -92,13 +92,13 @@ namespace EffectSystem
             else if (currentEffect is OtherEffect)
             {
             }
-            else if (currentEffect is DefendEffect)
-            {
-                currentApply = defendApply;
-            }
             else if (currentEffect is RandomDefendEffect)
             {
                 currentApply = randomDefendApply;
+            }
+            else if (currentEffect is DefendEffect)
+            {
+                currentApply = defendApply;
             }
             else if (currentEffect is RandomUpAttributeEffect)
             {
@@ -160,7 +160,7 @@ namespace EffectSystem
         {
             foreach (var effect in effects)
             {
-                if(effect.TimeCancel == TypeTimeApply.AfterTime)
+                if (effect.TimeCancel == TypeTimeApply.AfterTime)
                 {
                     effect.DecreaseCurrentTimeDuration();
                 }
@@ -170,7 +170,7 @@ namespace EffectSystem
 
             foreach (var effect in effects)
             {
-                if(effect.CurrentTimeDuration > 0)
+                if (effect.CurrentTimeDuration > 0)
                 {
                     activeEffects.Add(effect);
                 }

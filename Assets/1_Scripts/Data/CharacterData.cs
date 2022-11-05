@@ -25,6 +25,20 @@ namespace Data
             RedrawData();
         }
 
+        private Building GetBuilding(TypeAttribute typeBuilding)
+        {
+            foreach (var building in myBuildings)
+            {
+                if(building.GetTypeBuilding == typeBuilding)
+                {
+                    return building;
+                }
+            }
+
+            BoxController.GetController<LogController>().LogError($"Not have building {typeBuilding}!");
+            return null;
+        }
+
         #region ATTRIBUTES
 
         public AttributeData GetAttribute(TypeAttribute type)
@@ -122,46 +136,27 @@ namespace Data
 
         public void ShowDamage(TypeAttribute typeBuilding)
         {
-            foreach (var building in myBuildings)
-            {
-                if (building.GetTypeBuilding == typeBuilding)
-                {
-                    building.ShowGetDamage();
-                }
-            }
+            GetBuilding(typeBuilding).ShowGetDamage();
         }
 
         public void ShowHealth(TypeAttribute typeBuilding)
         {
-            foreach (var building in myBuildings)
-            {
-                if (building.GetTypeBuilding == typeBuilding)
-                {
-                    building.ShowGetHealth();
-                }
-            }
+            GetBuilding(typeBuilding).ShowGetHealth();
         }
 
-        public void ShowDefend(TypeAttribute typeBuilding)
+        public void ShowGetDefend(TypeAttribute typeBuilding, int randomDefend = 0)
         {
-            foreach (var building in myBuildings)
-            {
-                if (building.GetTypeBuilding == typeBuilding)
-                {
-                    building.ShowGetDefend();
-                }
-            }
+            GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
+        }
+
+        public void ShowDefend(TypeAttribute typeBuilding, int randomDefend = 0)
+        {
+            GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
         }
 
         public void ShowLoseDefend(TypeAttribute typeBuilding)
         {
-            foreach (var building in myBuildings)
-            {
-                if (building.GetTypeBuilding == typeBuilding)
-                {
-                    building.ShowLoseDefend();
-                }
-            }
+            GetBuilding(typeBuilding).ShowLoseDefend();
         }
 
         #endregion

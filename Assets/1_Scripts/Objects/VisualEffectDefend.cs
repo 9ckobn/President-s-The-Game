@@ -10,7 +10,7 @@ namespace SceneObjects
         [SerializeField] private TextMeshProUGUI textMeshPro;
         [SerializeField] private GameObject model, brokenModel;
 
-        public void ShowGetDefend()
+        public void ShowGetDefend(int randomDefend)
         {
             model.SetActive(true);
 
@@ -35,15 +35,26 @@ namespace SceneObjects
             });
             sequence.AppendInterval(0.5f);
 
-            sequence.OnComplete(() => { model.SetActive(false); });
+            sequence.OnComplete(() => 
+            {
+                model.SetActive(false);
+                textMeshPro.gameObject.SetActive(false);
+            });
+
+            ShowRandomDefend(randomDefend);
         }
 
-        public void ShowDefend(int value)
+        public void ShowDefend(int randomDefend)
         {
             model.transform.localPosition = new Vector3(0, 0, 0);
             model.transform.localScale = new Vector3(100, 100, 100);
             model.SetActive(true);
 
+            ShowRandomDefend(randomDefend);
+        }
+
+        private void ShowRandomDefend(int value)
+        {
             if (value < 100)
             {
                 textMeshPro.text = value.ToString();
