@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EffectSystem
 {
-    [CreateAssetMenu(fileName = "EffectsController", menuName = "Controllers/Gameplay/EffectsController")]
+    [CreateAssetMenu(fileName = "RandomController", menuName = "Controllers/Gameplay/RandomController")]
     public class RandomController : BaseController
     {
         private const int MAX_VALUE = 100, COUNT_SHAKE = 5;
@@ -24,7 +24,7 @@ namespace EffectSystem
 
             messageText += $"<color=green>Шанс :{chanceValue}</color>\n";
             messageText += $"<color=red>против :{MAX_VALUE}</color>\n";
-            messageText += lucky ? "удача" : "Не удача" + "\n";
+            messageText += lucky ? "удача" + "\n" : "Не удача" + "\n";
 
             if (lucky)
             {

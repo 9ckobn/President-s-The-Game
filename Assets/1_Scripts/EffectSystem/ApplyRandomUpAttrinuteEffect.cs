@@ -1,6 +1,5 @@
 using Core;
 using Gameplay;
-using UI;
 
 namespace EffectSystem
 {
@@ -10,31 +9,28 @@ namespace EffectSystem
 
         protected override void Apply(Effect currentEffect)
         {
+            effect = currentEffect as RandomUpAttributeEffect;
+
             characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
 
-            //text = "";
-            //effect = currentEffect as RandomUpAttributeEffect;
+            int chanceValue = effect.Value;
 
-            //maxValue = MAX_VALUE;
-            //chanceValue = effect.Value;
+            if (effect.IsNeedAttribute)
+            {
+                chanceValue += characterData.GetValueAttribute(effect.TypeAttribute);
+            }
 
-            //if (effect.IsNeedAttribute)
-            //{
-            //    chanceValue += characterData.GetValueAttribute(effect.TypeAttribute);
-            //}
+            if (BoxController.GetController<RandomController>().CountRandom(chanceValue))
+            {
+                characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
+            }
+            else
+            {
+                characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
+                characterData.ShowDamage(effect.TypeLoseAttribute);
+            }
 
-            //CountRandom();
-
-            //if (lucky)
-            //{
-            //    characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
-
-            //}
-            //else
-            //{
-            //    characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
-            //    characterData.ShowDamage(effect.TypeLoseAttribute);
-            //}
+            EndApply();
         }
 
         public override void StopApplyEffect()
