@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6e89dab80390949bcae823ed44c7d7, type: 3}
   m_Name: DiplomaticImmunity_Random_GetProtectEffect
   m_EditorClassIdentifier: 
+  Id: 0
   TypeTarget: 0
   TypeSelectTarget: 1
   TimeApply: 0

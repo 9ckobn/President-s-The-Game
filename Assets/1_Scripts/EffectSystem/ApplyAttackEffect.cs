@@ -75,7 +75,18 @@ namespace EffectSystem
             {
                 if (defendData.AttributeHaveRandomDefend(building.GetTypeBuilding))
                 {
-                    
+                    if(BoxController.GetController<RandomController>().CountRandom(defendData.GetValueRandomDefend(building.GetTypeBuilding)))
+                    {
+                        defendData.LoseDefend(building.GetTypeBuilding);
+
+                        EndApply();
+                    }
+                    else
+                    {
+                        targetAttributes.Add(building.GetTypeBuilding);
+
+                        ApplyDamage();
+                    }
                 }
                 else
                 {
@@ -90,27 +101,6 @@ namespace EffectSystem
 
                 ApplyDamage();
             }
-
-            //if (randomDefendBuilbinds.ContainsKey(building.GetTypeBuilding))
-            //{
-            //    // Random true
-            //    if (BoxController.GetController<EffectsController>().CherkRandomDefendEffect(randomDefendBuilbinds[building.GetTypeBuilding]))
-            //    {
-            //        LoseAttack();
-            //    }
-            //    else // Random false
-            //    {
-            //        targetAttributes.Add(building.GetTypeBuilding);
-
-            //        Apply();
-            //    }
-            //}
-            //else // Attack building
-            //{
-            //    targetAttributes.Add(building.GetTypeBuilding);
-
-            //    Apply();
-            //}
         }
 
         private void GameSelectTarget()

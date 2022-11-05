@@ -60,6 +60,11 @@ namespace Data
             return GetAttribute(type).Value;
         }
 
+        public int GetValueRandomDefend(TypeAttribute type)
+        {
+            return GetAttribute(type).ValueRandomDefend;
+        }
+
         public bool AttributeHaveDefend(TypeAttribute type)
         {
             return GetAttribute(type).IsHaveDefend;

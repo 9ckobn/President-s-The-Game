@@ -12,6 +12,7 @@ namespace EffectSystem
 
         public bool CountRandom(int chanceValue)
         {
+            messageText = "";
             bool[] randomsShake = new bool[COUNT_SHAKE];
 
             for (int i = 0; i < COUNT_SHAKE; i++)
