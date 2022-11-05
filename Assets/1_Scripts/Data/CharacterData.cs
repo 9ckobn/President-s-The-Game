@@ -11,12 +11,12 @@ namespace Data
     {
         private bool isPlayer;
 
-        private Dictionary<TypeAttribute, int> attributes = new Dictionary<TypeAttribute, int>();
+        private List<AttributeData> attributes = new List<AttributeData>();
         private Building[] myBuildings;
 
         private List<Effect> temporaryEffect = new List<Effect>();
 
-        public CharacterData(Dictionary<TypeAttribute, int> attributes, Building[] buildings, bool isPlayer)
+        public CharacterData(List<AttributeData> attributes, Building[] buildings, bool isPlayer)
         {
             this.attributes = attributes;
             myBuildings = buildings;
@@ -27,22 +27,28 @@ namespace Data
 
         #region ATTRIBUTES
 
-        public int GetValueAttribute(TypeAttribute attribute)
+        private AttributeData GetAttribute(TypeAttribute type)
         {
-            if (attributes.ContainsKey(attribute))
+            foreach (var attribute in attributes)
             {
-                return attributes[attribute];
+                if (attribute.TypeAttribute == type)
+                {
+                    return attribute;
+                }
             }
-            else
-            {
-                BoxController.GetController<LogController>().LogError($"Not have attribute {attribute}");
-                return 0;
-            }
+
+            BoxController.GetController<LogController>().LogError($"Not have attribute {type}");
+            return null;
+        }
+
+        public int GetValueAttribute(TypeAttribute type)
+        {
+            return GetAttribute(type).Value;
         }
 
         public void UpAttribute(TypeAttribute type, int value)
         {
-            attributes[type] += value;
+            GetAttribute(type).AddValue(value);
 
             CountMorality();
             RedrawData();
@@ -50,7 +56,7 @@ namespace Data
 
         public void DownAttribute(TypeAttribute type, int value)
         {
-            attributes[type] -= value;
+            GetAttribute(type).DecreaseValue(value);
 
             CountMorality();
             RedrawData();
@@ -58,7 +64,7 @@ namespace Data
 
         private void CountMorality()
         {
-            if(attributes[TypeAttribute.Morality] <= 0)
+            if (GetAttribute(TypeAttribute.Morality).Value <= 0)
             {
                 BoxController.GetController<LogController>().LogError($"Character DEATH. Need logic death!");
             }
@@ -68,11 +74,11 @@ namespace Data
         {
             AttributeTextData[] data = new AttributeTextData[5];
 
-            data[0] = new AttributeTextData($"{TypeAttribute.Attack} - {attributes[TypeAttribute.Attack]}", Color.green);
-            data[1] = new AttributeTextData($"{TypeAttribute.Defend} - {attributes[TypeAttribute.Defend]}", Color.green);
-            data[2] = new AttributeTextData($"{TypeAttribute.Luck} - {attributes[TypeAttribute.Luck]}", Color.green);
-            data[3] = new AttributeTextData($"{TypeAttribute.Diplomacy} - {attributes[TypeAttribute.Diplomacy]}", Color.green);
-            data[4] = new AttributeTextData($"{TypeAttribute.Morality} - {attributes[TypeAttribute.Morality]}", Color.green);
+            data[0] = new AttributeTextData($"{TypeAttribute.Attack} - {GetAttribute(TypeAttribute.Attack).Value}", Color.green);
+            data[1] = new AttributeTextData($"{TypeAttribute.Defend} - {GetAttribute(TypeAttribute.Defend).Value}", Color.green);
+            data[2] = new AttributeTextData($"{TypeAttribute.Luck} - {GetAttribute(TypeAttribute.Luck).Value}", Color.green);
+            data[3] = new AttributeTextData($"{TypeAttribute.Diplomacy} - {GetAttribute(TypeAttribute.Diplomacy).Value}", Color.green);
+            data[4] = new AttributeTextData($"{TypeAttribute.Morality} - {GetAttribute(TypeAttribute.Morality).Value}", Color.green);
 
             if (isPlayer)
             {
@@ -101,7 +107,7 @@ namespace Data
 
             foreach (var effect in temporaryEffect)
             {
-                if(effect is DefendEffect)
+                if (effect is DefendEffect)
                 {
                     defendEffects.Add(effect);
                 }

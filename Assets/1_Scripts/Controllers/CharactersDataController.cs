@@ -25,9 +25,9 @@ namespace Gameplay
             enemyData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings, false);
         }
 
-        private Dictionary<TypeAttribute, int> CreateAttributes()
+        private List<AttributeData> CreateAttributes()
         {
-            Dictionary<TypeAttribute, int> attributes = new Dictionary<TypeAttribute, int>();
+            List<AttributeData> attributes = new List<AttributeData>();
             List<CardPresidentData> playersPresidents = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
 
             int attack = DEFAULT_VALUE;
@@ -49,15 +49,15 @@ namespace Gameplay
             int medicine = defend / 2 + diplomatic / 2;
             int morality = economic + food + rawMaterials + medicine;
 
-            attributes.Add(TypeAttribute.Attack, attack);
-            attributes.Add(TypeAttribute.Defend, defend);
-            attributes.Add(TypeAttribute.Luck, luck);
-            attributes.Add(TypeAttribute.Diplomacy, diplomatic);
-            attributes.Add(TypeAttribute.Economic, economic);
-            attributes.Add(TypeAttribute.Food, food);
-            attributes.Add(TypeAttribute.RawMaterials, rawMaterials);
-            attributes.Add(TypeAttribute.Medicine, medicine);
-            attributes.Add(TypeAttribute.Morality, morality);
+            attributes.Add(new AttributeData(TypeAttribute.Attack, attack));
+            attributes.Add(new AttributeData(TypeAttribute.Defend, defend));
+            attributes.Add(new AttributeData(TypeAttribute.Luck, luck));
+            attributes.Add(new AttributeData(TypeAttribute.Diplomacy, diplomatic));
+            attributes.Add(new AttributeData(TypeAttribute.Economic, economic));
+            attributes.Add(new AttributeData(TypeAttribute.Food, food));
+            attributes.Add(new AttributeData(TypeAttribute.RawMaterials, rawMaterials));
+            attributes.Add(new AttributeData(TypeAttribute.Medicine, medicine));
+            attributes.Add(new AttributeData(TypeAttribute.Morality, morality));
 
             return attributes;
         }
