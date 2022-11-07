@@ -23,7 +23,7 @@ namespace EffectSystem
             EndApply();
         }
 
-        public override void SelectTargetBuilding(Building building)
+        public override void SelectTargetBuilding(TypeAttribute targetAttribute)
         {
         }
 

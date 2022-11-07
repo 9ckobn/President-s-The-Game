@@ -52,9 +52,9 @@ namespace EffectSystem
             currentApply.EndApplyEvent -= EndApplyEffect;
         }
 
-        public void SelectTargetBuilding(Building building)
+        public void SelectTargetBuilding(TypeAttribute type)
         {
-            currentApply.SelectTargetBuilding(building);
+            currentApply.SelectTargetBuilding(type);
         }
 
         private void NextEffect()

@@ -7,7 +7,7 @@ namespace EffectSystem
     {
         protected CharacterData characterData;
 
-        public override void SelectTargetBuilding(Building building)
+        public override void SelectTargetBuilding(TypeAttribute targetAttribute)
         {
         }
     }

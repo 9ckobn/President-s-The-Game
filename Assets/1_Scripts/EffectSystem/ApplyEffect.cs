@@ -11,9 +11,9 @@ namespace EffectSystem
         public event AfterApply EndApplyEvent;
 
         protected bool isPlayer;
-        protected List<TypeAttribute> targetAttributes = new List<TypeAttribute>();
+        protected List<TypeAttribute> targetAttributes;
 
-        public abstract void SelectTargetBuilding(Building building);
+        public abstract void SelectTargetBuilding(TypeAttribute targetAttribute);
 
         public void StartApply(Effect effect)
         {

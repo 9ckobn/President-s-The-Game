@@ -29,7 +29,7 @@ namespace Data
         {
             foreach (var building in myBuildings)
             {
-                if(building.GetTypeBuilding == typeBuilding)
+                if (building.GetTypeBuilding == typeBuilding)
                 {
                     return building;
                 }
@@ -37,6 +37,23 @@ namespace Data
 
             BoxController.GetController<LogController>().LogError($"Not have building {typeBuilding}!");
             return null;
+        }
+
+        public void ShowTargetAttribute(TypeAttribute type)
+        {
+            GetBuilding(type).EnableStateTarget();
+            AttributeData data = GetAttribute(type);
+
+            if (data.IsHaveDefend)
+            {
+                ShowDefend(type, data.ValueRandomDefend);
+            }
+        }
+
+        public void HideTargetAttribute(TypeAttribute type)
+        {
+            GetBuilding(type).DisableStateTarget();
+            HideDefend(type);
         }
 
         #region ATTRIBUTES
@@ -87,7 +104,7 @@ namespace Data
         {
             GetAttribute(type).DecreaseValue(value);
 
-            if(showDamage && CheckTypeBuilding(type))
+            if (showDamage && CheckTypeBuilding(type))
             {
                 ShowDamage(type);
             }
@@ -96,7 +113,7 @@ namespace Data
             RedrawData();
         }
 
-        public void AddDefend(TypeAttribute type, bool randomDefend, int valueDefend, int valueRandomDefend = 0)
+        public void AddDefend(TypeAttribute type, bool randomDefend, int valueDefend, int valueRandomDefend = 100)
         {
             GetAttribute(type).SetDefend(randomDefend, valueDefend, valueRandomDefend);
 
@@ -146,6 +163,7 @@ namespace Data
         {
             // TODO: check if effect alredy add are update duration this effect
 
+            Debug.Log("Add TemporaryEffect");
             temporaryEffect.Add(effect);
         }
 
@@ -170,7 +188,7 @@ namespace Data
 
         private bool CheckTypeBuilding(TypeAttribute type)
         {
-            if (type == TypeAttribute.Economic||
+            if (type == TypeAttribute.Economic ||
                 type == TypeAttribute.Food ||
                 type == TypeAttribute.Medicine ||
                 type == TypeAttribute.RawMaterials)
@@ -191,14 +209,19 @@ namespace Data
             GetBuilding(typeBuilding).ShowGetHealth();
         }
 
-        private void ShowGetDefend(TypeAttribute typeBuilding, int randomDefend = 0)
+        private void ShowGetDefend(TypeAttribute typeBuilding, int randomDefend = 100)
         {
             GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
         }
 
-        private void ShowDefend(TypeAttribute typeBuilding, int randomDefend = 0)
+        private void ShowDefend(TypeAttribute typeBuilding, int randomDefend = 100)
         {
-            GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
+            GetBuilding(typeBuilding).ShowDefend(randomDefend);
+        }
+
+        private void HideDefend(TypeAttribute typeBuilding)
+        {
+            GetBuilding(typeBuilding).HideDefend();
         }
 
         private void ShowLoseDefend(TypeAttribute typeBuilding)

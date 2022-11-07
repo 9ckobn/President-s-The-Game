@@ -25,9 +25,14 @@ namespace EffectSystem
             EndApply();
         }
 
+        public override void SelectTargetBuilding(TypeAttribute targetAttribute)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void StopApplyEffect()
         {
-            BoxController.GetController<LogController>().LogError("Not have logic stop apply effect");
+            throw new System.NotImplementedException();
         }
     }
 }

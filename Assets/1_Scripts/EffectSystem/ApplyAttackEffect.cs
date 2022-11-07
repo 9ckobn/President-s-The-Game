@@ -1,11 +1,7 @@
-using Buildings;
 using Core;
 using Data;
 using Gameplay;
-using SceneObjects;
 using System.Collections.Generic;
-using UI;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -13,22 +9,36 @@ namespace EffectSystem
     {
         private AttackEffect effect;
         private CharacterData attackData, defendData;
-        private List<Building> targetBuildings;
+        private List<TypeAttribute> selectedAttributes;
 
         protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as AttackEffect;
-            targetAttributes.Clear();
+            targetAttributes = new List<TypeAttribute>();
+            selectedAttributes = new List<TypeAttribute>();
 
             SetAttackdefendData();
 
             if (effect.TypeSelectTarget == TypeSelectTarget.Game)
             {
-                GameSelectTarget();
+                foreach (var type in effect.TypeTargetObject)
+                {
+                    selectedAttributes.Add(type);
+                }
+
+                ApplyDamage();
             }
             else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
             {
-                CharacterSelectTarget();
+                targetAttributes.Add(TypeAttribute.Economic);
+                targetAttributes.Add(TypeAttribute.Food);
+                targetAttributes.Add(TypeAttribute.Medicine);
+                targetAttributes.Add(TypeAttribute.RawMaterials);
+
+                foreach (var target in targetAttributes)
+                {
+                    defendData.ShowTargetAttribute(target);
+                }
             }
         }
 
@@ -62,83 +72,42 @@ namespace EffectSystem
             else
             {
                 attackData = BoxController.GetController<CharactersDataController>().GetEnemyData;
-            }
+            }            
         }
 
-        public override void SelectTargetBuilding(Building building)
+        public override void SelectTargetBuilding(TypeAttribute targetAttribute)
         {
             DisableStateTarget();
 
             // Building have random defend. Count random
 
-            if (defendData.AttributeHaveDefend(building.GetTypeBuilding))
+            if (defendData.AttributeHaveDefend(targetAttribute))
             {
-                if (defendData.AttributeHaveRandomDefend(building.GetTypeBuilding))
+                if (defendData.AttributeHaveRandomDefend(targetAttribute))
                 {
-                    if(BoxController.GetController<RandomController>().CountRandom(defendData.GetValueRandomDefend(building.GetTypeBuilding)))
+                    if(BoxController.GetController<RandomController>().CountRandom(defendData.GetValueRandomDefend(targetAttribute)))
                     {
-                        defendData.LoseDefend(building.GetTypeBuilding);
-
                         EndApply();
                     }
                     else
                     {
-                        targetAttributes.Add(building.GetTypeBuilding);
+                        selectedAttributes.Add(targetAttribute);
 
                         ApplyDamage();
                     }
                 }
                 else
                 {
-                    defendData.LoseDefend(building.GetTypeBuilding);
+                    defendData.LoseDefend(targetAttribute);
 
                     EndApply();
                 }
             }
             else
             {
-                targetAttributes.Add(building.GetTypeBuilding);
+                selectedAttributes.Add(targetAttribute);
 
                 ApplyDamage();
-            }
-        }
-
-        private void GameSelectTarget()
-        {
-            foreach (var type in effect.TypeTargetObject)
-            {
-                targetAttributes.Add(type);
-            }
-
-            ApplyDamage();
-        }
-
-        private void CharacterSelectTarget()
-        {
-            if (isPlayer)
-            {
-                targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings);
-            }
-            else
-            {
-                targetBuildings = new List<Building>(ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings);
-            }
-
-            // Show buildings which can attack
-
-            if (targetBuildings.Count > 0)
-            {
-                foreach (var building in targetBuildings)
-                {
-                    if (building != null)
-                    {
-                        building.EnableStateTarget();
-                    }
-                }
-            }
-            else
-            {
-                UIManager.Instance.GetWindow<InfoWindow>().ShowText("Все здания под защитой. Не получится атаковать.");
             }
         }
 
@@ -151,7 +120,7 @@ namespace EffectSystem
                 damage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
             }
 
-            foreach (var targetAttribute in targetAttributes)
+            foreach (var targetAttribute in selectedAttributes)
             {
                 defendData.DownAttribute(targetAttribute, damage, true);
             }
@@ -168,12 +137,9 @@ namespace EffectSystem
 
         private void DisableStateTarget()
         {
-            if (targetBuildings.Count > 0)
+            foreach (var target in targetAttributes)
             {
-                foreach (var buildingAnim in targetBuildings)
-                {
-                    buildingAnim.DisableStateTarget();
-                }
+                defendData.HideTargetAttribute(target);
             }
         }
 

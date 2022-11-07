@@ -49,7 +49,7 @@ namespace Buildings
         {
             if (isTarget)
             {
-                BoxController.GetController<EffectsController>().SelectTargetBuilding(this);
+                BoxController.GetController<EffectsController>().SelectTargetBuilding(typeBuilding);
             }
         }
 
@@ -58,7 +58,6 @@ namespace Buildings
             if (!isTarget)
             {
                 isTarget = true;
-
                 Vector3 rotate = new Vector3(logo.transform.rotation.x, 360, logo.transform.rotation.z);
 
                 tween = logo.transform.DORotate(rotate, 2f, RotateMode.FastBeyond360)
@@ -83,7 +82,6 @@ namespace Buildings
             effectDefend.HideDefend();
         }
 
-
         #region VISUAL_EFFECTS
 
         public void ShowGetDamage()
@@ -104,6 +102,11 @@ namespace Buildings
         public void ShowDefend(int randomDefend)
         {
             effectDefend.ShowDefend(randomDefend);
+        }
+
+        public void HideDefend()
+        {
+            effectDefend.HideDefend();
         }
 
         public void ShowLoseDefend()

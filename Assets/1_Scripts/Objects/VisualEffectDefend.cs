@@ -57,7 +57,7 @@ namespace SceneObjects
         {
             if (value > 0)
             {
-                textMeshPro.text = value.ToString();
+                textMeshPro.text = value.ToString() + "%";
                 textMeshPro.gameObject.SetActive(true);
             }
         }
