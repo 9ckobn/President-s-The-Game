@@ -18,7 +18,7 @@ namespace Cards.Data
         public int CurrentReloading { get; private set; }
         public List<Effect> GetEffects { get => effects; }
 
-        public CardFightData(SCRO_CardFight data, Sprite sprite, SCRO_Effect[] effects) : base(data.Id.ToString(), sprite, data.name)
+        public CardFightData(SCRO_CardFight data, Sprite sprite, SCRO_Effect[] effects) : base(data.Id.ToString(), sprite, data.Name)
         {
             Description = data.Description;
             TypeCost = data.TypeCost;

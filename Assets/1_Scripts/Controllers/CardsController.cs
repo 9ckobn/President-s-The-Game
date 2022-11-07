@@ -124,7 +124,7 @@ namespace Gameplay
             if (card.CheckCanUseCard())
             {
                 useFightCard = card;
-                BoxController.GetController<EffectsController>().ApplyFightCardEffects(card);
+                BoxController.GetController<EffectsController>().ClickFightCard(card);
             }
         }
 

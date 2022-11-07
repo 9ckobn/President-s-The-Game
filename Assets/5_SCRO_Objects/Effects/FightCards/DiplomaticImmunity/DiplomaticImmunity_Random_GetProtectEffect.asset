@@ -18,9 +18,8 @@ MonoBehaviour:
   TimeApply: 0
   TimeStart: 0
   TimeCancel: 1
-  TimeDurationEffect: 3
+  TimeDurationEffect: 2
   ApplyCondition: 0
-  TypeAttributeApplyCondition: 
   CancelCondition: 0
   TypeAttributeCancelCondition: 
   CountTimes: 1

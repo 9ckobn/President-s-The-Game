@@ -9,7 +9,7 @@ namespace Cards
     public class SCRO_CardFight : ScriptableObject
     {
         [BoxGroup("Data")]
-        public string Id,Name, Description;
+        public string Id, Name, Description;
 
         [BoxGroup("Sprite")]
         public Sprite Sprite;

@@ -1,4 +1,3 @@
-using Buildings;
 using Cards;
 using Core;
 using Data;
@@ -16,6 +15,8 @@ namespace EffectSystem
         private ApplyDefendEffect defendApply;
         private ApplyRandomUpAttrinuteEffect randomUpAttributeApply;
         private ApplyRandomDefendEffect randomDefendApply;
+        private ApplyOtherEffect otherApply;
+        private CancelEffect cancelEffect;
 
         private List<Effect> effects;
         private Effect currentEffect;
@@ -23,7 +24,8 @@ namespace EffectSystem
         private CardFightModel currentCardFight;
         private int counterEffects = 0;
 
-        public CardFightModel GetCurrentCardFight { get => currentCardFight; }
+        private TypeTimeApply currentTimeApply;
+        private TypeCondition currentCondition;
 
         public override void OnInitialize()
         {
@@ -32,17 +34,27 @@ namespace EffectSystem
             defendApply = new ApplyDefendEffect();
             randomUpAttributeApply = new ApplyRandomUpAttrinuteEffect();
             randomDefendApply = new ApplyRandomDefendEffect();
+            otherApply = new ApplyOtherEffect();
+            cancelEffect = new CancelEffect();
         }
 
-        #region EFFECTS_AFTER_CKICK_CARD
+        #region START_APPLY_EFFECT
 
-        public void ApplyFightCardEffects(CardFightModel card)
+        public void ClickFightCard(CardFightModel card)
         {
             counterEffects = 0;
             currentCardFight = card;
             effects = card.GetEffects;
+            currentTimeApply = TypeTimeApply.RightNow;
 
             NextEffect();
+        }
+
+        public void ApplyAfterCondition(TypeCondition condition, List<Effect> effects)
+        {
+            this.effects = effects;
+            currentCondition = condition;
+            
         }
 
         public void StopUseFightCard()
@@ -57,24 +69,32 @@ namespace EffectSystem
             currentApply.SelectTargetBuilding(type);
         }
 
+        #endregion
+
+        #region APPLY_EFFECT
+
         private void NextEffect()
         {
-            if (counterEffects >= effects.Count)
-            {
-                EndApplyAllEffects();
-            }
-            else
+            if (counterEffects < effects.Count)
             {
                 currentEffect = effects[counterEffects];
                 counterEffects++;
 
                 if (canApply.CheckApply(currentEffect))
                 {
-                    if (currentEffect.TimeApply == TypeTimeApply.RightNow)
+                    if (currentEffect.TimeApply == currentTimeApply)
                     {
                         ApplyEffect();
                     }
+                    else
+                    {
+                        EndApplyEffect();
+                    }
                 }
+            }
+            else
+            {
+                EndApplyAllEffects();
             }
         }
 
@@ -91,6 +111,7 @@ namespace EffectSystem
             }
             else if (currentEffect is OtherEffect)
             {
+                currentApply = otherApply;
             }
             else if (currentEffect is RandomDefendEffect)
             {
@@ -131,32 +152,24 @@ namespace EffectSystem
 
         private void EndApplyAllEffects()
         {
-            // Pay cost fight card
-
-            CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
-
-            foreach (var typeCost in currentCardFight.GetTypeCost)
+            // if effect apply after use card
+            if (currentTimeApply == TypeTimeApply.RightNow)
             {
-                characterData.DownAttribute(typeCost, currentCardFight.GetValueCost);
+                // Pay cost fight card
+                CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
+                foreach (var typeCost in currentCardFight.GetTypeCost)
+                {
+                    characterData.DownAttribute(typeCost, currentCardFight.GetValueCost);
+                }
+
+                // Block card
+                BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
             }
-
-            BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
         }
 
         #endregion
 
-        #region CHECK_RANDOM_EFFECTS
-
-        public bool CherkRandomDefendEffect(RandomDefendEffect effect)
-        {
-            randomDefendApply.StartApply(effect);
-
-            return randomDefendApply.GetLucky;
-        }
-
-        #endregion
-
-        public List<Effect> CheckEffectsAfterEndRound(List<Effect> effects)
+        public List<Effect> CheckEffectsAfterEndRound(CharacterData characterData, List<Effect> effects)
         {
             foreach (var effect in effects)
             {
@@ -173,6 +186,10 @@ namespace EffectSystem
                 if (effect.CurrentTimeDuration > 0)
                 {
                     activeEffects.Add(effect);
+                }
+                else
+                {
+                    cancelEffect.Cancel(characterData, effect);
                 }
             }
 

@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a0861817669d64c826921aef7c6d50, type: 3}
   m_Name: EducationalInfrastructure_OtherEffect
   m_EditorClassIdentifier: 
+  Id: 0
   TypeTarget: 0
   TypeSelectTarget: 1
-  TimeApply: 1
+  TimeApply: 2
   TimeStart: 1
   TimeCancel: 1
   TimeDurationEffect: 1
-  ApplyCondition: 0
-  TypeAttributeApplyCondition: 
+  ApplyCondition: 1
   CancelCondition: 0
   TypeAttributeCancelCondition: 
+  CountTimes: 1
   TypeOtherEffect: 0
   ProcentAttack: 10
   UpAttribute: 6

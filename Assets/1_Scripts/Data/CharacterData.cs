@@ -235,7 +235,7 @@ namespace Data
         {
             if (temporaryEffect.Count > 0)
             {
-                temporaryEffect = BoxController.GetController<EffectsController>().CheckEffectsAfterEndRound(temporaryEffect);
+                temporaryEffect = BoxController.GetController<EffectsController>().CheckEffectsAfterEndRound(this, temporaryEffect);
             }
         }
     }

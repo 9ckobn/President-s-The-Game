@@ -45,10 +45,10 @@ namespace EffectSystem.SCRO
         [Label("Тип условия применения")]
         public TypeCondition ApplyCondition = TypeCondition.None;
 
-        [BoxGroup("Condition")]
-        [ShowIf("TimeApply", TypeTimeApply.Condition)]
-        [Label("На какие объекты действует применение эфекта")]
-        public TypeAttribute[] TypeAttributeApplyCondition;
+        //[BoxGroup("Condition")]
+        //[ShowIf("TimeApply", TypeTimeApply.Condition)]
+        //[Label("На какие объекты действует применение эфекта")]
+        //public TypeAttribute[] TypeAttributeApplyCondition;
 
         [BoxGroup("Condition")]
         [ShowIf("TimeCancel", TypeTimeApply.Condition)]
