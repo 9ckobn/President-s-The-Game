@@ -5,6 +5,7 @@ using Core;
 using NaughtyAttributes;
 using System.Collections;
 using SceneObjects;
+using TMPro;
 
 namespace Buildings
 {
@@ -25,11 +26,15 @@ namespace Buildings
         [SerializeField] private MeshRenderer meshLight;
         [BoxGroup("Backlight effect")]
         [SerializeField] private Material defaultMaterial, lightMaterial;
+        [BoxGroup("UI")]
+        [SerializeField] private TextMeshProUGUI valueText;
 
         private bool isTarget;
         private Tween tween;
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
+
+        public int SetValue { set => valueText.text = value.ToString(); }
 
         private void OnMouseOver()
         {

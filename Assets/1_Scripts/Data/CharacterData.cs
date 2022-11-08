@@ -23,16 +23,6 @@ namespace Data
             this.isPlayer = isPlayer;
 
             RedrawData();
-
-            foreach (var attribute in attributes)
-            {
-                TypeAttribute type = attribute.TypeAttribute;
-
-                if (type == TypeAttribute.Economic || type == TypeAttribute.Food || type == TypeAttribute.Medicine || type == TypeAttribute.RawMaterials)
-                {
-                    GetBuilding(type).ChangeStateBuilding(GetAttribute(type).GetAttributeState());
-                }
-            }
         }
 
         private Building GetBuilding(TypeAttribute typeBuilding)
@@ -114,11 +104,6 @@ namespace Data
         {
             GetAttribute(type).DecreaseValue(value);
 
-            if (type == TypeAttribute.Economic || type == TypeAttribute.Food || type == TypeAttribute.Medicine || type == TypeAttribute.RawMaterials)
-            {
-                GetBuilding(type).ChangeStateBuilding(GetAttribute(type).GetAttributeState());
-            }
-
             if (showDamage && CheckTypeBuilding(type))
             {
                 ShowDamage(type);
@@ -167,6 +152,17 @@ namespace Data
             else
             {
                 UIManager.Instance.GetWindow<AttributesCharactersWindow>().RedrawEnemyData(data);
+            }
+
+            foreach (var attribute in attributes)
+            {
+                TypeAttribute type = attribute.TypeAttribute;
+
+                if (type == TypeAttribute.Economic || type == TypeAttribute.Food || type == TypeAttribute.Medicine || type == TypeAttribute.RawMaterials)
+                {
+                    GetBuilding(type).ChangeStateBuilding(GetAttribute(type).GetAttributeState());
+                    GetBuilding(type).SetValue = GetAttribute(type).Value;
+                }
             }
         }
 
