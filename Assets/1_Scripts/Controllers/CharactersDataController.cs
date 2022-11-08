@@ -44,19 +44,27 @@ namespace Gameplay
             }
 
             int economic = attack / 2 + diplomatic / 2;
+            int[] statesEconomic = new int[3] { economic - economic / 4, economic / 3, 0 };
+
             int food = defend / 2 + luck / 2;
+            int[] statesFood = new int[3] { food - food / 4, food / 3, 0 };
+
             int rawMaterials = attack / 2 + luck / 2;
+            int[] statesRawMaterials = new int[3] { rawMaterials - rawMaterials / 4, rawMaterials / 3, 0 };
+
             int medicine = defend / 2 + diplomatic / 2;
+            int[] statesMedicine = new int[3] { medicine - medicine / 4, medicine / 3, 0 };
+
             int morality = economic + food + rawMaterials + medicine;
 
             attributes.Add(new AttributeData(TypeAttribute.Attack, attack));
             attributes.Add(new AttributeData(TypeAttribute.Defend, defend));
             attributes.Add(new AttributeData(TypeAttribute.Luck, luck));
             attributes.Add(new AttributeData(TypeAttribute.Diplomacy, diplomatic));
-            attributes.Add(new AttributeData(TypeAttribute.Economic, economic));
-            attributes.Add(new AttributeData(TypeAttribute.Food, food));
-            attributes.Add(new AttributeData(TypeAttribute.RawMaterials, rawMaterials));
-            attributes.Add(new AttributeData(TypeAttribute.Medicine, medicine));
+            attributes.Add(new AttributeData(TypeAttribute.Economic, economic, statesEconomic));
+            attributes.Add(new AttributeData(TypeAttribute.Food, food, statesFood));
+            attributes.Add(new AttributeData(TypeAttribute.RawMaterials, rawMaterials, statesRawMaterials));
+            attributes.Add(new AttributeData(TypeAttribute.Medicine, medicine, statesMedicine));
             attributes.Add(new AttributeData(TypeAttribute.Morality, morality));
 
             return attributes;

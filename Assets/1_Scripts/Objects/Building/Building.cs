@@ -13,6 +13,8 @@ namespace Buildings
     {
         [BoxGroup("Model parts")]
         [SerializeField] private GameObject model, logo;
+        [BoxGroup("Model states")]
+        [SerializeField] private GameObject[] modelStates;
         [BoxGroup("Effects")]
         [SerializeField] private VisualEffectDefend effectDefend;
         [BoxGroup("Effects")]
@@ -80,6 +82,21 @@ namespace Buildings
 
             meshLight.material = defaultMaterial;
             effectDefend.HideDefend();
+        }
+
+        public void ChangeStateBuilding(int numberState)
+        {
+            if (numberState >= modelStates.Length)
+            {
+                BoxController.GetController<LogController>().LogError($"Number state building > count models!");
+            }
+            else
+            {
+                for (int i = 0; i < modelStates.Length; i++)
+                {
+                    modelStates[i].SetActive(i == numberState);
+                }
+            }
         }
 
         #region VISUAL_EFFECTS
