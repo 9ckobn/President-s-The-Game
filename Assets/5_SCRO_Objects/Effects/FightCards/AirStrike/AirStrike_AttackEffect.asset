@@ -24,7 +24,7 @@ MonoBehaviour:
   TypeAttributeCancelCondition: 
   CountTimes: 1
   TypeTargetObject: 02000000030000000400000005000000
-  BaseValue: 1
+  BaseValue: 3
   IsNeedAttribute: 1
   TypeAttribute: 7
   ValueAttribute: 25
