@@ -44,18 +44,11 @@ namespace Data
         public void ShowTargetAttribute(TypeAttribute type)
         {
             GetBuilding(type).EnableStateTarget();
-            AttributeData data = GetAttribute(type);
-
-            if (data.IsHaveDefend)
-            {
-                ShowDefend(type, data.ValueRandomDefend);
-            }
         }
 
         public void HideTargetAttribute(TypeAttribute type)
         {
             GetBuilding(type).DisableStateTarget();
-            HideDefend(type);
         }
 
         private AttributeData GetAttribute(TypeAttribute type)
@@ -77,19 +70,9 @@ namespace Data
             return GetAttribute(type).Value;
         }
 
-        public int GetValueRandomDefend(TypeAttribute type)
-        {
-            return GetAttribute(type).ValueRandomDefend;
-        }
-
         public bool AttributeHaveDefend(TypeAttribute type)
         {
             return GetAttribute(type).IsHaveDefend;
-        }
-
-        public bool AttributeHaveRandomDefend(TypeAttribute type)
-        {
-            return GetAttribute(type).IsRandomDefend;
         }
 
         public void UpAttribute(TypeAttribute type, int value)
@@ -106,25 +89,11 @@ namespace Data
 
             if (showDamage && CheckTypeBuilding(type))
             {
-                ShowDamage(type);
+                GetBuilding(type).ShowGetDamage();
             }
 
             CountMorality();
             RedrawData();
-        }
-
-        public void AddDefend(TypeAttribute type, bool randomDefend, int valueDefend, int valueRandomDefend = 100)
-        {
-            GetAttribute(type).SetDefend(randomDefend, valueDefend, valueRandomDefend);
-
-            ShowGetDefend(type, valueRandomDefend);
-        }
-
-        public void LoseDefend(TypeAttribute type)
-        {
-            GetAttribute(type).LoseDefend();
-
-            ShowLoseDefend(type);
         }
 
         private void CountMorality()
@@ -161,9 +130,25 @@ namespace Data
                 if (type == TypeAttribute.Economic || type == TypeAttribute.Food || type == TypeAttribute.Medicine || type == TypeAttribute.RawMaterials)
                 {
                     GetBuilding(type).ChangeStateBuilding(GetAttribute(type).GetAttributeState());
-                    GetBuilding(type).SetValue = GetAttribute(type).Value;
+                    GetBuilding(type).ShowValueAttribute(GetAttribute(type).Value);
                 }
             }
+        }
+
+        #endregion
+
+        #region DEFEND
+
+        public void AddDefend(TypeAttribute type, int valueDefend)
+        {
+            GetAttribute(type).SetDefend(valueDefend);
+            GetBuilding(type).ShowDefend(valueDefend);
+        }
+
+        public void LoseDefend(TypeAttribute type)
+        {
+            GetAttribute(type).LoseDefend();
+            GetBuilding(type).ShowLoseDefend();
         }
 
         #endregion
@@ -210,34 +195,9 @@ namespace Data
             return false;
         }
 
-        private void ShowDamage(TypeAttribute typeBuilding)
-        {
-            GetBuilding(typeBuilding).ShowGetDamage();
-        }
-
         private void ShowHealth(TypeAttribute typeBuilding)
         {
             GetBuilding(typeBuilding).ShowGetHealth();
-        }
-
-        private void ShowGetDefend(TypeAttribute typeBuilding, int randomDefend = 100)
-        {
-            GetBuilding(typeBuilding).ShowGetDefend(randomDefend);
-        }
-
-        private void ShowDefend(TypeAttribute typeBuilding, int randomDefend = 100)
-        {
-            GetBuilding(typeBuilding).ShowDefend(randomDefend);
-        }
-
-        private void HideDefend(TypeAttribute typeBuilding)
-        {
-            GetBuilding(typeBuilding).HideDefend();
-        }
-
-        private void ShowLoseDefend(TypeAttribute typeBuilding)
-        {
-            GetBuilding(typeBuilding).ShowLoseDefend();
         }
 
         #endregion

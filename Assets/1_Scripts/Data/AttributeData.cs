@@ -10,9 +10,7 @@ namespace Data
         public int Value { get; private set; }
 
         public bool IsHaveDefend { get; private set; }
-        public bool IsRandomDefend { get; private set; }
         public int ValueDefend { get; private set; }
-        public int ValueRandomDefend { get; private set; }
 
         private int[] valueStates;
 
@@ -23,9 +21,7 @@ namespace Data
             TypeAttribute = type;
             Value = value;
             IsHaveDefend = false;
-            IsRandomDefend = false;
             ValueDefend = 0;
-            ValueRandomDefend = 0;
             this.valueStates = valueStates;
         }
 
@@ -77,20 +73,16 @@ namespace Data
             Value -= value;
         }
 
-        public void SetDefend(bool randomDefend, int valueDefend, int valueRandomDefend = 0)
+        public void SetDefend(int valueDefend)
         {
             IsHaveDefend = true;
-            IsRandomDefend = randomDefend;
             ValueDefend = valueDefend;
-            ValueRandomDefend = valueRandomDefend;
         }
 
         public void LoseDefend()
         {
             IsHaveDefend = false;
-            IsRandomDefend = false;
             ValueDefend = 0;
-            ValueRandomDefend = 0;
         }
     }
 }

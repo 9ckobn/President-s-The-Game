@@ -47,10 +47,6 @@ namespace Cards.Data
                 {
                     effect = new OtherEffect(dataEffect as SCRO_OtherEffect);
                 }
-                else if (dataEffect is SCRO_RandomDefendEffect)
-                {
-                    effect = new RandomDefendEffect(dataEffect as SCRO_RandomDefendEffect);
-                }
                 else if (dataEffect is SCRO_DefendEffect)
                 {
                     effect = new DefendEffect(dataEffect as SCRO_DefendEffect);

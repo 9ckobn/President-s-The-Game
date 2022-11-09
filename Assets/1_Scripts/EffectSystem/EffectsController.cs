@@ -14,7 +14,6 @@ namespace EffectSystem
         private ApplyAttackEffect attackApply;
         private ApplyDefendEffect defendApply;
         private ApplyRandomUpAttrinuteEffect randomUpAttributeApply;
-        private ApplyRandomDefendEffect randomDefendApply;
         private ApplyOtherEffect otherApply;
         private CancelEffect cancelEffect;
 
@@ -33,7 +32,6 @@ namespace EffectSystem
             attackApply = new ApplyAttackEffect();
             defendApply = new ApplyDefendEffect();
             randomUpAttributeApply = new ApplyRandomUpAttrinuteEffect();
-            randomDefendApply = new ApplyRandomDefendEffect();
             otherApply = new ApplyOtherEffect();
             cancelEffect = new CancelEffect();
         }
@@ -112,10 +110,6 @@ namespace EffectSystem
             else if (currentEffect is OtherEffect)
             {
                 currentApply = otherApply;
-            }
-            else if (currentEffect is RandomDefendEffect)
-            {
-                currentApply = randomDefendApply;
             }
             else if (currentEffect is DefendEffect)
             {

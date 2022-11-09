@@ -7,8 +7,7 @@ namespace SceneObjects
 {
     public class VisualEffectDefend : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI textMeshPro;
-        [SerializeField] private GameObject model, brokenModel;
+        [SerializeField] private GameObject model, brokenModel, godDefend;
 
         public void ShowGetDefend(int randomDefend)
         {
@@ -35,31 +34,17 @@ namespace SceneObjects
             });
             sequence.AppendInterval(0.5f);
 
-            sequence.OnComplete(() => 
+            sequence.OnComplete(() =>
             {
                 model.SetActive(false);
-                textMeshPro.gameObject.SetActive(false);
             });
-
-            ShowRandomDefend(randomDefend);
         }
 
-        public void ShowDefend(int randomDefend)
+        public void ShowDefend()
         {
             model.transform.localPosition = new Vector3(0, 0, 0);
             model.transform.localScale = new Vector3(100, 100, 100);
             model.SetActive(true);
-
-            ShowRandomDefend(randomDefend);
-        }
-
-        private void ShowRandomDefend(int value)
-        {
-            if (value > 0)
-            {
-                textMeshPro.text = value.ToString() + "%";
-                textMeshPro.gameObject.SetActive(true);
-            }
         }
 
         public void LoseDefend()
@@ -77,7 +62,6 @@ namespace SceneObjects
         public void HideDefend()
         {
             model.SetActive(false);
-            textMeshPro.gameObject.SetActive(false);
         }
     }
 }

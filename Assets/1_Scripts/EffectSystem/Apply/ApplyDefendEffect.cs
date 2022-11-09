@@ -1,4 +1,3 @@
-using Buildings;
 using Core;
 using Data;
 using Gameplay;
@@ -17,7 +16,7 @@ namespace EffectSystem
 
             foreach (var typeDefend in effect.TypeDefends)
             {
-                characterData.AddDefend(typeDefend, false, effect.ValueDefend);
+                characterData.AddDefend(typeDefend, effect.ValueDefend);
             }
 
             EndApply();

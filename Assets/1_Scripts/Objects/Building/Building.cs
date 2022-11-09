@@ -6,6 +6,7 @@ using NaughtyAttributes;
 using System.Collections;
 using SceneObjects;
 using TMPro;
+using UI.Components;
 
 namespace Buildings
 {
@@ -27,14 +28,12 @@ namespace Buildings
         [BoxGroup("Backlight effect")]
         [SerializeField] private Material defaultMaterial, lightMaterial;
         [BoxGroup("UI")]
-        [SerializeField] private TextMeshProUGUI valueText;
+        [SerializeField] private BuildingCanvas canvas;
 
         private bool isTarget;
         private Tween tween;
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
-
-        public int SetValue { set => valueText.text = value.ToString(); }
 
         private void OnMouseOver()
         {
@@ -104,6 +103,11 @@ namespace Buildings
             }
         }
 
+        public void ShowValueAttribute(int value)
+        {
+            canvas.ShowValueAttribute(value);
+        }
+
         #region VISUAL_EFFECTS
 
         public void ShowGetDamage()
@@ -116,24 +120,16 @@ namespace Buildings
             StartCoroutine(CoShowEffect(effectHealh));
         }
 
-        public void ShowGetDefend(int randomDefend)
+        public void ShowDefend(int valueDefend)
         {
-            effectDefend.ShowGetDefend(randomDefend);
-        }
-
-        public void ShowDefend(int randomDefend)
-        {
-            effectDefend.ShowDefend(randomDefend);
-        }
-
-        public void HideDefend()
-        {
-            effectDefend.HideDefend();
+            effectDefend.ShowDefend();
+            canvas.ShowValueDefend(valueDefend);
         }
 
         public void ShowLoseDefend()
         {
             effectDefend.LoseDefend();
+            canvas.HideValueDefend();
         }
 
         private IEnumerator CoShowEffect(GameObject effect)

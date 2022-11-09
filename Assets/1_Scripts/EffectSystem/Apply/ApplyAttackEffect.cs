@@ -72,7 +72,7 @@ namespace EffectSystem
             else
             {
                 attackData = BoxController.GetController<CharactersDataController>().GetEnemyData;
-            }            
+            }
         }
 
         public override void SelectTargetBuilding(TypeAttribute targetAttribute)
@@ -83,25 +83,12 @@ namespace EffectSystem
 
             if (defendData.AttributeHaveDefend(targetAttribute))
             {
-                if (defendData.AttributeHaveRandomDefend(targetAttribute))
-                {
-                    if(BoxController.GetController<RandomController>().CountRandom(defendData.GetValueRandomDefend(targetAttribute)))
-                    {
-                        EndApply();
-                    }
-                    else
-                    {
-                        selectedAttributes.Add(targetAttribute);
+                // TODO: check god defend
 
-                        ApplyDamage();
-                    }
-                }
-                else
-                {
-                    defendData.LoseDefend(targetAttribute);
+                defendData.LoseDefend(targetAttribute);
 
-                    EndApply();
-                }
+                EndApply();
+
             }
             else
             {
@@ -113,7 +100,7 @@ namespace EffectSystem
 
         private void ApplyDamage()
         {
-            int damage = effect.BaseValue;               
+            int damage = effect.BaseValue;
 
             if (effect.IsNeedAttribute)
             {
