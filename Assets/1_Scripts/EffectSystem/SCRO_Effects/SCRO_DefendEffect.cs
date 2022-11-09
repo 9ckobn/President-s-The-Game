@@ -11,8 +11,23 @@ namespace EffectSystem.SCRO
         [Label("Какие объекты защищёны")]
         public TypeAttribute[] TypeDefends;
 
-        [BoxGroup("Protect")]
-        [Label("Сколько % защиты получает")]
-        public int ValueProtect = 100; // 100 - immortal
+        [BoxGroup("Value")]
+        [Label("Божественная защита?")]
+        public bool IsGodDefend;
+
+        [BoxGroup("Value")]
+        [Label("Базовое значение эффекта")]
+        [HideIf("IsGodDefend")]
+        public int BaseValue;
+
+        [BoxGroup("Value")]
+        [HideIf("IsGodDefend")]
+        [Label("Добавляем значение атрибута")]
+        public TypeAttribute TypeNeedAttribute;
+
+        [BoxGroup("Value")]
+        [HideIf("IsGodDefend")]
+        [Label("Значение в % от атрибута")]
+        public int ValueAttribute;
     }
 }

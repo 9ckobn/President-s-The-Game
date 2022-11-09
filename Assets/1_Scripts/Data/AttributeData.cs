@@ -10,6 +10,7 @@ namespace Data
         public int Value { get; private set; }
 
         public bool IsHaveDefend { get; private set; }
+        public bool IsGodDefend { get; private set; }
         public int ValueDefend { get; private set; }
 
         private int[] valueStates;
@@ -21,6 +22,7 @@ namespace Data
             TypeAttribute = type;
             Value = value;
             IsHaveDefend = false;
+            IsGodDefend = false;
             ValueDefend = 0;
             this.valueStates = valueStates;
         }
@@ -73,16 +75,28 @@ namespace Data
             Value -= value;
         }
 
-        public void SetDefend(int valueDefend)
+        public void GetDefend(int valueDefend)
         {
             IsHaveDefend = true;
             ValueDefend = valueDefend;
+        }
+
+        public void GetGodDefend()
+        {
+            IsHaveDefend = true;
+            IsGodDefend = true;
         }
 
         public void LoseDefend()
         {
             IsHaveDefend = false;
             ValueDefend = 0;
+        }
+
+        public void LoseGodDefend()
+        {
+            IsHaveDefend = false;
+            IsGodDefend = false;
         }
     }
 }

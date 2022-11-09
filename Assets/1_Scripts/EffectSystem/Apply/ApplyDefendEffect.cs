@@ -16,7 +16,15 @@ namespace EffectSystem
 
             foreach (var typeDefend in effect.TypeDefends)
             {
-                characterData.AddDefend(typeDefend, effect.ValueDefend);
+                if (effect.IsGodDefend)
+                {
+                    characterData.GetGodDefend(typeDefend);
+                }
+                else
+                {
+                    int attributeValue = (int)(characterData.GetValueAttribute(effect.TypeNeedAttribute) / 100f * effect.ValueAttribute);
+                    characterData.GetDefend(typeDefend, effect.BaseValue + attributeValue);
+                }
             }
 
             EndApply();

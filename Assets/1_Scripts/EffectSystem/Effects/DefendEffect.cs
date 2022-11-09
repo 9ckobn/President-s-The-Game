@@ -5,12 +5,18 @@ namespace EffectSystem
     public class DefendEffect : Effect
     {
         public TypeAttribute[] TypeDefends { get; private set; } // Какой объект защищён
-        public int ValueDefend { get; private set; } // Сколько % защиты получает
+        public bool IsGodDefend { get; private set; }
+        public int BaseValue { get; private set; } // Сколько % защиты получает
+        public TypeAttribute TypeNeedAttribute { get; private set; }
+        public int ValueAttribute { get; private set; } 
 
         public DefendEffect(SCRO_DefendEffect data) : base(data)
         {
             TypeDefends = data.TypeDefends;
-            ValueDefend = data.ValueProtect;
+            IsGodDefend = data.IsGodDefend;
+            BaseValue = data.BaseValue;
+            TypeNeedAttribute = data.TypeNeedAttribute;
+            ValueAttribute = data.ValueAttribute;
         }
     }
 }

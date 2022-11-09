@@ -1,3 +1,4 @@
+using Buildings;
 using DG.Tweening;
 using System.Collections;
 using TMPro;
@@ -7,7 +8,10 @@ namespace SceneObjects
 {
     public class VisualEffectDefend : MonoBehaviour
     {
-        [SerializeField] private GameObject model, brokenModel, godDefend;
+        [SerializeField] private GameObject model, brokenModel;
+        [SerializeField] private GodDefend godDefend;
+
+        public Building SetBuilding { set => godDefend.SetBuilding = value; }
 
         public void ShowGetDefend(int randomDefend)
         {
@@ -47,9 +51,19 @@ namespace SceneObjects
             model.SetActive(true);
         }
 
+        public void ShowGodDefend()
+        {
+            godDefend.gameObject.SetActive(true);
+        }
+
         public void LoseDefend()
         {
             StartCoroutine(CoLoseDefend());
+        }
+
+        public void LoseGodDefend()
+        {
+            godDefend.gameObject.SetActive(false);
         }
 
         private IEnumerator CoLoseDefend()

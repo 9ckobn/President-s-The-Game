@@ -5,7 +5,6 @@ using Core;
 using NaughtyAttributes;
 using System.Collections;
 using SceneObjects;
-using TMPro;
 using UI.Components;
 
 namespace Buildings
@@ -35,7 +34,12 @@ namespace Buildings
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
 
-        private void OnMouseOver()
+        private void Awake()
+        {
+            effectDefend.SetBuilding = this;
+        }
+
+        public void OnMouseOver()
         {
             if (isTarget)
             {
@@ -43,7 +47,7 @@ namespace Buildings
             }
         }
 
-        private void OnMouseExit()
+        public void OnMouseExit()
         {
             if (isTarget)
             {
@@ -51,7 +55,7 @@ namespace Buildings
             }
         }
 
-        private void OnMouseDown()
+        public void OnMouseDown()
         {
             if (isTarget)
             {
@@ -110,26 +114,36 @@ namespace Buildings
 
         #region VISUAL_EFFECTS
 
-        public void ShowGetDamage()
+        public void GetDamage()
         {
             StartCoroutine(CoShowEffect(effectDamage));
         }
 
-        public void ShowGetHealth()
+        public void GetHealth()
         {
             StartCoroutine(CoShowEffect(effectHealh));
         }
 
-        public void ShowDefend(int valueDefend)
+        public void Defend(int valueDefend)
         {
             effectDefend.ShowDefend();
             canvas.ShowValueDefend(valueDefend);
         }
 
-        public void ShowLoseDefend()
+        public void GodDefend()
+        {
+            effectDefend.ShowGodDefend();
+        }
+
+        public void LoseDefend()
         {
             effectDefend.LoseDefend();
             canvas.HideValueDefend();
+        }
+
+        public void LoseGodDefend()
+        {
+            effectDefend.LoseGodDefend();
         }
 
         private IEnumerator CoShowEffect(GameObject effect)

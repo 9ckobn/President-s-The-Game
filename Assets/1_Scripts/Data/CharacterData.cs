@@ -75,6 +75,11 @@ namespace Data
             return GetAttribute(type).IsHaveDefend;
         }
 
+        public bool AttributeHaveGodDefend(TypeAttribute type)
+        {
+            return GetAttribute(type).IsGodDefend;
+        }
+
         public void UpAttribute(TypeAttribute type, int value)
         {
             GetAttribute(type).AddValue(value);
@@ -89,7 +94,7 @@ namespace Data
 
             if (showDamage && CheckTypeBuilding(type))
             {
-                GetBuilding(type).ShowGetDamage();
+                GetBuilding(type).GetDamage();
             }
 
             CountMorality();
@@ -139,16 +144,28 @@ namespace Data
 
         #region DEFEND
 
-        public void AddDefend(TypeAttribute type, int valueDefend)
+        public void GetDefend(TypeAttribute type, int valueDefend)
         {
-            GetAttribute(type).SetDefend(valueDefend);
-            GetBuilding(type).ShowDefend(valueDefend);
+            GetAttribute(type).GetDefend(valueDefend);
+            GetBuilding(type).Defend(valueDefend);
+        }
+
+        public void GetGodDefend(TypeAttribute type)
+        {
+            GetAttribute(type).GetGodDefend();
+            GetBuilding(type).GodDefend();
+        }
+
+        public void LoseGodDefend(TypeAttribute type)
+        {
+            GetAttribute(type).LoseGodDefend();
+            GetBuilding(type).LoseGodDefend();
         }
 
         public void LoseDefend(TypeAttribute type)
         {
             GetAttribute(type).LoseDefend();
-            GetBuilding(type).ShowLoseDefend();
+            GetBuilding(type).LoseDefend();
         }
 
         #endregion
@@ -197,7 +214,7 @@ namespace Data
 
         private void ShowHealth(TypeAttribute typeBuilding)
         {
-            GetBuilding(typeBuilding).ShowGetHealth();
+            GetBuilding(typeBuilding).GetHealth();
         }
 
         #endregion

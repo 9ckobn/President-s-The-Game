@@ -2,6 +2,7 @@ using Core;
 using Data;
 using Gameplay;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -83,12 +84,16 @@ namespace EffectSystem
 
             if (defendData.AttributeHaveDefend(targetAttribute))
             {
-                // TODO: check god defend
-
-                defendData.LoseDefend(targetAttribute);
+                if (defendData.AttributeHaveGodDefend(targetAttribute))
+                {
+                    defendData.LoseGodDefend(targetAttribute);
+                }
+                else
+                {
+                    defendData.LoseDefend(targetAttribute);
+                }
 
                 EndApply();
-
             }
             else
             {
