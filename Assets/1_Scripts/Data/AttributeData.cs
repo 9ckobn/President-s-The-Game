@@ -87,10 +87,14 @@ namespace Data
             IsGodDefend = true;
         }
 
-        public void LoseDefend()
+        public void DecreaseDefend(int value)
         {
-            IsHaveDefend = false;
-            ValueDefend = 0;
+            ValueDefend -= value;
+
+            if(ValueDefend < 0)
+            {
+                ValueDefend = 0;
+            }
         }
 
         public void LoseGodDefend()

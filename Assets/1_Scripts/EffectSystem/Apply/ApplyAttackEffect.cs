@@ -10,13 +10,11 @@ namespace EffectSystem
     {
         private AttackEffect effect;
         private CharacterData attackData, defendData;
-        private List<TypeAttribute> selectedAttributes;
 
         protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as AttackEffect;
             targetAttributes = new List<TypeAttribute>();
-            selectedAttributes = new List<TypeAttribute>();
 
             SetAttackdefendData();
 
@@ -24,10 +22,10 @@ namespace EffectSystem
             {
                 foreach (var type in effect.TypeTargetObject)
                 {
-                    selectedAttributes.Add(type);
+                    ApplyDamage(type);
                 }
 
-                ApplyDamage();
+                EndApply();
             }
             else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
             {
@@ -82,42 +80,38 @@ namespace EffectSystem
 
             // Building have random defend. Count random
 
-            if (defendData.AttributeHaveDefend(targetAttribute))
+            if (defendData.AttributeHaveGodDefend(targetAttribute))
             {
-                if (defendData.AttributeHaveGodDefend(targetAttribute))
-                {
-                    defendData.LoseGodDefend(targetAttribute);
-                }
-                else
-                {
-                    defendData.LoseDefend(targetAttribute);
-                }
-
-                EndApply();
+                defendData.LoseGodDefend(targetAttribute);
             }
             else
             {
-                selectedAttributes.Add(targetAttribute);
-
-                ApplyDamage();
+                ApplyDamage(targetAttribute);
             }
+
+            EndApply();
         }
 
-        private void ApplyDamage()
+        private void ApplyDamage(TypeAttribute targetAttribute)
         {
             int damage = effect.BaseValue;
+            int defend = defendData.GetValueDefend(targetAttribute);
 
             if (effect.IsNeedAttribute)
             {
                 damage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
             }
 
-            foreach (var targetAttribute in selectedAttributes)
+            if (defend > 0)
             {
-                defendData.DownAttribute(targetAttribute, damage, true);
+                defendData.DecreaseDefend(targetAttribute, damage);
             }
 
-            EndApply();
+            if (damage > defend)
+            {
+                int damageAttribute = damage - defend;
+                defendData.DownAttribute(targetAttribute, damageAttribute);
+            }
         }
 
         private void LoseAttack()

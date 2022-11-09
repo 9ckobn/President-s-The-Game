@@ -70,6 +70,11 @@ namespace Data
             return GetAttribute(type).Value;
         }
 
+        public int GetValueDefend(TypeAttribute type)
+        {
+            return GetAttribute(type).ValueDefend;
+        }
+
         public bool AttributeHaveDefend(TypeAttribute type)
         {
             return GetAttribute(type).IsHaveDefend;
@@ -94,7 +99,7 @@ namespace Data
 
             if (showDamage && CheckTypeBuilding(type))
             {
-                GetBuilding(type).GetDamage();
+                GetBuilding(type).ShowDamage();
             }
 
             CountMorality();
@@ -144,16 +149,16 @@ namespace Data
 
         #region DEFEND
 
-        public void GetDefend(TypeAttribute type, int valueDefend)
+        public void AddDefend(TypeAttribute type, int valueDefend)
         {
             GetAttribute(type).GetDefend(valueDefend);
-            GetBuilding(type).Defend(valueDefend);
+            GetBuilding(type).ShowGetDefend(valueDefend);
         }
 
-        public void GetGodDefend(TypeAttribute type)
+        public void AddGodDefend(TypeAttribute type)
         {
             GetAttribute(type).GetGodDefend();
-            GetBuilding(type).GodDefend();
+            GetBuilding(type).ShowGodDefend();
         }
 
         public void LoseGodDefend(TypeAttribute type)
@@ -162,10 +167,18 @@ namespace Data
             GetBuilding(type).LoseGodDefend();
         }
 
-        public void LoseDefend(TypeAttribute type)
+        public void DecreaseDefend(TypeAttribute type, int value)
         {
-            GetAttribute(type).LoseDefend();
-            GetBuilding(type).LoseDefend();
+            GetAttribute(type).DecreaseDefend(value);
+
+            if (GetAttribute(type).ValueDefend > 0)
+            {
+                GetBuilding(type).ChangeValueDefend(value);
+            }
+            else
+            {
+                GetBuilding(type).LoseDefend();
+            }
         }
 
         #endregion
@@ -214,7 +227,7 @@ namespace Data
 
         private void ShowHealth(TypeAttribute typeBuilding)
         {
-            GetBuilding(typeBuilding).GetHealth();
+            GetBuilding(typeBuilding).ShowHealth();
         }
 
         #endregion

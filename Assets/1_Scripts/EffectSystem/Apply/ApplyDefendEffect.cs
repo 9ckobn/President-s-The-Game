@@ -1,6 +1,7 @@
 using Core;
 using Data;
 using Gameplay;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -13,17 +14,16 @@ namespace EffectSystem
             effect = currentEffect as DefendEffect;
 
             CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
-
             foreach (var typeDefend in effect.TypeDefends)
             {
                 if (effect.IsGodDefend)
                 {
-                    characterData.GetGodDefend(typeDefend);
+                    characterData.AddGodDefend(typeDefend);
                 }
                 else
                 {
                     int attributeValue = (int)(characterData.GetValueAttribute(effect.TypeNeedAttribute) / 100f * effect.ValueAttribute);
-                    characterData.GetDefend(typeDefend, effect.BaseValue + attributeValue);
+                    characterData.AddDefend(typeDefend, effect.BaseValue + attributeValue);
                 }
             }
 

@@ -89,7 +89,6 @@ namespace Buildings
             isTarget = false;
 
             meshLight.material = defaultMaterial;
-            effectDefend.HideDefend();
         }
 
         public void ChangeStateBuilding(int numberState)
@@ -114,25 +113,30 @@ namespace Buildings
 
         #region VISUAL_EFFECTS
 
-        public void GetDamage()
+        public void ShowDamage()
         {
             StartCoroutine(CoShowEffect(effectDamage));
         }
 
-        public void GetHealth()
+        public void ShowHealth()
         {
             StartCoroutine(CoShowEffect(effectHealh));
         }
 
-        public void Defend(int valueDefend)
+        public void ShowGetDefend(int valueDefend)
         {
             effectDefend.ShowDefend();
             canvas.ShowValueDefend(valueDefend);
         }
 
-        public void GodDefend()
+        public void ShowGodDefend()
         {
             effectDefend.ShowGodDefend();
+        }
+
+        public void ChangeValueDefend(int value)
+        {
+            canvas.ShowValueDefend(value);
         }
 
         public void LoseDefend()

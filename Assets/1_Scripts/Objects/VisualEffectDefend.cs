@@ -13,7 +13,9 @@ namespace SceneObjects
 
         public Building SetBuilding { set => godDefend.SetBuilding = value; }
 
-        public void ShowGetDefend(int randomDefend)
+        Tween tweenDefend;
+
+        public void ShowDefend()
         {
             model.SetActive(true);
 
@@ -28,27 +30,20 @@ namespace SceneObjects
             });
 
             sequence.AppendInterval(0.5f);
-            sequence.Append(model.transform.DOLocalRotate(new Vector3(-90, 180, 0), 0.5f));
+            sequence.Append(model.transform.DOLocalRotate(new Vector3(-90, 180, 0), 1f));
 
-            sequence.AppendCallback(() =>
-            {
-                model.transform.DOScale(new Vector3(20, 20, 20), 0.5f);
-                model.transform.DOLocalMoveY(0f, 0.5f);
+            //sequence.AppendCallback(() =>
+            //{
+            //    model.transform.DOScale(new Vector3(20, 20, 20), 0.5f);
+            //    model.transform.DOLocalMoveY(0f, 0.5f);
 
-            });
-            sequence.AppendInterval(0.5f);
+            //});
+            //sequence.AppendInterval(0.5f);
 
-            sequence.OnComplete(() =>
-            {
-                model.SetActive(false);
-            });
-        }
-
-        public void ShowDefend()
-        {
-            model.transform.localPosition = new Vector3(0, 0, 0);
-            model.transform.localScale = new Vector3(100, 100, 100);
-            model.SetActive(true);
+            //sequence.OnComplete(() =>
+            //{
+            //    tweenDefend = model.transform.DOLocalRotate(new Vector3(-90, 180, 0), 1f).SetLoops(-1, LoopType.Restart);
+            //});
         }
 
         public void ShowGodDefend()
@@ -58,6 +53,8 @@ namespace SceneObjects
 
         public void LoseDefend()
         {
+            model.SetActive(false);
+
             StartCoroutine(CoLoseDefend());
         }
 
@@ -71,11 +68,6 @@ namespace SceneObjects
             brokenModel.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.9f);
             brokenModel.gameObject.SetActive(false);
-        }
-
-        public void HideDefend()
-        {
-            model.SetActive(false);
         }
     }
 }

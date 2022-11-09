@@ -22,7 +22,7 @@ namespace EffectSystem
 
                 foreach (var type in defendEffect.TypeDefends)
                 {
-                    characterData.LoseDefend(type);
+                    Debug.Log("сделать отмену защиты");
                 }
             }
         }
