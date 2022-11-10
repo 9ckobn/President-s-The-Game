@@ -13,7 +13,7 @@ namespace Buildings
     public class Building : MonoBehaviour
     {
         [BoxGroup("Model parts")]
-        [SerializeField] private GameObject model, logo;
+        [SerializeField] private GameObject logo;
         [BoxGroup("Model states")]
         [SerializeField] private GameObject[] modelStates;
         [BoxGroup("Effects")]

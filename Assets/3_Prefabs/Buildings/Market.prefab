@@ -61,9 +61,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deefe48b8b5f40c43b741edc884694f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 4519664744216811670}
   logo: {fileID: 6350858591225742595}
-  modelStates: []
+  modelStates:
+  - {fileID: 4439562420181627338}
+  - {fileID: 9100668824665380167}
   effectDefend: {fileID: 4215787355694981424}
   effectDamage: {fileID: 189176611184097847}
   effectHealh: {fileID: 5648500447122921789}
@@ -193,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7244300598185057830, guid: b283d4862441c374daad108d56e122bf, type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7244300598185057831, guid: b283d4862441c374daad108d56e122bf, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -385,6 +386,14 @@ PrefabInstance:
       value: -0.181
       objectReference: {fileID: 0}
     - target: {fileID: 4956439766378541914, guid: 3567d12f91ca5964fa6ed9f6a275b03e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956439766378541914, guid: 3567d12f91ca5964fa6ed9f6a275b03e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956439766378541914, guid: 3567d12f91ca5964fa6ed9f6a275b03e, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.303
       objectReference: {fileID: 0}
@@ -483,6 +492,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2060820eaac39a04daf49ad33db8750b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0196b9d24d47ffb4abdeb58d0d64d024, type: 3}
+--- !u!1 &4439562420181627338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0196b9d24d47ffb4abdeb58d0d64d024, type: 3}
+  m_PrefabInstance: {fileID: 3557025317607722139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3951819420638718832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0196b9d24d47ffb4abdeb58d0d64d024, type: 3}
@@ -712,6 +726,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2060820eaac39a04daf49ad33db8750b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c9d99837ca8e847b16ac440258af99, type: 3}
+--- !u!1 &9100668824665380167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 57c9d99837ca8e847b16ac440258af99, type: 3}
+  m_PrefabInstance: {fileID: 8254389781378361366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8432922925926354941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 57c9d99837ca8e847b16ac440258af99, type: 3}

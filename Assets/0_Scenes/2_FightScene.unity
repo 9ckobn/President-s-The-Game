@@ -4682,10 +4682,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Food
       objectReference: {fileID: 0}
-    - target: {fileID: 3988481683247163423, guid: 577a6cd6d0229e647a3a42f053c10ce2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6341067332483023085, guid: 577a6cd6d0229e647a3a42f053c10ce2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4729,14 +4725,6 @@ PrefabInstance:
     - target: {fileID: 6341067332483023085, guid: 577a6cd6d0229e647a3a42f053c10ce2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396321054820721323, guid: 577a6cd6d0229e647a3a42f053c10ce2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396321054820721323, guid: 577a6cd6d0229e647a3a42f053c10ce2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.043
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577a6cd6d0229e647a3a42f053c10ce2, type: 3}
@@ -5001,14 +4989,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
-    - target: {fileID: 2397663324349069300, guid: 699c3ce288448bb4585f96d2055a6549, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5682299176254668096, guid: 699c3ce288448bb4585f96d2055a6549, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.047
-      objectReference: {fileID: 0}
     - target: {fileID: 6341067332483023085, guid: 699c3ce288448bb4585f96d2055a6549, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5208,10 +5188,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1695327455}
     m_Modifications:
-    - target: {fileID: 787324747033524815, guid: e9d88a9a6d770f6419e60fd54b85014b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.026
-      objectReference: {fileID: 0}
     - target: {fileID: 1386374693979081909, guid: e9d88a9a6d770f6419e60fd54b85014b, type: 3}
       propertyPath: m_Name
       value: Economic
@@ -5260,10 +5236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7309484333593997563, guid: e9d88a9a6d770f6419e60fd54b85014b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9d88a9a6d770f6419e60fd54b85014b, type: 3}
 --- !u!1 &8144394005616380217
@@ -5291,26 +5263,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1695327455}
     m_Modifications:
-    - target: {fileID: 1902752400279242360, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902752400279242360, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902752400279242360, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902752400279242360, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.026
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902752400279242360, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.056
-      objectReference: {fileID: 0}
     - target: {fileID: 5329134039850915286, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5358,10 +5310,6 @@ PrefabInstance:
     - target: {fileID: 6577533621265254680, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
       propertyPath: m_Name
       value: RowMaterials
-      objectReference: {fileID: 0}
-    - target: {fileID: 8501192818012916940, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4c28a35e1858174ba908ef86eafec73, type: 3}
