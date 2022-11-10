@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a22c0187574994a94ed0cc2f2067d1, type: 3}
   m_Name: customsReform_SCRO
   m_EditorClassIdentifier: 
-  Id: "\u0421ustomsReform"
+  Id: CustomsReform
   Name: "\u0421ustoms Reform"
   Description: Customs control reform will enable more successful deals, but not
     everyone will be happy with it. The Economy Factor will not take the following

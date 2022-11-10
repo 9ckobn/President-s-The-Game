@@ -15,6 +15,7 @@ namespace EffectSystem
         private ApplyDefendEffect defendApply;
         private ApplyRandomUpAttrinuteEffect randomUpAttributeApply;
         private ApplyOtherEffect otherApply;
+        private ApplyBuffEffect buffApply;
         private CancelEffect cancelEffect;
 
         private List<Effect> effects;
@@ -34,6 +35,7 @@ namespace EffectSystem
             randomUpAttributeApply = new ApplyRandomUpAttrinuteEffect();
             otherApply = new ApplyOtherEffect();
             cancelEffect = new CancelEffect();
+            buffApply = new ApplyBuffEffect();
         }
 
         #region START_APPLY_EFFECT
@@ -106,6 +108,7 @@ namespace EffectSystem
             }
             else if (currentEffect is BuffEffect)
             {
+                currentApply = buffApply;
             }
             else if (currentEffect is OtherEffect)
             {
@@ -165,25 +168,24 @@ namespace EffectSystem
 
         public List<Effect> CheckCancelEffectsAfterEndRound(CharacterData characterData, List<Effect> effects)
         {
+            List<Effect> activeEffects = new List<Effect>();
+
+            foreach (var effect in effects)
+            {
+                activeEffects.Add(effect);
+            }
+
             foreach (var effect in effects)
             {
                 if (effect.TimeCancel == TypeTimeApply.AfterTime)
                 {
                     effect.DecreaseCurrentTimeDuration();
-                }
-            }
 
-            List<Effect> activeEffects = new List<Effect>();
-
-            foreach (var effect in effects)
-            {
-                if (effect.CurrentTimeDuration > 0)
-                {
-                    activeEffects.Add(effect);
-                }
-                else
-                {
-                    cancelEffect.Cancel(characterData, effect);
+                    if (effect.CurrentTimeDuration <= 0)
+                    {
+                        activeEffects.Remove(effect);                    
+                        cancelEffect.Cancel(characterData, effect);
+                    }
                 }
             }
 

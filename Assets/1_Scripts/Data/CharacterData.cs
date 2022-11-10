@@ -193,19 +193,19 @@ namespace Data
             temporaryEffect.Add(effect);
         }
 
-        public List<Effect> GetDefendEffects()
+        public List<BuffEffect> GetBuffEffects()
         {
-            List<Effect> defendEffects = new List<Effect>();
+            List<BuffEffect> buffEffects = new List<BuffEffect>();
 
             foreach (var effect in temporaryEffect)
             {
-                if (effect is DefendEffect)
+                if (effect is BuffEffect)
                 {
-                    defendEffects.Add(effect);
+                    buffEffects.Add(effect as BuffEffect);
                 }
             }
 
-            return defendEffects;
+            return buffEffects;
         }
 
         #endregion

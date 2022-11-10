@@ -25,6 +25,6 @@ MonoBehaviour:
   CountTimes: 1
   TypeBuff: 0
   TypeTargetObject: 
-  BaseValue: 2
+  BaseValue: 0
   TypeAttribute: 7
-  ValueAttribute: 17
+  ValueAttribute: 50

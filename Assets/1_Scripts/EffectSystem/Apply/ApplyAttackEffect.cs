@@ -102,6 +102,8 @@ namespace EffectSystem
                 damage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
             }
 
+            damage += CountBuffAttack();
+
             if (defend > 0)
             {
                 defendData.DecreaseDefend(targetAttribute, damage);
@@ -132,6 +134,22 @@ namespace EffectSystem
         public override void StopApplyEffect()
         {
             DisableStateTarget();
+        }
+
+        private int CountBuffAttack()
+        {
+            int buff = 0;
+
+            foreach (var effect in attackData.GetBuffEffects())
+            {
+                if (effect.TypeBuff == TypeBuff.UpAttack)
+                {
+                    buff = effect.BaseValue;
+                    buff += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
+                }
+            }
+
+            return buff;
         }
     }
 }
