@@ -163,7 +163,7 @@ namespace EffectSystem
 
         #endregion
 
-        public List<Effect> CheckEffectsAfterEndRound(CharacterData characterData, List<Effect> effects)
+        public List<Effect> CheckCancelEffectsAfterEndRound(CharacterData characterData, List<Effect> effects)
         {
             foreach (var effect in effects)
             {

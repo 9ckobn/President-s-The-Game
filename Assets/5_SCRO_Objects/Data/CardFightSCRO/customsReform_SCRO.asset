@@ -24,4 +24,4 @@ MonoBehaviour:
   Effects:
   - {fileID: 11400000, guid: a56e879ebfe5e89468f34c286c51e603, type: 2}
   - {fileID: 11400000, guid: 3524504d2cf361940a3c93bc7739a00d, type: 2}
-  Reloading: 1
+  Reloading: 2

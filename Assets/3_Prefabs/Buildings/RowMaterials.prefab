@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: warehouse_damage
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 56499287cfc6fc34d91c385f630f039a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6960570223463217072, guid: 56499287cfc6fc34d91c385f630f039a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -481,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39ed5fbb21044db46900dabafc4136cf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6960570223463217072, guid: 39ed5fbb21044db46900dabafc4136cf, type: 3}
       propertyPath: m_Materials.Array.data[0]
