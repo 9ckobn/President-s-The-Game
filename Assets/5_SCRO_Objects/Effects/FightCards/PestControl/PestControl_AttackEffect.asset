@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb76aab0e09b1ee4e96119374120ea90, type: 3}
   m_Name: PestControl_AttackEffect
   m_EditorClassIdentifier: 
+  Id: 14
   TypeTarget: 0
   TypeSelectTarget: 1
   TimeApply: 0
@@ -19,7 +20,6 @@ MonoBehaviour:
   TimeCancel: 0
   TimeDurationEffect: 0
   ApplyCondition: 0
-  TypeAttributeApplyCondition: 
   CancelCondition: 1
   TypeAttributeCancelCondition: 04000000
   CountTimes: 1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d45e5579210499468e064e48831eeea, type: 3}
   m_Name: Sunction_BuffEffect
   m_EditorClassIdentifier: 
+  Id: 16
   TypeTarget: 0
   TypeSelectTarget: 1
   TimeApply: 0
@@ -19,7 +20,6 @@ MonoBehaviour:
   TimeCancel: 2
   TimeDurationEffect: 0
   ApplyCondition: 0
-  TypeAttributeApplyCondition: 
   CancelCondition: 1
   TypeAttributeCancelCondition: 03000000
   CountTimes: 1

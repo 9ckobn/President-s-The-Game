@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d45e5579210499468e064e48831eeea, type: 3}
   m_Name: TechnologicalBreakthrough_BuffEffect
   m_EditorClassIdentifier: 
+  Id: 17
   TypeTarget: 0
   TypeSelectTarget: 1
   TimeApply: 0
@@ -19,7 +20,6 @@ MonoBehaviour:
   TimeCancel: 1
   TimeDurationEffect: -1
   ApplyCondition: 0
-  TypeAttributeApplyCondition: 
   CancelCondition: 0
   TypeAttributeCancelCondition: 
   CountTimes: 0

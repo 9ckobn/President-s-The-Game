@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50937545361e1ff40bffde0b2dd5fa3e, type: 3}
   m_Name: JoiningUnion_ProtectEffect
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 11
   TypeTarget: 0
   TypeSelectTarget: 1
   TimeApply: 0

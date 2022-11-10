@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50937545361e1ff40bffde0b2dd5fa3e, type: 3}
   m_Name: MilitaryPosition_ProtectEffect
   m_EditorClassIdentifier: 
+  Id: 13
   TypeTarget: 0
   TypeSelectTarget: 1
   TimeApply: 0
@@ -19,9 +20,11 @@ MonoBehaviour:
   TimeCancel: 2
   TimeDurationEffect: 0
   ApplyCondition: 0
-  TypeAttributeApplyCondition: 
   CancelCondition: 2
   TypeAttributeCancelCondition: 02000000
   CountTimes: 1
   TypeDefends: 02000000
-  ValueProtect: 100
+  IsGodDefend: 0
+  BaseValue: 0
+  TypeNeedAttribute: 0
+  ValueAttribute: 0
