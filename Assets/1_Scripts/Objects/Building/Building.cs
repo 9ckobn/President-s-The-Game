@@ -141,6 +141,7 @@ namespace Buildings
 
         public void LoseDefend()
         {
+            Debug.Log("LOSE DEFEND");
             effectDefend.LoseDefend();
             canvas.HideValueDefend();
         }

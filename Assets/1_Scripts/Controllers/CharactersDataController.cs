@@ -43,16 +43,16 @@ namespace Gameplay
                 diplomatic = president.Diplomatic + president.BuffDiplomatic.GetValue;
             }
 
-            int economic = attack / 2 + diplomatic / 2;
+            int economic = (attack + diplomatic) * 4;
             int[] statesEconomic = new int[3] { economic - economic / 4, economic / 3, 0 };
 
-            int food = defend / 2 + luck / 2;
+            int food = (defend + luck) * 4;
             int[] statesFood = new int[3] { food - food / 4, food / 3, 0 };
 
-            int rawMaterials = attack / 2 + luck / 2;
+            int rawMaterials = (attack + luck) * 4;
             int[] statesRawMaterials = new int[3] { rawMaterials - rawMaterials / 4, rawMaterials / 3, 0 };
 
-            int medicine = defend / 2 + diplomatic / 2;
+            int medicine = (defend + diplomatic) * 4;
             int[] statesMedicine = new int[3] { medicine - medicine / 4, medicine / 3, 0 };
 
             int morality = economic + food + rawMaterials + medicine;
