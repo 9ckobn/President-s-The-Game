@@ -19,7 +19,7 @@ namespace Core
 {
     public class DataBaseManager : Singleton<DataBaseManager>
     {
-        private const string PARTH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json"; // C:\Users\unity\AppData\LocalLow\DefaultCompany
+        private const string PATH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json"; // C:\Users\unity\AppData\LocalLow\DefaultCompany
 
         [HideInInspector]
         public UnityEvent OnInit;
@@ -137,7 +137,7 @@ namespace Core
                     {
                         for (int i = 0; i < idPresidents.Count; i++)
                         {
-                            var json = await httpClient.GetStringAsync(PARTH_PRESIDENTS + idPresidents[i]);
+                            var json = await httpClient.GetStringAsync(PATH_PRESIDENTS + idPresidents[i]);
 
                             CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
                             cardsPresidentsData.Add(cardData);
