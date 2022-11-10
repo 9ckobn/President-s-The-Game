@@ -1,5 +1,4 @@
 using Data;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -22,7 +21,8 @@ namespace EffectSystem
 
                 foreach (var type in defendEffect.TypeDefends)
                 {
-                    Debug.Log("сделать отмену защиты");
+                    characterData.DecreaseDefend(type,
+                        (int)(characterData.GetValueAttribute(defendEffect.TypeNeedAttribute) / 100f * defendEffect.ValueAttribute));
                 }
             }
         }

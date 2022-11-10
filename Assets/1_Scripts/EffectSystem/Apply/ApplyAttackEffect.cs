@@ -110,7 +110,7 @@ namespace EffectSystem
             if (damage > defend)
             {
                 int damageAttribute = damage - defend;
-                defendData.DownAttribute(targetAttribute, damageAttribute);
+                defendData.DownAttribute(targetAttribute, damageAttribute, true);
             }
         }
 

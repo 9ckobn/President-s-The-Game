@@ -1,7 +1,6 @@
 using Core;
 using Data;
 using Gameplay;
-using UnityEngine;
 
 namespace EffectSystem
 {
