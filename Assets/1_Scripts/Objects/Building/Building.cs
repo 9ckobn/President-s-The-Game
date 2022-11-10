@@ -23,7 +23,7 @@ namespace Buildings
         [BoxGroup("Type building")]
         [SerializeField] private TypeAttribute typeBuilding;
         [BoxGroup("Backlight effect")]
-        [SerializeField] private MeshRenderer meshLight;
+        [SerializeField] private MeshRenderer[] meshsLight;
         [BoxGroup("Backlight effect")]
         [SerializeField] private Material defaultMaterial, lightMaterial;
         [BoxGroup("UI")]
@@ -43,7 +43,10 @@ namespace Buildings
         {
             if (isTarget)
             {
-                meshLight.material = lightMaterial;
+                foreach (var mesh in meshsLight)
+                {
+                    mesh.material = lightMaterial;
+                }
             }
         }
 
@@ -51,7 +54,10 @@ namespace Buildings
         {
             if (isTarget)
             {
-                meshLight.material = defaultMaterial;
+                foreach (var mesh in meshsLight)
+                {
+                    mesh.material = defaultMaterial;
+                }
             }
         }
 
@@ -88,7 +94,10 @@ namespace Buildings
         {
             isTarget = false;
 
-            meshLight.material = defaultMaterial;
+            foreach (var mesh in meshsLight)
+            {
+                mesh.material = defaultMaterial;
+            }
         }
 
         public void ChangeStateBuilding(int numberState)

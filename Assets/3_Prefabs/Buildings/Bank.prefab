@@ -69,7 +69,9 @@ MonoBehaviour:
   effectDamage: {fileID: 9084218156655540981}
   effectHealh: {fileID: 7912289454301585259}
   typeBuilding: 3
-  meshLight: {fileID: 0}
+  meshsLight:
+  - {fileID: 7599071728250676586}
+  - {fileID: 8203389923858383172}
   defaultMaterial: {fileID: 2100000, guid: 77e03825c5694f649ba16ae599c9062c, type: 2}
   lightMaterial: {fileID: 2100000, guid: e7af55756d50b8e439b1f8b4b83c3c22, type: 2}
   canvas: {fileID: 3423775144500861265}
@@ -433,6 +435,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: afb4a7924a78ecf44940962eb7b73654, type: 3}
   m_PrefabInstance: {fileID: 3179027143183369266}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &8203389923858383172 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6757202622632691062, guid: afb4a7924a78ecf44940962eb7b73654, type: 3}
+  m_PrefabInstance: {fileID: 3179027143183369266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4504193390850312488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -687,6 +694,11 @@ GameObject:
 --- !u!4 &5043293721216948694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b28c5cf6bb093994ea7211ddece13bcf, type: 3}
+  m_PrefabInstance: {fileID: 4789535968101498429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7599071728250676586 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3099192256590846807, guid: b28c5cf6bb093994ea7211ddece13bcf, type: 3}
   m_PrefabInstance: {fileID: 4789535968101498429}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5631166507998398741

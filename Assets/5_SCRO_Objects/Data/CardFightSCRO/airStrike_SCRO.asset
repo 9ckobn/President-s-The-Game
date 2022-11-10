@@ -22,4 +22,4 @@ MonoBehaviour:
   Cost: 1
   Effects:
   - {fileID: 11400000, guid: 64e707e68b3ead14780fa1dd7a8f8a75, type: 2}
-  Reloading: 2
+  Reloading: 3
