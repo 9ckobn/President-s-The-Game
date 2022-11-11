@@ -2,7 +2,6 @@ using Core;
 using Data;
 using Gameplay;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -22,7 +21,14 @@ namespace EffectSystem
             {
                 foreach (var type in effect.TypeTargetObject)
                 {
-                    ApplyDamage(type);
+                    if (defendData.AttributeHaveGodDefend(type))
+                    {
+                        defendData.LoseGodDefend(type);
+                    }
+                    else
+                    {
+                        ApplyDamage(type);
+                    }
                 }
 
                 EndApply();
@@ -116,13 +122,6 @@ namespace EffectSystem
             }
 
             AdditionalDamage(damage);
-        }
-
-        private void LoseAttack()
-        {
-            DisableStateTarget();
-
-            EndApply();
         }
 
         private void DisableStateTarget()
