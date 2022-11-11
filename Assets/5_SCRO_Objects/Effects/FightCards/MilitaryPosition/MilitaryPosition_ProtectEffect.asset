@@ -21,10 +21,9 @@ MonoBehaviour:
   TimeDurationEffect: 0
   ApplyCondition: 0
   CancelCondition: 2
-  TypeAttributeCancelCondition: 02000000
   CountTimes: 1
   TypeDefends: 02000000
-  IsGodDefend: 0
+  IsGodDefend: 1
   BaseValue: 0
   TypeNeedAttribute: 0
   ValueAttribute: 0

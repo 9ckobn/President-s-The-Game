@@ -1,41 +1,64 @@
 using Core;
 using Data;
 using Gameplay;
+using System.Collections.Generic;
 
 namespace EffectSystem
 {
     public class ApplyDefendEffect : ApplyEffect
     {
         private DefendEffect effect;
+        private CharacterData characterData;
 
         protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as DefendEffect;
+            targetAttributes = new List<TypeAttribute>();
 
-            CharacterData characterData = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
-            foreach (var typeDefend in effect.TypeDefends)
+            characterData = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
+
+            if (effect.TypeSelectTarget == TypeSelectTarget.Game)
             {
-                if (effect.IsGodDefend)
+                foreach (var typeDefend in effect.TypeDefends)
                 {
-                    characterData.AddGodDefend(typeDefend);
+                    ApplyDefend(typeDefend);
                 }
-                else
-                {
-                    int attributeValue = (int)(characterData.GetValueAttribute(effect.TypeNeedAttribute) / 100f * effect.ValueAttribute);
-                    characterData.AddDefend(typeDefend, effect.BaseValue + attributeValue);
-                }
-            }
 
-            EndApply();
+                EndApply();
+            }
+            else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
+            {
+                ShowTargetBuildings(characterData);
+            }
         }
 
         public override void SelectTargetBuilding(TypeAttribute targetAttribute)
         {
+            effect.SelectedPlayerBuilding = targetAttribute;
+
+            HideTargetBuildings(characterData);
+            ApplyDefend(targetAttribute);
+
+            EndApply();
         }
 
         public override void StopApplyEffect()
         {
-            BoxController.GetController<LogController>().LogError("Not have logic stop apply effect");
+            HideTargetBuildings(characterData);
+
+        }
+
+        private void ApplyDefend(TypeAttribute type)
+        {
+            if (effect.IsGodDefend)
+            {
+                characterData.AddGodDefend(type);
+            }
+            else
+            {
+                int attributeValue = (int)(characterData.GetValueAttribute(effect.TypeNeedAttribute) / 100f * effect.ValueAttribute);
+                characterData.AddDefend(type, effect.BaseValue + attributeValue);
+            }
         }
     }
 }

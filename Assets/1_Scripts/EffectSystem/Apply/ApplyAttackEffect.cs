@@ -35,15 +35,7 @@ namespace EffectSystem
             }
             else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
             {
-                targetAttributes.Add(TypeAttribute.Economic);
-                targetAttributes.Add(TypeAttribute.Food);
-                targetAttributes.Add(TypeAttribute.Medicine);
-                targetAttributes.Add(TypeAttribute.RawMaterials);
-
-                foreach (var target in targetAttributes)
-                {
-                    defendData.ShowTargetAttribute(target);
-                }
+                ShowTargetBuildings(defendData);
             }
         }
 
@@ -82,9 +74,7 @@ namespace EffectSystem
 
         public override void SelectTargetBuilding(TypeAttribute targetAttribute)
         {
-            DisableStateTarget();
-
-            // Building have random defend. Count random
+            HideTargetBuildings(defendData);
 
             if (defendData.AttributeHaveGodDefend(targetAttribute))
             {
@@ -124,17 +114,9 @@ namespace EffectSystem
             AdditionalDamage(damage);
         }
 
-        private void DisableStateTarget()
-        {
-            foreach (var target in targetAttributes)
-            {
-                defendData.HideTargetAttribute(target);
-            }
-        }
-
         public override void StopApplyEffect()
         {
-            DisableStateTarget();
+            HideTargetBuildings(defendData);
         }
 
         private int CountBuffAttack()

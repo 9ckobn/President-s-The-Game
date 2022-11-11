@@ -39,5 +39,10 @@ namespace EffectSystem
             CancelCondition = data.CancelCondition;
             CountTimes = data.CountTimes;
         }
+
+        public void Apply()
+        {
+            CurrentTimeDuration = timeDurationEffect;
+        }
     }
 }

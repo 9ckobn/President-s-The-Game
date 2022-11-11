@@ -134,6 +134,8 @@ namespace EffectSystem
 
         private void EndApplyEffect()
         {
+            currentEffect.Apply();
+
             if (currentApply != null)
             {
                 currentApply.EndApplyEvent -= EndApplyEffect;
@@ -150,7 +152,7 @@ namespace EffectSystem
             }
             else if(typeEvent == TypeCondition.Defend)
             {
-
+                Debug.Log($"<color=red>Not logic event effects after defend</color>");
             }
 
             NextEffect();

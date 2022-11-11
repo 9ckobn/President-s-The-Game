@@ -15,14 +15,22 @@ namespace EffectSystem
             this.characterData = characterData;
             this.effect = effect;
 
-            if(effect is DefendEffect)
+            if (effect is DefendEffect)
             {
                 DefendEffect defendEffect = effect as DefendEffect;
 
-                foreach (var type in defendEffect.TypeDefends)
+                if (effect.TypeSelectTarget == TypeSelectTarget.Game)
                 {
-                    characterData.DecreaseDefend(type,
-                        (int)(characterData.GetValueAttribute(defendEffect.TypeNeedAttribute) / 100f * defendEffect.ValueAttribute));
+                    foreach (var type in defendEffect.TypeDefends)
+                    {
+                        characterData.DecreaseDefend(type,
+                            (int)(characterData.GetValueAttribute(defendEffect.TypeNeedAttribute) / 100f * defendEffect.ValueAttribute));
+                    }
+                }
+                else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
+                {
+                    characterData.DecreaseDefend(defendEffect.SelectedPlayerBuilding,
+                            (int)(characterData.GetValueAttribute(defendEffect.TypeNeedAttribute) / 100f * defendEffect.ValueAttribute));
                 }
             }
         }
