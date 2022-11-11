@@ -11,7 +11,7 @@ namespace EffectSystem
         {
             effect = currentEffect as RandomUpAttributeEffect;
 
-            characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
+            characterData = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
 
             int chanceValue = effect.Value;
 

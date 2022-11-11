@@ -15,9 +15,9 @@ namespace EffectSystem
         public int CurrentTimeDuration { get; private set; }
 
         public TypeCondition ApplyCondition { get; private set; }
-        public TypeAttribute[] TypeAttributeApplyCondition { get; private set; }
+        public TypeAttribute[] TypesApplyCondition { get; private set; }
         public TypeCondition CancelCondition { get; private set; }
-        public TypeAttribute[] TypeAttributeCondition { get; private set; }
+        public TypeAttribute[] TypesCancelCondition { get; private set; }
         public int CountTimes { get; private set; }
 
         public void DecreaseCurrentTimeDuration()
@@ -38,9 +38,9 @@ namespace EffectSystem
             CurrentTimeDuration = timeDurationEffect;
 
             ApplyCondition = data.ApplyCondition;
-            TypeAttributeApplyCondition = data.TypeAttributeCancelCondition;
+            TypesApplyCondition = data.TypeAttributeCancelCondition;
             CancelCondition = data.ApplyCondition;
-            TypeAttributeCondition = data.TypeAttributeCancelCondition;
+            TypesCancelCondition = data.TypeAttributeCancelCondition;
             CountTimes = data.CountTimes;
         }
     }

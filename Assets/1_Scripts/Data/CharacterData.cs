@@ -14,7 +14,20 @@ namespace Data
         private List<AttributeData> attributes = new List<AttributeData>();
         private Building[] myBuildings;
 
-        private List<Effect> temporaryEffect = new List<Effect>();
+        private List<Effect> temporaryEffects = new List<Effect>();
+        public List<Effect> TemporaryEffects
+        {
+            get
+            {
+                return temporaryEffects;
+            }
+
+            set
+            {
+                Debug.Log($"<color=yellow>NEW temporaryEffects count = {value.Count}</color>");
+                temporaryEffects = value;
+            }
+        }
 
         public CharacterData(List<AttributeData> attributes, Building[] buildings, bool isPlayer)
         {
@@ -190,14 +203,14 @@ namespace Data
             // TODO: check if effect alredy add are update duration this effect
 
             Debug.Log("Add TemporaryEffect");
-            temporaryEffect.Add(effect);
+            temporaryEffects.Add(effect);
         }
 
         public List<BuffEffect> GetBuffEffects()
         {
             List<BuffEffect> buffEffects = new List<BuffEffect>();
 
-            foreach (var effect in temporaryEffect)
+            foreach (var effect in temporaryEffects)
             {
                 if (effect is BuffEffect)
                 {
@@ -231,13 +244,5 @@ namespace Data
         }
 
         #endregion
-
-        public void EndRound()
-        {
-            if (temporaryEffect.Count > 0)
-            {
-                temporaryEffect = BoxController.GetController<EffectsController>().CheckCancelEffectsAfterEndRound(this, temporaryEffect);
-            }
-        }
     }
 }

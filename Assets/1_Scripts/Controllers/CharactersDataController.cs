@@ -5,6 +5,7 @@ using Data;
 using EffectSystem;
 using SceneObjects;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 namespace Gameplay
@@ -14,15 +15,30 @@ namespace Gameplay
     {
         private const int DEFAULT_VALUE = 10;
 
+        private bool isPlayerNow = true;
+        private CharacterData currentCharacter;
         private CharacterData playerData, enemyData;
 
+        public bool GetIsPlayerNow { get => isPlayerNow; }
+        public CharacterData GetCurrentCharacter { get => currentCharacter; }
         public CharacterData GetPlayerData { get => playerData; }
         public CharacterData GetEnemyData { get => enemyData; }
+
+        #region INITIALIZE
 
         public override void OnInitialize()
         {
             playerData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings, true);
             enemyData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings, false);
+
+            if (isPlayerNow)
+            {
+                currentCharacter = playerData;
+            }
+            else
+            {
+                currentCharacter = enemyData;
+            }
         }
 
         private List<AttributeData> CreateAttributes()
@@ -68,6 +84,24 @@ namespace Gameplay
             attributes.Add(new AttributeData(TypeAttribute.Morality, morality));
 
             return attributes;
+        }
+
+        #endregion
+
+        public void ChangeCurrentCharacter()
+        {
+            if (isPlayerNow)
+            {
+                currentCharacter = enemyData;
+                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
+            }
+            else
+            {
+                currentCharacter = playerData;
+                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
+            }
+
+            isPlayerNow = !isPlayerNow;
         }
     }
 }

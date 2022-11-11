@@ -16,7 +16,7 @@ namespace EffectSystem
         private ApplyRandomUpAttrinuteEffect randomUpAttributeApply;
         private ApplyOtherEffect otherApply;
         private ApplyBuffEffect buffApply;
-        private CancelEffect cancelEffect;
+        private CheckEffectAfterEvent checkEvent;
 
         private List<Effect> effects;
         private Effect currentEffect;
@@ -25,7 +25,8 @@ namespace EffectSystem
         private int counterEffects = 0;
 
         private TypeTimeApply currentTimeApply;
-        private TypeCondition currentCondition;
+        private CharacterData currentCharacter;
+        private TypeCondition typeEvent;
 
         public override void OnInitialize()
         {
@@ -34,8 +35,8 @@ namespace EffectSystem
             defendApply = new ApplyDefendEffect();
             randomUpAttributeApply = new ApplyRandomUpAttrinuteEffect();
             otherApply = new ApplyOtherEffect();
-            cancelEffect = new CancelEffect();
             buffApply = new ApplyBuffEffect();
+            checkEvent = new CheckEffectAfterEvent();
         }
 
         #region START_APPLY_EFFECT
@@ -46,15 +47,9 @@ namespace EffectSystem
             currentCardFight = card;
             effects = card.GetEffects;
             currentTimeApply = TypeTimeApply.RightNow;
+            currentCharacter = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
 
             NextEffect();
-        }
-
-        public void ApplyAfterCondition(TypeCondition condition, List<Effect> effects)
-        {
-            this.effects = effects;
-            currentCondition = condition;
-            
         }
 
         public void StopUseFightCard()
@@ -101,10 +96,12 @@ namespace EffectSystem
         private void ApplyEffect()
         {
             currentApply = null;
+            typeEvent = TypeCondition.None;
 
             if (currentEffect is AttackEffect)
             {
                 currentApply = attackApply;
+                typeEvent = TypeCondition.Attack;
             }
             else if (currentEffect is BuffEffect)
             {
@@ -117,6 +114,7 @@ namespace EffectSystem
             else if (currentEffect is DefendEffect)
             {
                 currentApply = defendApply;
+                typeEvent = TypeCondition.Defend;
             }
             else if (currentEffect is RandomUpAttributeEffect)
             {
@@ -140,8 +138,16 @@ namespace EffectSystem
 
             if (currentEffect.TimeApply != TypeTimeApply.RightNow || currentEffect.TimeCancel != TypeTimeApply.RightNow)
             {
-                CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
-                characterData.AddTemporaryEffect(currentEffect);
+                currentCharacter.AddTemporaryEffect(currentEffect);
+            }
+
+            if(typeEvent == TypeCondition.Attack)
+            {
+                checkEvent.CheckEvent(currentCharacter, TypeCondition.Attack);
+            }
+            else if(typeEvent == TypeCondition.Defend)
+            {
+
             }
 
             NextEffect();
@@ -153,10 +159,9 @@ namespace EffectSystem
             if (currentTimeApply == TypeTimeApply.RightNow)
             {
                 // Pay cost fight card
-                CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
                 foreach (var typeCost in currentCardFight.GetTypeCost)
                 {
-                    characterData.DownAttribute(typeCost, currentCardFight.GetValueCost);
+                    currentCharacter.DownAttribute(typeCost, currentCardFight.GetValueCost);
                 }
 
                 // Block card
@@ -166,30 +171,10 @@ namespace EffectSystem
 
         #endregion
 
-        public List<Effect> CheckCancelEffectsAfterEndRound(CharacterData characterData, List<Effect> effects)
+        public void EndRound()
         {
-            List<Effect> activeEffects = new List<Effect>();
-
-            foreach (var effect in effects)
-            {
-                activeEffects.Add(effect);
-            }
-
-            foreach (var effect in effects)
-            {
-                if (effect.TimeCancel == TypeTimeApply.AfterTime)
-                {
-                    effect.DecreaseCurrentTimeDuration();
-
-                    if (effect.CurrentTimeDuration <= 0)
-                    {
-                        activeEffects.Remove(effect);                    
-                        cancelEffect.Cancel(characterData, effect);
-                    }
-                }
-            }
-
-            return activeEffects;
+            checkEvent.CheckEndRound(BoxController.GetController<CharactersDataController>().GetEnemyData);
+            checkEvent.CheckEndRound(BoxController.GetController<CharactersDataController>().GetPlayerData);
         }
     }
 }

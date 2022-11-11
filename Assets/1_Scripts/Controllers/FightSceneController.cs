@@ -1,5 +1,6 @@
 using Core;
 using Data;
+using EffectSystem;
 using UI;
 using UnityEngine;
 
@@ -8,19 +9,15 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "FightSceneController", menuName = "Controllers/Gameplay/FightSceneController")]
     public class FightSceneController : BaseController
     {
-        private const int MAX_USE_CARDS = 1;
+        private const int MAX_USE_CARDS = 1;        
 
-        private bool isPlayerNow = false;
-        private CharacterData currentCharacter;
-
-        private int countUseCards = 0;
-
-        public bool GetIsPlayerNow { get => isPlayerNow; }
-        public CharacterData GetCurrentCharacter { get => currentCharacter; }
+        private int countUseCards = 0;        
 
         public void StartGame()
         {
-            ChangeCurrentPlayer();    
+            bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
+            BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
+            BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
         }
 
         public void AddCountUseCards()
@@ -29,31 +26,20 @@ namespace Gameplay
 
             if(countUseCards >= MAX_USE_CARDS)
             {
-                ChangeCurrentPlayer();
+                EndRound();
             }
         }
 
-        private void ChangeCurrentPlayer()
+        private void EndRound()
         {
-            BoxController.GetController<CharactersDataController>().GetPlayerData.EndRound();
-            BoxController.GetController<CharactersDataController>().GetEnemyData.EndRound();
-
-            if (isPlayerNow)
-            {
-                currentCharacter = BoxController.GetController<CharactersDataController>().GetEnemyData;
-                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
-            }
-            else
-            {
-                currentCharacter = BoxController.GetController<CharactersDataController>().GetPlayerData;
-                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
-            }
+            BoxController.GetController<EffectsController>().EndRound();
+            BoxController.GetController<CharactersDataController>().ChangeCurrentCharacter();
 
             countUseCards = 0;
-            isPlayerNow = !isPlayerNow;
 
-            BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayerNow);
-            BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayerNow);
+            bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
+            BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
+            BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
         }
     }
 }

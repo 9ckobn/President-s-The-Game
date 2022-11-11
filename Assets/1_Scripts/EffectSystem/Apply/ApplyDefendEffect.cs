@@ -12,7 +12,7 @@ namespace EffectSystem
         {
             effect = currentEffect as DefendEffect;
 
-            CharacterData characterData = BoxController.GetController<FightSceneController>().GetCurrentCharacter;
+            CharacterData characterData = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
             foreach (var typeDefend in effect.TypeDefends)
             {
                 if (effect.IsGodDefend)

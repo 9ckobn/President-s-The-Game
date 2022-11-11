@@ -16,7 +16,7 @@ namespace EffectSystem
 
         public void StartApply(Effect effect)
         {
-            isPlayer = BoxController.GetController<FightSceneController>().GetIsPlayerNow;
+            isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
 
             Apply(effect);
         }
