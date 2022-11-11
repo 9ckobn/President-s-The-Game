@@ -17,11 +17,10 @@ MonoBehaviour:
   TypeSelectTarget: 1
   TimeApply: 2
   TimeStart: 0
-  TimeCancel: 0
+  TimeCancel: 2
   TimeDurationEffect: 0
   ApplyCondition: 1
   CancelCondition: 1
-  TypeAttributeCancelCondition: 03000000
   CountTimes: 1
   TypeBuff: 1
   TypesTargetObject: 06000000

@@ -1,11 +1,16 @@
 using Data;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EffectSystem
 {
     public class CheckEffectAfterEvent
     {
         private CancelEffect cancelEffect;
+
+        private List<Effect> currentEffects;
+        private List<Effect> activeEffects;
+        private CharacterData currentCharacterData;
 
         public CheckEffectAfterEvent()
         {
@@ -14,15 +19,9 @@ namespace EffectSystem
 
         public void CheckEndRound(CharacterData characterData)
         {
-            List<Effect> effects = characterData.TemporaryEffects;
-            List<Effect> activeEffects = new List<Effect>();
+            CreateCurrentEffects(characterData);
 
-            foreach (var effect in effects)
-            {
-                activeEffects.Add(effect);
-            }
-
-            foreach (var effect in effects)
+            foreach (var effect in currentEffects)
             {
                 if (effect.TimeCancel == TypeTimeApply.AfterTime)
                 {
@@ -30,8 +29,7 @@ namespace EffectSystem
 
                     if (effect.CurrentTimeDuration <= 0)
                     {
-                        activeEffects.Remove(effect);
-                        cancelEffect.Cancel(characterData, effect);
+                        RemoveEffect(effect);
                     }
                 }
             }
@@ -39,26 +37,46 @@ namespace EffectSystem
             characterData.TemporaryEffects = activeEffects;
         }
 
-        public void CheckEvent(CharacterData characterData, TypeCondition typeCondition)
+        public void CheckEvent(CharacterData characterData, TypeCondition typeEvent)
         {
-            List <Effect> effects = characterData.TemporaryEffects;
+            CreateCurrentEffects(characterData);
 
-            if (effects.Count > 0)
+            foreach (var effect in currentEffects)
             {
-                foreach (var effect in effects)
+                if (effect.TimeApply == TypeTimeApply.Condition)
                 {
-                    if (effect.TimeApply == TypeTimeApply.Condition)
-                    {
-                        foreach (var type in effect.TypesApplyCondition)
-                        {
-                        }
-                    }
-                    else if (effect.TimeCancel == TypeTimeApply.Condition)
-                    {
 
+                }
+
+                if (effect.TimeCancel == TypeTimeApply.Condition)
+                {
+                    if (effect.CancelCondition == typeEvent)
+                    {
+                        RemoveEffect(effect);
                     }
                 }
             }
+            
+            characterData.TemporaryEffects = activeEffects;
+        }
+
+        private void CreateCurrentEffects(CharacterData characterData)
+        {
+            currentCharacterData = characterData;
+            currentEffects = characterData.TemporaryEffects;
+            activeEffects = new List<Effect>();
+
+            foreach (var effect in currentEffects)
+            {
+                activeEffects.Add(effect);
+            }
+        }
+
+        private void RemoveEffect(Effect effect)
+        {
+            Debug.Log($"remove effect {effect.Id}");
+            activeEffects.Remove(effect);
+            cancelEffect.Cancel(currentCharacterData, effect);
         }
     }
 }

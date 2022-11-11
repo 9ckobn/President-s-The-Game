@@ -102,9 +102,6 @@ namespace EffectSystem
                 damage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
             }
 
-            Debug.Log($"damage = {damage}");
-            Debug.Log($"CountBuffAttack = {CountBuffAttack()}");
-
             damage += CountBuffAttack();
 
             if (defend > 0)
@@ -173,8 +170,6 @@ namespace EffectSystem
 
                 if (additionalDamage > 0)
                 {
-                    Debug.Log($"additionalDamage = {additionalDamage}");
-
                     foreach (var typeTarget in effect.TypesTargetObject)
                     {
                         defendData.DownAttribute(typeTarget, additionalDamage);
