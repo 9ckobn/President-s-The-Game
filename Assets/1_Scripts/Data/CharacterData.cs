@@ -24,7 +24,6 @@ namespace Data
 
             set
             {
-                Debug.Log($"<color=yellow>NEW temporaryEffects count = {value.Count}</color>");
                 temporaryEffects = value;
             }
         }
@@ -113,6 +112,11 @@ namespace Data
             if (showDamage && CheckTypeBuilding(type))
             {
                 GetBuilding(type).ShowDamage();
+            }
+
+            if (CheckTypeBuilding(type))
+            {
+                GetAttribute(TypeAttribute.Morality).DecreaseValue(value);
             }
 
             CountMorality();

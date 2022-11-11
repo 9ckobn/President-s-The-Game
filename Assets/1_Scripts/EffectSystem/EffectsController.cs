@@ -134,8 +134,11 @@ namespace EffectSystem
 
         private void EndApplyEffect()
         {
-            currentApply.EndApplyEvent -= EndApplyEffect;
-
+            if (currentApply != null)
+            {
+                currentApply.EndApplyEvent -= EndApplyEffect;
+            }
+            
             if (currentEffect.TimeApply != TypeTimeApply.RightNow || currentEffect.TimeCancel != TypeTimeApply.RightNow)
             {
                 currentCharacter.AddTemporaryEffect(currentEffect);

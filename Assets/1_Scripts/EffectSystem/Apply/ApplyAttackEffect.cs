@@ -102,6 +102,9 @@ namespace EffectSystem
                 damage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
             }
 
+            Debug.Log($"damage = {damage}");
+            Debug.Log($"CountBuffAttack = {CountBuffAttack()}");
+
             damage += CountBuffAttack();
 
             if (defend > 0)
@@ -114,6 +117,8 @@ namespace EffectSystem
                 int damageAttribute = damage - defend;
                 defendData.DownAttribute(targetAttribute, damageAttribute, true);
             }
+
+            AdditionalDamage(damage);
         }
 
         private void LoseAttack()
@@ -150,6 +155,32 @@ namespace EffectSystem
             }
 
             return buff;
+        }
+
+        private void AdditionalDamage(int damage)
+        {
+            int additionalDamage = 0;
+
+            foreach (var effect in attackData.GetBuffEffects())
+            {
+                additionalDamage = 0;
+
+                if (effect.TypeBuff == TypeBuff.AdditionalDamage)
+                {
+                    additionalDamage = effect.BaseValue;
+                    additionalDamage += (int)(attackData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
+                }
+
+                if (additionalDamage > 0)
+                {
+                    Debug.Log($"additionalDamage = {additionalDamage}");
+
+                    foreach (var typeTarget in effect.TypesTargetObject)
+                    {
+                        defendData.DownAttribute(typeTarget, additionalDamage);
+                    }
+                }
+            }
         }
     }
 }

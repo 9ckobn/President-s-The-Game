@@ -13,7 +13,7 @@ namespace EffectSystem.SCRO
         [BoxGroup("Buff")]
         [HideIf("TypeBuff", TypeBuff.UpAttack)]
         [Label("Объект на который действует бафф")]
-        public TypeAttribute[] TypeTargetObject;
+        public TypeAttribute[] TypesTargetObject;
 
         [BoxGroup("Buff")]
         [Label("Базовое значение бафа")]

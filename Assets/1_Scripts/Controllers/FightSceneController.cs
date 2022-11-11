@@ -1,7 +1,5 @@
 using Core;
-using Data;
 using EffectSystem;
-using UI;
 using UnityEngine;
 
 namespace Gameplay

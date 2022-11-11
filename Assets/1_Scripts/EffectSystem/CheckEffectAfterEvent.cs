@@ -1,6 +1,5 @@
 using Data;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -52,7 +51,6 @@ namespace EffectSystem
                     {
                         foreach (var type in effect.TypesApplyCondition)
                         {
-
                         }
                     }
                     else if (effect.TimeCancel == TypeTimeApply.Condition)
