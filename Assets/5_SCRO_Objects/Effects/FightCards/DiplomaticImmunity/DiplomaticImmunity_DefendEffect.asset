@@ -18,10 +18,9 @@ MonoBehaviour:
   TimeApply: 0
   TimeStart: 0
   TimeCancel: 1
-  TimeDurationEffect: 6
+  TimeDurationEffect: 4
   ApplyCondition: 0
   CancelCondition: 0
-  TypeAttributeCancelCondition: 
   CountTimes: 1
   TypeDefends: 0400000002000000
   IsGodDefend: 0
