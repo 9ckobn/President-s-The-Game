@@ -107,8 +107,6 @@ namespace Data
 
         public void DownAttribute(TypeAttribute type, int value, bool showDamage = false)
         {
-            Debug.Log($"DownAttribute type = {type} value = {value}");
-
             GetAttribute(type).DecreaseValue(value);
 
             if (showDamage && CheckTypeBuilding(type))
@@ -221,6 +219,21 @@ namespace Data
                 if (effect is BuffEffect)
                 {
                     buffEffects.Add(effect as BuffEffect);
+                }
+            }
+
+            return buffEffects;
+        }
+
+        public List<OtherEffect> GetOtherEffects()
+        {
+            List<OtherEffect> buffEffects = new List<OtherEffect>();
+
+            foreach (var effect in temporaryEffects)
+            {
+                if (effect is OtherEffect)
+                {
+                    buffEffects.Add(effect as OtherEffect);
                 }
             }
 

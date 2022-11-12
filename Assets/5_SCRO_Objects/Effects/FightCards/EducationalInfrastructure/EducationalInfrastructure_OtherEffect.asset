@@ -15,13 +15,12 @@ MonoBehaviour:
   Id: 6
   TypeTarget: 0
   TypeSelectTarget: 1
-  TimeApply: 2
+  TimeApply: 0
   TimeStart: 1
-  TimeCancel: 1
+  TimeCancel: 2
   TimeDurationEffect: 1
   ApplyCondition: 1
-  CancelCondition: 0
-  TypeAttributeCancelCondition: 
+  CancelCondition: 1
   CountTimes: 1
   TypeOtherEffect: 0
   ProcentAttack: 10

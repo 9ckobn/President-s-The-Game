@@ -23,13 +23,13 @@ namespace EffectSystem
 
             if (BoxController.GetController<RandomController>().CountRandom(chanceValue))
             {
-                int procent = characterData.GetValueAttribute(effect.TypeWinAttribute) / 100 * effect.WinProcent;
+                int procent = (int)(characterData.GetValueAttribute(effect.TypeWinAttribute) / 100f * effect.WinProcent);
 
                 characterData.UpAttribute(effect.TypeWinAttribute, procent);
             }
             else
             {
-                int procent = characterData.GetValueAttribute(effect.TypeLoseAttribute) / 100 * effect.LoseProcent;
+                int procent = (int)(characterData.GetValueAttribute(effect.TypeLoseAttribute) / 100f * effect.LoseProcent);
 
                 characterData.DownAttribute(effect.TypeLoseAttribute, procent);
             }

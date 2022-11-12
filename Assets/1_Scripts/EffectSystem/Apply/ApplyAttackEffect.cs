@@ -2,6 +2,7 @@ using Core;
 using Data;
 using Gameplay;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -112,6 +113,7 @@ namespace EffectSystem
             }
 
             AdditionalDamage(damage);
+            CountVimpirismEffects(damage);
         }
 
         public override void StopApplyEffect()
@@ -159,6 +161,13 @@ namespace EffectSystem
             }
         }
 
-        проверить эффекты other, сделать логику вампиризм
+        private void CountVimpirismEffects(int damage)
+        {
+            foreach (var effect in attackData.GetOtherEffects())
+            {
+                int value = (int)(damage / 100f * effect.ProcentAttack);
+                attackData.UpAttribute(effect.UpAttribute, value);
+            }
+        }
     }
 }
