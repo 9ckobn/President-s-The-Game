@@ -21,9 +21,8 @@ MonoBehaviour:
   TimeDurationEffect: 0
   ApplyCondition: 0
   CancelCondition: 0
-  TypeAttributeCancelCondition: 
   CountTimes: 1
-  Value: 10
+  Value: 0
   IsNeedAttribute: 1
   TypeAttribute: 9
   ValueAttribute: 100

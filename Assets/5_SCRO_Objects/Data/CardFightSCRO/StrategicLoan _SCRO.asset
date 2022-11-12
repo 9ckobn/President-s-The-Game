@@ -21,5 +21,6 @@ MonoBehaviour:
   Model: {fileID: 3194983723496282082, guid: e50ea2ae54fdb534f986d2d0719cc605, type: 3}
   TypeCost: 0300000005000000
   Cost: 1
-  Effects: []
+  Effects:
+  - {fileID: 0}
   Reloading: 3

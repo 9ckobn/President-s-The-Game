@@ -4,11 +4,17 @@ namespace EffectSystem
 {
     public class ApplyOtherEffect : ApplyEffect
     {
+        /// <summary>
+        /// 
+        /// ERROR LOGIC
+        /// Other effect never apply here
+        /// Other effect apply after attack in ApplyAttackEffect
+        /// Other cancel in CheckEffectAfterEvent
+        /// 
+        /// </summary>
         protected override void Apply(Effect currentEffect)
         {
-            OtherEffect effect = currentEffect as OtherEffect;
-
-
+            EndApply();
         }
 
         public override void SelectTargetBuilding(TypeAttribute targetAttribute)

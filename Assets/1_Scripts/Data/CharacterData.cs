@@ -107,6 +107,8 @@ namespace Data
 
         public void DownAttribute(TypeAttribute type, int value, bool showDamage = false)
         {
+            Debug.Log($"DownAttribute type = {type} value = {value}");
+
             GetAttribute(type).DecreaseValue(value);
 
             if (showDamage && CheckTypeBuilding(type))

@@ -11,12 +11,12 @@ namespace EffectSystem.SCRO
         public TypeOtherEffect TypeOtherEffect;
 
         [BoxGroup("UpAttributeAfterAttack")]
-        [ShowIf("TypeOtherEffect", TypeOtherEffect.UpAttributeAfterAttack)]
+        [ShowIf("TypeOtherEffect", TypeOtherEffect.VampirismAfterAttack)]
         [Label("Какой % от атаки используем")]
         public int ProcentAttack;
 
         [BoxGroup("UpAttributeAfterAttack")]
-        [ShowIf("TypeOtherEffect", TypeOtherEffect.UpAttributeAfterAttack)]
+        [ShowIf("TypeOtherEffect", TypeOtherEffect.VampirismAfterAttack)]
         [Label("Какой атрибут увеличиваем")]
         public TypeAttribute UpAttribute;
     }

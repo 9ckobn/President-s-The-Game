@@ -1,5 +1,6 @@
 using Core;
 using Gameplay;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -22,11 +23,15 @@ namespace EffectSystem
 
             if (BoxController.GetController<RandomController>().CountRandom(chanceValue))
             {
-                characterData.UpAttribute(effect.TypeWinAttribute, effect.WinProcent);
+                int procent = characterData.GetValueAttribute(effect.TypeWinAttribute) / 100 * effect.WinProcent;
+
+                characterData.UpAttribute(effect.TypeWinAttribute, procent);
             }
             else
             {
-                characterData.DownAttribute(effect.TypeLoseAttribute, effect.LoseProcent);
+                int procent = characterData.GetValueAttribute(effect.TypeLoseAttribute) / 100 * effect.LoseProcent;
+
+                characterData.DownAttribute(effect.TypeLoseAttribute, procent);
             }
 
             EndApply();
