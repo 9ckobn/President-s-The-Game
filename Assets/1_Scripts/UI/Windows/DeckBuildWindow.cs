@@ -54,7 +54,7 @@ namespace UI
             deckController = BoxController.GetController<DeckBuildController>();
             storageCards = BoxController.GetController<DeckBuildStorageCardsController>();
 
-            choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); }); 
+            choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); });
             chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });
 
             alhabetFilterButton.onClick.AddListener(ClickFilterAlhabet);
@@ -66,6 +66,7 @@ namespace UI
 
         protected override void BeforeShow()
         {
+            Debug.Log("deckController " + deckController);
             List<DeckData> decks = deckController.Decks;
 
             for (int i = 0; i < decks.Count; i++)
@@ -92,6 +93,7 @@ namespace UI
         {
             if (presidentsCardsNow != isPresidentCards)
             {
+                Debug.Log("click");
                 presidentsCardsNow = isPresidentCards;
 
                 if (presidentsCardsNow)
@@ -127,7 +129,6 @@ namespace UI
 
         private void ClickCreateDeck()
         {
-
         }
 
         public void ClickDeckButton(DeckButton deckButton)
@@ -169,9 +170,11 @@ namespace UI
 
         private void ClickFilterAlhabet()
         {
+            Debug.Log("ClickFilterAlhabet");
+
             if (presidentsCardsNow)
             {
-                showCardsPresident.OrderBy(card => card.GetData.Id);
+                showCardsPresident = showCardsPresident.OrderBy(card => card.GetData.Name).ToList();
                 string message = "";
                 foreach (var card in showCardsPresident)
                 {
@@ -182,7 +185,7 @@ namespace UI
             }
             else
             {
-                showCardsFight.OrderBy(card => card.GetData.Id);
+                showCardsFight = showCardsFight.OrderBy(card => card.GetData.Name).ToList();
                 string message = "";
                 foreach (var card in showCardsFight)
                 {
@@ -190,15 +193,40 @@ namespace UI
                 }
 
                 Debug.Log(message);
-
-                Debug.Log($"<color=red>Check logic!</color>");
-
             }
+
+            presidentsCardsNow = !presidentsCardsNow;
+            ClickShowCards(presidentsCardsNow);
         }
 
         private void ClickFilterRare()
         {
-            Debug.Log($"<color=red>Not have logic!</color>");
+            if (presidentsCardsNow)
+            {
+                showCardsPresident = showCardsPresident.OrderBy(card => card.GetData.Rarityrank).ToList();
+
+                string message = "";
+                foreach (var card in showCardsPresident)
+                {
+                    message += $"{card.GetData.Id} ";
+                }
+
+                Debug.Log(message);
+            }
+            else
+            {
+                showCardsFight = showCardsFight.OrderBy(card => card.GetData.Cost).ToList();
+                string message = "";
+                foreach (var card in showCardsFight)
+                {
+                    message += $"{card.GetData.Id} ";
+                }
+
+                Debug.Log(message);
+            }
+
+            presidentsCardsNow = !presidentsCardsNow;
+            ClickShowCards(presidentsCardsNow);
         }
 
         private void ClickExitButton()

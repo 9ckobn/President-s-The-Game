@@ -1,7 +1,6 @@
 using Cards.Data;
 using Core;
 using System.Collections.Generic;
-using UI;
 using UnityEngine;
 
 namespace Cards.DeckBuild
@@ -26,12 +25,6 @@ namespace Cards.DeckBuild
             }
 
             SelectedDeck = Decks[0];
-        }
-
-        public override void OnStart()
-        {
-            UIManager.Instance.OnInitialize();
-            UIManager.Instance.OnStart();
         }
 
         public bool CanAddCard(CardPresidentData card)

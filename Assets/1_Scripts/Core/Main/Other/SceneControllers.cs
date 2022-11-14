@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 namespace Core
@@ -11,9 +12,18 @@ namespace Core
 
         public void InitControllers()
         {
+            BoxController.OnInit += InitUI;
             BoxController.Init(Controllers);
 
             isInit = true;
+        }
+
+        private void InitUI()
+        {
+            BoxController.OnInit -= InitUI;
+
+            UIManager.Instance.OnInitialize();
+            UIManager.Instance.OnStart();
         }
     }
 }
