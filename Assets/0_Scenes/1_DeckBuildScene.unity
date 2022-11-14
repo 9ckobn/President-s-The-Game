@@ -4845,11 +4845,13 @@ MonoBehaviour:
   enableChooseSprite: {fileID: 21300000, guid: 786e966c274e3bd4380594b17e13a24e, type: 3}
   disableChooseSprite: {fileID: 21300000, guid: 8c72a07f8ae7de84da392d8bb64338de, type: 3}
   scrollCards: {fileID: 771276758}
+  createDeckButton: {fileID: 2084716345}
   deckButtons:
   - {fileID: 905383975}
   - {fileID: 664749037}
   - {fileID: 2003872269}
-  createNewDeckButton: {fileID: 2084716345}
+  alhabetFilterButton: {fileID: 1212910623}
+  rareFilterButton: {fileID: 805109170}
   parentCards: {fileID: 1896121055}
   parentPreviewCard: {fileID: 595916992}
   currentPresidentsUI: {fileID: 1973794831}

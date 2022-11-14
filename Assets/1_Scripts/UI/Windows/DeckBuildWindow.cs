@@ -4,6 +4,7 @@ using Cards.DeckBuild;
 using Core;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Linq;
 using UI.Buttons;
 using UI.Components;
 using UnityEngine;
@@ -24,9 +25,11 @@ namespace UI
         [BoxGroup("Scroll rect cards")]
         [SerializeField] private ScrollCards scrollCards;
         [BoxGroup("Deck buttons")]
-        [SerializeField] private DeckButton[] deckButtons;
+        [SerializeField] private Button createDeckButton;
         [BoxGroup("Deck buttons")]
-        [SerializeField] private Button createNewDeckButton;
+        [SerializeField] private DeckButton[] deckButtons;
+        [BoxGroup("Filter buttons")]
+        [SerializeField] private Button alhabetFilterButton, rareFilterButton;
         [BoxGroup("Parent cards")]
         [SerializeField] private GameObject parentCards, parentPreviewCard;
         [BoxGroup("Current deck")]
@@ -54,6 +57,10 @@ namespace UI
             choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); }); 
             chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });
 
+            alhabetFilterButton.onClick.AddListener(ClickFilterAlhabet);
+            rareFilterButton.onClick.AddListener(ClickFilterRare);
+
+            createDeckButton.onClick.AddListener(ClickCreateDeck);
             exitButton.onClick.AddListener(ClickExitButton);
         }
 
@@ -118,6 +125,11 @@ namespace UI
             }
         }
 
+        private void ClickCreateDeck()
+        {
+
+        }
+
         public void ClickDeckButton(DeckButton deckButton)
         {
             if (selectedDeckButton == deckButton)
@@ -153,6 +165,40 @@ namespace UI
         public void DeletePreviewCard()
         {
             Destroy(previewCard.gameObject);
+        }
+
+        private void ClickFilterAlhabet()
+        {
+            if (presidentsCardsNow)
+            {
+                showCardsPresident.OrderBy(card => card.GetData.Id);
+                string message = "";
+                foreach (var card in showCardsPresident)
+                {
+                    message += $"{card.GetData.Id} ";
+                }
+
+                Debug.Log(message);
+            }
+            else
+            {
+                showCardsFight.OrderBy(card => card.GetData.Id);
+                string message = "";
+                foreach (var card in showCardsFight)
+                {
+                    message += $"{card.GetData.Id} ";
+                }
+
+                Debug.Log(message);
+
+                Debug.Log($"<color=red>Check logic!</color>");
+
+            }
+        }
+
+        private void ClickFilterRare()
+        {
+            Debug.Log($"<color=red>Not have logic!</color>");
         }
 
         private void ClickExitButton()
