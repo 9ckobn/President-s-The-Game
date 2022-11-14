@@ -175,28 +175,28 @@ namespace UI
             if (presidentsCardsNow)
             {
                 showCardsPresident = showCardsPresident.OrderBy(card => card.GetData.Name).ToList();
-                string message = "";
-                foreach (var card in showCardsPresident)
-                {
-                    message += $"{card.GetData.Id} ";
-                }
+                //string message = "";
+                //foreach (var card in showCardsPresident)
+                //{
+                //    message += $"{card.GetData.Id} ";
+                //}
 
-                Debug.Log(message);
+                //Debug.Log(message);
             }
             else
             {
                 showCardsFight = showCardsFight.OrderBy(card => card.GetData.Name).ToList();
-                string message = "";
-                foreach (var card in showCardsFight)
-                {
-                    message += $"{card.GetData.Id} ";
-                }
+                //string message = "";
+                //foreach (var card in showCardsFight)
+                //{
+                //    message += $"{card.GetData.Id} ";
+                //}
 
-                Debug.Log(message);
+                //Debug.Log(message);
             }
 
             presidentsCardsNow = !presidentsCardsNow;
-            ClickShowCards(presidentsCardsNow);
+            ClickShowCards(!presidentsCardsNow);
         }
 
         private void ClickFilterRare()
@@ -205,28 +205,28 @@ namespace UI
             {
                 showCardsPresident = showCardsPresident.OrderBy(card => card.GetData.Rarityrank).ToList();
 
-                string message = "";
-                foreach (var card in showCardsPresident)
-                {
-                    message += $"{card.GetData.Id} ";
-                }
+                //string message = "";
+                //foreach (var card in showCardsPresident)
+                //{
+                //    message += $"{card.GetData.Id} ";
+                //}
 
-                Debug.Log(message);
+                //Debug.Log(message);
             }
             else
             {
                 showCardsFight = showCardsFight.OrderBy(card => card.GetData.Cost).ToList();
-                string message = "";
-                foreach (var card in showCardsFight)
-                {
-                    message += $"{card.GetData.Id} ";
-                }
+                //string message = "";
+                //foreach (var card in showCardsFight)
+                //{
+                //    message += $"{card.GetData.Id} ";
+                //}
 
-                Debug.Log(message);
+                //Debug.Log(message);
             }
 
             presidentsCardsNow = !presidentsCardsNow;
-            ClickShowCards(presidentsCardsNow);
+            ClickShowCards(!presidentsCardsNow);
         }
 
         private void ClickExitButton()
