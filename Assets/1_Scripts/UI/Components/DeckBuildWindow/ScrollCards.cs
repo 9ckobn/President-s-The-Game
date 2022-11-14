@@ -34,6 +34,8 @@ namespace UI.Components
 
             blocksCard.Clear();
             contentLinesParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+            moveScrollCards.ResetStartPosition();
+            currentBlock = 0;
         }
 
         public void AddCards(List<CardPresidentUI> cardsPresident)

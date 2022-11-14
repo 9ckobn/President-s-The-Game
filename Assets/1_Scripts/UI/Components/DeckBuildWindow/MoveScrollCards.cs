@@ -13,9 +13,6 @@ namespace UI.Components
             startXPos = transform.localPosition.x;
         }
 
-        /// <summary>
-        /// Подвинуть панель вправо на один элемент
-        /// </summary>
         public void MoveRight()
         {
             Vector3 nextPos = GetNextPos;
@@ -23,9 +20,6 @@ namespace UI.Components
             SetNextPosositionForMove(nextPos);
         }
 
-        /// <summary>
-        /// Подвинуть панель влево на один элемент
-        /// </summary>
         public void MoveLeft()
         {
             Vector3 nextPos = GetNextPos;
@@ -33,9 +27,6 @@ namespace UI.Components
             SetNextPosositionForMove(nextPos);
         }
 
-        /// <summary>
-        /// Вернуть стартовую позицию
-        /// </summary>
         public void ResetStartPosition()
         {
             Vector2 startPosition = transform.localPosition;
