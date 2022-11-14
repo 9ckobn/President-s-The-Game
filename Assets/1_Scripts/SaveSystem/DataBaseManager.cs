@@ -1,5 +1,7 @@
 using Cards;
 using Cards.Data;
+using Cards.DeckBuild;
+using Cards.Type;
 using Cysharp.Threading.Tasks;
 using Gameplay;
 using MoralisUnity;
@@ -27,13 +29,22 @@ namespace Core
         private bool isUseMoralis;
         private MoralisUser moralisUser;
 
-        private List<CardPresidentDataSerialize> cardsPresidentsData = new List<CardPresidentDataSerialize>();
-        private List<string> cardsFightId = new List<string>();
-        private List<DeckData> decksData = new List<DeckData>();
+        public List<CardPresidentDataSerialize> CardsPresidentsData { get; private set; }
+        public List<DeckData> DecksData { get; private set; }
 
-        public List<CardPresidentDataSerialize> GetCardsPresidentData { get => cardsPresidentsData; }
-        public List<string> GetCardsFightID { get => cardsFightId; }
-        public List<DeckData> GetDecksData { get => decksData; }
+
+        /// <summary>
+        /// 
+        // TODO: Move this fields in GameState
+        /// 
+        /// </summary>
+        public DeckData SelectedDeck { get; private set; }
+        public TypeClimate TypeClimate { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// 
+
 
         public bool SetIsUseMoralis { set => isUseMoralis = value; }
 
@@ -53,9 +64,23 @@ namespace Core
             LoadDataFromServer();
         }
 
+        public void SelectDeck(int idDeck)
+        {
+            foreach (var deckData in DecksData)
+            {
+                if (deckData.Id == idDeck)
+                {
+                    SelectedDeck = deckData;
+                    return;
+                }
+            }
+        }
+
         private async void LoadDataFromServer()
         {
             List<string> idPresidents = new List<string>();
+            CardsPresidentsData = new List<CardPresidentDataSerialize>();
+            DecksData = new List<DeckData>();
 
             if (isUseMoralis)
             {
@@ -80,7 +105,7 @@ namespace Core
                         deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
                         DeckData deck = null;
 
-                        if(deckDataJson.Decks.Length > 1)
+                        if (deckDataJson.Decks.Length > 1)
                         {
                             Debug.LogError("Decks > 1. Create logics!");
                             return;
@@ -89,17 +114,7 @@ namespace Core
                         foreach (var deckJson in deckDataJson.Decks)
                         {
                             deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IdPresidentCards, deckJson.IdFightCards);
-                            decksData.Add(deck);
-                        }
-
-                        foreach (var cardId in deck.FightsId)
-                        {
-                            cardsFightId.Add(cardId);
-                        }
-
-                        foreach (var cardId in deck.PresidentsId)
-                        {
-                            idPresidents.Add(cardId);
+                            DecksData.Add(deck);
                         }
                     }
                     else
@@ -107,29 +122,12 @@ namespace Core
                         // TODO: Error LogController because init logController after this comit
 
                         Debug.Log($"Not have file save");
+                    }
 
-                        // Create Fake id presidents 
-                        for (int i = 1; i < 7; i++)
-                        {
-                            idPresidents.Add(i.ToString());
-                        }
-
-                        // Create all cards
-                        cardsFightId.Add("AirStrike");
-                        cardsFightId.Add("BountifulHarvest");
-                        cardsFightId.Add("CustomsReform");
-                        cardsFightId.Add("DiplomaticImmunity");
-                        cardsFightId.Add("EducationalInfrastructure");
-                        cardsFightId.Add("Elections");
-                        cardsFightId.Add("IntelligenceData");
-                        cardsFightId.Add("Isolation");
-                        cardsFightId.Add("JoiningUnion");
-                        cardsFightId.Add("MilitaryPosition");
-                        cardsFightId.Add("Patronage");
-                        cardsFightId.Add("PestControl");
-                        cardsFightId.Add("StrategicLoan ");
-                        cardsFightId.Add("Sunction");
-                        cardsFightId.Add("TechnologicalBreakthrough");
+                    // Create Fake id presidents 
+                    for (int i = 1; i < 7; i++)
+                    {
+                        idPresidents.Add(i.ToString());
                     }
 
                     // Get data presidents from base
@@ -140,7 +138,7 @@ namespace Core
                             var json = await httpClient.GetStringAsync(PATH_PRESIDENTS + idPresidents[i]);
 
                             CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json);
-                            cardsPresidentsData.Add(cardData);
+                            CardsPresidentsData.Add(cardData);
                         }
                     }
                 }
@@ -165,7 +163,7 @@ namespace Core
             {
                 // Save data on disk
 
-                List<DeckData> decks = BoxController.GetController<DeckBuildController>().GetAllDecks;
+                List<DeckData> decks = BoxController.GetController<DeckBuildController>().Decks;
                 AllDecksDataJson decksData = new AllDecksDataJson();
                 decksData.Decks = new DeckDataJson[decks.Count];
 

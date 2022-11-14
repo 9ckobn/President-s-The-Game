@@ -1,37 +1,31 @@
 using Cards.Data;
-using Cards.Type;
 using Core;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
 
-namespace Gameplay
+namespace Cards.DeckBuild
 {
-    [CreateAssetMenu(fileName = "DeckBuildController", menuName = "Controllers/Gameplay/DeckBuildController")]
+    [CreateAssetMenu(fileName = "DeckBuildController", menuName = "Controllers/DeckBuild/DeckBuildController")]
     public class DeckBuildController : BaseController
     {
-        private List<DeckData> decks = new List<DeckData>();
-        private DeckData selectedDeck;
-        private TypeClimate typeClimate;
-
-        public List<DeckData> GetAllDecks { get => decks; }
-        public DeckData GetSelectedDeck { get => selectedDeck; }
-        public TypeClimate GetTypeClimate { get => typeClimate; }
+        public List<DeckData> Decks { get; private set; }
+        public DeckData SelectedDeck { get; private set; }
 
         public override void OnInitialize()
         {
-            decks = DataBaseManager.Instance.GetDecksData;
+            Decks = DataBaseManager.Instance.DecksData;
 
-            if (decks.Count == 0)
+            if (Decks.Count == 0)
             {
                 for (int i = 0; i < 3; i++)
                 {
                     DeckData deckData = new DeckData(i, "deck", null, null);
-                    decks.Add(deckData);
+                    Decks.Add(deckData);
                 }
             }
 
-            selectedDeck = decks[0];
+            SelectedDeck = Decks[0];
         }
 
         public override void OnStart()
@@ -42,32 +36,32 @@ namespace Gameplay
 
         public bool CanAddCard(CardPresidentData card)
         {
-            return selectedDeck.CanAddPresidentData();
+            return SelectedDeck.CanAddPresidentData();
         }
 
         public bool CanAddCard(CardFightData card)
         {
-            return selectedDeck.CanAddFightData();
+            return SelectedDeck.CanAddFightData();
         }
 
         public void AddCardInDeck(CardPresidentData card)
         {
-            selectedDeck.AddPresidentCard(card.Id);
+            SelectedDeck.AddPresidentCard(card.Id);
         }
 
         public void AddCardInDeck(CardFightData card)
         {
-            selectedDeck.AddFightCard(card.Id);
+            SelectedDeck.AddFightCard(card.Id);
         }
 
         public void RemoveCardInDeck(CardPresidentData card)
         {
-            selectedDeck.RemovePresidentCard(card.Id);
+            SelectedDeck.RemovePresidentCard(card.Id);
         }
 
         public void RemoveCardInDeck(CardFightData card)
         {
-            selectedDeck.RemoveFightCard(card.Id);
+            SelectedDeck.RemoveFightCard(card.Id);
         }
     }
 }

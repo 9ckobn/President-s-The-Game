@@ -1,7 +1,7 @@
 using Cards;
 using Cards.Data;
+using Cards.DeckBuild;
 using Core;
-using Gameplay;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UI.Buttons;
@@ -35,7 +35,7 @@ namespace UI
         [SerializeField] private Button exitButton;
 
         private DeckBuildController deckController;
-        private StorageCardsController storageCards;
+        private DeckBuildStorageCardsController storageCards;
 
         private List<CardPresidentUI> showCardsPresident = new List<CardPresidentUI>();
         private List<CardPresidentUI> deckCardsPresident = new List<CardPresidentUI>();
@@ -49,7 +49,7 @@ namespace UI
         protected override void AfterInitialization()
         {
             deckController = BoxController.GetController<DeckBuildController>();
-            storageCards = BoxController.GetController<StorageCardsController>();
+            storageCards = BoxController.GetController<DeckBuildStorageCardsController>();
 
             choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); }); 
             chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });
@@ -59,19 +59,19 @@ namespace UI
 
         protected override void BeforeShow()
         {
-            List<DeckData> decks = deckController.GetAllDecks;
+            List<DeckData> decks = deckController.Decks;
 
             for (int i = 0; i < decks.Count; i++)
             {
                 deckButtons[i].SetNameDeck = decks[i].Name;
             }
 
-            foreach (var cardId in deckController.GetSelectedDeck.PresidentsId)
+            foreach (var cardId in deckController.SelectedDeck.PresidentsId)
             {
                 CreatePresidentCardInDeck(storageCards.GetPresidentData(cardId));
             }
 
-            foreach (var cardId in deckController.GetSelectedDeck.FightsId)
+            foreach (var cardId in deckController.SelectedDeck.FightsId)
             {
                 CreateFightCardInDeck(storageCards.GetFightData(cardId));
             }
@@ -208,7 +208,7 @@ namespace UI
 
         private void CreatePresidentCards()
         {
-            List<CardPresidentData> cardsData = storageCards.GetCardsPresidentData;
+            List<CardPresidentData> cardsData = storageCards.CardsPresidentData;
             showCardsPresident = new List<CardPresidentUI>();
 
             foreach (var cardData in cardsData)
@@ -225,7 +225,7 @@ namespace UI
 
         private void CreateFightCards()
         {
-            List<CardFightData> cardsData = storageCards.GetCardsFightData;
+            List<CardFightData> cardsData = storageCards.CardsFightData;
             showCardsFight = new List<CardFightUI>();
 
             foreach (var cardData in cardsData)

@@ -18,6 +18,7 @@ public class DELETE_InitFightScene : MonoBehaviour
     private void StartGame()
     {
         DataBaseManager.Instance.OnInit.RemoveListener(StartGame);
+        DataBaseManager.Instance.SelectDeck(0);
         SceneControllers.Instance.InitControllers();
 
         StartCoroutine(CoStartGame());

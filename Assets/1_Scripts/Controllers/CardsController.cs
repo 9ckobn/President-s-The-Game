@@ -25,8 +25,8 @@ namespace Gameplay
 
         public override void OnStart()
         {
-            List<CardPresidentData> cardsPresidentData = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
-            List<CardFightData> cardsFightData = BoxController.GetController<StorageCardsController>().GetCardsFightData;
+            List<CardPresidentData> cardsPresidentData = BoxController.GetController<GameStorageCardsController>().CardsPresidentData;
+            List<CardFightData> cardsFightData = BoxController.GetController<GameStorageCardsController>().CardsFightData;
 
             CreatorController creator = BoxController.GetController<CreatorController>();
             ContainerPresidentCards containerPlayerPresidents = ObjectsOnScene.Instance.GetContainerPlayerPresidents;
@@ -62,7 +62,7 @@ namespace Gameplay
             // TODO: not use player data presidents data!!! Use enemy persidents data!!!
 
             List<CardPresidentData> enemyCardsPresidentData = new List<CardPresidentData>(cardsPresidentData);
-            List<CardFightData> cardsEnemyFightData = BoxController.GetController<StorageCardsController>().GetCardsEnemyFightData;
+            List<CardFightData> cardsEnemyFightData = BoxController.GetController<GameStorageCardsController>().CardsEnemyFightData;
 
             ContainerPresidentCards containerEnemyPresidentCards = ObjectsOnScene.Instance.GetContainerEnemyPresidents;
             ContainerFightCards containerEnemyFightCards = ObjectsOnScene.Instance.GetContainerAIFightCards;

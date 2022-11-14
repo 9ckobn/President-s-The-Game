@@ -44,7 +44,7 @@ namespace Gameplay
         private List<AttributeData> CreateAttributes()
         {
             List<AttributeData> attributes = new List<AttributeData>();
-            List<CardPresidentData> playersPresidents = BoxController.GetController<StorageCardsController>().GetCardsPresidentData;
+            List<CardPresidentData> playersPresidents = BoxController.GetController<GameStorageCardsController>().CardsPresidentData;
 
             int attack = DEFAULT_VALUE;
             int defend = DEFAULT_VALUE;

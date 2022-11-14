@@ -1,6 +1,5 @@
 using Cards.Type;
 using Core;
-using Gameplay;
 using UnityEngine;
 
 namespace Cards.Data
@@ -41,7 +40,7 @@ namespace Cards.Data
 
         private void CalculateClimate()
         {
-            if (Climate == BoxController.GetController<DeckBuildController>().GetTypeClimate)
+            if (Climate == DataBaseManager.Instance.TypeClimate)
             {
                 BuffAttack = new BuffAttribute(BUFF_CLIMATE);
                 BuffDefend = new BuffAttribute(BUFF_CLIMATE);

@@ -2248,7 +2248,7 @@ GameObject:
   - component: {fileID: 6741899432531576789}
   - component: {fileID: 6741899432531576810}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: DontDestroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3025,6 +3025,7 @@ MonoBehaviour:
   EndHide:
     m_PersistentCalls:
       m_Calls: []
+  currentCharacterText: {fileID: 0}
 --- !u!224 &6741899433168419059
 RectTransform:
   m_ObjectHideFlags: 0

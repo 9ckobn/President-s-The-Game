@@ -18,7 +18,7 @@ namespace Gameplay
         public CardPresidentModel CreateCardPresident(CardPresidentData cardData)
         {
             Transform spawnTransform = ObjectsOnScene.Instance.GetSpawnPosition.transform;
-            GameObject modelPrefab = BoxController.GetController<StorageCardsController>().GetPresidentModel(cardData.Id);
+            GameObject modelPrefab = BoxController.GetController<GameStorageCardsController>().GetPresidentModel(cardData.Id);
 
             CardPresidentModel card = Instantiate(presidentPrefab, spawnTransform);
             card.SetCardData = cardData;
@@ -31,7 +31,7 @@ namespace Gameplay
         public CardFightModel CreateCardFight(CardFightData cardData)
         {
             Transform spawnTransform = ObjectsOnScene.Instance.GetSpawnPosition.transform;
-            GameObject modelPrefab = BoxController.GetController<StorageCardsController>().GetFightModel(cardData.Id);
+            GameObject modelPrefab = BoxController.GetController<GameStorageCardsController>().GetFightModel(cardData.Id);
 
             CardFightModel card = Instantiate(fightPrefab, spawnTransform);
             card.SetCardData = cardData;
