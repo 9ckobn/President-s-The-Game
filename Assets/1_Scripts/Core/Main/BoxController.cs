@@ -35,6 +35,8 @@ namespace Core
 
             StartControllers();
             yield return null;
+
+            OnInit?.Invoke();
         }
 
         private static void CreateControllers()

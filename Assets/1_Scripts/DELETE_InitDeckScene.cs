@@ -1,6 +1,4 @@
 using Core;
-using Gameplay;
-using System.Collections;
 using UI;
 using UnityEngine;
 
@@ -8,25 +6,22 @@ public class DELETE_InitDeckScene : MonoBehaviour
 {
     private void Start()
     {
-        StartCoroutine(CoStartGame());
-        //UIManager.Instance.OnInitialize();
-        //UIManager.Instance.OnStart();
-
-        //DataBaseManager.Instance.OnInit.AddListener(StartGame);
-        //DataBaseManager.Instance.Initialize();
+        DataBaseManager.OnInit += LoadData;
+        DataBaseManager.Instance.Initialize();
     }
 
-    private void StartGame() 
+    private void LoadData()
     {
-        //DataBaseManager.Instance.OnInit.RemoveListener(StartGame);
-        //SceneControllers.Instance.InitControllers();
+        DataBaseManager.OnInit -= LoadData;
 
-        //StartCoroutine(CoStartGame());
+        SceneControllers.OnInit += StartGame;
+        SceneControllers.InitControllers();
     }
 
-    private IEnumerator CoStartGame()
+    private void StartGame()
     {
-        yield return new WaitForSeconds(0.5f);
+        SceneControllers.OnInit -= StartGame;
+
         Debug.Log("<color=red>Delete init scene!</color>");
 
         UIManager.Instance.ShowWindow<DeckBuildWindow>();

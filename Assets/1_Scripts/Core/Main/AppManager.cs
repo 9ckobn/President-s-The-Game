@@ -24,22 +24,11 @@ namespace Core
 
         #region START_APP
 
-        private IEnumerator Start()
+        private void Start()
         {
             DataBaseManager.Instance.SetIsUseMoralis = isUseMoralis;
-
-            if (!SceneControllers.instance.GetIsInit)
-            {
-                while (!SceneControllers.instance.GetIsInit)
-                {
-                    yield return new WaitForSeconds(0.05f);
-                }
-            }
-
-            UIManager.Instance.OnInitialize();
-            UIManager.Instance.OnStart();
-
-            AfterControllersInit();
+            SceneControllers.OnInit += AfterControllersInit;
+            SceneControllers.InitControllers();
         }
 
         public async void AfterControllersInit()
@@ -88,7 +77,7 @@ namespace Core
             }
             else
             {
-                DataBaseManager.Instance.OnInit.AddListener(AfterInitDataBase);
+                DataBaseManager.OnInit += AfterInitDataBase;
                 DataBaseManager.Instance.SetMoralisUser = null;
                 DataBaseManager.Instance.Initialize();
             }
@@ -102,7 +91,7 @@ namespace Core
 
             if (moralisUser != null)
             {
-                DataBaseManager.Instance.OnInit.AddListener(AfterInitDataBase);
+                DataBaseManager.OnInit += AfterInitDataBase;
                 DataBaseManager.Instance.SetMoralisUser = moralisUser;
                 DataBaseManager.Instance.Initialize();
             }
@@ -114,7 +103,7 @@ namespace Core
 
         private void AfterInitDataBase()
         {
-            DataBaseManager.Instance.OnInit.RemoveListener(AfterInitDataBase);
+            DataBaseManager.OnInit -= AfterInitDataBase;
 
             LoadSceneManager.instance.LoadDeckBuildScene();
         }

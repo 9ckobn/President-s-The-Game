@@ -23,8 +23,7 @@ namespace Core
     {
         private const string PATH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json"; // C:\Users\unity\AppData\LocalLow\DefaultCompany
 
-        [HideInInspector]
-        public UnityEvent OnInit;
+        public static event Action OnInit;
 
         private bool isUseMoralis;
         private MoralisUser moralisUser;
@@ -209,7 +208,7 @@ namespace Core
         {
             if (isUseMoralis)
             {
-                BoxController.GetController<LogController>().Log($"Меняем Ник");
+                BoxController.GetController<LogController>().Log($"?????? ???");
 
                 moralisUser.username = newNick;
 
@@ -217,11 +216,11 @@ namespace Core
 
                 if (result)
                 {
-                    BoxController.GetController<LogController>().Log($"Изменили имя на {newNick}");
+                    BoxController.GetController<LogController>().Log($"???????? ??? ?? {newNick}");
                 }
                 else
                 {
-                    BoxController.GetController<LogController>().LogError($"Ошибка сохранения нового ника!");
+                    BoxController.GetController<LogController>().LogError($"?????? ?????????? ?????? ????!");
                 }
             }
         }

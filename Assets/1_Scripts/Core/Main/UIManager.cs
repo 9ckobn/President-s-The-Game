@@ -6,6 +6,8 @@ namespace UI
 {
     public class UIManager : Singleton<UIManager>, IInitialize
     {
+        public static event Action OnInit;
+
         private Dictionary<Type, Window> windows;
 
         #region INITIALIZE
@@ -32,6 +34,8 @@ namespace UI
             {
                 window.Value.OnStart();
             }
+
+            OnInit?.Invoke();
         }
 
         #endregion INITIALIZE

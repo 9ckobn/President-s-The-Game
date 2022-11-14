@@ -1,32 +1,28 @@
 using Core;
 using Gameplay;
-using System.Collections;
-using UI;
 using UnityEngine;
 
 public class DELETE_InitFightScene : MonoBehaviour
 {
     private void Start()
     {
-        UIManager.Instance.OnInitialize();
-        UIManager.Instance.OnStart();
-
-        DataBaseManager.Instance.OnInit.AddListener(StartGame);
+        DataBaseManager.OnInit += LoadData;
         DataBaseManager.Instance.Initialize();
+    }
+
+    private void LoadData()
+    {
+        DataBaseManager.OnInit -= LoadData;
+        DataBaseManager.Instance.SelectDeck(0);
+
+        SceneControllers.OnInit += StartGame;
+        SceneControllers.InitControllers();
     }
 
     private void StartGame()
     {
-        DataBaseManager.Instance.OnInit.RemoveListener(StartGame);
-        DataBaseManager.Instance.SelectDeck(0);
-        SceneControllers.Instance.InitControllers();
+        SceneControllers.OnInit -= StartGame;
 
-        StartCoroutine(CoStartGame());
-    }
-
-    private IEnumerator CoStartGame()
-    {
-        yield return new WaitForSeconds(0.5f);
         Debug.Log("<color=red>Delete init scene!</color>");
 
         BoxController.GetController<FightSceneController>().StartGame();
