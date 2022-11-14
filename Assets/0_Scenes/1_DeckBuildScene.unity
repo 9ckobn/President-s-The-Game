@@ -166,9 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f14b449d156bb543a1b1ff271a813a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnInit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &40864543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e7f2ea56dcabcfd4ab86ff036bef634e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9e83458e4bebf64bbdffc3a73bb0c28, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2005,7 +2002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9e83458e4bebf64bbdffc3a73bb0c28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7f2ea56dcabcfd4ab86ff036bef634e, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4852,6 +4849,8 @@ MonoBehaviour:
   - {fileID: 2003872269}
   alhabetFilterButton: {fileID: 1212910623}
   rareFilterButton: {fileID: 805109170}
+  enableFilterSprite: {fileID: 21300000, guid: e7f2ea56dcabcfd4ab86ff036bef634e, type: 3}
+  disableFilterSprite: {fileID: 21300000, guid: e9e83458e4bebf64bbdffc3a73bb0c28, type: 3}
   parentCards: {fileID: 1896121055}
   parentPreviewCard: {fileID: 595916992}
   currentPresidentsUI: {fileID: 1973794831}

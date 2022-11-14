@@ -30,6 +30,8 @@ namespace UI
         [SerializeField] private DeckButton[] deckButtons;
         [BoxGroup("Filter buttons")]
         [SerializeField] private Button alhabetFilterButton, rareFilterButton;
+        [BoxGroup("Filter buttons")]
+        [SerializeField] private Sprite enableFilterSprite, disableFilterSprite;
         [BoxGroup("Parent cards")]
         [SerializeField] private GameObject parentCards, parentPreviewCard;
         [BoxGroup("Current deck")]
@@ -47,7 +49,9 @@ namespace UI
 
         private CardUI previewCard;
         private DeckButton selectedDeckButton;
+
         private bool presidentsCardsNow;
+        private bool alhabetFilter = true;
 
         protected override void AfterInitialization()
         {
@@ -66,7 +70,6 @@ namespace UI
 
         protected override void BeforeShow()
         {
-            Debug.Log("deckController " + deckController);
             List<DeckData> decks = deckController.Decks;
 
             for (int i = 0; i < decks.Count; i++)
@@ -93,22 +96,27 @@ namespace UI
         {
             if (presidentsCardsNow != isPresidentCards)
             {
-                Debug.Log("click");
                 presidentsCardsNow = isPresidentCards;
 
-                if (presidentsCardsNow)
+                if (showCardsFight.Count > 0)
                 {
                     foreach (var card in showCardsFight)
                     {
                         Destroy(card.gameObject);
                     }
+
+                    showCardsFight.Clear();
                 }
-                else
+
+                if (showCardsPresident.Count > 0)
                 {
                     foreach (var card in showCardsPresident)
                     {
+
                         Destroy(card.gameObject);
                     }
+
+                    showCardsPresident.Clear();
                 }
 
                 scrollCards.ClearLines();
@@ -170,63 +178,30 @@ namespace UI
 
         private void ClickFilterAlhabet()
         {
-            Debug.Log("ClickFilterAlhabet");
-
-            if (presidentsCardsNow)
+            if (!alhabetFilter)
             {
-                showCardsPresident = showCardsPresident.OrderBy(card => card.GetData.Name).ToList();
-                //string message = "";
-                //foreach (var card in showCardsPresident)
-                //{
-                //    message += $"{card.GetData.Id} ";
-                //}
+                alhabetFilter = true;
 
-                //Debug.Log(message);
+                alhabetFilterButton.GetComponent<Image>().sprite = enableFilterSprite;
+                rareFilterButton.GetComponent<Image>().sprite = disableFilterSprite;
+
+                presidentsCardsNow = !presidentsCardsNow;
+                ClickShowCards(!presidentsCardsNow);
             }
-            else
-            {
-                showCardsFight = showCardsFight.OrderBy(card => card.GetData.Name).ToList();
-                //string message = "";
-                //foreach (var card in showCardsFight)
-                //{
-                //    message += $"{card.GetData.Id} ";
-                //}
-
-                //Debug.Log(message);
-            }
-
-            presidentsCardsNow = !presidentsCardsNow;
-            ClickShowCards(!presidentsCardsNow);
         }
 
         private void ClickFilterRare()
         {
-            if (presidentsCardsNow)
+            if (alhabetFilter)
             {
-                showCardsPresident = showCardsPresident.OrderBy(card => card.GetData.Rarityrank).ToList();
+                alhabetFilter = false;
 
-                //string message = "";
-                //foreach (var card in showCardsPresident)
-                //{
-                //    message += $"{card.GetData.Id} ";
-                //}
+                alhabetFilterButton.GetComponent<Image>().sprite = disableFilterSprite;
+                rareFilterButton.GetComponent<Image>().sprite = enableFilterSprite;
 
-                //Debug.Log(message);
+                presidentsCardsNow = !presidentsCardsNow;
+                ClickShowCards(!presidentsCardsNow);
             }
-            else
-            {
-                showCardsFight = showCardsFight.OrderBy(card => card.GetData.Cost).ToList();
-                //string message = "";
-                //foreach (var card in showCardsFight)
-                //{
-                //    message += $"{card.GetData.Id} ";
-                //}
-
-                //Debug.Log(message);
-            }
-
-            presidentsCardsNow = !presidentsCardsNow;
-            ClickShowCards(!presidentsCardsNow);
         }
 
         private void ClickExitButton()
@@ -285,6 +260,15 @@ namespace UI
             List<CardPresidentData> cardsData = storageCards.CardsPresidentData;
             showCardsPresident = new List<CardPresidentUI>();
 
+            if (alhabetFilter)
+            {
+                cardsData = cardsData.OrderBy(card => card.Name).ToList();
+            }
+            else
+            {
+                cardsData = cardsData.OrderBy(card => card.Rarityrank).ToList();
+            }
+
             foreach (var cardData in cardsData)
             {
                 CardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
@@ -301,6 +285,15 @@ namespace UI
         {
             List<CardFightData> cardsData = storageCards.CardsFightData;
             showCardsFight = new List<CardFightUI>();
+
+            if (alhabetFilter)
+            {
+                cardsData = cardsData.OrderBy(card => card.Name).ToList();
+            }
+            else
+            {
+                cardsData = cardsData.OrderBy(card => card.Cost).ToList();
+            }
 
             foreach (var cardData in cardsData)
             {
