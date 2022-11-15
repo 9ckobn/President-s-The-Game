@@ -1190,6 +1190,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e146c40cd9eb79b4cbd6c4dbe55d716d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &768525883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768525884}
+  m_Layer: 0
+  m_Name: '[COROUTINES]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &768525884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768525883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771276753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1314,7 @@ MonoBehaviour:
   speed: 10
   prefabLineCard: {fileID: 5747932239501156897, guid: 3e0c40d2e6d3fee439f965821ad8aec5, type: 3}
   contentLinesParent: {fileID: 438544703}
+  countBlockText: {fileID: 1523447353}
   leftLeafButton: {fileID: 1594599957}
   rightLeafButton: {fileID: 1244182926}
   moveScrollCards: {fileID: 438544706}
@@ -2513,6 +2544,36 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1754460317652852377, guid: 919f4b43859087c40ac7da52dea28a17, type: 3}
   m_PrefabInstance: {fileID: 1247201198}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1314448210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314448211}
+  m_Layer: 0
+  m_Name: '[COROUTINES]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1314448211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314448210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1356937244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,7 +3029,7 @@ GameObject:
   - component: {fileID: 1523447354}
   - component: {fileID: 1523447353}
   m_Layer: 5
-  m_Name: CountPageCards
+  m_Name: CountBlocksText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@ namespace UI.Components
 
         [SerializeField] private BlockCards prefabLineCard;
         [SerializeField] private GameObject contentLinesParent;
+        [SerializeField] private Text countBlockText;
         [SerializeField] private Button leftLeafButton, rightLeafButton;
         [SerializeField] private MoveScrollCards moveScrollCards;
 
@@ -92,6 +93,8 @@ namespace UI.Components
                     countCards = 0;
                 }
             }
+
+            RedrawCoutBlockText();
         }
 
         private void LeaftLeft()
@@ -99,6 +102,7 @@ namespace UI.Components
             moveScrollCards.MoveLeft();
             currentBlock--;
             CheckLeafButtons();
+            RedrawCoutBlockText();
         }
 
         private void LeadRight()
@@ -106,6 +110,7 @@ namespace UI.Components
             moveScrollCards.MoveRight();
             currentBlock++;
             CheckLeafButtons();
+            RedrawCoutBlockText();
         }
 
         private void CheckLeafButtons()
@@ -135,6 +140,11 @@ namespace UI.Components
                     rightLeafButton.gameObject.SetActive(true);
                 }
             }
+        }
+
+        private void RedrawCoutBlockText()
+        {
+            countBlockText.text = $"0{currentBlock + 1}/0{blocksCard.Count}";
         }
     }
 }
