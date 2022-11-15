@@ -11,14 +11,18 @@ namespace Cards.Data
 
         public int Id { get; private set; }
         public string Name { get; private set; }
+        public bool IsComplete { get; private set; }
+        public bool IsSelected { get; set; }
 
         private int maxPresidents = 3;
         private int maxFights = 9;
 
-        public DeckData(int id, string name, List<string> presidents, List<string> fights)
+        public DeckData(int id, string name, bool isComplete, bool isSelected, List<string> presidents, List<string> fights)
         {
             Id = id;
             Name = name;
+            IsComplete = isComplete;
+            IsSelected = isSelected;
 
             if (presidents == null)
             {

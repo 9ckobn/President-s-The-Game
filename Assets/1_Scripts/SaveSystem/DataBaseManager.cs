@@ -112,7 +112,7 @@ namespace Core
 
                         foreach (var deckJson in deckDataJson.Decks)
                         {
-                            deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IdPresidentCards, deckJson.IdFightCards);
+                            deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IsCoplete, deckJson.IsSelected, deckJson.IdPresidentCards, deckJson.IdFightCards);
                             DecksData.Add(deck);
                         }
                     }
@@ -185,6 +185,8 @@ namespace Core
                     deckJson.NameDeck = decks[d].Name;
                     deckJson.IdPresidentCards = idPresidentsCards;
                     deckJson.IdFightCards = idFightCards;
+                    deckJson.IsCoplete = decks[d].IsComplete;
+                    deckJson.IsSelected = decks[d].IsSelected;
 
                     decksData.Decks[d] = deckJson;
                 }

@@ -30,6 +30,8 @@ namespace UI
         [SerializeField] private Button createDeckButton;
         [BoxGroup("Deck buttons")]
         [SerializeField] private DeckButton[] deckButtons;
+        [BoxGroup("Deck buttons")]
+        [SerializeField] private Sprite selectedDeckSprite, fullDeckSprite, notCompleteDeckSprite;
         [BoxGroup("Filter buttons")]
         [SerializeField] private Button alhabetFilterButton, rareFilterButton;
         [BoxGroup("Filter buttons")]
@@ -76,12 +78,12 @@ namespace UI
 
         protected override void BeforeShow()
         {
-            ShowDeckButtons();
+            RedrawDeckButtons();
 
             ClickShowCards(true);
         }
 
-        private void ShowDeckButtons()
+        private void RedrawDeckButtons()
         {
             List<DeckData> decks = deckController.Decks;
 
@@ -101,6 +103,20 @@ namespace UI
                 {
                     deckButtons[i].SetNameDeck = decks[i].Name;
                     deckButtons[i].gameObject.SetActive(true);
+                    deckButtons[i].IdDeck = decks[i].Id;
+
+                    if (decks[i].IsSelected)
+                    {
+                        deckButtons[i].SetSpriteButton(selectedDeckSprite);
+                    }
+                    else if (decks[i].IsComplete)
+                    {
+                        deckButtons[i].SetSpriteButton(fullDeckSprite);
+                    }
+                    else
+                    {
+                        deckButtons[i].SetSpriteButton(notCompleteDeckSprite);
+                    }
                 }
 
                 foreach (var cardId in deckController.SelectedDeck.PresidentsId)
@@ -168,7 +184,7 @@ namespace UI
             if (deckController.CanCreateDeck)
             {
                 deckController.CreateDeck();
-                ShowDeckButtons();
+                RedrawDeckButtons();
             }
         }
 
@@ -181,6 +197,8 @@ namespace UI
             else
             {
                 selectedDeckButton = deckButton;
+                deckController.SelectDeck(deckButton.IdDeck);
+                RedrawDeckButtons();
             }
         }
 

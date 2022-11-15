@@ -18,9 +18,15 @@ namespace Cards.DeckBuild
         {
             Decks = DataBaseManager.Instance.DecksData;
 
-            if (Decks.Count > 1)
+            if (Decks.Count > 0)
             {
-                SelectedDeck = Decks[0];
+                foreach (var deck in Decks)
+                {
+                    if (deck.IsSelected)
+                    {
+                        SelectedDeck = deck;
+                    }
+                }
             }
         }
 
@@ -31,11 +37,23 @@ namespace Cards.DeckBuild
         public bool CanAddFightCard { get => SelectedDeck.CanAddFightData(); }
         public bool CanCreateDeck { get => Decks.Count < MainData.MAX_DECKS; }
 
+        public void SelectDeck(int idDeck)
+        {
+            foreach (var deck in Decks)
+            {
+                if(deck.Id == idDeck)
+                {
+                    SelectedDeck = deck;
+                    return;
+                }
+            }
+        }
+
         public void CreateDeck()
         {
-            DeckData newDeck = new DeckData(Decks.Count, DEFAULT_DECK_NAME, new List<string>(), new List<string>());
+            DeckData newDeck = new DeckData(Decks.Count, DEFAULT_DECK_NAME, false, true, new List<string>(), new List<string>());
             Decks.Add(newDeck);
-            SelectedDeck = newDeck;
+            SelectDeck(newDeck);
         }
 
         public void AddCardInDeck(CardPresidentData card)
@@ -56,6 +74,16 @@ namespace Cards.DeckBuild
         public void RemoveCardInDeck(CardFightData card)
         {
             SelectedDeck.RemoveFightCard(card.Id);
+        }
+
+        private void SelectDeck(DeckData selectDeck)
+        {
+            foreach (var deck in Decks)
+            {
+                deck.IsSelected = deck == selectDeck;
+            }
+
+            SelectedDeck = selectDeck;
         }
     }
 }
