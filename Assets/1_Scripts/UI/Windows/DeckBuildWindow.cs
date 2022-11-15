@@ -2,6 +2,7 @@ using Cards;
 using Cards.Data;
 using Cards.DeckBuild;
 using Core;
+using Data;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace UI
         [SerializeField] private GameObject parentCards, parentPreviewCard;
         [BoxGroup("Current deck")]
         [SerializeField] private CurrentDeckUI currentPresidentsUI, currentFightsUI;
+        [BoxGroup("Current deck")]
+        [SerializeField] private Text countFightCardsText, countPresidentCardsText;
         [BoxGroup("Exit button")]
         [SerializeField] private Button exitButton;
 
@@ -220,6 +223,8 @@ namespace UI
                 CreatePresidentCardInDeck(card.GetData);
 
                 deckController.AddCardInDeck(card.GetData);
+
+                RedrawCountCardsText();
             }
         }
 
@@ -230,6 +235,8 @@ namespace UI
                 CreateFightCardInDeck(card.GetData);
 
                 deckController.AddCardInDeck(card.GetData);
+
+                RedrawCountCardsText();
             }
         }
 
@@ -240,6 +247,8 @@ namespace UI
             deckController.RemoveCardInDeck(card.GetData);
             deckCardsPresident.Remove(card);
             currentPresidentsUI.RemoveCard(card);
+
+            RedrawCountCardsText();
         }
 
         public void DeSelectFightCard(CardFightUI card)
@@ -249,6 +258,14 @@ namespace UI
             deckController.RemoveCardInDeck(card.GetData);
             deckCardsFight.Remove(card);
             currentFightsUI.RemoveCard(card);
+
+            RedrawCountCardsText();
+        }
+
+        private void RedrawCountCardsText()
+        {
+            countFightCardsText.text = $"{deckController.GetCountFightCards}/{MainData.MAX_FIGHT_CARDS}";
+            countPresidentCardsText.text = $"{deckController.GetCountPresidentCards}/{MainData.MAX_PRESIDENT_CARDS}";
         }
 
         #endregion

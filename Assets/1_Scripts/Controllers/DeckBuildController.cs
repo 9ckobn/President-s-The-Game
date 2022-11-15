@@ -27,6 +27,9 @@ namespace Cards.DeckBuild
             SelectedDeck = Decks[0];
         }
 
+        public int GetCountPresidentCards { get => SelectedDeck.PresidentsId.Count; }
+        public int GetCountFightCards { get => SelectedDeck.FightsId.Count; }
+
         public bool CanAddCard(CardPresidentData card)
         {
             return SelectedDeck.CanAddPresidentData();
