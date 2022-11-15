@@ -6,6 +6,7 @@ namespace UI.Buttons
     public class DeckButton : MyButton
     {
         [SerializeField] private Text nameDeckText;
+        [SerializeField] private InputField inputField;
 
         public string SetNameDeck { set => nameDeckText.text = value; }
 

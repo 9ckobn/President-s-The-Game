@@ -1,5 +1,6 @@
 using Cards.Data;
 using Core;
+using Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Cards.DeckBuild
     [CreateAssetMenu(fileName = "DeckBuildController", menuName = "Controllers/DeckBuild/DeckBuildController")]
     public class DeckBuildController : BaseController
     {
+        private const string DEFAULT_DECK_NAME = "Deck";
+
         public List<DeckData> Decks { get; private set; }
         public DeckData SelectedDeck { get; private set; }
 
@@ -15,29 +18,24 @@ namespace Cards.DeckBuild
         {
             Decks = DataBaseManager.Instance.DecksData;
 
-            if (Decks.Count == 0)
+            if (Decks.Count > 1)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    DeckData deckData = new DeckData(i, "deck", null, null);
-                    Decks.Add(deckData);
-                }
+                SelectedDeck = Decks[0];
             }
-
-            SelectedDeck = Decks[0];
         }
 
         public int GetCountPresidentCards { get => SelectedDeck.PresidentsId.Count; }
         public int GetCountFightCards { get => SelectedDeck.FightsId.Count; }
 
-        public bool CanAddCard(CardPresidentData card)
-        {
-            return SelectedDeck.CanAddPresidentData();
-        }
+        public bool CanAddPresidentCard { get => SelectedDeck.CanAddPresidentData(); }
+        public bool CanAddFightCard { get => SelectedDeck.CanAddFightData(); }
+        public bool CanCreateDeck { get => Decks.Count < MainData.MAX_DECKS; }
 
-        public bool CanAddCard(CardFightData card)
+        public void CreateDeck()
         {
-            return SelectedDeck.CanAddFightData();
+            DeckData newDeck = new DeckData(Decks.Count, DEFAULT_DECK_NAME, new List<string>(), new List<string>());
+            Decks.Add(newDeck);
+            SelectedDeck = newDeck;
         }
 
         public void AddCardInDeck(CardPresidentData card)

@@ -3,6 +3,7 @@ using Cards.Data;
 using Cards.DeckBuild;
 using Core;
 using Data;
+using DG.Tweening;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,8 @@ namespace UI
         private bool presidentsCardsNow;
         private bool alhabetFilter = true;
 
+        private Tween createButtonTween;
+
         protected override void AfterInitialization()
         {
             deckController = BoxController.GetController<DeckBuildController>();
@@ -73,24 +76,43 @@ namespace UI
 
         protected override void BeforeShow()
         {
-            List<DeckData> decks = deckController.Decks;
-
-            for (int i = 0; i < decks.Count; i++)
-            {
-                deckButtons[i].SetNameDeck = decks[i].Name;
-            }
-
-            foreach (var cardId in deckController.SelectedDeck.PresidentsId)
-            {
-                CreatePresidentCardInDeck(storageCards.GetPresidentData(cardId));
-            }
-
-            foreach (var cardId in deckController.SelectedDeck.FightsId)
-            {
-                CreateFightCardInDeck(storageCards.GetFightData(cardId));
-            }
+            ShowDeckButtons();
 
             ClickShowCards(true);
+        }
+
+        private void ShowDeckButtons()
+        {
+            List<DeckData> decks = deckController.Decks;
+
+            foreach (var button in deckButtons)
+            {
+                button.gameObject.SetActive(false);
+            }
+
+            if (decks.Count == 0)
+            { 
+                createButtonTween = createDeckButton.transform.DOScale(createDeckButton.transform.localScale * 1.1f, 1f).
+                    SetLoops(-1, LoopType.Yoyo);
+            }
+            else
+            {
+                for (int i = 0; i < decks.Count; i++)
+                {
+                    deckButtons[i].SetNameDeck = decks[i].Name;
+                    deckButtons[i].gameObject.SetActive(true);
+                }
+
+                foreach (var cardId in deckController.SelectedDeck.PresidentsId)
+                {
+                    CreatePresidentCardInDeck(storageCards.GetPresidentData(cardId));
+                }
+
+                foreach (var cardId in deckController.SelectedDeck.FightsId)
+                {
+                    CreateFightCardInDeck(storageCards.GetFightData(cardId));
+                }
+            }
         }
 
         #region CLICK_BUTTONS
@@ -140,13 +162,21 @@ namespace UI
 
         private void ClickCreateDeck()
         {
+            createButtonTween.Kill();
+            createDeckButton.transform.localScale = new Vector3(1, 1, 1);
+
+            if (deckController.CanCreateDeck)
+            {
+                deckController.CreateDeck();
+                ShowDeckButtons();
+            }
         }
 
         public void ClickDeckButton(DeckButton deckButton)
         {
             if (selectedDeckButton == deckButton)
             {
-                // TODO: rename deck
+                Debug.Log("RENAME DECK");
             }
             else
             {
@@ -218,7 +248,7 @@ namespace UI
 
         public void SelectPresidentCard(CardPresidentUI card)
         {
-            if (deckController.CanAddCard(card.GetData))
+            if (deckController.CanAddPresidentCard)
             {
                 CreatePresidentCardInDeck(card.GetData);
 
@@ -230,7 +260,7 @@ namespace UI
 
         public void SelectFightCard(CardFightUI card)
         {
-            if (deckController.CanAddCard(card.GetData))
+            if (deckController.CanAddFightCard)
             {
                 CreateFightCardInDeck(card.GetData);
 
@@ -264,8 +294,23 @@ namespace UI
 
         private void RedrawCountCardsText()
         {
-            countFightCardsText.text = $"{deckController.GetCountFightCards}/{MainData.MAX_FIGHT_CARDS}";
-            countPresidentCardsText.text = $"{deckController.GetCountPresidentCards}/{MainData.MAX_PRESIDENT_CARDS}";
+            if (deckController.GetCountFightCards == MainData.MAX_FIGHT_CARDS)
+            {
+                countFightCardsText.text = "Max";
+            }
+            else
+            {
+                countFightCardsText.text = $"{deckController.GetCountFightCards}/{MainData.MAX_FIGHT_CARDS}";
+            }
+
+            if (deckController.GetCountPresidentCards == MainData.MAX_PRESIDENT_CARDS)
+            {
+                countPresidentCardsText.text = "Max";
+            }
+            else
+            {
+                countPresidentCardsText.text = $"{deckController.GetCountPresidentCards}/{MainData.MAX_PRESIDENT_CARDS}";
+            }
         }
 
         #endregion
