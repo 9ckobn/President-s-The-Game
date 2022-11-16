@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameDeckText: {fileID: 196443479429368123}
+  inputField: {fileID: 5381813011542318760}
+  IdDeck: 0
 --- !u!1 &3077182505646365963
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +438,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: Enter name...
 --- !u!1 &7358606018586656257
 GameObject:
   m_ObjectHideFlags: 0

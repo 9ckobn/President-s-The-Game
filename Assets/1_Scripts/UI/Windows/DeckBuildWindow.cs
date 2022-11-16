@@ -199,7 +199,7 @@ namespace UI
         {
             if (selectedDeckButton == deckButton)
             {
-                Debug.Log("RENAME DECK");
+                deckButton.RenameDeck();
             }
             else
             {
