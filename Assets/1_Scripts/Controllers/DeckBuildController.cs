@@ -28,20 +28,24 @@ namespace Cards.DeckBuild
                     }
                 }
             }
+            else
+            {
+                SelectedDeck = null;
+            }
         }
 
         public int GetCountPresidentCards { get => SelectedDeck.PresidentsId.Count; }
         public int GetCountFightCards { get => SelectedDeck.FightsId.Count; }
 
-        public bool CanAddPresidentCard { get => SelectedDeck.CanAddPresidentData(); }
-        public bool CanAddFightCard { get => SelectedDeck.CanAddFightData(); }
+        public bool CanAddPresidentCard { get => SelectedDeck != null && SelectedDeck.CanAddPresidentData(); }
+        public bool CanAddFightCard { get => SelectedDeck != null && SelectedDeck.CanAddFightData(); }
         public bool CanCreateDeck { get => Decks.Count < MainData.MAX_DECKS; }
 
         public void SelectDeck(int idDeck)
         {
             foreach (var deck in Decks)
             {
-                if(deck.Id == idDeck)
+                if (deck.Id == idDeck)
                 {
                     SelectDeck(deck);
                     return;
@@ -55,15 +59,25 @@ namespace Cards.DeckBuild
 
             foreach (var deck in Decks)
             {
-                if(deck.Id >= prevId)
+                if (deck.Id >= prevId)
                 {
                     prevId = deck.Id + 1;
                 }
             }
-            Debug.Log("id = " + prevId);
+
             DeckData newDeck = new DeckData(prevId, DEFAULT_DECK_NAME, false, true, new List<string>(), new List<string>());
             Decks.Add(newDeck);
             SelectDeck(newDeck);
+        }
+
+        public bool CanSelectedCard(CardPresidentData data)
+        {
+            return SelectedDeck.CanSelectedCard(data);
+        }
+
+        public bool CanSelectedCard(CardFightData data)
+        {
+            return SelectedDeck.CanSelectedCard(data);
         }
 
         public void AddCardInDeck(CardPresidentData card)

@@ -56,6 +56,34 @@ namespace Cards.Data
             return FightsId.Count < maxFights;
         }
 
+        public bool CanSelectedCard(CardPresidentData data)
+        {
+            foreach (var id in PresidentsId)
+            {
+                if(id == data.Id)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool CanSelectedCard(CardFightData data)
+        {
+            int countCard = 0;
+
+            foreach (var id in FightsId)
+            {
+                if(id == data.Id)
+                {
+                    countCard++;
+                }
+            }
+
+            return data.MaxCountInDeck >= countCard;
+        }
+
         public void AddPresidentCard(string idCards)
         {
             PresidentsId.Add(idCards);

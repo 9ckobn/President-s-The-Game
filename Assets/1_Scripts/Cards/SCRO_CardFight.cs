@@ -23,6 +23,9 @@ namespace Cards
         [BoxGroup("Data")]
         public int Cost;
 
+        [BoxGroup("Data")]
+        public int MaxCountInDeck = 2;
+
         [BoxGroup("Effects")]
         public SCRO_Effect[] Effects;
 

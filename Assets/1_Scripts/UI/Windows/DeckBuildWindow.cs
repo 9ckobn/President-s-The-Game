@@ -120,8 +120,6 @@ namespace UI
                 currentPresidentsUI.RemoveAllCards();
                 currentFightsUI.RemoveAllCards();
 
-                Debug.Log($"id deck = {deckController.SelectedDeck.Id}  PresidentsId count = {deckController.SelectedDeck.PresidentsId.Count}");
-
                 foreach (var cardId in deckController.SelectedDeck.PresidentsId)
                 {
                     CreatePresidentCardInDeck(storageCards.GetPresidentData(cardId));
@@ -131,6 +129,9 @@ namespace UI
                 {
                     CreateFightCardInDeck(storageCards.GetFightData(cardId));
                 }
+
+                ChangeStateCards();
+                RedrawCountCardsText();
             }
         }
 
@@ -175,6 +176,9 @@ namespace UI
 
                 choosePresidentCards.GetComponent<Image>().sprite = presidentsCardsNow ? enableChooseSprite : disableChooseSprite;
                 chooseFightCards.GetComponent<Image>().sprite = !presidentsCardsNow ? enableChooseSprite : disableChooseSprite;
+
+                ChangeStateCards();
+                RedrawCountCardsText();
             }
         }
 
@@ -275,6 +279,7 @@ namespace UI
                 deckController.AddCardInDeck(card.GetData);
 
                 RedrawCountCardsText();
+                ChangeStateCards();
             }
         }
 
@@ -287,6 +292,7 @@ namespace UI
                 deckController.AddCardInDeck(card.GetData);
 
                 RedrawCountCardsText();
+                ChangeStateCards();
             }
         }
 
@@ -298,6 +304,7 @@ namespace UI
             currentPresidentsUI.RemoveCard(card);
 
             RedrawCountCardsText();
+            ChangeStateCards();
         }
 
         public void DeSelectFightCard(CardFightUI card)
@@ -308,6 +315,7 @@ namespace UI
             currentFightsUI.RemoveCard(card);
 
             RedrawCountCardsText();
+            ChangeStateCards();
         }
 
         private void RedrawCountCardsText()
@@ -328,6 +336,19 @@ namespace UI
             else
             {
                 countPresidentCardsText.text = $"{deckController.GetCountPresidentCards}/{MainData.MAX_PRESIDENT_CARDS}";
+            }
+        }
+
+        private void ChangeStateCards()
+        {
+            foreach (var card in showCardsFight)
+            {
+                card.ChangeState(deckController.CanSelectedCard(card.GetData));
+            }
+
+            foreach (var card in showCardsPresident)
+            {
+                card.ChangeState(deckController.CanSelectedCard(card.GetData));
             }
         }
 

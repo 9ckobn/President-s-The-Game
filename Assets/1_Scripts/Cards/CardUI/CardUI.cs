@@ -9,6 +9,7 @@ namespace Cards
     {
         [SerializeField] protected Image cardImage;
 
+        private bool isCanSelected = true;
         private bool inDeck = false, isPreview;
         public bool SetInDeck { set => inDeck = value; }
 
@@ -19,15 +20,17 @@ namespace Cards
 
         protected void ClickCard()
         {
-            if (inDeck)
+            if (isCanSelected)
             {
-                DeSelectCard();
+                if (inDeck)
+                {
+                    DeSelectCard();
+                }
+                else
+                {
+                    SelectCard();
+                }
             }
-            else
-            {
-                SelectCard();
-            }
-
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -48,6 +51,24 @@ namespace Cards
 
                 UIManager.Instance.GetWindow<DeckBuildWindow>().DeletePreviewCard();
             }
+        }
+
+        public void ChangeState(bool isCanSelected)
+        {
+            this.isCanSelected = isCanSelected;
+
+            Color newColor = cardImage.color;
+
+            if (isCanSelected)
+            {
+                newColor.a = 1f;
+            }
+            else
+            {
+                newColor.a = 0.5f;
+            }
+
+            cardImage.color = newColor;
         }
 
         protected abstract void SelectCard();

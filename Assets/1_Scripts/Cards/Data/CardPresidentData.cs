@@ -26,7 +26,7 @@ namespace Cards.Data
         public int CommonLuck { get => Luck + BuffLuck.GetValue; }
         public int CommonDiplomatic { get => Diplomatic + BuffDiplomatic.GetValue; }
 
-        public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite, data.name)
+        public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite, data.name, 1)
         {
             Rarityrank = data.rarityrank;
             Attack = data.attack;
