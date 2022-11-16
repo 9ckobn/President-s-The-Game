@@ -105,6 +105,7 @@ namespace UI
 
                     if (decks[i].IsSelected)
                     {
+                        selectedDeckButton = deckButtons[i];
                         deckButtons[i].SetSpriteButton(selectedDeckSprite);
                     }
                     else if (decks[i].IsComplete)

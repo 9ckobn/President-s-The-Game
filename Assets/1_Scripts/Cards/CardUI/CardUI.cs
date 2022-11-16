@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 namespace Cards
 {
+    [RequireComponent(typeof(Button))]
     public abstract class CardUI : CardBase, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] protected Image cardImage;
+        [SerializeField] private GameObject blockCardObject;
 
         private bool isCanSelected = true;
         private bool inDeck = false, isPreview;
@@ -56,16 +58,19 @@ namespace Cards
         public void ChangeState(bool isCanSelected)
         {
             this.isCanSelected = isCanSelected;
+            blockCardObject.SetActive(!isCanSelected);
 
             Color newColor = cardImage.color;
 
             if (isCanSelected)
             {
-                newColor.a = 1f;
+                //newColor.a = 1f;
+                //button.interactable = true;
             }
             else
             {
-                newColor.a = 0.5f;
+                //newColor.a = 0.5f;
+                //button.interactable = false;
             }
 
             cardImage.color = newColor;

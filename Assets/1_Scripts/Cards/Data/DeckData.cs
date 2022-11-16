@@ -60,7 +60,7 @@ namespace Cards.Data
         {
             foreach (var id in PresidentsId)
             {
-                if(id == data.Id)
+                if (id == data.Id)
                 {
                     return false;
                 }
@@ -75,13 +75,13 @@ namespace Cards.Data
 
             foreach (var id in FightsId)
             {
-                if(id == data.Id)
+                if (id == data.Id)
                 {
                     countCard++;
                 }
             }
 
-            return data.MaxCountInDeck >= countCard;
+            return countCard < data.MaxCountInDeck;
         }
 
         public void AddPresidentCard(string idCards)
