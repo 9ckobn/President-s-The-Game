@@ -30,7 +30,7 @@ namespace Cards.DeckBuild
             }
             else
             {
-                SelectedDeck = null;
+                CreateDeck();
             }
         }
 
@@ -108,9 +108,15 @@ namespace Cards.DeckBuild
             DataBaseManager.Instance.SaveDecksData();
         }
 
-        public void RenameDeck(string name)
+        public void RenameDeck(int idDeck, string name)
         {
-            SelectedDeck.Rename(name);
+            foreach (var deck in Decks)
+            {
+                if(deck.Id == idDeck)
+                {
+                    deck.Rename(name);
+                }
+            }
 
             DataBaseManager.Instance.SaveDecksData();
         }

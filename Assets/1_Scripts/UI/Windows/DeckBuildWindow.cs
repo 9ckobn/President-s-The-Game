@@ -209,17 +209,20 @@ namespace UI
             }
         }
 
-        public  void EndRenameDeck(string name)
+        public  void EndRenameDeck(int id, string name)
         {
-            deckController.RenameDeck(name);
+            deckController.RenameDeck(id, name);
         }
 
         public void PointerEnterOnCard(CardUI cardUI)
         {
+            Vector3 localScaleCard = new Vector3(1.4f, 1.4f, 1.4f);
+
             if (cardUI is CardPresidentUI)
             {
                 CardPresidentUI card = Instantiate(presidentCardPrefab, parentPreviewCard.transform);
                 card.transform.position = parentPreviewCard.transform.position;
+                card.transform.localScale = localScaleCard;
                 card.SetCardData = (cardUI as CardPresidentUI).GetData;
 
                 previewCard = card;
@@ -228,6 +231,7 @@ namespace UI
             {
                 CardFightUI card = Instantiate(fightCardPrefab, parentPreviewCard.transform);
                 card.transform.position = parentPreviewCard.transform.position;
+                card.transform.localScale = localScaleCard;
                 card.SetCardData = (cardUI as CardFightUI).GetData;
 
                 previewCard = card;

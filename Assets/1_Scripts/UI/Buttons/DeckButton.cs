@@ -10,6 +10,7 @@ namespace UI.Buttons
         [SerializeField] private InputField inputField;
 
         private Image buttonImage;
+        private string prevName;
 
         public string SetNameDeck { set => nameDeckText.text = value; }
 
@@ -40,13 +41,20 @@ namespace UI.Buttons
             nameDeckText.gameObject.SetActive(false);
         }
 
-        public void EndRenameDeck()
+        private void EndRenameDeck()
         {
             inputField.gameObject.SetActive(false);
             nameDeckText.gameObject.SetActive(true);
-            nameDeckText.text = inputField.text;
 
-            UIManager.Instance.GetWindow<DeckBuildWindow>().EndRenameDeck(inputField.text);
+            if (inputField.text.Length > 0)
+            {
+                nameDeckText.text = inputField.text;
+                UIManager.Instance.GetWindow<DeckBuildWindow>().EndRenameDeck(IdDeck, inputField.text);
+            }
+            else
+            {
+                nameDeckText.text = prevName;
+            }
         }
     }
 }
