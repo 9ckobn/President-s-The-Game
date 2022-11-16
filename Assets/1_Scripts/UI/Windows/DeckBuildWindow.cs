@@ -209,6 +209,11 @@ namespace UI
             }
         }
 
+        public  void EndRenameDeck(string name)
+        {
+            deckController.RenameDeck(name);
+        }
+
         public void PointerEnterOnCard(CardUI cardUI)
         {
             if (cardUI is CardPresidentUI)

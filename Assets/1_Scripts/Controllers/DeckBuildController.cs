@@ -108,6 +108,13 @@ namespace Cards.DeckBuild
             DataBaseManager.Instance.SaveDecksData();
         }
 
+        public void RenameDeck(string name)
+        {
+            SelectedDeck.Rename(name);
+
+            DataBaseManager.Instance.SaveDecksData();
+        }
+
         private void SelectDeck(DeckData selectDeck)
         {
             foreach (var deck in Decks)

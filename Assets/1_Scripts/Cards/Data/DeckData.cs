@@ -108,6 +108,11 @@ namespace Cards.Data
             CheckIsComplete();
         }
 
+        public void Rename(string name)
+        {
+            Name = name;
+        }
+
         private void CheckIsComplete()
         {
             IsComplete = PresidentsId.Count == MainData.MAX_PRESIDENT_CARDS && FightsId.Count == MainData.MAX_FIGHT_CARDS;
