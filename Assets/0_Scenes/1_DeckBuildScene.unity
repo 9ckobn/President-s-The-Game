@@ -2150,7 +2150,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7498712bcd4630c4da253b9cd67d18fe, type: 3}
     - target: {fileID: 886137113350478515, guid: 18f39b659b818824fa5f5668b60c190e, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
-      value: 1.5
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 886137113350478524, guid: 18f39b659b818824fa5f5668b60c190e, type: 3}
       propertyPath: m_Pivot.x
@@ -3794,7 +3794,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7498712bcd4630c4da253b9cd67d18fe, type: 3}
     - target: {fileID: 886137113350478515, guid: 18f39b659b818824fa5f5668b60c190e, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
-      value: 1.5
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 886137113350478524, guid: 18f39b659b818824fa5f5668b60c190e, type: 3}
       propertyPath: m_Pivot.x
@@ -4771,6 +4771,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1670027298}
     m_Modifications:
+    - target: {fileID: 886137113350478515, guid: 18f39b659b818824fa5f5668b60c190e, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 886137113350478524, guid: 18f39b659b818824fa5f5668b60c190e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5008,6 +5012,9 @@ MonoBehaviour:
   - {fileID: 905383975}
   - {fileID: 664749037}
   - {fileID: 2003872269}
+  selectedDeckSprite: {fileID: 21300000, guid: 7e1cf3ce8dab47b48970c29afb3bcfcc, type: 3}
+  fullDeckSprite: {fileID: 21300000, guid: 7498712bcd4630c4da253b9cd67d18fe, type: 3}
+  notCompleteDeckSprite: {fileID: 21300000, guid: 077d49e0459b40342afb36880047aa4f, type: 3}
   alhabetFilterButton: {fileID: 1212910623}
   rareFilterButton: {fileID: 805109170}
   enableFilterSprite: {fileID: 21300000, guid: e7f2ea56dcabcfd4ab86ff036bef634e, type: 3}
