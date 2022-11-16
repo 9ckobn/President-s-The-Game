@@ -8,7 +8,7 @@ namespace SaveSystem
     {
         public int Id;
         public string NameDeck;
-        public bool IsCoplete;
+        public bool IsComplete;
         public bool IsSelected;
         public List<string> IdPresidentCards;
         public List<string> IdFightCards;

@@ -59,21 +59,30 @@ namespace Cards.Data
         public void AddPresidentCard(string idCards)
         {
             PresidentsId.Add(idCards);
+            CheckIsComplete();
         }
 
         public void AddFightCard(string idCards)
         {
             FightsId.Add(idCards);
+            CheckIsComplete();
         }
 
         public void RemovePresidentCard(string idCards)
         {
             PresidentsId.Remove(idCards);
+            CheckIsComplete();
         }
 
         public void RemoveFightCard(string idCards)
         {
             FightsId.Remove(idCards);
+            CheckIsComplete();
+        }
+
+        private void CheckIsComplete()
+        {
+            IsComplete = PresidentsId.Count == MainData.MAX_PRESIDENT_CARDS && FightsId.Count == MainData.MAX_FIGHT_CARDS;
         }
     }
 }

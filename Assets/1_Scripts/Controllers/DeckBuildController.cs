@@ -43,7 +43,7 @@ namespace Cards.DeckBuild
             {
                 if(deck.Id == idDeck)
                 {
-                    SelectedDeck = deck;
+                    SelectDeck(deck);
                     return;
                 }
             }
@@ -51,7 +51,17 @@ namespace Cards.DeckBuild
 
         public void CreateDeck()
         {
-            DeckData newDeck = new DeckData(Decks.Count, DEFAULT_DECK_NAME, false, true, new List<string>(), new List<string>());
+            int prevId = 0;
+
+            foreach (var deck in Decks)
+            {
+                if(deck.Id >= prevId)
+                {
+                    prevId = deck.Id + 1;
+                }
+            }
+            Debug.Log("id = " + prevId);
+            DeckData newDeck = new DeckData(prevId, DEFAULT_DECK_NAME, false, true, new List<string>(), new List<string>());
             Decks.Add(newDeck);
             SelectDeck(newDeck);
         }
@@ -59,21 +69,29 @@ namespace Cards.DeckBuild
         public void AddCardInDeck(CardPresidentData card)
         {
             SelectedDeck.AddPresidentCard(card.Id);
+
+            DataBaseManager.Instance.SaveDecksData();
         }
 
         public void AddCardInDeck(CardFightData card)
         {
             SelectedDeck.AddFightCard(card.Id);
+
+            DataBaseManager.Instance.SaveDecksData();
         }
 
         public void RemoveCardInDeck(CardPresidentData card)
         {
             SelectedDeck.RemovePresidentCard(card.Id);
+
+            DataBaseManager.Instance.SaveDecksData();
         }
 
         public void RemoveCardInDeck(CardFightData card)
         {
             SelectedDeck.RemoveFightCard(card.Id);
+
+            DataBaseManager.Instance.SaveDecksData();
         }
 
         private void SelectDeck(DeckData selectDeck)
@@ -84,6 +102,7 @@ namespace Cards.DeckBuild
             }
 
             SelectedDeck = selectDeck;
+            DataBaseManager.Instance.SaveDecksData();
         }
     }
 }

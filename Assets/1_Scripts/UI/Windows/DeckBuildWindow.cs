@@ -49,9 +49,7 @@ namespace UI
         private DeckBuildStorageCardsController storageCards;
 
         private List<CardPresidentUI> showCardsPresident = new List<CardPresidentUI>();
-        private List<CardPresidentUI> deckCardsPresident = new List<CardPresidentUI>();
         private List<CardFightUI> showCardsFight = new List<CardFightUI>();
-        private List<CardFightUI> deckCardsFight = new List<CardFightUI>();
 
         private CardUI previewCard;
         private DeckButton selectedDeckButton;
@@ -66,8 +64,8 @@ namespace UI
             deckController = BoxController.GetController<DeckBuildController>();
             storageCards = BoxController.GetController<DeckBuildStorageCardsController>();
 
-            choosePresidentCards.onClick.AddListener(() => { ClickShowCards(true); });
-            chooseFightCards.onClick.AddListener(() => { ClickShowCards(false); });
+            choosePresidentCards.onClick.AddListener(() => { ShowCards(true); });
+            chooseFightCards.onClick.AddListener(() => { ShowCards(false); });
 
             alhabetFilterButton.onClick.AddListener(ClickFilterAlhabet);
             rareFilterButton.onClick.AddListener(ClickFilterRare);
@@ -78,12 +76,12 @@ namespace UI
 
         protected override void BeforeShow()
         {
-            RedrawDeckButtons();
+            ChangeDeck();
 
-            ClickShowCards(true);
+            ShowCards(true);
         }
 
-        private void RedrawDeckButtons()
+        private void ChangeDeck()
         {
             List<DeckData> decks = deckController.Decks;
 
@@ -119,6 +117,11 @@ namespace UI
                     }
                 }
 
+                currentPresidentsUI.RemoveAllCards();
+                currentFightsUI.RemoveAllCards();
+
+                Debug.Log($"id deck = {deckController.SelectedDeck.Id}  PresidentsId count = {deckController.SelectedDeck.PresidentsId.Count}");
+
                 foreach (var cardId in deckController.SelectedDeck.PresidentsId)
                 {
                     CreatePresidentCardInDeck(storageCards.GetPresidentData(cardId));
@@ -133,7 +136,7 @@ namespace UI
 
         #region CLICK_BUTTONS
 
-        private void ClickShowCards(bool isPresidentCards)
+        private void ShowCards(bool isPresidentCards)
         {
             if (presidentsCardsNow != isPresidentCards)
             {
@@ -153,7 +156,6 @@ namespace UI
                 {
                     foreach (var card in showCardsPresident)
                     {
-
                         Destroy(card.gameObject);
                     }
 
@@ -184,7 +186,7 @@ namespace UI
             if (deckController.CanCreateDeck)
             {
                 deckController.CreateDeck();
-                RedrawDeckButtons();
+                ChangeDeck();
             }
         }
 
@@ -198,7 +200,7 @@ namespace UI
             {
                 selectedDeckButton = deckButton;
                 deckController.SelectDeck(deckButton.IdDeck);
-                RedrawDeckButtons();
+                ChangeDeck();
             }
         }
 
@@ -237,7 +239,7 @@ namespace UI
                 rareFilterButton.GetComponent<Image>().sprite = disableFilterSprite;
 
                 presidentsCardsNow = !presidentsCardsNow;
-                ClickShowCards(!presidentsCardsNow);
+                ShowCards(!presidentsCardsNow);
             }
         }
 
@@ -251,7 +253,7 @@ namespace UI
                 rareFilterButton.GetComponent<Image>().sprite = enableFilterSprite;
 
                 presidentsCardsNow = !presidentsCardsNow;
-                ClickShowCards(!presidentsCardsNow);
+                ShowCards(!presidentsCardsNow);
             }
         }
 
@@ -293,7 +295,6 @@ namespace UI
             DeletePreviewCard();
 
             deckController.RemoveCardInDeck(card.GetData);
-            deckCardsPresident.Remove(card);
             currentPresidentsUI.RemoveCard(card);
 
             RedrawCountCardsText();
@@ -304,7 +305,6 @@ namespace UI
             DeletePreviewCard();
 
             deckController.RemoveCardInDeck(card.GetData);
-            deckCardsFight.Remove(card);
             currentFightsUI.RemoveCard(card);
 
             RedrawCountCardsText();
@@ -391,7 +391,6 @@ namespace UI
             CardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
             card.SetCardData = data;
             card.SetInDeck = true;
-            deckCardsPresident.Add(card);
 
             currentPresidentsUI.AddCard(card);
         }
@@ -401,7 +400,6 @@ namespace UI
             CardFightUI card = Instantiate(fightCardPrefab, parentCards.transform);
             card.SetCardData = data;
             card.SetInDeck = true;
-            deckCardsFight.Add(card);
 
             currentFightsUI.AddCard(card);
         }
