@@ -13,6 +13,8 @@ namespace Cards
 
         public override void AfterInitialize()
         {
+            CardsEnemyFightData = new List<CardFightData>();
+
             List<string> idPresidents = DataBaseManager.Instance.SelectedDeck.PresidentsId;
             List<CardPresidentDataSerialize> serializePresidents = DataBaseManager.Instance.CardsPresidentsData;
 
