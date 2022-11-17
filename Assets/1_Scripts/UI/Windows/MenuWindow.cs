@@ -23,7 +23,7 @@ namespace UI
         [BoxGroup("Deck buttons")]
         [SerializeField] private Button myCardsButton;
         [BoxGroup("Deck buttons")]
-        [SerializeField] private Sprite selectedDeckSprite, fullDeckSprite, notCompleteDeckSprite;
+        [SerializeField] private Sprite selectedDeckSprite, fullDeckSprite;
         [BoxGroup("Current deck")]
         [SerializeField] private CurrentDeckUI currentPresidentsUI, currentFightsUI;
         [BoxGroup("Parent cards")]
@@ -68,38 +68,45 @@ namespace UI
 
         private void ChangeDeck()
         {
-            List<DeckData> decks = deckController.Decks;
+            List<DeckData> completeDecks = new List<DeckData>();
+
+            foreach (var deck in deckController.Decks)          
+            {
+                if (deck.IsComplete)
+                {
+                    completeDecks.Add(deck);
+                }
+            }
 
             foreach (var button in selectDeckButtons)
             {
                 button.gameObject.SetActive(false);
             }
 
-            if(decks.Count == 0)
+            if(completeDecks.Count == 0)
             {
                 myCardsButtonTween = myCardsButton.transform.DOScale(myCardsButton.transform.localScale * 1.1f, 1f).
                     SetLoops(-1, LoopType.Yoyo);
             }
             else
             {
-                for (int i = 0; i < selectDeckButtons.Length; i++)
+                for (int i = 0; i < completeDecks.Count; i++)
                 {
-                    selectDeckButtons[i].SetNameDeck = decks[i].Name;
-                    selectDeckButtons[i].gameObject.SetActive(true);
-                    selectDeckButtons[i].IdDeck = decks[i].Id;
+                    if (completeDecks[i].IsComplete)
+                    {
+                        selectDeckButtons[i].SetNameDeck = completeDecks[i].Name;
+                        selectDeckButtons[i].gameObject.SetActive(true);
+                        selectDeckButtons[i].IdDeck = completeDecks[i].Id;
 
-                    if (decks[i].IsSelected)
-                    {
-                        selectedDeckButton = selectDeckButtons[i];
-                        selectDeckButtons[i].SetSpriteButton(selectedDeckSprite);
-                    }
-                    else if (decks[i].IsComplete)
-                    {
-                        selectDeckButtons[i].SetSpriteButton(fullDeckSprite);
-                    }
-                    else
-                    {
-                        selectDeckButtons[i].SetSpriteButton(notCompleteDeckSprite);
+                        if (completeDecks[i].IsSelected)
+                        {
+                            selectedDeckButton = selectDeckButtons[i];
+                            selectDeckButtons[i].SetSpriteButton(selectedDeckSprite);
+                        }
+                        else 
+                        {
+                            selectDeckButtons[i].SetSpriteButton(fullDeckSprite);
+                        }
                     }
                 }
 

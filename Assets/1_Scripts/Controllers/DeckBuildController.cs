@@ -121,6 +121,38 @@ namespace Cards.DeckBuild
             DataBaseManager.Instance.SaveDecksData();
         }
 
+        public void SaveBeforeExit()
+        {
+            Debug.Log($"save before");
+            List<DeckData> completeDecks = new List<DeckData>();
+            bool haveSelectedDeck = false;
+
+            foreach (var deck in Decks)
+            {
+                if (deck.IsComplete)
+                {
+                    completeDecks.Add(deck);
+
+                    if (deck.IsSelected)
+                    {
+                        haveSelectedDeck = true;
+                    }
+                }
+                else
+                {
+                    deck.IsSelected = false;
+                }
+            }
+
+            if(!haveSelectedDeck && completeDecks.Count > 0)
+            {
+                completeDecks[0].IsSelected = true;
+                SelectedDeck = completeDecks[0];
+            }
+
+            DataBaseManager.Instance.SaveDecksData();
+        }
+
         private void SelectDeck(DeckData selectDeck)
         {
             foreach (var deck in Decks)

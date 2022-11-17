@@ -273,7 +273,7 @@ namespace UI
 
         private void ClickExitButton()
         {
-            DataBaseManager.Instance.SaveDecksData();
+            deckController.SaveBeforeExit();
             Hide();
             UIManager.Instance.ShowWindow<MenuWindow>();
         }
