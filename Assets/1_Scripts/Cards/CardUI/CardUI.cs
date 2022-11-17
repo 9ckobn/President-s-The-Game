@@ -13,7 +13,9 @@ namespace Cards
 
         private bool isCanSelected = true;
         private bool inDeck = false, isPreview;
+
         public bool SetInDeck { set => inDeck = value; }
+        public bool SetIsCanSelected { set => isCanSelected = value; }
 
         protected override void AfterAwake()
         {
@@ -59,21 +61,6 @@ namespace Cards
         {
             this.isCanSelected = isCanSelected;
             blockCardObject.SetActive(!isCanSelected);
-
-            Color newColor = cardImage.color;
-
-            if (isCanSelected)
-            {
-                //newColor.a = 1f;
-                //button.interactable = true;
-            }
-            else
-            {
-                //newColor.a = 0.5f;
-                //button.interactable = false;
-            }
-
-            cardImage.color = newColor;
         }
 
         protected abstract void SelectCard();

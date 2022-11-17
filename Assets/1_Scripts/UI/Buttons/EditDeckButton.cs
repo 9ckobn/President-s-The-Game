@@ -1,9 +1,13 @@
 using Data;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Buttons
 {
     public class EditDeckButton : DeckButton
-    {        
+    {
+        [SerializeField] protected InputField inputField;
+
         private string prevName;          
 
         protected override void OnClickButton()

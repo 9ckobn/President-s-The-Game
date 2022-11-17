@@ -274,6 +274,8 @@ namespace UI
         private void ClickExitButton()
         {
             DataBaseManager.Instance.SaveDecksData();
+            Hide();
+            UIManager.Instance.ShowWindow<MenuWindow>();
         }
 
         #endregion

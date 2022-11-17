@@ -24,6 +24,6 @@ public class DELETE_InitDeckScene : MonoBehaviour
 
         Debug.Log("<color=red>Delete init scene!</color>");
 
-        UIManager.Instance.ShowWindow<DeckBuildWindow>();
+        UIManager.Instance.ShowWindow<MenuWindow>();
     }
 }

@@ -6,7 +6,6 @@ namespace UI.Buttons
     public class DeckButton : MyButton
     {
         [SerializeField] protected Text nameDeckText;
-        [SerializeField] protected InputField inputField;
 
         protected Image buttonImage;
 
