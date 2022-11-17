@@ -26,7 +26,7 @@ namespace Gameplay
 
         #region INITIALIZE
 
-        public override void OnInitialize()
+        public void CreateCharactersData()
         {
             playerData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings, true);
             enemyData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings, false);
@@ -39,6 +39,8 @@ namespace Gameplay
             {
                 currentCharacter = enemyData;
             }
+
+            UIManager.Instance.ShowWindow<AttributesCharactersWindow>();
         }
 
         private List<AttributeData> CreateAttributes()

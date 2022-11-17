@@ -14,6 +14,8 @@ namespace Gameplay
         public void StartGame()
         {
             bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
+
+            BoxController.GetController<CharactersDataController>().CreateCharactersData();
             BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
             BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
         }
