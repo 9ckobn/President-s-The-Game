@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4579773818240007727}
   - component: {fileID: 196443479429368123}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: NameDeckText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 886137113350478512}
   - component: {fileID: 886137113350478515}
   - component: {fileID: 886137113350478514}
-  - component: {fileID: 886137113350478525}
+  - component: {fileID: 3718076514521911601}
   m_Layer: 5
-  m_Name: DeckButton
+  m_Name: EditDeckButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &886137113350478525
+--- !u!114 &3718076514521911601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 886137113350478527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e146c40cd9eb79b4cbd6c4dbe55d716d, type: 3}
+  m_Script: {fileID: 11500000, guid: 67e102eaab7cce54c855de1b702ad73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameDeckText: {fileID: 196443479429368123}

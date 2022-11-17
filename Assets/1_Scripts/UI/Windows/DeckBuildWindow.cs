@@ -29,7 +29,7 @@ namespace UI
         [BoxGroup("Deck buttons")]
         [SerializeField] private Button createDeckButton;
         [BoxGroup("Deck buttons")]
-        [SerializeField] private DeckButton[] deckButtons;
+        [SerializeField] private EditDeckButton[] deckButtons;
         [BoxGroup("Deck buttons")]
         [SerializeField] private Sprite selectedDeckSprite, fullDeckSprite, notCompleteDeckSprite;
         [BoxGroup("Filter buttons")]
@@ -52,7 +52,7 @@ namespace UI
         private List<CardFightUI> showCardsFight = new List<CardFightUI>();
 
         private CardUI previewCard;
-        private DeckButton selectedDeckButton;
+        private EditDeckButton selectedDeckButton;
 
         private bool presidentsCardsNow;
         private bool alhabetFilter = true;
@@ -195,7 +195,7 @@ namespace UI
             }
         }
 
-        public void ClickDeckButton(DeckButton deckButton)
+        public void ClickDeckButton(EditDeckButton deckButton)
         {
             if (selectedDeckButton == deckButton)
             {
