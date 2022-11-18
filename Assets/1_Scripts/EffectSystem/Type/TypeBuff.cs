@@ -4,6 +4,7 @@ namespace EffectSystem
     {
         UpAttack,
         AdditionalDamage,
-        Discount
+        Discount,
+        UpAttribute
     }
 }

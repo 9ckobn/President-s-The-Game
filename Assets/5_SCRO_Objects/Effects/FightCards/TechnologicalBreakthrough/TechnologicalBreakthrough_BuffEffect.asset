@@ -18,12 +18,12 @@ MonoBehaviour:
   TimeApply: 0
   TimeStart: 0
   TimeCancel: 1
-  TimeDurationEffect: -1
+  TimeDurationEffect: 6
   ApplyCondition: 0
   CancelCondition: 0
   CountTimes: 0
-  TypeBuff: 0
-  TypesTargetObject: 
+  TypeBuff: 3
+  TypesTargetObject: 09000000
   BaseValue: 0
   TypeAttribute: 9
   ValueAttribute: 20

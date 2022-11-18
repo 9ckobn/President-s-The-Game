@@ -1,4 +1,6 @@
-using UnityEngine;
+using Core;
+using Data;
+using Gameplay;
 
 namespace EffectSystem
 {
@@ -12,8 +14,25 @@ namespace EffectSystem
     /// </summary>
     public class ApplyBuffEffect : ApplyEffect
     {
+        private BuffEffect effect;
+        private CharacterData characterData;
+
         protected override void Apply(Effect currentEffect)
         {
+            effect = currentEffect as BuffEffect;
+            characterData = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
+
+            if (effect.TypeBuff == TypeBuff.UpAttribute)
+            {
+                int buff = effect.BaseValue;
+                buff += (int)(characterData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
+
+                foreach (var typeTarget in effect.TypesTargetObject)
+                {
+                    characterData.UpAttribute(typeTarget, buff);
+                }
+            }
+
             EndApply();
         }
 

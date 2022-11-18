@@ -189,10 +189,6 @@ namespace EffectSystem
                 {
                     currentCharacter.DownAttribute(typeCost, currentCardFight.GetValueCost);
                 }
-                else
-                {
-                    Debug.Log($"have discount {typeCost}");
-                }
             }
         }
 
