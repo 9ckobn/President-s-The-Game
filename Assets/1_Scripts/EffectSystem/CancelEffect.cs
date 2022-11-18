@@ -1,4 +1,5 @@
 using Data;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -31,6 +32,19 @@ namespace EffectSystem
                 {
                     characterData.DecreaseDefend(defendEffect.SelectedPlayerBuilding,
                             (int)(characterData.GetValueAttribute(defendEffect.TypeNeedAttribute) / 100f * defendEffect.ValueAttribute));
+                }
+            }
+            else if (effect is OtherEffect)
+            {
+                OtherEffect otherEffect = effect as OtherEffect;
+
+                if(otherEffect.TypeOtherEffect == TypeOtherEffect.Loan)
+                {
+                    foreach (var type in otherEffect.TypeAttributesAfterLoan)
+                    {
+                        Debug.Log($"return loan {type} damage = {otherEffect.ValueDamageLoan}");
+                        characterData.DownAttribute(type, otherEffect.ValueDamageLoan);
+                    }
                 }
             }
         }

@@ -2,6 +2,7 @@ namespace EffectSystem
 {
     public enum TypeOtherEffect
     {
-        VampirismAfterAttack
+        VampirismAfterAttack,
+        Loan
     }
 }

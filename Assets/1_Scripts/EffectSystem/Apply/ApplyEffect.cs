@@ -15,6 +15,8 @@ namespace EffectSystem
 
         protected void ShowTargetBuildings(CharacterData characterData)
         {
+            targetAttributes = new List<TypeAttribute>();
+
             targetAttributes.Add(TypeAttribute.Economic);
             targetAttributes.Add(TypeAttribute.Food);
             targetAttributes.Add(TypeAttribute.Medicine);

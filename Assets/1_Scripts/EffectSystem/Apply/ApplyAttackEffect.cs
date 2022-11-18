@@ -14,7 +14,6 @@ namespace EffectSystem
         protected override void Apply(Effect currentEffect)
         {
             effect = currentEffect as AttackEffect;
-            targetAttributes = new List<TypeAttribute>();
 
             SetAttackdefendData();
 
