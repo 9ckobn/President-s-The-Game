@@ -13,7 +13,6 @@ public class DELETE_InitFightScene : MonoBehaviour
     private void LoadData()
     {
         DataBaseManager.OnInit -= LoadData;
-        DataBaseManager.Instance.SelectDeck(0);
 
         SceneControllers.OnInit += StartGame;
         SceneControllers.InitControllers();

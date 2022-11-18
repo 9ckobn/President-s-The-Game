@@ -15,16 +15,15 @@ MonoBehaviour:
   Id: 18
   TypeTarget: 0
   TypeSelectTarget: 1
-  TimeApply: 1
+  TimeApply: 0
   TimeStart: 1
   TimeCancel: 1
-  TimeDurationEffect: 1
+  TimeDurationEffect: 6
   ApplyCondition: 0
   CancelCondition: 0
-  TypeAttributeCancelCondition: 
   CountTimes: 0
   TypeBuff: 2
-  TypeTargetObject: 03000000
+  TypesTargetObject: 03000000
   BaseValue: 0
   TypeAttribute: 3
-  ValueAttribute: 10
+  ValueAttribute: 0

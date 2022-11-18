@@ -37,7 +37,23 @@ namespace Core
         // TODO: Move this fields in GameState
         /// 
         /// </summary>
-        public DeckData SelectedDeck { get; private set; }
+        public DeckData SelectedDeck 
+        {            
+            get
+            {
+                foreach (var deck in DecksData)
+                {
+                    if (deck.IsSelected)
+                    {
+                        return deck;
+                    }
+                }
+
+                Debug.Log($"<color=red>Not have selected deck!</color>");
+                return null;
+            }            
+        }
+
         public TypeClimate TypeClimate { get; private set; }
         /// <summary>
         /// 
@@ -61,18 +77,6 @@ namespace Core
         public void Initialize()
         {
             LoadDataFromServer();
-        }
-
-        public void SelectDeck(int idDeck)
-        {
-            foreach (var deckData in DecksData)
-            {
-                if (deckData.Id == idDeck)
-                {
-                    SelectedDeck = deckData;
-                    return;
-                }
-            }
         }
 
         private async void LoadDataFromServer()

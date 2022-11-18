@@ -150,27 +150,49 @@ namespace EffectSystem
             {
                 checkEvent.CheckEvent(currentCharacter, TypeCondition.Attack);
             }
-            else if(typeEvent == TypeCondition.Defend)
-            {
-                Debug.Log($"<color=red>Not logic event effects after defend</color>");
-            }
 
             NextEffect();
         }
 
         private void EndApplyAllEffects()
         {
-            // if effect apply after use card
-            if (currentTimeApply == TypeTimeApply.RightNow)
+            PayCostFightCard();
+
+            // Block card
+            BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
+        }
+
+        private void PayCostFightCard()
+        {
+            List<BuffEffect> buffEffects = BoxController.GetController<CharactersDataController>().GetCurrentCharacter.GetBuffEffects();
+
+            // Pay cost fight card
+            foreach (var typeCost in currentCardFight.GetTypeCost)
             {
-                // Pay cost fight card
-                foreach (var typeCost in currentCardFight.GetTypeCost)
+                bool haveDiscount = false;
+
+                foreach (var effect in buffEffects)
+                {
+                    if (effect.TypeBuff == TypeBuff.Discount)
+                    {
+                        foreach (var type in effect.TypesTargetObject)
+                        {
+                            if (type == typeCost)
+                            {
+                                haveDiscount = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!haveDiscount)
                 {
                     currentCharacter.DownAttribute(typeCost, currentCardFight.GetValueCost);
                 }
-
-                // Block card
-                BoxController.GetController<CardsController>().EndUseCard(currentCardFight);
+                else
+                {
+                    Debug.Log($"have discount {typeCost}");
+                }
             }
         }
 

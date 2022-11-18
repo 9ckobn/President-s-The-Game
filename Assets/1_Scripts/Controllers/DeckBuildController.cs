@@ -123,7 +123,6 @@ namespace Cards.DeckBuild
 
         public void SaveBeforeExit()
         {
-            Debug.Log($"save before");
             List<DeckData> completeDecks = new List<DeckData>();
             bool haveSelectedDeck = false;
 

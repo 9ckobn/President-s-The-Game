@@ -21,10 +21,9 @@ MonoBehaviour:
   TimeDurationEffect: -1
   ApplyCondition: 0
   CancelCondition: 0
-  TypeAttributeCancelCondition: 
   CountTimes: 0
   TypeBuff: 0
-  TypeTargetObject: 
+  TypesTargetObject: 
   BaseValue: 0
   TypeAttribute: 9
-  ValueAttribute: 50
+  ValueAttribute: 20

@@ -16,14 +16,17 @@ namespace EffectSystem.SCRO
         public TypeAttribute[] TypesTargetObject;
 
         [BoxGroup("Buff")]
+        [HideIf("TypeBuff", TypeBuff.Discount)]
         [Label("Базовое значение бафа")]
         public int BaseValue;
 
         [BoxGroup("Buff")]
+        [HideIf("TypeBuff", TypeBuff.Discount)]
         [Label("Добавляем значение атрибута?")]
         public TypeAttribute TypeAttribute;
 
         [BoxGroup("Buff")]
+        [HideIf("TypeBuff", TypeBuff.Discount)]
         [Label("Значение в % от атрибута")]
         public int ValueAttribute;
     }
