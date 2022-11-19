@@ -42,7 +42,6 @@ namespace EffectSystem
                 {
                     foreach (var type in otherEffect.TypeAttributesAfterLoan)
                     {
-                        Debug.Log($"return loan {type} damage = {otherEffect.ValueDamageLoan}");
                         characterData.DownAttribute(type, otherEffect.ValueDamageLoan);
                     }
                 }

@@ -34,9 +34,6 @@ namespace EffectSystem
                 int buff = (int)(characterData.GetValueAttribute(effect.TypeAttributeLoan) / 100f * effect.ProcentLoan);
                 characterData.UpAttribute(targetAttribute, buff);
                 effect.ValueDamageLoan = (int)(buff / 100f * effect.ValueProcentDamageLoan);
-
-                Debug.Log($"apply loan {targetAttribute} buff = {buff}");
-
             }
 
             EndApply();
