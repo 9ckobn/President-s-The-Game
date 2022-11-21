@@ -4,7 +4,7 @@ namespace UI.Buttons
     {
         protected override void OnClickButton()
         {
-            UIManager.Instance.GetWindow<MenuWindow>().ClickSelectDeckButton(this);   
+            UIManager.GetWindow<MenuWindow>().ClickSelectDeckButton(this);   
         }
     }
 }

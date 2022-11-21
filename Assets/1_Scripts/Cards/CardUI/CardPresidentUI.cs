@@ -25,12 +25,12 @@ namespace Cards
 
         protected override void SelectCard()
         {
-            UIManager.Instance.GetWindow<DeckBuildWindow>().SelectPresidentCard(this);
+            UIManager.GetWindow<DeckBuildWindow>().SelectPresidentCard(this);
         }
 
         protected override void DeSelectCard()
         {
-            UIManager.Instance.GetWindow<DeckBuildWindow>().DeSelectPresidentCard(this);
+            UIManager.GetWindow<DeckBuildWindow>().DeSelectPresidentCard(this);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace UI
 
         [SerializeField] private SelectedAttribute[] attributesObjects;
         [SerializeField] private Sprite diplomaticIcon, medicineIcon, economicIcon, rawMaterialsIcon;
-        [SerializeField] private GameObject parentCards;
+        [SerializeField] private GameObject parentCards, parentSelectedCard;
 
         private List<BuffAttributeCardPresidentUI> cards = new List<BuffAttributeCardPresidentUI>();
 
@@ -50,6 +50,19 @@ namespace UI
                 card.SetCardData = cardData;
                 card.transform.SetParent(parentCards.transform);
                 cards.Add(card);
+            }
+        }
+
+        public void ChangeParentSelectedCard(GameObject card)
+        {
+
+        }
+
+        public void ShowDataAttributes()
+        {
+            foreach (var attribute in attributesObjects)
+            {
+                attribute.ShowValue(2);
             }
         }
     }

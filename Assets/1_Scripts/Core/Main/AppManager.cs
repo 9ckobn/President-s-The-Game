@@ -55,21 +55,21 @@ namespace Core
                     buttonObject.SetActive(true);
                 }
 
-                UIManager.instance.GetWindow<ConnectMatemaskWindow>().SetMethodConnect(isQrStartMoralis);
+                UIManager.GetWindow<ConnectMatemaskWindow>().SetMethodConnect(isQrStartMoralis);
             }
             else
             {
                 authenticationKit.gameObject.SetActive(false);
 
-                UIManager.instance.GetWindow<ConnectMatemaskWindow>().SetMethodConnect(false);
+                UIManager.GetWindow<ConnectMatemaskWindow>().SetMethodConnect(false);
             }
 
-            UIManager.instance.ShowWindow<ConnectMatemaskWindow>();
+            UIManager.ShowWindow<ConnectMatemaskWindow>();
         }
 
         public void MetamaskConnect()
         {
-            UIManager.instance.HideWindow<ConnectMatemaskWindow>();
+            UIManager.HideWindow<ConnectMatemaskWindow>();
 
             if (isUseMoralis)
             {

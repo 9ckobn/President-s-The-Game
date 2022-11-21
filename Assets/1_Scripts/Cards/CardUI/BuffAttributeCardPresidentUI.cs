@@ -1,5 +1,6 @@
 using Cards.Data;
 using Cards.View;
+using Core;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -45,6 +46,8 @@ namespace Cards
             {
                 transform.DOScale(new Vector3(START_SCALE * SCALE_SELECTED, START_SCALE * SCALE_SELECTED, START_SCALE * SCALE_SELECTED), 0.15f);
             });
+
+            BoxController.GetController<BuffAttributePresidentController>().SelectCard(this);
         }
 
         public void OnDrag(PointerEventData eventData)

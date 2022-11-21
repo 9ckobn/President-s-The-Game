@@ -43,7 +43,7 @@ namespace Cards
             {
                 isPreview = true;
 
-                UIManager.Instance.GetWindow<DeckBuildWindow>().PointerEnterOnCard(this);
+                UIManager.GetWindow<DeckBuildWindow>().PointerEnterOnCard(this);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Cards
             {
                 isPreview = false;
 
-                UIManager.Instance.GetWindow<DeckBuildWindow>().DeletePreviewCard();
+                UIManager.GetWindow<DeckBuildWindow>().DeletePreviewCard();
             }
         }
 

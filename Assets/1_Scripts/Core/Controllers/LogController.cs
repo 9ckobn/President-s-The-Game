@@ -16,7 +16,7 @@ namespace Core
 
                 if (value)
                 {
-                    UIManager.Instance.ShowWindow<LogWindow>();
+                    UIManager.ShowWindow<LogWindow>();
                 }
             }
         }
@@ -27,7 +27,7 @@ namespace Core
             {
                 Debug.Log(message);
 
-                UIManager.Instance.GetWindow<LogWindow>().Log(message);
+                UIManager.GetWindow<LogWindow>().Log(message);
             }
         }
 
@@ -35,7 +35,7 @@ namespace Core
         {
             if (isNeedLog)
             {
-                UIManager.Instance.GetWindow<LogWindow>().LogError(error);
+                UIManager.GetWindow<LogWindow>().LogError(error);
             }
         }
     }

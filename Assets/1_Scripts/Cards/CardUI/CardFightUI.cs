@@ -24,12 +24,12 @@ namespace Cards
 
         protected override void SelectCard()
         {
-            UIManager.Instance.GetWindow<DeckBuildWindow>().SelectFightCard(this);
+            UIManager.GetWindow<DeckBuildWindow>().SelectFightCard(this);
         }
 
         protected override void DeSelectCard()
         {
-            UIManager.Instance.GetWindow<DeckBuildWindow>().DeSelectFightCard(this);
+            UIManager.GetWindow<DeckBuildWindow>().DeSelectFightCard(this);
         }
     }
 }

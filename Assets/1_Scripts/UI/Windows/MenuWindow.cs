@@ -63,7 +63,7 @@ namespace UI
             myCardsButtonTween.Kill();
 
             Hide();
-            UIManager.Instance.ShowWindow<DeckBuildWindow>();
+            UIManager.ShowWindow<DeckBuildWindow>();
         }
 
         private void ChangeDeck()

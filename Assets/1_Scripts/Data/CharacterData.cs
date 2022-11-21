@@ -143,11 +143,11 @@ namespace Data
 
             if (isPlayer)
             {
-                UIManager.Instance.GetWindow<AttributesCharactersWindow>().RedrawPlayerData(data);
+                UIManager.GetWindow<AttributesCharactersWindow>().RedrawPlayerData(data);
             }
             else
             {
-                UIManager.Instance.GetWindow<AttributesCharactersWindow>().RedrawEnemyData(data);
+                UIManager.GetWindow<AttributesCharactersWindow>().RedrawEnemyData(data);
             }
 
             foreach (var attribute in attributes)

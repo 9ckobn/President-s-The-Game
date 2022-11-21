@@ -7,7 +7,7 @@ namespace Core
     {
         public void Connect()
         {
-            UIManager.Instance.ShowWindow<ConnectLobbyWindow>();
+            UIManager.ShowWindow<ConnectLobbyWindow>();
 
             PhotonNetwork.NickName = "123";
             BoxController.GetController<LogController>().Log("Connect to photon...");

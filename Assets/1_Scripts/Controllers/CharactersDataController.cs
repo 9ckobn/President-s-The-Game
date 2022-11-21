@@ -40,7 +40,7 @@ namespace Gameplay
                 currentCharacter = enemyData;
             }
 
-            UIManager.Instance.ShowWindow<AttributesCharactersWindow>();
+            UIManager.ShowWindow<AttributesCharactersWindow>();
         }
 
         private List<AttributeData> CreateAttributes()
@@ -95,12 +95,12 @@ namespace Gameplay
             if (isPlayerNow)
             {
                 currentCharacter = enemyData;
-                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
+                UIManager.GetWindow<UIWindow>().SetCurrentCharacterText("Enemy now");
             }
             else
             {
                 currentCharacter = playerData;
-                UIManager.Instance.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
+                UIManager.GetWindow<UIWindow>().SetCurrentCharacterText("Player now");
             }
 
             isPlayerNow = !isPlayerNow;

@@ -275,7 +275,7 @@ namespace UI
         {
             deckController.SaveBeforeExit();
             Hide();
-            UIManager.Instance.ShowWindow<MenuWindow>();
+            UIManager.ShowWindow<MenuWindow>();
         }
 
         #endregion

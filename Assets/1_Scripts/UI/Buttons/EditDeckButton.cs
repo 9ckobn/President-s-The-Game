@@ -12,7 +12,7 @@ namespace UI.Buttons
 
         protected override void OnClickButton()
         {
-            UIManager.Instance.GetWindow<DeckBuildWindow>().ClickDeckButton(this);
+            UIManager.GetWindow<DeckBuildWindow>().ClickDeckButton(this);
         }        
 
         public void RenameDeck()
@@ -32,7 +32,7 @@ namespace UI.Buttons
             if (inputField.text.Length > 0)
             {
                 nameDeckText.text = inputField.text;
-                UIManager.Instance.GetWindow<DeckBuildWindow>().EndRenameDeck(IdDeck, inputField.text);
+                UIManager.GetWindow<DeckBuildWindow>().EndRenameDeck(IdDeck, inputField.text);
             }
             else
             {
