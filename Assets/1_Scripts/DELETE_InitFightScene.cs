@@ -1,5 +1,6 @@
 using Core;
 using Gameplay;
+using UI;
 using UnityEngine;
 
 public class DELETE_InitFightScene : MonoBehaviour
@@ -24,6 +25,7 @@ public class DELETE_InitFightScene : MonoBehaviour
 
         Debug.Log("<color=red>Delete init scene!</color>");
 
-        BoxController.GetController<FightSceneController>().StartGame();
+        UIManager.Instance.ShowWindow<SelectBuffAttributeWindow>();
+        //BoxController.GetController<FightSceneController>().StartGame();
     }
 }

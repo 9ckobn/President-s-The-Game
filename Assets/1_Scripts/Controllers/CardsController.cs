@@ -23,7 +23,7 @@ namespace Gameplay
 
         public bool CanSelectedCard { get => useFightCard == null; }
 
-        public override void OnStart()
+        public void CreateCards()
         {
             List<CardPresidentData> cardsPresidentData = BoxController.GetController<GameStorageCardsController>().CardsPresidentData;
             List<CardFightData> cardsFightData = BoxController.GetController<GameStorageCardsController>().CardsFightData;

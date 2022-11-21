@@ -16,6 +16,6 @@ namespace Cards
             AfterAwake();
         }
 
-        protected abstract void AfterAwake();
+        protected virtual void AfterAwake() { }
     }
 }

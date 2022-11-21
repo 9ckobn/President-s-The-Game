@@ -7,7 +7,6 @@ using UnityEngine.UI;
 namespace Cards
 {
     [RequireComponent(typeof(CardPresidentView))]
-    [RequireComponent(typeof(Button))]
     public class CardPresidentUI : CardUI
     {
         public CardPresidentData GetData { get => data as CardPresidentData; }
