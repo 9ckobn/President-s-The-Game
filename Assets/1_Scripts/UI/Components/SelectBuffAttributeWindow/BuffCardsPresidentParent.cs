@@ -11,95 +11,66 @@ namespace UI.Components
 
         private List<BuffAttributeCardPresidentUI> cards = new List<BuffAttributeCardPresidentUI>();
         private Vector3[] positions = new Vector3[3];
-        private Sequence mySequence;
 
-        //public void AddCardsOnStart(List<BuffAttributeCardPresidentUI> cards)
-        //{
-        //    this.cards = cards;
+        public void AddCardsInStart(List<BuffAttributeCardPresidentUI> cards)
+        {
+            this.cards = cards;
 
+            CountPositions();
 
-        //}
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].transform.DOMove(positions[i], 0.15f);
+            }
+        }
 
         public void AddCard(BuffAttributeCardPresidentUI card)
         {
-            if (cards.Count == 0)
-            {
-                Vector3 position = transform.position;
-                mySequence = DOTween.Sequence();
-
-                mySequence.AppendCallback(() =>
-                {
-                    card.transform.DOMove(transform.position, 0.15f);
-                });
-            }
-            else if (cards.Count == 1)
-            {
-                Vector3 position = transform.position;
-                position.x -= OFFSET_CARD;
-
-                mySequence = DOTween.Sequence();
-
-                mySequence.AppendCallback(() =>
-                {
-                    cards[0].transform.DOMove(transform.position, 0.15f);
-                });
-
-                position = transform.position;
-                position.x += OFFSET_CARD;
-
-                mySequence.AppendCallback(() =>
-                {
-                    card.transform.DOMove(transform.position, 0.15f);
-                });
-            }
-            else if (cards.Count == 2)
-            {
-                Vector3 position = transform.position;
-                position.x -= OFFSET_CARD * 0.7f;
-
-                mySequence = DOTween.Sequence();
-
-                mySequence.AppendCallback(() =>
-                {
-                    cards[0].transform.DOMove(transform.position, 0.15f);
-                });
-
-
-                position = transform.position;
-
-                mySequence = DOTween.Sequence();
-
-                mySequence.AppendCallback(() =>
-                {
-                    cards[1].transform.DOMove(transform.position, 0.15f);
-                });
-
-
-                position = transform.position;
-                position.x += OFFSET_CARD * 0.7f;
-
-                mySequence = DOTween.Sequence();
-
-                mySequence.AppendCallback(() =>
-                {
-                    card.transform.DOMove(transform.position, 0.15f);
-                });
-            }
-
             cards.Add(card);
+
+            CountPositions();
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].transform.DOMove(positions[i], 0.15f);
+            }
         }
 
         public void RemoveCard(BuffAttributeCardPresidentUI card)
         {
-
+            cards.Remove(card);
+            sort cards list
+            List<>
         }
 
         private void CountPositions()
         {
-            if(cards.Count == 3)
+            if (cards.Count == 1)
             {
-
+                positions[0] = transform.position;
             }
+            else if (cards.Count == 2)
+            {
+                Vector3 position = transform.position;
+                position.x -= OFFSET_CARD;
+                positions[0] = position;
+
+                position = transform.position;
+                position.x += OFFSET_CARD;
+                positions[1] = position;
+            }
+            else if (cards.Count == 3)
+            {
+                Vector3 position = transform.position;
+                position.x -= OFFSET_CARD * 0.7f;
+                positions[0] = position;
+
+                position = transform.position;
+                positions[1] = position;
+
+                position.x += OFFSET_CARD * 0.7f;
+                positions[2] = position;
+            }            
         }
     }
 }

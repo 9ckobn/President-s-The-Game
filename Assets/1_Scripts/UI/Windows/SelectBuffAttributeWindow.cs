@@ -43,14 +43,17 @@ namespace UI
                 BuffAttributeCardPresidentUI card = Instantiate(presidentCardPrefab, spawnParent.transform);
 
                 card.SetCardData = cardData;
-                cardsParent.AddCard(card);
+                card.transform.SetParent(cardsParent.transform);
                 cards.Add(card);
             }
+
+            cardsParent.AddCardsInStart(cards);
         }
 
         public void PutCardInSelectedParent(BuffAttributeCardPresidentUI card)
         {
             card.transform.SetParent(parentSelectedCard.transform);
+            cardsParent.RemoveCard(card);
         }
 
         public void PutCardInCardsParent(BuffAttributeCardPresidentUI card)
