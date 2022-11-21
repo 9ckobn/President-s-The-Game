@@ -36,7 +36,6 @@ namespace UI
         protected override void BeforeShow()
         {
             CreatePresidentCards();
-
         }
 
         private void CreatePresidentCards()
@@ -55,7 +54,7 @@ namespace UI
 
         public void ChangeParentSelectedCard(GameObject card)
         {
-
+            card.transform.SetParent(parentSelectedCard.transform);
         }
 
         public void ShowDataAttributes()

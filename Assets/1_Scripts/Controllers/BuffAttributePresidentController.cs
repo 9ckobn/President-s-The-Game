@@ -14,7 +14,8 @@ namespace Cards
         {
             currentCard = card;
 
-            //.g
+            UIManager.GetWindow<SelectBuffAttributeWindow>().ChangeParentSelectedCard(card.gameObject);
+            UIManager.GetWindow<SelectBuffAttributeWindow>().ShowDataAttributes();
         }
     }
 }

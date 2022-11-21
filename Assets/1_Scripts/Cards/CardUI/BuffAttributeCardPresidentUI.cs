@@ -9,7 +9,6 @@ using UnityEngine.UI;
 namespace Cards
 {
     [RequireComponent(typeof(CardPresidentView))]
-    [RequireComponent(typeof(Button))]
     public class BuffAttributeCardPresidentUI : CardBase, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         [SerializeField] protected Image cardImage;

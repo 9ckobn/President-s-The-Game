@@ -1,10 +1,11 @@
 using EffectSystem;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI.Components
 {
-    public class SelectedAttribute : MonoBehaviour
+    public class SelectedAttribute : MonoBehaviour, IPointerEnterHandler
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private Text valueText;
@@ -38,6 +39,11 @@ namespace UI.Components
             iconImage.gameObject.SetActive(false);
             valueText.gameObject.SetActive(false);
             blockImage.gameObject.SetActive(false);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+
         }
     }
 }
