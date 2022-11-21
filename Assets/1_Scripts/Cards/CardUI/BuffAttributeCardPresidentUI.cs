@@ -2,6 +2,7 @@ using Cards.Data;
 using Cards.View;
 using Core;
 using DG.Tweening;
+using UI.Components;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ namespace Cards
         private Canvas canvas;
         private Sequence mySequence;
 
+        public SelectedAttribute attribute { get; set; }
+
         public CardPresidentData SetCardData
         {
             set
@@ -33,6 +36,8 @@ namespace Cards
 
         protected override void AfterAwake()
         {
+            attribute = null;
+
             rectTransform = GetComponent<RectTransform>();
             canvas = GetComponentInParent<Canvas>();
         }
@@ -46,6 +51,7 @@ namespace Cards
                 transform.DOScale(new Vector3(START_SCALE * SCALE_SELECTED, START_SCALE * SCALE_SELECTED, START_SCALE * SCALE_SELECTED), 0.15f);
             });
 
+            cardImage.raycastTarget = false;
             BoxController.GetController<BuffAttributePresidentController>().SelectCard(this);
         }
 
@@ -55,6 +61,13 @@ namespace Cards
         }
 
         public void OnEndDrag(PointerEventData eventData)
+        {
+            BoxController.GetController<BuffAttributePresidentController>().DeselecCard(this);
+
+            cardImage.raycastTarget = true;
+        }
+
+        public void ReturnStartScale()
         {
             mySequence = DOTween.Sequence();
 

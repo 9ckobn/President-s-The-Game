@@ -16,8 +16,32 @@ namespace Cards
         {
             currentCard = card;
 
-            UIManager.GetWindow<SelectBuffAttributeWindow>().ChangeParentSelectedCard(card.gameObject);
+            UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInSelectedParent(card);
             UIManager.GetWindow<SelectBuffAttributeWindow>().ShowDataAttributes();
+        }
+
+        public void DeselecCard(BuffAttributeCardPresidentUI card)
+        {
+            if (currentCard == card)
+            {
+                if(currentAttribute == null)
+                {
+                    UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(card);
+                }
+                else
+                {
+                    if(currentAttribute.CardPresident != null)
+                    {
+                        UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(currentAttribute.CardPresident);
+                        currentAttribute.RemoveCard();
+                    }
+
+                    currentAttribute.PutCardInAttribute(card);
+                }
+
+                currentAttribute = null;
+                currentCard = null;
+            }
         }
 
         public void SeletAttribute(SelectedAttribute attribute)
@@ -25,7 +49,16 @@ namespace Cards
             if (currentCard != null)
             {
                 currentAttribute = attribute;
-                attribute.Highlight();                
+                attribute.EnableHighlight();                
+            }
+        }
+
+        public void DeselectAttribute(SelectedAttribute attribute)
+        {
+            if (currentAttribute == attribute)
+            {
+                currentAttribute.DisableHighlight();
+                currentAttribute = null;
             }
         }
     }

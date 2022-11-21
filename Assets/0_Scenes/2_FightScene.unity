@@ -508,11 +508,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 806.56433
+      value: 945.3995
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210.10443
+      value: -181.8242
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -632,11 +632,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 483.9386
+      value: 567.2397
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210.10443
+      value: -181.8242
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1943,7 +1943,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529665124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
@@ -5020,11 +5020,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1129.1901
+      value: 1323.5593
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210.10443
+      value: -181.8242
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5340,7 +5340,8 @@ MonoBehaviour:
   medicineIcon: {fileID: 21300000, guid: c9923cac21ddc1f42a4f00b6e3788caf, type: 3}
   economicIcon: {fileID: 21300000, guid: 1fcdc639edba5af4182255cd00c9693e, type: 3}
   rawMaterialsIcon: {fileID: 21300000, guid: da3b7c815f9c0424e95765808ad7c8d4, type: 3}
-  parentCards: {fileID: 220171333}
+  cardsParent: {fileID: 0}
+  spawnParent: {fileID: 0}
   parentSelectedCard: {fileID: 313753014}
 --- !u!1 &2046137401
 GameObject:
@@ -5888,11 +5889,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 161.31287
+      value: 189.0799
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210.10443
+      value: -181.8242
       objectReference: {fileID: 0}
     - target: {fileID: 7164141001177786411, guid: ed7fefe4594865f429d5086829b76fe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

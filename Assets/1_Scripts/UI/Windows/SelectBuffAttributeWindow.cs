@@ -14,7 +14,8 @@ namespace UI
 
         [SerializeField] private SelectedAttribute[] attributesObjects;
         [SerializeField] private Sprite diplomaticIcon, medicineIcon, economicIcon, rawMaterialsIcon;
-        [SerializeField] private GameObject parentCards, parentSelectedCard;
+        [SerializeField] private BuffCardsPresidentParent cardsParent;
+        [SerializeField] private GameObject spawnParent, parentSelectedCard;
 
         private List<BuffAttributeCardPresidentUI> cards = new List<BuffAttributeCardPresidentUI>();
 
@@ -35,26 +36,27 @@ namespace UI
 
         protected override void BeforeShow()
         {
-            CreatePresidentCards();
-        }
-
-        private void CreatePresidentCards()
-        {
             List<CardPresidentData> cardsData = BoxController.GetController<GameStorageCardsController>().CardsPresidentData;
 
             foreach (var cardData in cardsData)
             {
-                BuffAttributeCardPresidentUI card = Instantiate(presidentCardPrefab, parentCards.transform);
+                BuffAttributeCardPresidentUI card = Instantiate(presidentCardPrefab, spawnParent.transform);
 
                 card.SetCardData = cardData;
-                card.transform.SetParent(parentCards.transform);
+                cardsParent.AddCard(card);
                 cards.Add(card);
             }
         }
 
-        public void ChangeParentSelectedCard(GameObject card)
+        public void PutCardInSelectedParent(BuffAttributeCardPresidentUI card)
         {
             card.transform.SetParent(parentSelectedCard.transform);
+        }
+
+        public void PutCardInCardsParent(BuffAttributeCardPresidentUI card)
+        {
+            cardsParent.AddCard(card);
+            card.ReturnStartScale();
         }
 
         public void ShowDataAttributes()
