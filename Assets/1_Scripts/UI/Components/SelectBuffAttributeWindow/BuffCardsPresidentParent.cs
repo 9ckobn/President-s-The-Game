@@ -39,8 +39,15 @@ namespace UI.Components
         public void RemoveCard(BuffAttributeCardPresidentUI card)
         {
             cards.Remove(card);
-            sort cards list
-            List<>
+
+            BuffAttributeCardPresidentUI[] sortArray = new BuffAttributeCardPresidentUI[cards.Count];
+
+            foreach (var currentCard in cards)
+            {
+                sortArray[currentCard.transform.GetSiblingIndex()] = currentCard;
+            }
+
+            cards = new List<BuffAttributeCardPresidentUI>(sortArray);
         }
 
         private void CountPositions()
