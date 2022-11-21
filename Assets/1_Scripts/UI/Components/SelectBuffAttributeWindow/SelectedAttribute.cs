@@ -1,3 +1,5 @@
+using Cards;
+using Core;
 using EffectSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,7 +11,7 @@ namespace UI.Components
     {
         [SerializeField] private Image iconImage;
         [SerializeField] private Text valueText;
-        [SerializeField] private GameObject blockImage;
+        [SerializeField] private GameObject blockImage, highlightImage;
         
         public bool IsEmpty { get; private set; }
         public TypeAttribute TypeAttribute { get; private set; }
@@ -41,9 +43,14 @@ namespace UI.Components
             blockImage.gameObject.SetActive(false);
         }
 
+        public void Highlight()
+        {
+            highlightImage.SetActive(true);
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
-
+            BoxController.GetController<BuffAttributePresidentController>().SeletAttribute(this);
         }
     }
 }
