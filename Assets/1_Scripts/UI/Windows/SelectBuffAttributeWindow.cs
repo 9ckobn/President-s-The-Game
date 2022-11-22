@@ -64,23 +64,16 @@ namespace UI
 
         public void EnableRaycastCards()
         {
-            Debug.Log($"enable {cards.Count}");
-
             foreach (var card in cards)
             {
-                Debug.Log($"enable {card.name}");
-
                 card.EnableRaycat();
             }
         }
 
         public void DisableRaycastCards()
         {
-            Debug.Log($"disable {cards.Count}");
-
             foreach (var card in cards)
             {
-                Debug.Log($"disable {card.name}");
                 card.DisableRaycat();
             }
         }

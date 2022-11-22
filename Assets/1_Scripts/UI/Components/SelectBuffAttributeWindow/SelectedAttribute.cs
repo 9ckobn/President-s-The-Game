@@ -18,6 +18,7 @@ namespace UI.Components
         
         public bool IsEmpty { get; private set; }
         public TypeAttribute TypeAttribute { get; private set; }
+        public int Value { get; private set; }
 
         public void Init(Sprite sprite, TypeAttribute typeAttribute)
         {
@@ -41,6 +42,7 @@ namespace UI.Components
         {
             if (CardPresident != null)
             {
+                BoxController.GetController<BuffAttributePresidentController>().RemoveAttribute(this);
                 UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(CardPresident);
             }
 
@@ -54,12 +56,15 @@ namespace UI.Components
 
         public void RemoveCard()
         {
+            BoxController.GetController<BuffAttributePresidentController>().RemoveAttribute(this);
+
             CardPresident = null;
             DisableHighlight();
         }
 
         public void ShowInfo(int value)
         {
+            Value = value;
             valueText.text = "+" + value;
             valueText.gameObject.SetActive(true);
             iconImage.gameObject.SetActive(true);
