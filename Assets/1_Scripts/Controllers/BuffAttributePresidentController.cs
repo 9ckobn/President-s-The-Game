@@ -18,6 +18,7 @@ namespace Cards
 
             UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInSelectedParent(card);
             UIManager.GetWindow<SelectBuffAttributeWindow>().ShowDataAttributes();
+            UIManager.GetWindow<SelectBuffAttributeWindow>().DisableRaycastCards();
         }
 
         public void DeselecCard(BuffAttributeCardPresidentUI card)
@@ -35,7 +36,11 @@ namespace Cards
 
                 currentAttribute = null;
                 currentCard = null;
+
+                UIManager.GetWindow<SelectBuffAttributeWindow>().HideDataAttributes();
             }
+
+            UIManager.GetWindow<SelectBuffAttributeWindow>().EnableRaycastCards();
         }
 
         public void SeletAttribute(SelectedAttribute attribute)

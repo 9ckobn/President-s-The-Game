@@ -7,22 +7,22 @@ namespace UI.Components
 {
     public class BuffCardsPresidentParent : MonoBehaviour
     {
-        private const int OFFSET_CARD = 150;
-
         private List<BuffAttributeCardPresidentUI> cards = new List<BuffAttributeCardPresidentUI>();
         private Vector3[] positions = new Vector3[3];
 
+        private float offsetCard;
+
         public void AddCardsInStart(List<BuffAttributeCardPresidentUI> cards)
         {
-            this.cards = cards;
+            this.cards =  new List<BuffAttributeCardPresidentUI>(cards);
+            offsetCard = cards[0].GetComponent<RectTransform>().sizeDelta.x;
 
-            CountPositions();
-
-            for (int i = 0; i < cards.Count; i++)
+            foreach (var card in this.cards)
             {
-                cards[i].transform.SetParent(transform);
-                cards[i].transform.DOMove(positions[i], 0.15f);
+                card.transform.SetParent(transform);
             }
+
+            ChangeCardsPositions();           
         }
 
         public void AddCard(BuffAttributeCardPresidentUI card)
@@ -30,12 +30,7 @@ namespace UI.Components
             cards.Add(card);
             card.transform.SetParent(transform);
 
-            CountPositions();
-
-            for (int i = 0; i < cards.Count; i++)
-            {
-                cards[i].transform.DOMove(positions[i], 0.3f);
-            }
+            ChangeCardsPositions();
         }
 
         public void RemoveCard(BuffAttributeCardPresidentUI card)
@@ -50,9 +45,11 @@ namespace UI.Components
             }
 
             cards = new List<BuffAttributeCardPresidentUI>(sortArray);
+
+            ChangeCardsPositions();
         }
 
-        private void CountPositions()
+        private void ChangeCardsPositions()
         {
             if (cards.Count == 1)
             {
@@ -61,25 +58,30 @@ namespace UI.Components
             else if (cards.Count == 2)
             {
                 Vector3 position = transform.position;
-                position.x -= OFFSET_CARD;
+                position.x -= offsetCard * 0.8f;
                 positions[0] = position;
 
                 position = transform.position;
-                position.x += OFFSET_CARD;
+                position.x += offsetCard * 0.8f;
                 positions[1] = position;
             }
             else if (cards.Count == 3)
             {
                 Vector3 position = transform.position;
-                position.x -= OFFSET_CARD * 0.7f;
+                position.x -= offsetCard * 1.3f;
                 positions[0] = position;
 
                 position = transform.position;
                 positions[1] = position;
 
-                position.x += OFFSET_CARD * 0.7f;
+                position.x += offsetCard * 1.3f;
                 positions[2] = position;
-            }            
+            }
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].transform.DOMove(positions[i], 0.15f);
+            }
         }
     }
 }

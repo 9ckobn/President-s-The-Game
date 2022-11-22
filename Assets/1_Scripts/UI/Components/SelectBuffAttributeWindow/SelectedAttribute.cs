@@ -14,14 +14,14 @@ namespace UI.Components
         [SerializeField] private Text valueText;
         [SerializeField] private GameObject blockImage, highlightImage;
 
-        public BuffAttributeCardPresidentUI cardPresident;
+        public BuffAttributeCardPresidentUI CardPresident;
         
         public bool IsEmpty { get; private set; }
         public TypeAttribute TypeAttribute { get; private set; }
 
         public void Init(Sprite sprite, TypeAttribute typeAttribute)
         {
-            cardPresident = null;
+            CardPresident = null;
             IsEmpty = true;
             TypeAttribute = typeAttribute;
             iconImage.sprite = sprite;
@@ -39,13 +39,13 @@ namespace UI.Components
 
         public void PutCardInAttribute(BuffAttributeCardPresidentUI card)
         {
-            if (cardPresident != null)
+            if (CardPresident != null)
             {
-                UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(cardPresident);
+                UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(CardPresident);
             }
 
-            cardPresident = card;
-            cardPresident.Attribute = this;
+            CardPresident = card;
+            CardPresident.Attribute = this;
             card.transform.SetParent(transform.parent);
             card.transform.DOMove(transform.position, 0.2f);
 
@@ -54,11 +54,11 @@ namespace UI.Components
 
         public void RemoveCard()
         {
-            cardPresident = null;
+            CardPresident = null;
             DisableHighlight();
         }
 
-        public void ShowValue(int value)
+        public void ShowInfo(int value)
         {
             valueText.text = "+" + value;
             valueText.gameObject.SetActive(true);

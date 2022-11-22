@@ -56,7 +56,6 @@ namespace Cards
                 transform.DOScale(new Vector3(START_SCALE * SCALE_SELECTED, START_SCALE * SCALE_SELECTED, START_SCALE * SCALE_SELECTED), 0.15f);
             });
 
-            cardImage.raycastTarget = false;
             BoxController.GetController<BuffAttributePresidentController>().SelectCard(this);
         }
 
@@ -68,8 +67,6 @@ namespace Cards
         public void OnEndDrag(PointerEventData eventData)
         {
             BoxController.GetController<BuffAttributePresidentController>().DeselecCard(this);
-
-            cardImage.raycastTarget = true;
         }
 
         public void ReturnStartScale()
@@ -80,6 +77,16 @@ namespace Cards
             {
                 transform.DOScale(new Vector3(START_SCALE, START_SCALE, START_SCALE), 0.15f);
             });
+        }
+
+        public void EnableRaycat()
+        {
+            cardImage.raycastTarget = true;
+        }
+
+        public void DisableRaycat()
+        {
+            cardImage.raycastTarget = false;
         }
     }
 }
