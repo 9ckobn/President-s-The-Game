@@ -43,7 +43,6 @@ namespace UI
                 BuffAttributeCardPresidentUI card = Instantiate(presidentCardPrefab, spawnParent.transform);
 
                 card.SetCardData = cardData;
-                card.transform.SetParent(cardsParent.transform);
                 cards.Add(card);
             }
 

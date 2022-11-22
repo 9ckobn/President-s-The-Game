@@ -20,7 +20,7 @@ namespace Cards
         private Canvas canvas;
         private Sequence mySequence;
 
-        public SelectedAttribute attribute { get; set; }
+        public SelectedAttribute Attribute { get; set; }
 
         public CardPresidentData SetCardData
         {
@@ -36,7 +36,7 @@ namespace Cards
 
         protected override void AfterAwake()
         {
-            attribute = null;
+            Attribute = null;
 
             rectTransform = GetComponent<RectTransform>();
             canvas = GetComponentInParent<Canvas>();
@@ -44,6 +44,11 @@ namespace Cards
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if(Attribute != null)
+            {
+                Attribute.RemoveCard();
+            }
+
             mySequence = DOTween.Sequence();
 
             mySequence.AppendCallback(() =>

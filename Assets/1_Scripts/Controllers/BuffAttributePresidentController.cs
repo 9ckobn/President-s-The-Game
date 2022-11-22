@@ -30,12 +30,6 @@ namespace Cards
                 }
                 else
                 {
-                    if(currentAttribute.CardPresident != null)
-                    {
-                        UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(currentAttribute.CardPresident);
-                        currentAttribute.RemoveCard();
-                    }
-
                     currentAttribute.PutCardInAttribute(card);
                 }
 

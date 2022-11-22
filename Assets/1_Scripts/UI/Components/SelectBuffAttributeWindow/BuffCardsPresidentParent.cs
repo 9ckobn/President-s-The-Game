@@ -20,6 +20,7 @@ namespace UI.Components
 
             for (int i = 0; i < cards.Count; i++)
             {
+                cards[i].transform.SetParent(transform);
                 cards[i].transform.DOMove(positions[i], 0.15f);
             }
         }
@@ -27,12 +28,13 @@ namespace UI.Components
         public void AddCard(BuffAttributeCardPresidentUI card)
         {
             cards.Add(card);
+            card.transform.SetParent(transform);
 
             CountPositions();
 
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].transform.DOMove(positions[i], 0.15f);
+                cards[i].transform.DOMove(positions[i], 0.3f);
             }
         }
 

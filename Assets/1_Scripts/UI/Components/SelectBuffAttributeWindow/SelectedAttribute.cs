@@ -1,5 +1,6 @@
 using Cards;
 using Core;
+using DG.Tweening;
 using EffectSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,14 +14,14 @@ namespace UI.Components
         [SerializeField] private Text valueText;
         [SerializeField] private GameObject blockImage, highlightImage;
 
-        public BuffAttributeCardPresidentUI CardPresident { get; private set; }
+        public BuffAttributeCardPresidentUI cardPresident;
         
         public bool IsEmpty { get; private set; }
         public TypeAttribute TypeAttribute { get; private set; }
 
         public void Init(Sprite sprite, TypeAttribute typeAttribute)
         {
-            CardPresident = null;
+            cardPresident = null;
             IsEmpty = true;
             TypeAttribute = typeAttribute;
             iconImage.sprite = sprite;
@@ -38,14 +39,23 @@ namespace UI.Components
 
         public void PutCardInAttribute(BuffAttributeCardPresidentUI card)
         {
-            CardPresident = card;
+            if (cardPresident != null)
+            {
+                UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(cardPresident);
+            }
+
+            cardPresident = card;
+            cardPresident.Attribute = this;
             card.transform.SetParent(transform.parent);
-            card.transform.position = transform.position;
+            card.transform.DOMove(transform.position, 0.2f);
+
+            DisableHighlight();
         }
 
         public void RemoveCard()
         {
-            CardPresident = null;
+            cardPresident = null;
+            DisableHighlight();
         }
 
         public void ShowValue(int value)
