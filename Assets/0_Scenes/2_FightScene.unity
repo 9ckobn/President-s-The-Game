@@ -5412,7 +5412,7 @@ MonoBehaviour:
   - {fileID: 45006329}
   - {fileID: 30612622}
   - {fileID: 1858560969}
-  diplomaticIcon: {fileID: 21300000, guid: b61ab63733145864fbec1474e31b3a50, type: 3}
+  foodIcon: {fileID: 21300000, guid: b61ab63733145864fbec1474e31b3a50, type: 3}
   medicineIcon: {fileID: 21300000, guid: c9923cac21ddc1f42a4f00b6e3788caf, type: 3}
   economicIcon: {fileID: 21300000, guid: 1fcdc639edba5af4182255cd00c9693e, type: 3}
   rawMaterialsIcon: {fileID: 21300000, guid: da3b7c815f9c0424e95765808ad7c8d4, type: 3}

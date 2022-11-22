@@ -23,11 +23,6 @@ namespace Cards
             UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInSelectedParent(card);
             UIManager.GetWindow<SelectBuffAttributeWindow>().ShowDataAttributes();
             UIManager.GetWindow<SelectBuffAttributeWindow>().DisableRaycastCards();
-
-            foreach (var data in dataBuff)
-            {
-                Debug.Log($"data = {data.Attribute} {data.Value}");
-            }
         }
 
         public void DeselecCard(BuffAttributeCardPresidentUI card)

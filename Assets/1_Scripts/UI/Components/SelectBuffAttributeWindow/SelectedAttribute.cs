@@ -14,6 +14,7 @@ namespace UI.Components
         [SerializeField] private Text valueText;
         [SerializeField] private GameObject blockImage, highlightImage;
 
+        [HideInInspector]
         public BuffAttributeCardPresidentUI CardPresident;
         
         public bool IsEmpty { get; private set; }

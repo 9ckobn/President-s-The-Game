@@ -13,7 +13,7 @@ namespace UI
         [SerializeField] private BuffAttributeCardPresidentUI presidentCardPrefab;
 
         [SerializeField] private SelectedAttribute[] attributesObjects;
-        [SerializeField] private Sprite diplomaticIcon, medicineIcon, economicIcon, rawMaterialsIcon;
+        [SerializeField] private Sprite foodIcon, medicineIcon, economicIcon, rawMaterialsIcon;
         [SerializeField] private BuffCardsPresidentParent cardsParent;
         [SerializeField] private GameObject spawnParent, parentSelectedCard;
 
@@ -27,7 +27,7 @@ namespace UI
             }
             else
             {
-                attributesObjects[0].Init(diplomaticIcon, TypeAttribute.Diplomacy);
+                attributesObjects[0].Init(foodIcon, TypeAttribute.Food);
                 attributesObjects[1].Init(medicineIcon, TypeAttribute.Medicine);
                 attributesObjects[2].Init(economicIcon, TypeAttribute.Economic);
                 attributesObjects[3].Init(rawMaterialsIcon, TypeAttribute.RawMaterials);
