@@ -138,6 +138,7 @@ namespace UI
         {
             startGameButton.gameObject.SetActive(false);
             myTween.Kill();
+            startGameButton.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }

@@ -1,7 +1,9 @@
 using Cards.Data;
 using Core;
 using Data;
+using EffectSystem;
 using System.Collections.Generic;
+using System.Linq;
 using UI;
 using UI.Components;
 using UnityEngine;
@@ -19,6 +21,13 @@ namespace Cards
         private List<DataBuffPresidents> viewDataBuff = new List<DataBuffPresidents>();
 
         private bool isChooseAllBuffs = false;
+
+        public int GetBuffValue(TypeAttribute typeAttribute)
+        {
+            DataBuffPresidents buff = dataBuff.FirstOrDefault(buff => buff.TypeAttribute == typeAttribute);
+
+            return buff == null ? 0 : buff.Value;
+        }
 
         public void SelectCard(BuffAttributeCardPresidentUI card)
         {
@@ -76,7 +85,7 @@ namespace Cards
             viewDataBuff = new List<DataBuffPresidents>();
             CardPresidentData data = currentCard.GetData;
 
-            int valueBuff = (int)((data.Attack + data.Defend + data.Luck + data.Diplomatic) * 0.1f);
+            int valueBuff = (int)((data.Attack + data.Defend + data.Luck + data.Diplomatic) * MainData.MULTIPLIER_BUFF);
 
             foreach (var buff in data.PossiblePresidentBuff)
             {

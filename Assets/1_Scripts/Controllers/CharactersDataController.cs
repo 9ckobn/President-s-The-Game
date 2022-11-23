@@ -61,16 +61,18 @@ namespace Gameplay
                 diplomatic += president.Diplomatic;
             }
 
-            int economic = (attack + diplomatic) * 4;
+            BuffAttributePresidentController buffController = BoxController.GetController<BuffAttributePresidentController>();
+
+            int economic = (attack + diplomatic) * MainData.MULTIPLIER_BUILDING + buffController.GetBuffValue(TypeAttribute.Economic);
             int[] statesEconomic = new int[3] { economic - economic / 4, economic / 3, 0 };
 
-            int food = (defend + luck) * 4;
+            int food = (defend + luck) * MainData.MULTIPLIER_BUILDING + buffController.GetBuffValue(TypeAttribute.Food);
             int[] statesFood = new int[3] { food - food / 4, food / 3, 0 };
 
-            int rawMaterials = (attack + luck) * 4;
+            int rawMaterials = (attack + luck) * MainData.MULTIPLIER_BUILDING + buffController.GetBuffValue(TypeAttribute.RawMaterials);
             int[] statesRawMaterials = new int[3] { rawMaterials - rawMaterials / 4, rawMaterials / 3, 0 };
 
-            int medicine = (defend + diplomatic) * 4;
+            int medicine = (defend + diplomatic) * MainData.MULTIPLIER_BUILDING + buffController.GetBuffValue(TypeAttribute.Medicine);
             int[] statesMedicine = new int[3] { medicine - medicine / 4, medicine / 3, 0 };
 
             int morality = economic + food + rawMaterials + medicine;
