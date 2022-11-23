@@ -34,6 +34,8 @@ namespace Cards
             }
         }
 
+        public CardPresidentData GetData { get => data as CardPresidentData; }
+
         protected override void AfterAwake()
         {
             Attribute = null;

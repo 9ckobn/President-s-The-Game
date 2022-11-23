@@ -1,6 +1,7 @@
 using Cards;
 using Cards.Data;
 using Core;
+using Data;
 using EffectSystem;
 using System.Collections.Generic;
 using UI.Components;
@@ -78,7 +79,7 @@ namespace UI
             }
         }
 
-        public void ShowDataAttributes()
+        public void ShowDataAttributes(List<DataBuffPresidents> dataBuff)
         {
             foreach (var attribute in attributesObjects)
             {

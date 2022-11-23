@@ -1,3 +1,4 @@
+using Cards.Data;
 using Core;
 using Data;
 using System.Collections.Generic;
@@ -15,13 +16,15 @@ namespace Cards
         private SelectedAttribute currentAttribute = null;
 
         private List<DataBuffPresidents> dataBuff = new List<DataBuffPresidents>();
+        private List<DataBuffPresidents> viewDataBuff = new List<DataBuffPresidents>();
 
         public void SelectCard(BuffAttributeCardPresidentUI card)
         {
             currentCard = card;
+            CreateViewDataBuff();
 
             UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInSelectedParent(card);
-            UIManager.GetWindow<SelectBuffAttributeWindow>().ShowDataAttributes();
+            UIManager.GetWindow<SelectBuffAttributeWindow>().ShowDataAttributes(viewDataBuff);
             UIManager.GetWindow<SelectBuffAttributeWindow>().DisableRaycastCards();
         }
 
@@ -29,7 +32,7 @@ namespace Cards
         {
             if (currentCard == card)
             {
-                if(currentAttribute == null)
+                if (currentAttribute == null)
                 {
                     UIManager.GetWindow<SelectBuffAttributeWindow>().PutCardInCardsParent(card);
                 }
@@ -53,7 +56,7 @@ namespace Cards
             if (currentCard != null)
             {
                 currentAttribute = attribute;
-                attribute.EnableHighlight();                
+                attribute.EnableHighlight();
             }
         }
 
@@ -66,6 +69,19 @@ namespace Cards
             }
         }
 
+        private void CreateViewDataBuff()
+        {
+            viewDataBuff = new List<DataBuffPresidents>();
+            CardPresidentData data = currentCard.GetData;
+
+            int valueBuff = (int)((data.Attack + data.Defend + data.Luck + data.Diplomatic) * 0.1f);
+
+            foreach (var buff in data.PossiblePresidentBuff)
+            {
+                viewDataBuff.Add(new DataBuffPresidents(buff, valueBuff));
+            }
+        }
+
         private void AddBuff(SelectedAttribute attribute)
         {
             dataBuff.Add(new DataBuffPresidents(attribute.TypeAttribute, attribute.Value));
@@ -75,7 +91,7 @@ namespace Cards
         {
             foreach (var buff in dataBuff)
             {
-                if (buff.Attribute == attribute.TypeAttribute)
+                if (buff.TypeAttribute == attribute.TypeAttribute)
                 {
                     dataBuff.Remove(buff);
                     return;

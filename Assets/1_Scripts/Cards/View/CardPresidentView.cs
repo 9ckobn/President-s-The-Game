@@ -1,4 +1,5 @@
 using Cards.Data;
+using EffectSystem;
 using NaughtyAttributes;
 using UI.Components;
 using UnityEngine;
@@ -18,10 +19,10 @@ namespace Cards.View
             rarityrankText.text = data.Rarityrank.ToString();
             nameText.text = data.Name;
             
-            attackAttribute.SetData(data.CommonAttack, data.BuffAttack.GetState);
-            luckAttribute.SetData(data.CommonLuck, data.BuffLuck.GetState);
-            defendAttribute.SetData(data.CommonDefend, data.BuffDefend.GetState);
-            diplomaticAttribute.SetData(data.CommonDiplomatic, data.BuffDiplomatic.GetState);
+            attackAttribute.SetData(data.Attack, data.GetBuffAttributeState(TypeAttribute.Attack));
+            luckAttribute.SetData(data.Luck, data.GetBuffAttributeState(TypeAttribute.Luck));
+            defendAttribute.SetData(data.Defend, data.GetBuffAttributeState(TypeAttribute.Defend));
+            diplomaticAttribute.SetData(data.Diplomatic, data.GetBuffAttributeState(TypeAttribute.Diplomacy));
         }
     }
 }

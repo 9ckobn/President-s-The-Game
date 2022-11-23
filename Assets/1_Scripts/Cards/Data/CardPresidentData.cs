@@ -1,59 +1,76 @@
 using Cards.Type;
-using Core;
+using EffectSystem;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Cards.Data
 {
     public class CardPresidentData : CardDataBase
     {
-        private const int BUFF_CLIMATE = 2, DEBUFF_CLIMATE = -1;
-
+        private int baseAttack;
+        private int baseDefend;
+        private int baseLuck;
+        private int baseDiplomatic;
+        
         public int Rarityrank { get; private set; }
-        public int Attack { get; private set; }
-        public int Defend { get; private set; }
-        public int Luck { get; private set; }
-        public int Diplomatic { get; private set; }
-
-        public BuffAttribute BuffAttack { get; private set; }
-        public BuffAttribute BuffDefend { get; private set; }
-        public BuffAttribute BuffLuck { get; private set; }
-        public BuffAttribute BuffDiplomatic { get; private set; }
-
         public TypeClimate Climate { get; private set; }
 
-        public int CommonAttack { get => Attack + BuffAttack.GetValue; }
-        public int CommonDefend { get => Defend + BuffDefend.GetValue; }
-        public int CommonLuck { get => Luck + BuffLuck.GetValue; }
-        public int CommonDiplomatic { get => Diplomatic + BuffDiplomatic.GetValue; }
+        public int Attack { get => baseAttack + GetValueBuff(TypeAttribute.Attack); }
+        public int Defend { get => baseDefend + GetValueBuff(TypeAttribute.Defend); }
+        public int Luck { get => baseLuck + GetValueBuff(TypeAttribute.Luck); }
+        public int Diplomatic { get => baseDiplomatic + GetValueBuff(TypeAttribute.Diplomacy); }
+
+        public List<TypeAttribute> PossiblePresidentBuff { get; private set; }
+
+        private List<BuffAttribute> buffAttributes = new List<BuffAttribute>();
+
+        public int GetValueBuff(TypeAttribute type)
+        {
+            return buffAttributes.First(buff => buff.TypeAttribute == type).Value;
+        }
+
+        public TypeStateAttribute GetBuffAttributeState(TypeAttribute type)
+        {
+            return buffAttributes.First(buff => buff.TypeAttribute == type).State;
+        }
 
         public CardPresidentData(CardPresidentDataSerialize data, Sprite sprite) : base(data.id.ToString(), sprite, data.name, 1)
         {
             Rarityrank = data.rarityrank;
-            Attack = data.attack;
-            Defend = data.defend;
-            Luck = data.luck;
-            Diplomatic = data.diplomatic;
+            baseAttack = data.attack;
+            baseDefend = data.defend;
+            baseLuck = data.luck;
+            baseDiplomatic = data.diplomatic;
 
             DefineClimate(data.climate_zone);
-            CalculateClimate();
+            CreateBuffAttributes(data);
         }
 
-        private void CalculateClimate()
+        private void CreateBuffAttributes(CardPresidentDataSerialize data)
         {
-            if (Climate == DataBaseManager.Instance.TypeClimate)
+            // TODO: Count this buffs after create Climate
+            buffAttributes.Add(new BuffAttribute(TypeAttribute.Attack, 0));
+            buffAttributes.Add(new BuffAttribute(TypeAttribute.Defend, 0));
+            buffAttributes.Add(new BuffAttribute(TypeAttribute.Luck, 0));
+            buffAttributes.Add(new BuffAttribute(TypeAttribute.Diplomacy, 0));
+
+            if (data.economy)
             {
-                BuffAttack = new BuffAttribute(BUFF_CLIMATE);
-                BuffDefend = new BuffAttribute(BUFF_CLIMATE);
-                BuffLuck = new BuffAttribute(BUFF_CLIMATE);
-                BuffDiplomatic = new BuffAttribute(BUFF_CLIMATE);
+                PossiblePresidentBuff.Add(TypeAttribute.Economic);
             }
-            else
+            else if (data.health_care)
             {
-                BuffAttack = new BuffAttribute(DEBUFF_CLIMATE);
-                BuffDefend = new BuffAttribute(DEBUFF_CLIMATE);
-                BuffLuck = new BuffAttribute(DEBUFF_CLIMATE);
-                BuffDiplomatic = new BuffAttribute(DEBUFF_CLIMATE);
+                PossiblePresidentBuff.Add(TypeAttribute.Medicine);
             }
+            else if (data.raw_materials)
+            {
+                PossiblePresidentBuff.Add(TypeAttribute.RawMaterials);
+            }
+            else if (data.food)
+            {
+                PossiblePresidentBuff.Add(TypeAttribute.Food);
+            }            
         }
 
         private void DefineClimate(string climate)

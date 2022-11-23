@@ -55,10 +55,10 @@ namespace Gameplay
 
             foreach (var president in playersPresidents)
             {
-                attack = president.Attack + president.BuffAttack.GetValue;
-                defend = president.Defend + president.BuffDefend.GetValue;
-                luck = president.Luck + president.BuffLuck.GetValue;
-                diplomatic = president.Diplomatic + president.BuffDiplomatic.GetValue;
+                attack += president.Attack;
+                defend += president.Defend;
+                luck += president.Luck;
+                diplomatic += president.Diplomatic;
             }
 
             int economic = (attack + diplomatic) * 4;
