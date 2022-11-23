@@ -18,6 +18,8 @@ namespace Cards
         private List<DataBuffPresidents> dataBuff = new List<DataBuffPresidents>();
         private List<DataBuffPresidents> viewDataBuff = new List<DataBuffPresidents>();
 
+        private bool isChooseAllBuffs = false;
+
         public void SelectCard(BuffAttributeCardPresidentUI card)
         {
             currentCard = card;
@@ -77,7 +79,7 @@ namespace Cards
             int valueBuff = (int)((data.Attack + data.Defend + data.Luck + data.Diplomatic) * 0.1f);
 
             foreach (var buff in data.PossiblePresidentBuff)
-            {            
+            {
                 viewDataBuff.Add(new DataBuffPresidents(buff, valueBuff));
             }
         }
@@ -85,6 +87,8 @@ namespace Cards
         private void AddBuff(SelectedAttribute attribute)
         {
             dataBuff.Add(new DataBuffPresidents(attribute.TypeAttribute, attribute.Value));
+
+            CheckCountBuffs();
         }
 
         public void RemoveAttribute(SelectedAttribute attribute)
@@ -94,8 +98,24 @@ namespace Cards
                 if (buff.TypeAttribute == attribute.TypeAttribute)
                 {
                     dataBuff.Remove(buff);
+                    CheckCountBuffs();
+
                     return;
                 }
+            }
+        }
+
+        private void CheckCountBuffs()
+        {
+            isChooseAllBuffs = dataBuff.Count == MainData.MAX_PRESIDENT_CARDS;
+
+            if (isChooseAllBuffs)
+            {
+                UIManager.GetWindow<SelectBuffAttributeWindow>().ShowButtonStartGame();
+            }
+            else
+            {
+                UIManager.GetWindow<SelectBuffAttributeWindow>().HideButtonStartGame();
             }
         }
     }

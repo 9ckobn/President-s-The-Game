@@ -2,11 +2,14 @@ using Cards;
 using Cards.Data;
 using Core;
 using Data;
+using DG.Tweening;
 using EffectSystem;
+using Gameplay;
 using System.Collections.Generic;
 using System.Linq;
 using UI.Components;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -18,12 +21,17 @@ namespace UI
         [SerializeField] private Sprite foodIcon, medicineIcon, economicIcon, rawMaterialsIcon;
         [SerializeField] private BuffCardsPresidentParent cardsParent;
         [SerializeField] private GameObject spawnParent, parentSelectedCard;
+        [SerializeField] private Button startGameButton;
 
         private List<BuffAttributeCardPresidentUI> cards = new List<BuffAttributeCardPresidentUI>();
 
+        private Sequence startButtonSequence;
+
+        private Tween myTween;
+
         protected override void AfterInitialization()
         {
-            if(attributesObjects.Length != 4)
+            if (attributesObjects.Length != 4)
             {
                 BoxController.GetController<LogController>().LogError("Count SelectedAttributes != 4");
             }
@@ -34,6 +42,13 @@ namespace UI
                 attributesObjects[2].Init(economicIcon, TypeAttribute.Economic);
                 attributesObjects[3].Init(rawMaterialsIcon, TypeAttribute.RawMaterials);
             }
+
+            startGameButton.onClick.AddListener(() =>
+            {
+                BoxController.GetController<FightSceneController>().StartGame();
+                HideButtonStartGame();
+                Hide();
+            });
         }
 
         protected override void BeforeShow()
@@ -88,10 +103,10 @@ namespace UI
 
                 foreach (var buff in dataBuff)
                 {
-                    if(attribute.TypeAttribute == buff.TypeAttribute)
+                    if (attribute.TypeAttribute == buff.TypeAttribute)
                     {
                         blockAttribute = false;
-                        attribute.ShowInfo(buff.Value);                        
+                        attribute.ShowInfo(buff.Value);
                     }
                 }
 
@@ -108,6 +123,21 @@ namespace UI
             {
                 attribute.HideInfo();
             }
+        }
+
+        public void ShowButtonStartGame()
+        {
+            if (!startGameButton.gameObject.activeSelf) {
+                startGameButton.gameObject.SetActive(true);
+
+                myTween = startGameButton.gameObject.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 1.5f).SetLoops(-1, LoopType.Yoyo);
+            } 
+        }
+
+        public void HideButtonStartGame()
+        {
+            startGameButton.gameObject.SetActive(false);
+            myTween.Kill();
         }
     }
 }
