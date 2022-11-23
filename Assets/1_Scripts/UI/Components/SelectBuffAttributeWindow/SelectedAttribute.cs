@@ -21,6 +21,8 @@ namespace UI.Components
         public TypeAttribute TypeAttribute { get; private set; }
         public int Value { get; private set; }
 
+        private bool isBlock;
+
         public void Init(Sprite sprite, TypeAttribute typeAttribute)
         {
             CardPresident = null;
@@ -31,12 +33,18 @@ namespace UI.Components
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            BoxController.GetController<BuffAttributePresidentController>().SeletAttribute(this);
+            if (!isBlock)
+            {
+                BoxController.GetController<BuffAttributePresidentController>().SeletAttribute(this);
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            BoxController.GetController<BuffAttributePresidentController>().DeselectAttribute(this);
+            if (!isBlock)
+            {
+                BoxController.GetController<BuffAttributePresidentController>().DeselectAttribute(this);
+            }
         }
 
         public void PutCardInAttribute(BuffAttributeCardPresidentUI card)
@@ -65,6 +73,7 @@ namespace UI.Components
 
         public void ShowInfo(int value)
         {
+            isBlock = false;
             Value = value;
             valueText.text = "+" + value;
             valueText.gameObject.SetActive(true);
@@ -73,6 +82,7 @@ namespace UI.Components
 
         public void ShowBlock()
         {
+            isBlock = true;
             iconImage.gameObject.SetActive(false);
             valueText.gameObject.SetActive(false);
             blockImage.SetActive(true);

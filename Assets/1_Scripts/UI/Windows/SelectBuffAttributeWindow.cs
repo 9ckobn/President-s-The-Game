@@ -4,6 +4,7 @@ using Core;
 using Data;
 using EffectSystem;
 using System.Collections.Generic;
+using System.Linq;
 using UI.Components;
 using UnityEngine;
 
@@ -83,7 +84,21 @@ namespace UI
         {
             foreach (var attribute in attributesObjects)
             {
-                attribute.ShowInfo(2);
+                bool blockAttribute = true;
+
+                foreach (var buff in dataBuff)
+                {
+                    if(attribute.TypeAttribute == buff.TypeAttribute)
+                    {
+                        blockAttribute = false;
+                        attribute.ShowInfo(buff.Value);                        
+                    }
+                }
+
+                if (blockAttribute)
+                {
+                    attribute.ShowBlock();
+                }
             }
         }
 

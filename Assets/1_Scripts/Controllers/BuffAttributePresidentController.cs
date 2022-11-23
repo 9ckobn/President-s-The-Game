@@ -77,7 +77,7 @@ namespace Cards
             int valueBuff = (int)((data.Attack + data.Defend + data.Luck + data.Diplomatic) * 0.1f);
 
             foreach (var buff in data.PossiblePresidentBuff)
-            {
+            {            
                 viewDataBuff.Add(new DataBuffPresidents(buff, valueBuff));
             }
         }

@@ -12,7 +12,7 @@ namespace Cards.Data
         private int baseDefend;
         private int baseLuck;
         private int baseDiplomatic;
-        
+
         public int Rarityrank { get; private set; }
         public TypeClimate Climate { get; private set; }
 
@@ -55,22 +55,24 @@ namespace Cards.Data
             buffAttributes.Add(new BuffAttribute(TypeAttribute.Luck, 0));
             buffAttributes.Add(new BuffAttribute(TypeAttribute.Diplomacy, 0));
 
+            PossiblePresidentBuff = new List<TypeAttribute>();
+
             if (data.economy)
             {
                 PossiblePresidentBuff.Add(TypeAttribute.Economic);
             }
-            else if (data.health_care)
+            if (data.health_care)
             {
                 PossiblePresidentBuff.Add(TypeAttribute.Medicine);
             }
-            else if (data.raw_materials)
+            if (data.raw_materials)
             {
                 PossiblePresidentBuff.Add(TypeAttribute.RawMaterials);
             }
-            else if (data.food)
+            if (data.food)
             {
                 PossiblePresidentBuff.Add(TypeAttribute.Food);
-            }            
+            }
         }
 
         private void DefineClimate(string climate)
