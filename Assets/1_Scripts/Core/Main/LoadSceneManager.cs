@@ -13,6 +13,11 @@ namespace Core
             StartCoroutine(CoLoadScene(1));
         }
 
+        public void LoadFightScene()
+        {
+            StartCoroutine(CoLoadScene(2));
+        }
+
         private IEnumerator CoLoadScene(int numberScene)
         {
             loadCanvas.SetActive(true);

@@ -28,6 +28,8 @@ namespace UI
         [SerializeField] private CurrentDeckUI currentPresidentsUI, currentFightsUI;
         [BoxGroup("Parent cards")]
         [SerializeField] private GameObject parentCards;
+        [BoxGroup("Buttons")]
+        [SerializeField] private Button startGameButton;
 
         private DeckBuildController deckController;
         private DeckBuildStorageCardsController storageCards;
@@ -41,7 +43,18 @@ namespace UI
             deckController = BoxController.GetController<DeckBuildController>();
             storageCards = BoxController.GetController<DeckBuildStorageCardsController>();
 
-            myCardsButton.onClick.AddListener(ClickMyCardsButton);
+            myCardsButton.onClick.AddListener(() =>
+            {
+                myCardsButtonTween.Kill();
+
+                Hide();
+                UIManager.ShowWindow<DeckBuildWindow>();
+            });
+
+            startGameButton.onClick.AddListener(() => 
+            {
+                LoadSceneManager.Instance.LoadFightScene();
+            });
         }
 
         protected override void BeforeShow()
@@ -51,26 +64,18 @@ namespace UI
 
         public void ClickSelectDeckButton(SelectDeckButton button)
         {
-            if(selectedDeckButton.IdDeck != button.IdDeck)
+            if (selectedDeckButton.IdDeck != button.IdDeck)
             {
                 deckController.SelectDeck(button.IdDeck);
                 ChangeDeck();
             }
         }
 
-        private void ClickMyCardsButton()
-        {
-            myCardsButtonTween.Kill();
-
-            Hide();
-            UIManager.ShowWindow<DeckBuildWindow>();
-        }
-
         private void ChangeDeck()
         {
             List<DeckData> completeDecks = new List<DeckData>();
 
-            foreach (var deck in deckController.Decks)          
+            foreach (var deck in deckController.Decks)
             {
                 if (deck.IsComplete)
                 {
@@ -83,7 +88,7 @@ namespace UI
                 button.gameObject.SetActive(false);
             }
 
-            if(completeDecks.Count == 0)
+            if (completeDecks.Count == 0)
             {
                 myCardsButtonTween = myCardsButton.transform.DOScale(myCardsButton.transform.localScale * 1.1f, 1f).
                     SetLoops(-1, LoopType.Yoyo);
@@ -103,7 +108,7 @@ namespace UI
                             selectedDeckButton = selectDeckButtons[i];
                             selectDeckButtons[i].SetSpriteButton(selectedDeckSprite);
                         }
-                        else 
+                        else
                         {
                             selectDeckButtons[i].SetSpriteButton(fullDeckSprite);
                         }
