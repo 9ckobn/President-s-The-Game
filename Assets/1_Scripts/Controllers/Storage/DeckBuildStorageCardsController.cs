@@ -38,7 +38,7 @@ namespace Cards.DeckBuild
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have president card with id - {id}");
+            LogManager.LogError($"Not have president card with id - {id}");
 
             return null;
         }
@@ -53,7 +53,7 @@ namespace Cards.DeckBuild
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have fight card with id - {id}");
+            LogManager.LogError($"Not have fight card with id - {id}");
 
             return null;
         }

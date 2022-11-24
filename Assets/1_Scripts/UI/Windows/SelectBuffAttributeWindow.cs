@@ -33,7 +33,7 @@ namespace UI
         {
             if (attributesObjects.Length != 4)
             {
-                BoxController.GetController<LogController>().LogError("Count SelectedAttributes != 4");
+                LogManager.LogError("Count SelectedAttributes != 4");
             }
             else
             {

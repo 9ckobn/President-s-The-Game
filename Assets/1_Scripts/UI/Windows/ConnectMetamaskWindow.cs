@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class ConnectMatemaskWindow : Window
+    public class ConnectMetamaskWindow : Window
     {
         [SerializeField] private Button connectButton;
         [SerializeField] private GameObject qrImage;

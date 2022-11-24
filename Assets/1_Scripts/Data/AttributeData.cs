@@ -44,7 +44,7 @@ namespace Data
         {
             if (idMyEffect.Contains(id))
             {
-                BoxController.GetController<LogController>().LogError($"Double add effect");
+                LogManager.LogError($"Double add effect");
             }
             else
             {

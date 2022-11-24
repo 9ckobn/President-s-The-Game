@@ -123,7 +123,7 @@ namespace EffectSystem
 
             if (currentApply == null)
             {
-                BoxController.GetController<LogController>().LogError($"Not have apply effect! {currentEffect}");
+                LogManager.LogError($"Not have apply effect! {currentEffect}");
             }
             else
             {

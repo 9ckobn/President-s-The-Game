@@ -198,7 +198,7 @@ namespace Core
                 }
                 catch (Exception ex)
                 {
-                    BoxController.GetController<LogController>().LogError($"Error save Deck data - {ex}");
+                    LogManager.LogError($"Error save Deck data - {ex}");
                 }
             }
         }
@@ -209,7 +209,7 @@ namespace Core
         {
             if (isUseMoralis)
             {
-                BoxController.GetController<LogController>().Log($"?????? ???");
+                LogManager.Log($"?????? ???");
 
                 moralisUser.username = newNick;
 
@@ -217,11 +217,11 @@ namespace Core
 
                 if (result)
                 {
-                    BoxController.GetController<LogController>().Log($"???????? ??? ?? {newNick}");
+                    LogManager.Log($"???????? ??? ?? {newNick}");
                 }
                 else
                 {
-                    BoxController.GetController<LogController>().LogError($"?????? ?????????? ?????? ????!");
+                    LogManager.LogError($"?????? ?????????? ?????? ????!");
                 }
             }
         }

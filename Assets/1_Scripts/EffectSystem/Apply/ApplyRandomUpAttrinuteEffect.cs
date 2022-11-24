@@ -39,7 +39,7 @@ namespace EffectSystem
 
         public override void StopApplyEffect()
         {
-            BoxController.GetController<LogController>().LogError("Not have logic stop apply effect");
+            LogManager.LogError("Not have logic stop apply effect");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Cards.Storage
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have CardImage president with id {id}");
+            LogManager.LogError($"Not have CardImage president with id {id}");
 
             return null;
         }

@@ -10,7 +10,7 @@ namespace Core
             UIManager.ShowWindow<ConnectLobbyWindow>();
 
             PhotonNetwork.NickName = "123";
-            BoxController.GetController<LogController>().Log("Connect to photon...");
+            LogManager.Log("Connect to photon...");
 
             PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.GameVersion = "1";
@@ -19,7 +19,7 @@ namespace Core
 
         public override void OnConnectedToMaster()
         {
-            BoxController.GetController<LogController>().Log("On connect to master");
+            LogManager.Log("On connect to master");
 
             if(PhotonNetwork.CountOfRooms > 0)
             {
@@ -33,21 +33,21 @@ namespace Core
 
         public void CreateRoom()
         {
-            BoxController.GetController<LogController>().Log("Create room...");
+            LogManager.Log("Create room...");
 
             PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 20 });
         }
 
         public void JoinRoom()
         {
-            BoxController.GetController<LogController>().Log("Join to room...");
+            LogManager.Log("Join to room...");
 
             PhotonNetwork.JoinRandomRoom();
         }
 
         public override void OnJoinedRoom()
         {
-            BoxController.GetController<LogController>().Log("On join to room...");
+            LogManager.Log("On join to room...");
 
             PhotonNetwork.LoadLevel(1);
         }

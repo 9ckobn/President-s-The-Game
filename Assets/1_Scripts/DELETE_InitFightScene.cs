@@ -26,6 +26,5 @@ public class DELETE_InitFightScene : MonoBehaviour
         Debug.Log("<color=red>Delete init scene!</color>");
 
         UIManager.ShowWindow<SelectBuffAttributeWindow>();
-        //BoxController.GetController<FightSceneController>().StartGame();
     }
 }

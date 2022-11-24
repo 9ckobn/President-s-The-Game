@@ -66,7 +66,7 @@ namespace Cards
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have president model with id {id} in storageImages");
+            LogManager.LogError($"Not have president model with id {id} in storageImages");
             return null;
         }
 
@@ -80,7 +80,7 @@ namespace Cards
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have fight model with id {id} in storageImages");
+            LogManager.LogError($"Not have fight model with id {id} in storageImages");
             return null;
         }
     }

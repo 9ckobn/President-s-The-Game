@@ -59,7 +59,7 @@ namespace EffectSystem
             }
             else
             {
-                BoxController.GetController<LogController>().LogError($"Not have logic apply effec!");
+                LogManager.LogError($"Not have logic apply effec!");
             }
 
             if (isPlayer)

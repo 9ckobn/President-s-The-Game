@@ -21,7 +21,7 @@ namespace Buildings
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have player building with type {type}");
+            LogManager.LogError($"Not have player building with type {type}");
 
             return null;
         }
@@ -36,7 +36,7 @@ namespace Buildings
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have enemy building with type {type}");
+            LogManager.LogError($"Not have enemy building with type {type}");
 
             return null;
         }

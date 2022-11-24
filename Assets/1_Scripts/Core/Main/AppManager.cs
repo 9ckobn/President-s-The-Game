@@ -33,16 +33,16 @@ namespace Core
 
         public async void AfterControllersInit()
         {
-            BoxController.GetController<LogController>().SetIsNeedLog = isNeedLog;
-            BoxController.GetController<LogController>().Log("AfterControllersInit");
+            LogManager.SetIsNeedLog = isNeedLog;
+            LogManager.Log("AfterControllersInit");
 
             if (isUseMoralis)
             {
-                BoxController.GetController<LogController>().Log("Before InitializeAsync");
+                LogManager.Log("Before InitializeAsync");
 
                 await authenticationKit.InitializeAsync();
 
-                BoxController.GetController<LogController>().Log("After InitializeAsync");
+                LogManager.Log("After InitializeAsync");
 
                 if (isQrStartMoralis)
                 {
@@ -55,21 +55,21 @@ namespace Core
                     buttonObject.SetActive(true);
                 }
 
-                UIManager.GetWindow<ConnectMatemaskWindow>().SetMethodConnect(isQrStartMoralis);
+                UIManager.GetWindow<ConnectMetamaskWindow>().SetMethodConnect(isQrStartMoralis);
             }
             else
             {
                 authenticationKit.gameObject.SetActive(false);
 
-                UIManager.GetWindow<ConnectMatemaskWindow>().SetMethodConnect(false);
+                UIManager.GetWindow<ConnectMetamaskWindow>().SetMethodConnect(false);
             }
 
-            UIManager.ShowWindow<ConnectMatemaskWindow>();
+            UIManager.ShowWindow<ConnectMetamaskWindow>();
         }
 
         public void MetamaskConnect()
         {
-            UIManager.HideWindow<ConnectMatemaskWindow>();
+            UIManager.HideWindow<ConnectMetamaskWindow>();
 
             if (isUseMoralis)
             {
@@ -85,7 +85,7 @@ namespace Core
 
         public async void OnConnectMoralis()
         {
-            BoxController.GetController<LogController>().Log("On connect to moralis");
+            LogManager.Log("On connect to moralis");
 
             MoralisUser moralisUser = await Moralis.GetUserAsync();
 
@@ -97,7 +97,7 @@ namespace Core
             }
             else
             {
-                BoxController.GetController<LogController>().LogError($"User not connect to moralis!");
+                LogManager.LogError($"User not connect to moralis!");
             }
         }
 
@@ -112,7 +112,7 @@ namespace Core
 
         public void FailedConnect()
         {
-            BoxController.GetController<LogController>().LogError($"Failed connect to moralis!");
+            LogManager.LogError($"Failed connect to moralis!");
         }
 
         public void ConnectToMetaverse()

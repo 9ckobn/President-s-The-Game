@@ -18,7 +18,7 @@ namespace Cards.Container
         {
             if (countCards + 1 > maxCards)
             {
-                BoxController.GetController<LogController>().LogError($"Max cards {maxCards}. Can not add card!");
+                LogManager.LogError($"Max cards {maxCards}. Can not add card!");
             }
             else
             {

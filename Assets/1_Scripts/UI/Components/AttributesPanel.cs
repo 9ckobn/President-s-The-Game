@@ -18,7 +18,7 @@ namespace UI.Components
 
             if (attributeTexts.Length < textsData.Length)
             {
-                BoxController.GetController<LogController>().LogError($"Not enougth texts in AttributesPanel! Need {textsData.Length}");
+                LogManager.LogError($"Not enougth texts in AttributesPanel! Need {textsData.Length}");
             }
 
             for (int i = 0; i < textsData.Length; i++)

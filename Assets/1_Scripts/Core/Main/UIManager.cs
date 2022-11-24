@@ -50,7 +50,7 @@ namespace UI
             }
             else
             {
-                Debug.Log($"<color=red>Нет окна {typeof(T)}, для показа!");
+                Debug.Log($"<color=red>Нет окна {typeof(T)}, для показа!</color>");
 
                 return null;
             }
@@ -64,7 +64,7 @@ namespace UI
             }
             else
             {
-                Debug.Log($"<color=red>Нет окна {typeof(T)}, для показа!");
+                Debug.Log($"<color=red>Нет окна {typeof(T)}, для показа!</color>");
             }
         }
 
@@ -76,7 +76,7 @@ namespace UI
             }
             else
             {
-                Debug.Log($"<color=red>Нет окна {typeof(T)}, для закрытия!");
+                Debug.Log($"<color=red>Нет окна {typeof(T)}, для закрытия!</color>");
             }
         }
 

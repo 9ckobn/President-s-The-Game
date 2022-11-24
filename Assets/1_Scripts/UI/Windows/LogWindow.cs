@@ -1,12 +1,12 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
-    public class LogWindow : Window
+    public class LogWindow : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI logText;
-        [SerializeField] private TextMeshProUGUI logErrorText;
+        [SerializeField] private Text logText;
+        [SerializeField] private Text logErrorText;
 
         public void Log(string text)
         {

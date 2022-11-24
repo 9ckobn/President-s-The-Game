@@ -28,7 +28,7 @@ namespace Cards.Data
 
             if(effects.Length == 0)
             {
-                BoxController.GetController<LogController>().LogError($"Not have effects in {data.Name}");
+                LogManager.LogError($"Not have effects in {data.Name}");
             }
 
             foreach (var dataEffect in effects)
@@ -58,7 +58,7 @@ namespace Cards.Data
 
                 if(effect == null)
                 {
-                    BoxController.GetController<LogController>().LogError($"Effect not create! Effect name - {dataEffect.name}");
+                    LogManager.LogError($"Effect not create! Effect name - {dataEffect.name}");
                 }
                 else
                 {

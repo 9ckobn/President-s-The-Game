@@ -104,7 +104,7 @@ namespace Buildings
         {
             if (numberState >= modelStates.Length)
             {
-                BoxController.GetController<LogController>().LogError($"Number state building > count models!");
+                LogManager.LogError($"Number state building > count models!");
             }
             else
             {

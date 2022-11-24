@@ -47,7 +47,7 @@ namespace Data
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have building {typeBuilding}!");
+            LogManager.LogError($"Not have building {typeBuilding}!");
             return null;
         }
 
@@ -73,7 +73,7 @@ namespace Data
                 }
             }
 
-            BoxController.GetController<LogController>().LogError($"Not have attribute {type}");
+            LogManager.LogError($"Not have attribute {type}");
             return null;
         }
 
@@ -127,7 +127,7 @@ namespace Data
         {
             if (GetAttribute(TypeAttribute.Morality).Value <= 0)
             {
-                BoxController.GetController<LogController>().LogError($"Character DEATH. Need logic death!");
+                LogManager.LogError($"Character DEATH. Need logic death!");
             }
         }
 
