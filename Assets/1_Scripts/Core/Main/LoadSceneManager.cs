@@ -26,7 +26,7 @@ namespace Core
 
             loadCanvas.SetActive(false);
 
-            SceneControllers.InitControllers();
+            StarterScene.instance.StartScene();
         }
     }
 }

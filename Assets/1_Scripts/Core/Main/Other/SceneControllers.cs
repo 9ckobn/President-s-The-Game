@@ -28,7 +28,11 @@ namespace Core
         private void EndInitialize()
         {
             UIManager.OnInit -= EndInitialize;
-            OnInit();
+
+            if (OnInit != null)
+            {
+                OnInit();
+            }
         }
     }
 }

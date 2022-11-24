@@ -33,6 +33,8 @@ namespace Core
 
         public async void AfterControllersInit()
         {
+            SceneControllers.OnInit -= AfterControllersInit;
+
             LogManager.SetIsNeedLog = isNeedLog;
             LogManager.Log("AfterControllersInit");
 
