@@ -1,6 +1,7 @@
 using Cards.Data;
 using EffectSystem;
 using NaughtyAttributes;
+using TMPro;
 using UI.Components;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ namespace Cards.View
     public class CardPresidentView : CardViewBase
     {
         [BoxGroup("Texts")]
-        [SerializeField] private Text rarityrankText, nameText;
+        [SerializeField] private TextMeshProUGUI rarityrankText, nameText;
         [BoxGroup("Attributes")]
         [SerializeField] private AttributePresidentUI attackAttribute, luckAttribute, defendAttribute, diplomaticAttribute;        
 

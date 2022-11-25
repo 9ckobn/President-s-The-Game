@@ -1,4 +1,5 @@
 using Cards.Type;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,12 @@ namespace UI.Components
     {
         [SerializeField] private Color upColor, downColor, defaultColor;
 
-        private Text numberText;
+        private TextMeshProUGUI numberText;
         private Image image;
 
         private void Awake()
         {
-            numberText = GetComponent<Text>();
+            numberText = GetComponent<TextMeshProUGUI>();
             image = GetComponentInChildren<Image>();
         }
 
