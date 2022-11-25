@@ -660,6 +660,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 9.8
       objectReference: {fileID: 0}
+    - target: {fileID: 7244300598185057830, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_fontSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244300598185057830, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bac4b6f023f958449618d5f140f777d, type: 2}
+    - target: {fileID: 7244300598185057830, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244300598185057830, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3971639030806676271, guid: 4bac4b6f023f958449618d5f140f777d, type: 2}
+    - target: {fileID: 7244300598185057830, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7244300599002134010, guid: b283d4862441c374daad108d56e122bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -749,8 +769,28 @@ PrefabInstance:
       value: BuildingCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7435313438122947363, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_fontSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435313438122947363, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bac4b6f023f958449618d5f140f777d, type: 2}
+    - target: {fileID: 7435313438122947363, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435313438122947363, guid: b283d4862441c374daad108d56e122bf, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4293010944
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435313438122947363, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435313438122947363, guid: b283d4862441c374daad108d56e122bf, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b283d4862441c374daad108d56e122bf, type: 3}
