@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551ae5fa984e93a4581f44ba2f2d77dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScele: 1
+  startScale: 0.8
   parentModel: {fileID: 8321862826380101682}
   highlight: {fileID: 8102442730073140888}
 --- !u!1 &8321862826380101682

@@ -4,12 +4,13 @@ namespace Data
 {
     public class AttributeTextData
     {
-        public string Text;
+        public string LabelText, ValueText;
         public Color Color;
 
-        public AttributeTextData(string text, Color color)
+        public AttributeTextData(string labelText, string valueText, Color color)
         {
-            Text = text;
+            LabelText = labelText;
+            ValueText = valueText;
             Color = color;
         }
     }
