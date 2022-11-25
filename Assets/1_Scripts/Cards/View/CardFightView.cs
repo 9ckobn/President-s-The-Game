@@ -1,14 +1,14 @@
 using Cards.Data;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Cards.View
 {
     public class CardFightView : CardViewBase
     {
         [BoxGroup("Texts")]
-        [SerializeField] private Text nameText, descriptionText, costText;
+        [SerializeField] private TextMeshProUGUI nameText, descriptionText, costText;
 
         public void SetData(CardFightData data)
         {
