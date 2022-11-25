@@ -15,8 +15,8 @@ namespace Cards
         [SerializeField] private GameObject highlight;
 
         protected GameObject model;
-        private bool isSelected = false, isUse;
-        protected bool isCanInteraction = true;
+        protected bool isSelected = false, isUse;
+        protected bool isBlocked = false;
 
         protected CardsController cardController;
 
@@ -38,7 +38,7 @@ namespace Cards
 
         private void OnMouseEnter()
         {
-            if (!isSelected && isCanInteraction && cardController.CanSelectedCard)
+            if (CheckMouseEnter())
             {
                 isSelected = true;
 
@@ -48,7 +48,7 @@ namespace Cards
 
         private void OnMouseExit()
         {
-            if (isSelected && !isUse)
+            if (CheckMouseExit())
             {
                 isSelected = false;
 
@@ -58,7 +58,7 @@ namespace Cards
 
         private void OnMouseDown()
         {
-            if (isSelected && isCanInteraction)
+            if (CheckMouseDown())
             {
                 if (isUse)
                 {
@@ -86,6 +86,21 @@ namespace Cards
         public void ChangeHighlight(bool isActive)
         {
             highlight.gameObject.SetActive(isActive);
+        }
+
+        protected virtual bool CheckMouseEnter()
+        {
+            return !isSelected && !isBlocked && cardController.CanSelectedCard;
+        }
+
+        protected virtual bool CheckMouseExit()
+        {
+            return isSelected && !isUse;
+        }
+
+        protected virtual bool CheckMouseDown()
+        {
+            return isSelected && !isBlocked;
         }
 
         protected abstract void MouseEnter();

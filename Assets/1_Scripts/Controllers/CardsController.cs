@@ -45,6 +45,7 @@ namespace Gameplay
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
                 playerFightCards.Add(card);
+                card.SetIsPlayerCard = true;
             }
 
             for (int i = 0; i < playerPresidentCards.Count && i < MainData.MAX_PRESIDENT_CARDS; i++)
@@ -80,6 +81,7 @@ namespace Gameplay
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
                 enemyFightCards.Add(card);
+                card.SetIsPlayerCard = false;
                 card.SetBlockPosition = new Vector3(20, 180, 0);
                 card.SetUnblockPosition = new Vector3(-20, 0, 0);
             }

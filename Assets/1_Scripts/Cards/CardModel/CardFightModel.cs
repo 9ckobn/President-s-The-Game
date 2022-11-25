@@ -19,6 +19,9 @@ namespace Cards
 
         private Sequence mySequence;
 
+        private bool isPlayerCard;
+        public bool SetIsPlayerCard { set => isPlayerCard = value; }
+
         public Vector3 SetBlockPosition { set => blockPosition = value; }
         public Vector3 SetUnblockPosition { set => unblockPosition = value; }
 
@@ -47,6 +50,23 @@ namespace Cards
         #endregion
 
         #region INTERACTION
+
+        protected override bool CheckMouseEnter()
+        {
+            bool playerCheck = false;
+
+            if((isPlayerCard && !isBlocked) ||(!isPlayerCard && isBlocked))
+            {
+                playerCheck = true;
+            }
+
+            return !isSelected && cardController.CanSelectedCard && playerCheck;
+        }
+
+        protected override bool CheckMouseDown()
+        {
+            return isSelected && isPlayerCard && !isBlocked;
+        }
 
         protected override void MouseEnter()
         {
@@ -109,7 +129,7 @@ namespace Cards
 
         public bool CheckCanUseCard()
         {
-            return isCanInteraction && getFightData.CurrentReloading == 0;
+            return !isBlocked && getFightData.CurrentReloading == 0;
         }
 
         public void DecreaseReloading()
@@ -124,7 +144,7 @@ namespace Cards
 
         private void BlockCard(bool needRotate = false)
         {
-            isCanInteraction = false;
+            isBlocked = true;
 
             if (needRotate)
             {
@@ -135,7 +155,7 @@ namespace Cards
 
         private void UnlockCard()
         {
-            isCanInteraction = true;
+            isBlocked = false;
 
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
             tween.Play();
