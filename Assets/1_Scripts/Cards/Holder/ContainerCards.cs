@@ -23,9 +23,9 @@ namespace Cards.Container
             else
             {
                 cards.Add(card);
+                card.transform.SetParent(gameObject.transform);
                 card.transform.position = positions[countCards].transform.position;
                 card.transform.rotation = positions[countCards].transform.rotation;
-                card.transform.SetParent(gameObject.transform);
 
                 countCards++;
             }

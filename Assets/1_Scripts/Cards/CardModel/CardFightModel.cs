@@ -19,6 +19,9 @@ namespace Cards
 
         private Sequence mySequence;
 
+        public Vector3 SetBlockPosition { set => blockPosition = value; }
+        public Vector3 SetUnblockPosition { set => unblockPosition = value; }
+
         public CardFightData SetCardData
         {
             set

@@ -20,7 +20,7 @@ namespace SceneObjects
 
         public GameObject GetSpawnPosition { get => spawnPosition; }
         public ContainerFightCards GetContainerPlayerFights { get => containerFights; }
-        public ContainerFightCards GetContainerAIFightCards { get => containerAIFightCards; }
+        public ContainerFightCards GetContainerEnemyFightCards { get => containerAIFightCards; }
         public ContainerPresidentCards GetContainerPlayerPresidents { get => playerPresidents; }
         public ContainerPresidentCards GetContainerEnemyPresidents { get => enemyPresidents; }
         public ArrowTargetController GetArrowTarget { get => arrowTarget; }

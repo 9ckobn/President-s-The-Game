@@ -65,7 +65,7 @@ namespace Gameplay
             List<CardFightData> cardsEnemyFightData = BoxController.GetController<GameStorageCardsController>().CardsEnemyFightData;
 
             ContainerPresidentCards containerEnemyPresidentCards = ObjectsOnScene.Instance.GetContainerEnemyPresidents;
-            ContainerFightCards containerEnemyFightCards = ObjectsOnScene.Instance.GetContainerAIFightCards;
+            ContainerFightCards containerEnemyFightCards = ObjectsOnScene.Instance.GetContainerEnemyFightCards;
 
             containerEnemyFightCards.SetMaxCards = MainData.MAX_FIGHT_CARDS;
             containerEnemyPresidentCards.SetMaxCards = MainData.MAX_PRESIDENT_CARDS;
@@ -80,6 +80,8 @@ namespace Gameplay
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
                 enemyFightCards.Add(card);
+                card.SetBlockPosition = new Vector3(20, 180, 0);
+                card.SetUnblockPosition = new Vector3(-20, 0, 0);
             }
 
             for (int i = 0; i < enemyPresidentCards.Count && i < MainData.MAX_PRESIDENT_CARDS; i++)
@@ -95,8 +97,8 @@ namespace Gameplay
 
         public void ShowCardsCharacter(bool isPlayer)
         {
-            ObjectsOnScene.Instance.GetContainerPlayerFights.gameObject.SetActive(isPlayer);
-            ObjectsOnScene.Instance.GetContainerAIFightCards.gameObject.SetActive(!isPlayer);
+            //ObjectsOnScene.Instance.GetContainerPlayerFights.gameObject.SetActive(isPlayer);
+            //ObjectsOnScene.Instance.GetContainerEnemyFightCards.gameObject.SetActive(!isPlayer);
 
             foreach (var card in playerPresidentCards)
             {
