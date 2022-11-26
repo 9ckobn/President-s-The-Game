@@ -1,17 +1,16 @@
-using UnityEngine;
+using EffectSystem;
 
 namespace Data
 {
     public class AttributeTextData
     {
-        public string LabelText, ValueText;
-        public Color Color;
+        public int Value;
+        public TypeAttribute TypeAttribute;
 
-        public AttributeTextData(string labelText, string valueText, Color color)
+        public AttributeTextData(TypeAttribute typeAttribute, int value)
         {
-            LabelText = labelText;
-            ValueText = valueText;
-            Color = color;
+            TypeAttribute = typeAttribute;
+            Value = value;
         }
     }
 }

@@ -135,11 +135,11 @@ namespace Data
         {
             AttributeTextData[] data = new AttributeTextData[5];
 
-            data[0] = new AttributeTextData(TypeAttribute.Attack.ToString(), GetAttribute(TypeAttribute.Attack).Value.ToString(), Color.green);
-            data[1] = new AttributeTextData(TypeAttribute.Defend.ToString(), GetAttribute(TypeAttribute.Defend).Value.ToString(), Color.green);
-            data[2] = new AttributeTextData(TypeAttribute.Luck.ToString(), GetAttribute(TypeAttribute.Luck).Value.ToString(), Color.green);
-            data[3] = new AttributeTextData(TypeAttribute.Diplomacy.ToString(), GetAttribute(TypeAttribute.Diplomacy).Value.ToString(), Color.green);
-            data[4] = new AttributeTextData(TypeAttribute.Morality.ToString(), GetAttribute(TypeAttribute.Morality).Value.ToString(), Color.green);
+            data[0] = new AttributeTextData(TypeAttribute.Attack, GetAttribute(TypeAttribute.Attack).Value);
+            data[1] = new AttributeTextData(TypeAttribute.Defend, GetAttribute(TypeAttribute.Defend).Value);
+            data[2] = new AttributeTextData(TypeAttribute.Luck, GetAttribute(TypeAttribute.Luck).Value);
+            data[3] = new AttributeTextData(TypeAttribute.Diplomacy, GetAttribute(TypeAttribute.Diplomacy).Value);
+            data[4] = new AttributeTextData(TypeAttribute.Morality, GetAttribute(TypeAttribute.Morality).Value);
 
             if (isPlayer)
             {

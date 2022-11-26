@@ -31,19 +31,6 @@ namespace SceneObjects
 
             sequence.AppendInterval(0.5f);
             sequence.Append(model.transform.DOLocalRotate(new Vector3(-90, 180, 0), 1f));
-
-            //sequence.AppendCallback(() =>
-            //{
-            //    model.transform.DOScale(new Vector3(20, 20, 20), 0.5f);
-            //    model.transform.DOLocalMoveY(0f, 0.5f);
-
-            //});
-            //sequence.AppendInterval(0.5f);
-
-            //sequence.OnComplete(() =>
-            //{
-            //    tweenDefend = model.transform.DOLocalRotate(new Vector3(-90, 180, 0), 1f).SetLoops(-1, LoopType.Restart);
-            //});
         }
 
         public void ShowGodDefend()
