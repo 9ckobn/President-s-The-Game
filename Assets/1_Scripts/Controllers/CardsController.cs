@@ -58,11 +58,9 @@ namespace Gameplay
                 containerFightCards.AddCard(playerFightCards[i]);
             }
 
+
             // Create enemy AI cards
-
-            // TODO: not use player data presidents data!!! Use enemy persidents data!!!
-
-            List<CardPresidentData> enemyCardsPresidentData = new List<CardPresidentData>(cardsPresidentData);
+            List<CardPresidentData> enemyCardsPresidentData = BoxController.GetController<GameStorageCardsController>().CardsEnemyPresidentData;
             List<CardFightData> cardsEnemyFightData = BoxController.GetController<GameStorageCardsController>().CardsEnemyFightData;
 
             ContainerPresidentCards containerEnemyPresidentCards = ObjectsOnScene.Instance.GetContainerEnemyPresidents;
@@ -99,9 +97,6 @@ namespace Gameplay
 
         public void ShowCardsCharacter(bool isPlayer)
         {
-            //ObjectsOnScene.Instance.GetContainerPlayerFights.gameObject.SetActive(isPlayer);
-            //ObjectsOnScene.Instance.GetContainerEnemyFightCards.gameObject.SetActive(!isPlayer);
-
             foreach (var card in playerPresidentCards)
             {
                 card.ChangeHighlight(isPlayer);

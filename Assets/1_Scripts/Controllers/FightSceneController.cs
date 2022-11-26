@@ -10,7 +10,14 @@ namespace Gameplay
     {
         private const int MAX_USE_CARDS = 1;        
 
-        private int countUseCards = 0;        
+        private int countUseCards = 0;
+
+        public bool IsTutorNow { get; private set; }
+
+        public override void OnInitialize()
+        {
+            IsTutorNow = AppManager.Instance.IsTutorNow;
+        }
 
         public void StartGame()
         {

@@ -1,3 +1,4 @@
+using Gameplay;
 using UI;
 
 namespace Core
@@ -6,7 +7,14 @@ namespace Core
     {
         protected override void AfterInitControllers()
         {
-            UIManager.ShowWindow<SelectBuffAttributeWindow>();
+            if (BoxController.GetController<FightSceneController>().IsTutorNow)
+            {
+                BoxController.GetController<FightSceneController>().StartGame();
+            }
+            else
+            {
+                UIManager.ShowWindow<SelectBuffAttributeWindow>();
+            }
         }
     }
 }

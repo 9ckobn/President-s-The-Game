@@ -8,8 +8,8 @@ namespace Tutorial
     public class SCRO_TutorialData : ScriptableObject
     {
         [BoxGroup("Fight cards")]
-        [SerializeField] private SCRO_CardFight[] playerFightCards, enemyFightCards;
+        [SerializeField] public SCRO_CardFight[] PlayerFightCards, EnemyFightCards;
         [BoxGroup("President cards")]
-        [SerializeField] private int[] playerPresidentCards, enemyPresidentCards;
+        [SerializeField] public int[] PlayerPresidentCards, EnemyPresidentCards;
     }
 }

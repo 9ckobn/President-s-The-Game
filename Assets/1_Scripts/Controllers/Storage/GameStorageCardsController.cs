@@ -1,7 +1,9 @@
 using Cards.Data;
 using Core;
+using Gameplay;
 using System.Collections.Generic;
 using System.Linq;
+using Tutorial;
 using UnityEngine;
 
 namespace Cards
@@ -9,14 +11,49 @@ namespace Cards
     [CreateAssetMenu(fileName = "GameStorageCardsController", menuName = "Controllers/Gameplay/GameStorageCardsController")]
     public class GameStorageCardsController : StorageCardsController
     {
+        public List<CardPresidentData> CardsEnemyPresidentData { get; private set; }
         public List<CardFightData> CardsEnemyFightData { get; private set; }
 
         public override void AfterInitialize()
         {
+            CardsEnemyPresidentData = new List<CardPresidentData>();
             CardsEnemyFightData = new List<CardFightData>();
 
-            List<string> idPresidents = DataBaseManager.Instance.SelectedDeck.PresidentsId;
+            List<string> idPresidents = new List<string>(), idEnemyPresidents = new List<string>();
+            List<string> idFightsCards = new List<string>(), idEnemyFightsCards = new List<string>();
+
             List<CardPresidentDataSerialize> serializePresidents = DataBaseManager.Instance.CardsPresidentsData;
+
+            if (BoxController.GetController<FightSceneController>().IsTutorNow)
+            {
+                SCRO_TutorialData tutorData = BoxController.GetController<TutorialController>().GetTutorialData;
+
+                foreach (var president in tutorData.PlayerPresidentCards)
+                {
+                    idPresidents.Add(president.ToString());
+                }
+
+                foreach (var president in tutorData.EnemyPresidentCards)
+                {
+                    idEnemyPresidents.Add(president.ToString());
+                }
+
+                foreach (var fight in tutorData.PlayerFightCards)
+                {
+                    idFightsCards.Add(fight.Id);
+                }
+
+                foreach (var fight in tutorData.EnemyFightCards)
+                {
+                    idEnemyFightsCards.Add(fight.Id);
+                }
+            }
+            else
+            {
+                idPresidents = DataBaseManager.Instance.SelectedDeck.PresidentsId;
+                idFightsCards = DataBaseManager.Instance.SelectedDeck.FightsId;
+            }
+
 
             foreach (var idPresident in idPresidents)
             {
@@ -27,7 +64,15 @@ namespace Cards
                 CardsPresidentData.Add(cardData);
             }
 
-            List<string> idFightsCards = DataBaseManager.Instance.SelectedDeck.FightsId;
+            foreach (var idPresident in idEnemyPresidents)
+            {
+                Sprite sprite = storageImages.GetPresidentSprite(idPresident);
+                CardPresidentDataSerialize serializeData = serializePresidents.First(c => c.id.ToString() == idPresident);
+                CardPresidentData cardData = new CardPresidentData(serializeData, sprite);
+
+                CardsEnemyPresidentData.Add(cardData);
+            }
+
 
             foreach (var id in idFightsCards)
             {
@@ -42,7 +87,7 @@ namespace Cards
                 }
             }
 
-            foreach (var id in idFightsCards)
+            foreach (var id in idEnemyFightsCards)
             {
                 foreach (var card in cardFightSCRO)
                 {

@@ -29,7 +29,7 @@ namespace Gameplay
         public void CreateCharactersData()
         {
             playerData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings, true);
-            enemyData = new CharacterData(CreateAttributes(), ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings, false);
+            enemyData = new CharacterData(CreateAttributes(BoxController.GetController<FightSceneController>().IsTutorNow), ObjectsOnScene.Instance.GetBuildingsStorage.GetEnemyBuildings, false);
 
             if (isPlayerNow)
             {
@@ -43,15 +43,15 @@ namespace Gameplay
             UIManager.ShowWindow<AttributesCharactersWindow>();
         }
 
-        private List<AttributeData> CreateAttributes()
+        private List<AttributeData> CreateAttributes(bool isTutorEnemy = false)
         {
             List<AttributeData> attributes = new List<AttributeData>();
             List<CardPresidentData> playersPresidents = BoxController.GetController<GameStorageCardsController>().CardsPresidentData;
 
-            int attack = DEFAULT_VALUE;
-            int defend = DEFAULT_VALUE;
-            int luck = DEFAULT_VALUE;
-            int diplomatic = DEFAULT_VALUE;
+            int attack = isTutorEnemy ? 0 : DEFAULT_VALUE;
+            int defend = isTutorEnemy ? 0 : DEFAULT_VALUE;
+            int luck = isTutorEnemy ? 0 : DEFAULT_VALUE;
+            int diplomatic = isTutorEnemy ? 0 : DEFAULT_VALUE;
 
             foreach (var president in playersPresidents)
             {

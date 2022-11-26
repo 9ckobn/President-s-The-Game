@@ -1463,7 +1463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &280527087
 Transform:
   m_ObjectHideFlags: 0
@@ -3267,14 +3267,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controllers:
   - {fileID: 11400000, guid: 76ffa960b7e99d3469f3f15a1f614f67, type: 2}
-  - {fileID: 11400000, guid: 470a9bb5ad1528146bbcfbab573e36fe, type: 2}
+  - {fileID: 11400000, guid: f65c8f1746ee85940ae7ae84fa44c53c, type: 2}
   - {fileID: 11400000, guid: cc971439d1712ef44ad75a78ac16342d, type: 2}
   - {fileID: 11400000, guid: 8a2e9ea0ceb61db4e86ee957c5d1424f, type: 2}
-  - {fileID: 11400000, guid: f65c8f1746ee85940ae7ae84fa44c53c, type: 2}
+  - {fileID: 11400000, guid: 470a9bb5ad1528146bbcfbab573e36fe, type: 2}
   - {fileID: 11400000, guid: b2f585c111275cd4e8c8dabf61b38688, type: 2}
   - {fileID: 11400000, guid: cd950ecc59f9ae54da5156001d431baa, type: 2}
   - {fileID: 11400000, guid: b38c570673378bc44b9a5960191bc961, type: 2}
   - {fileID: 11400000, guid: 832436284e642b44a95d253bc2e8ef52, type: 2}
+  - {fileID: 11400000, guid: f01052ffa75622a4e866fb777f6eebc0, type: 2}
 --- !u!4 &935429238
 Transform:
   m_ObjectHideFlags: 0

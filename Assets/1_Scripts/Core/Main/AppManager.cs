@@ -22,10 +22,15 @@ namespace Core
         [BoxGroup("Moralis")]
         [SerializeField] private GameObject qrObject, buttonObject;
 
+        public bool IsTutorNow { get; private set; }
+
         #region START_APP
 
         private void Start()
         {
+            // TODO: Load from base Moralis
+            IsTutorNow = true;
+
             DataBaseManager.Instance.SetIsUseMoralis = isUseMoralis;
             SceneControllers.OnInit += AfterControllersInit;
             SceneControllers.InitControllers();
@@ -107,7 +112,14 @@ namespace Core
         {
             DataBaseManager.OnInit -= AfterInitDataBase;
 
-            LoadSceneManager.instance.LoadDeckBuildScene();
+            if (IsTutorNow)
+            {
+                LoadSceneManager.instance.LoadFightScene();
+            }
+            else
+            {
+                LoadSceneManager.instance.LoadDeckBuildScene();
+            }
         }
 
         #endregion

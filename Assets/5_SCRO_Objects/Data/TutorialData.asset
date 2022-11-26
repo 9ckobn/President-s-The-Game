@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c136457f972ce3468d6816a4cf90c71, type: 3}
   m_Name: TutorialData
   m_EditorClassIdentifier: 
-  playerFightCards:
+  PlayerFightCards:
   - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}
   - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}
   - {fileID: 11400000, guid: 3161b98543c7a1949b6f937a6510df5f, type: 2}
@@ -20,17 +20,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 38955a32caf4b8943b4b12a746ba99df, type: 2}
   - {fileID: 11400000, guid: 48a89db26b583fe438ff6ec37403f0fa, type: 2}
   - {fileID: 11400000, guid: 3bcc124989e1d1e4e937a08ec4266abf, type: 2}
-  - {fileID: 11400000, guid: 16102d6922519644b9b284f070668e78, type: 2}
   - {fileID: 11400000, guid: 3bcc124989e1d1e4e937a08ec4266abf, type: 2}
-  enemyFightCards:
+  - {fileID: 11400000, guid: 16102d6922519644b9b284f070668e78, type: 2}
+  EnemyFightCards:
   - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}
   - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}
   - {fileID: 11400000, guid: 483c8b3e9fef6dd4fa921529cf6f529d, type: 2}
+  - {fileID: 11400000, guid: 38955a32caf4b8943b4b12a746ba99df, type: 2}
   - {fileID: 11400000, guid: 38955a32caf4b8943b4b12a746ba99df, type: 2}
   - {fileID: 11400000, guid: 06da1170ef5879e46a787aacdb272a5c, type: 2}
   - {fileID: 11400000, guid: 14232931eae1bf34d8f583c0172dcf3f, type: 2}
   - {fileID: 11400000, guid: 6b31392f552472441bfac7e5d670fb02, type: 2}
   - {fileID: 11400000, guid: b29e8878ba7635e4ab09a15b099f64c6, type: 2}
-  - {fileID: 11400000, guid: 38955a32caf4b8943b4b12a746ba99df, type: 2}
-  playerPresidentCards: 010000000200000003000000
-  enemyPresidentCards: 040000000500000006000000
+  PlayerPresidentCards: 010000000200000003000000
+  EnemyPresidentCards: 040000000500000006000000
