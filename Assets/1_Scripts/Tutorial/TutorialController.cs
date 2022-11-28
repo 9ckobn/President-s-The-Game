@@ -105,16 +105,22 @@ namespace Tutorial
         {
             TypeActionTutor action = (currentStep as SCRO_ActionTutorial).TypeAction;
 
-            if(action == TypeActionTutor.ShowBuffAttributeWindow)
+            if (action == TypeActionTutor.ShowBuffAttributeWindow)
             {
                 UIManager.ShowWindow<SelectBuffAttributeWindow>();
                 EndStep();
             }
-            if (action == TypeActionTutor.HideBuffAttributeWindow)
+            else if (action == TypeActionTutor.WaitClickStartGame)
             {
-                UIManager.HideWindow<SelectBuffAttributeWindow>();
-                EndStep();
+                UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.AddListener(ClickStartGame);
             }
+        }
+
+        private void ClickStartGame()
+        {
+            Debug.Log("click start");
+            UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.RemoveListener(ClickStartGame);
+            EndStep();
         }
     }
 }
