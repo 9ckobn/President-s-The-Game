@@ -12,8 +12,6 @@ namespace Buildings
     [RequireComponent(typeof(BoxCollider))]
     public class Building : MonoBehaviour
     {
-        [BoxGroup("Model parts")]
-        [SerializeField] private GameObject logo;
         [BoxGroup("Model states")]
         [SerializeField] private GameObject[] modelStates;
         [BoxGroup("Effects")]
@@ -74,19 +72,19 @@ namespace Buildings
             if (!isTarget)
             {
                 isTarget = true;
-                Vector3 rotate = new Vector3(logo.transform.rotation.x, 360, logo.transform.rotation.z);
+                //Vector3 rotate = new Vector3(logo.transform.rotation.x, 360, logo.transform.rotation.z);
 
-                tween = logo.transform.DORotate(rotate, 2f, RotateMode.FastBeyond360)
-                    .SetLoops(-1, LoopType.Restart)
-                    .OnStepComplete(
-                    () =>
-                    {
-                        if (!isTarget)
-                        {
-                            tween.Complete();
-                            tween.Kill();
-                        }
-                    });
+                //tween = logo.transform.DORotate(rotate, 2f, RotateMode.FastBeyond360)
+                //    .SetLoops(-1, LoopType.Restart)
+                //    .OnStepComplete(
+                //    () =>
+                //    {
+                //        if (!isTarget)
+                //        {
+                //            tween.Complete();
+                //            tween.Kill();
+                //        }
+                //    });
             }
         }
 
