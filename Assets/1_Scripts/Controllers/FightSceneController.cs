@@ -1,5 +1,6 @@
 using Core;
 using EffectSystem;
+using Tutorial;
 using UI;
 using UnityEngine;
 
@@ -27,6 +28,11 @@ namespace Gameplay
             BoxController.GetController<CharactersDataController>().CreateCharactersData();
             BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
             BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
+
+            if (IsTutorNow)
+            {
+                BoxController.GetController<TutorialController>().StartTutorial();
+            }
         }
 
         public void AddCountUseCards()

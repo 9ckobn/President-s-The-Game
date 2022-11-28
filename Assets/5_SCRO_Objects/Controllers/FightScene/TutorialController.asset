@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NeedInstantiate: 0
   tutorialData: {fileID: 11400000, guid: 17d7a609d9e5f674eba7727d494d6cd2, type: 2}
+  stepsTutorial:
+  - {fileID: 11400000, guid: c4a178cc6e568e34a917c22bdcb760b4, type: 2}

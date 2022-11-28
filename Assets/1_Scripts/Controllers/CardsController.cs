@@ -92,6 +92,7 @@ namespace Gameplay
             for (int i = 0; i < enemyFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
             {
                 containerEnemyFightCards.AddCard(enemyFightCards[i]);
+                enemyFightCards[i].transform.localScale = new Vector3(0.45f, 0.45f, 1f);
             }
         }
 
