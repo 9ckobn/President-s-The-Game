@@ -33,6 +33,26 @@ namespace Tutorial
             }
         }
 
+        private void EndStep()
+        {
+            if(counterSteps + 1 < stepsTutorial.Length)
+            {
+                counterSteps++;
+                NextStep();
+            }
+            else
+            {
+                EndTutorial();
+            }
+        }
+
+        private void EndTutorial()
+        {
+            Debug.Log("END TOTOR !!!!!!");
+        }
+
+        #region TEXT_TUTOR
+
         private void StartTextTutor()
         {
             textsTutorial = (currentStep as SCRO_TextTutorial).Texts;
@@ -55,18 +75,24 @@ namespace Tutorial
             {
                 if (counterText + 1 < textsTutorial.Length)
                 {
-                    EndTextTutor();
+                    counterText++;
+
+                    NextTextTutor();
                 }
                 else
                 {
-                    NextTextTutor();
+                    EndTextTutor();
                 }
             }
         }
 
         private void EndTextTutor()
         {
+            UIManager.GetWindow<TutorialWindow>().HidePopup();
 
+            EndStep();
         }
+
+        #endregion
     }
 }

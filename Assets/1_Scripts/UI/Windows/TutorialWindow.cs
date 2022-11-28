@@ -10,7 +10,7 @@ namespace UI
         [HideInInspector]
         public UnityEvent OnClick;
 
-        [SerializeField] private GameObject popupText;
+        [SerializeField] private GameObject popup;
         [SerializeField] private Text tutorText;
 
         protected override void AfterInitialization()
@@ -24,7 +24,12 @@ namespace UI
         public void ShowTutorText(string text)
         {
             tutorText.text = text;
-            popupText.gameObject.SetActive(true);
+            popup.gameObject.SetActive(true);
+        }
+
+        public void HidePopup()
+        {
+            popup.SetActive(false);
         }
     }
 }
