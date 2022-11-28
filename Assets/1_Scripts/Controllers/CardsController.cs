@@ -21,7 +21,9 @@ namespace Gameplay
 
         private CardFightModel selectedFightCard, useFightCard;
 
-        public bool CanSelectedCard { get => useFightCard == null; }
+        private bool canUseCard;
+        public bool CanSelectedCard { get => canUseCard && useFightCard == null; }
+        public bool SetCanUseCard { set => canUseCard = value; }
 
         public void CreateCards()
         {

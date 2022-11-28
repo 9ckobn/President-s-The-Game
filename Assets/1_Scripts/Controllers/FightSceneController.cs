@@ -29,6 +29,8 @@ namespace Gameplay
             BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
             BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
 
+            BoxController.GetController<CardsController>().SetCanUseCard = false;
+
             if (IsTutorNow)
             {
                 BoxController.GetController<TutorialController>().StartTutorial();
