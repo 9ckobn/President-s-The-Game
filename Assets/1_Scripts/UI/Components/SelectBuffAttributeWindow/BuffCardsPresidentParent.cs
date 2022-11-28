@@ -80,7 +80,7 @@ namespace UI.Components
 
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].transform.DOMove(positions[i], 0.15f);
+                cards[i].transform.DOMove(positions[i], 0.5f);
             }
         }
     }

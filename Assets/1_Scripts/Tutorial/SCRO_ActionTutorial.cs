@@ -11,7 +11,9 @@ namespace Tutorial
     public enum TypeActionTutor
     {
         ShowBuffAttributeWindow,
-        WaitClickStartGame
+        WaitClickStartGame,
+        HideBlackout,
+
 
     }
 }

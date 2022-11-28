@@ -59,6 +59,7 @@ namespace Tutorial
 
         private void StartTextTutor()
         {
+            UIManager.GetWindow<TutorialWindow>().SetPositionPopup = (currentStep as SCRO_TextTutorial).PositionPopup;
             UIManager.ShowWindow<TutorialWindow>();
 
             textsTutorial = (currentStep as SCRO_TextTutorial).Texts;
@@ -114,11 +115,15 @@ namespace Tutorial
             {
                 UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.AddListener(ClickStartGame);
             }
+            else if (action == TypeActionTutor.HideBlackout)
+            {
+                UIManager.HideWindow<BlackoutWindow>();
+                EndStep();
+            }
         }
 
         private void ClickStartGame()
         {
-            Debug.Log("click start");
             UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.RemoveListener(ClickStartGame);
             EndStep();
         }
