@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b27a215318235489408f817a930ee2, type: 3}
-  m_Name: WaitClickStartGame_StepTutorial
+  m_Name: 5_HideBlackout_Action
   m_EditorClassIdentifier: 
-  TypeAction: 1
+  TypeAction: 2

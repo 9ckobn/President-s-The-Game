@@ -13,7 +13,7 @@ namespace Tutorial
         ShowBuffAttributeWindow,
         WaitClickStartGame,
         HideBlackout,
-
-
+        SelectBuilding,
+        DeselectBuilding
     }
 }

@@ -52,10 +52,7 @@ namespace Buildings
         {
             if (isTarget)
             {
-                foreach (var mesh in meshsLight)
-                {
-                    mesh.material = defaultMaterial;
-                }
+                EnableHighlight();
             }
         }
 
@@ -95,6 +92,14 @@ namespace Buildings
             foreach (var mesh in meshsLight)
             {
                 mesh.material = defaultMaterial;
+            }
+        }
+
+        public void EnableHighlight()
+        {
+            foreach (var mesh in meshsLight)
+            {
+                mesh.material = lightMaterial;
             }
         }
 

@@ -1,4 +1,6 @@
+using Buildings;
 using Core;
+using SceneObjects;
 using UI;
 using UnityEngine;
 
@@ -118,6 +120,26 @@ namespace Tutorial
             else if (action == TypeActionTutor.HideBlackout)
             {
                 UIManager.HideWindow<BlackoutWindow>();
+                EndStep();
+            }
+            else if (action == TypeActionTutor.SelectBuilding)
+            {
+                Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
+                foreach (var building in buildings)
+                {
+                    building.EnableHighlight();
+                }
+
+                EndStep();
+            }
+            else if (action == TypeActionTutor.DeselectBuilding)
+            {
+                Building[] buildings = ObjectsOnScene.Instance.GetBuildingsStorage.GetPlayerBuildings;
+                foreach (var building in buildings)
+                {
+                    building.DisableStateTarget();
+                }
+
                 EndStep();
             }
         }
