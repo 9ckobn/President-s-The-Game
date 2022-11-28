@@ -39,8 +39,6 @@ namespace Gameplay
             {
                 currentCharacter = enemyData;
             }
-
-            UIManager.ShowWindow<AttributesCharactersWindow>();
         }
 
         private List<AttributeData> CreateAttributes(bool isTutorEnemy = false)

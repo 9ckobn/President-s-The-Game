@@ -10,6 +10,8 @@ namespace Tutorial
 
     public enum TypeActionTutor
     {
-        ShowBuffAttributeWindow
+        ShowBuffAttributeWindow,
+        HideBuffAttributeWindow
+
     }
 }

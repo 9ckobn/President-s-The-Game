@@ -31,6 +31,10 @@ namespace Tutorial
             {
                 StartTextTutor();
             }
+            else if (currentStep is SCRO_ActionTutorial)
+            {
+                StartAction();
+            }
         }
 
         private void EndStep()
@@ -48,13 +52,15 @@ namespace Tutorial
 
         private void EndTutorial()
         {
-            Debug.Log("END TOTOR !!!!!!");
+            Debug.Log("END TUTOR !!!!!!");
         }
 
         #region TEXT_TUTOR
 
         private void StartTextTutor()
         {
+            UIManager.ShowWindow<TutorialWindow>();
+
             textsTutorial = (currentStep as SCRO_TextTutorial).Texts;
             counterText = 0;
 
@@ -88,11 +94,27 @@ namespace Tutorial
 
         private void EndTextTutor()
         {
-            UIManager.GetWindow<TutorialWindow>().HidePopup();
+            UIManager.HideWindow<TutorialWindow>();
 
             EndStep();
         }
 
         #endregion
+
+        private void StartAction()
+        {
+            TypeActionTutor action = (currentStep as SCRO_ActionTutorial).TypeAction;
+
+            if(action == TypeActionTutor.ShowBuffAttributeWindow)
+            {
+                UIManager.ShowWindow<SelectBuffAttributeWindow>();
+                EndStep();
+            }
+            if (action == TypeActionTutor.HideBuffAttributeWindow)
+            {
+                UIManager.HideWindow<SelectBuffAttributeWindow>();
+                EndStep();
+            }
+        }
     }
 }

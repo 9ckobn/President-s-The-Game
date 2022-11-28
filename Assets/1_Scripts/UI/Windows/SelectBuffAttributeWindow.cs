@@ -9,12 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UI.Components;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI
 {
     public class SelectBuffAttributeWindow : Window
     {
+        public UnityEvent OnClickStartGame;
+
         [SerializeField] private BuffAttributeCardPresidentUI presidentCardPrefab;
 
         [SerializeField] private SelectedAttribute[] attributesObjects;
@@ -45,9 +48,9 @@ namespace UI
 
             startGameButton.onClick.AddListener(() =>
             {
-                BoxController.GetController<FightSceneController>().StartGame();
                 HideButtonStartGame();
                 Hide();
+                OnClickStartGame?.Invoke();
             });
         }
 
