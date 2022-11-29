@@ -14,6 +14,7 @@ namespace Tutorial
         WaitClickStartGame,
         HideBlackout,
         SelectBuilding,
-        DeselectBuilding
+        DeselectBuilding,
+        EnableAttributes
     }
 }

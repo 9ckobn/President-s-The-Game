@@ -144,6 +144,11 @@ namespace Tutorial
 
                 EndStep();
             }
+            else if (action == TypeActionTutor.EnableAttributes)
+            {
+                UIManager.ShowWindow<AttributesCharactersWindow>();
+                EndStep();
+            }
         }
 
         private void ClickStartGame()
