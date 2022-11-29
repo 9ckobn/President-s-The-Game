@@ -12,13 +12,10 @@ namespace UI
         [HideInInspector]
         public UnityEvent OnClick;
 
-        [SerializeField] private GameObject popup, centerPosition, leftPosition;
+        [SerializeField] private GameObject popup, positionPopup;
         [SerializeField] private Text tutorText;
 
         private GameObject imageObject;
-        private PositionTutorPopup positionPopup = PositionTutorPopup.Center;
-
-        public PositionTutorPopup SetPositionPopup { set => positionPopup = value; }
 
         protected override void AfterInitialization()
         {
@@ -53,29 +50,25 @@ namespace UI
             {
                 popup.gameObject.SetActive(true);
 
-                if (positionPopup == PositionTutorPopup.Center)
-                {
-                    Vector3 pos = centerPosition.transform.position;
-                    pos.y += 600;
-                    popup.transform.position = pos;
+                Vector3 pos = positionPopup.transform.position;
+                pos.y += 600;
+                popup.transform.position = pos;
 
-                    popup.transform.DOMove(centerPosition.transform.position, 0.5f);
-                }
-                else if (positionPopup == PositionTutorPopup.Left)
-                {
-                    Vector3 pos = leftPosition.transform.position;
-                    pos.x -= 500;
-                    popup.transform.position = pos;
-
-                    popup.transform.DOMove(leftPosition.transform.position, 0.5f);
-                }
+                popup.transform.DOMove(positionPopup.transform.position, 0.5f);
             }
         }
-    }
 
-    public enum PositionTutorPopup
-    {
-        Center,
-        Left
+        public void HidePopup()
+        {
+            Vector3 pos = popup.transform.position;
+            pos.y += 600;
+
+            popup.transform.DOMove(pos, 0.3f)
+                .OnComplete(() =>
+                {
+                    popup.gameObject.SetActive(false);
+                    Hide();
+                });
+        }
     }
 }

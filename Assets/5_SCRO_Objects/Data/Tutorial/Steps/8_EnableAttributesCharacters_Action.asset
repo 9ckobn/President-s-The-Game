@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b27a215318235489408f817a930ee2, type: 3}
-  m_Name: 8_SelectBuilding_Action
+  m_Name: 8_EnableAttributesCharacters_Action
   m_EditorClassIdentifier: 
-  TypeAction: 3
+  TypeAction: 5

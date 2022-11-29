@@ -63,7 +63,6 @@ namespace Tutorial
 
         private void StartTextTutor()
         {
-            UIManager.GetWindow<TutorialWindow>().SetPositionPopup = (currentStep as SCRO_TextTutorial).PositionPopup;
             UIManager.ShowWindow<TutorialWindow>();
 
             textsTutorial = (currentStep as SCRO_TextTutorial).Texts;
@@ -99,8 +98,6 @@ namespace Tutorial
 
         private void EndTextTutor()
         {
-            UIManager.HideWindow<TutorialWindow>();
-
             EndStep();
         }
 
@@ -147,6 +144,11 @@ namespace Tutorial
             else if (action == TypeActionTutor.EnableAttributes)
             {
                 UIManager.ShowWindow<AttributesCharactersWindow>();
+                EndStep();
+            }
+            else if (action == TypeActionTutor.HidePopup)
+            {
+                UIManager.GetWindow<TutorialWindow>().HidePopup();
                 EndStep();
             }
         }

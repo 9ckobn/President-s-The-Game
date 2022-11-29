@@ -15,6 +15,7 @@ namespace Tutorial
         HideBlackout,
         SelectBuilding,
         DeselectBuilding,
-        EnableAttributes
+        EnableAttributes,
+        HidePopup
     }
 }
