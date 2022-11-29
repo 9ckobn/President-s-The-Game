@@ -14,6 +14,7 @@ namespace UI
 
         [SerializeField] private GameObject popup, positionPopup;
         [SerializeField] private Text tutorText;
+        [SerializeField] private GameObject descriptionFightcard;
 
         private GameObject imageObject;
 
@@ -69,6 +70,16 @@ namespace UI
                     popup.gameObject.SetActive(false);
                     Hide();
                 });
+        }
+
+        public void ShowDescriptionCard()
+        {
+            descriptionFightcard.gameObject.SetActive(true);
+        }
+
+        public void HideDescriptionCard()
+        {
+            descriptionFightcard.gameObject.SetActive(false);
         }
     }
 }

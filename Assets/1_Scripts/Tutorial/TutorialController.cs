@@ -1,5 +1,6 @@
 using Buildings;
 using Core;
+using Gameplay;
 using SceneObjects;
 using UI;
 using UnityEngine;
@@ -151,6 +152,32 @@ namespace Tutorial
                 UIManager.GetWindow<TutorialWindow>().HidePopup();
                 EndStep();
             }
+            else if (action == TypeActionTutor.HighlightFightCards)
+            {
+                BoxController.GetController<CardsController>().HighlightPlayerFightCards(true);
+                EndStep();
+            }
+            else if (action == TypeActionTutor.UnhighlightFightCards)
+            {
+                BoxController.GetController<CardsController>().HighlightPlayerFightCards(false);
+                EndStep();
+            }
+            else if (action == TypeActionTutor.ShowPopupCardFightDescription)
+            {
+                UIManager.GetWindow<TutorialWindow>().ShowDescriptionCard();
+                EndStep();
+            }
+            else if (action == TypeActionTutor.HidePopupCardFightDescription)
+            {
+                UIManager.GetWindow<TutorialWindow>().HideDescriptionCard();
+                EndStep();
+            }
+            else if (action == TypeActionTutor.ShowBlackout)
+            {
+                UIManager.ShowWindow<BlackoutWindow>();
+                EndStep();
+            }
+
         }
 
         private void ClickStartGame()

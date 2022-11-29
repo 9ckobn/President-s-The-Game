@@ -16,6 +16,11 @@ namespace Tutorial
         SelectBuilding,
         DeselectBuilding,
         EnableAttributes,
-        HidePopup
+        HidePopup,
+        HighlightFightCards,
+        UnhighlightFightCards,
+        ShowPopupCardFightDescription,
+        HidePopupCardFightDescription,
+        ShowBlackout
     }
 }

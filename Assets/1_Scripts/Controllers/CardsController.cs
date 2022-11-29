@@ -163,5 +163,13 @@ namespace Gameplay
                 }
             }
         }
+
+        public void HighlightPlayerFightCards(bool highlight)
+        {
+            foreach (var card in playerFightCards)
+            {
+                card.ChangeHighlight(highlight);
+            }
+        }
     }
 }
