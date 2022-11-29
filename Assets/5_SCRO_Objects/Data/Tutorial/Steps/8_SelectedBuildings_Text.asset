@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bac28b733f64934c8e55120de186db4, type: 3}
   m_Name: 8_SelectedBuildings_Text
   m_EditorClassIdentifier: 
-  PositionPopup: 1
+  PositionPopup: 0
   Texts:
   - "\u042D\u0442\u043E \u0424\u0430\u043A\u0442\u043E\u0440\u044B. \u0418\u0437
     \u043D\u0438\u0445 \u0441\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442\u0441\u044F

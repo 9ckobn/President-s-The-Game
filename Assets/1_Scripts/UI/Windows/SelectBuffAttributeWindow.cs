@@ -16,10 +16,11 @@ namespace UI
 {
     public class SelectBuffAttributeWindow : Window
     {
+        [HideInInspector]
         public UnityEvent OnClickStartGame;
 
+        [SerializeField] private Text labelText;
         [SerializeField] private BuffAttributeCardPresidentUI presidentCardPrefab;
-
         [SerializeField] private SelectedAttribute[] attributesObjects;
         [SerializeField] private Sprite foodIcon, medicineIcon, economicIcon, rawMaterialsIcon;
         [SerializeField] private BuffCardsPresidentParent cardsParent;
@@ -31,6 +32,11 @@ namespace UI
         private Sequence startButtonSequence;
 
         private Tween myTween;
+
+        public void HideLabelWindow()
+        {
+            labelText.gameObject.SetActive(false);
+        }
 
         protected override void AfterInitialization()
         {

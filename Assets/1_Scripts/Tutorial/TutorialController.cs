@@ -22,6 +22,8 @@ namespace Tutorial
 
         public void StartTutorial()
         {
+            UIManager.GetWindow<SelectBuffAttributeWindow>().HideLabelWindow();
+
             NextStep();
         }
 
