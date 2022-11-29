@@ -56,7 +56,7 @@ namespace UI
                 if (positionPopup == PositionTutorPopup.Center)
                 {
                     Vector3 pos = centerPosition.transform.position;
-                    pos.x += 1500;
+                    pos.y += 600;
                     popup.transform.position = pos;
 
                     popup.transform.DOMove(centerPosition.transform.position, 0.5f);
