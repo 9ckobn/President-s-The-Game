@@ -26,7 +26,7 @@ namespace Gameplay
 
             BoxController.GetController<CardsController>().CreateCards();
             BoxController.GetController<CharactersDataController>().CreateCharactersData();
-            BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
+            //BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
             BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
 
             BoxController.GetController<CardsController>().SetCanUseCard = false;
