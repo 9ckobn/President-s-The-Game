@@ -177,7 +177,17 @@ namespace Tutorial
                 UIManager.ShowWindow<BlackoutWindow>();
                 EndStep();
             }
-
+            else if (action == TypeActionTutor.BlockFightCards)
+            {
+                BoxController.GetController<CardsController>().SetCanUseCard = true;
+                BoxController.GetController<CardsController>().BlockAllCardsExceptOne();
+                EndStep();
+            }
+            else if (action == TypeActionTutor.UnblockFightCards)
+            {
+                BoxController.GetController<CardsController>().UnblockAllCardsExceptOne();
+                EndStep();
+            }
         }
 
         private void ClickStartGame()

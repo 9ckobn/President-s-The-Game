@@ -21,6 +21,8 @@ namespace Tutorial
         UnhighlightFightCards,
         ShowPopupCardFightDescription,
         HidePopupCardFightDescription,
-        ShowBlackout
+        ShowBlackout,
+        BlockFightCards,
+        UnblockFightCards
     }
 }

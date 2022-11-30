@@ -34,7 +34,7 @@ namespace Cards
                 (view as CardFightView).SetData(data as CardFightData);
             }
         }
-        private CardFightData getFightData { get => data as CardFightData; }
+        private CardFightData GetFightData { get => data as CardFightData; }
 
         private void Start()
         {
@@ -43,9 +43,9 @@ namespace Cards
 
         #region GET_DATA
 
-        public List<Effect> GetEffects { get => getFightData.GetEffects; }
-        public TypeAttribute[] GetTypeCost { get => getFightData.TypeCost; }
-        public int GetValueCost { get => getFightData.Cost; }
+        public List<Effect> GetEffects { get => GetFightData.GetEffects; }
+        public TypeAttribute[] GetTypeCost { get => GetFightData.TypeCost; }
+        public int GetValueCost { get => GetFightData.Cost; }
 
         #endregion
 
@@ -118,7 +118,7 @@ namespace Cards
         {
             MouseExit();
 
-            getFightData.UpdateReloading();
+            GetFightData.UpdateReloading();
             ChangeHighlight(false);
 
             if (!CheckCanUseCard())
@@ -129,20 +129,20 @@ namespace Cards
 
         public bool CheckCanUseCard()
         {
-            return !isBlocked && getFightData.CurrentReloading == 0;
+            return !isBlocked && GetFightData.CurrentReloading == 0;
         }
 
         public void DecreaseReloading()
         {
-            getFightData.DecreaseReloading();
+            GetFightData.DecreaseReloading();
 
-            if (getFightData.CurrentReloading == 0)
+            if (GetFightData.CurrentReloading == 0)
             {
-                UnlockCard();
+                UnBlockCard();
             }
         }
 
-        private void BlockCard(bool needRotate = false)
+        public void BlockCard(bool needRotate = false)
         {
             isBlocked = true;
 
@@ -153,7 +153,7 @@ namespace Cards
             }
         }
 
-        private void UnlockCard()
+        public void UnBlockCard()
         {
             isBlocked = false;
 

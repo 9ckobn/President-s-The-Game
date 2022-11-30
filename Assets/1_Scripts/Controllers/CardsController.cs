@@ -21,7 +21,7 @@ namespace Gameplay
 
         private CardFightModel selectedFightCard, useFightCard;
 
-        private bool canUseCard;
+        private bool canUseCard = false;
         public bool CanSelectedCard { get => canUseCard && useFightCard == null; }
         public bool SetCanUseCard { set => canUseCard = value; }
 
@@ -98,7 +98,7 @@ namespace Gameplay
             }
         }
 
-        public void ShowCardsCharacter(bool isPlayer)
+        public void HighlightPlayerPresidentCards(bool isPlayer)
         {
             foreach (var card in playerPresidentCards)
             {
@@ -169,6 +169,30 @@ namespace Gameplay
             foreach (var card in playerFightCards)
             {
                 card.ChangeHighlight(highlight);
+            }
+        }
+
+        // For tutorial
+        public void BlockAllCardsExceptOne()
+        {
+            for (int i = 0; i < playerFightCards.Count; i++)
+            {
+                if (i > 0)
+                {
+                    playerFightCards[i].BlockCard(true);
+                }
+            }
+        }
+
+        // For tutorial
+        public void UnblockAllCardsExceptOne()
+        {
+            for (int i = 0; i < playerFightCards.Count; i++)
+            {
+                if (i != 0)
+                {
+                    playerFightCards[i].UnBlockCard();
+                }
             }
         }
     }
