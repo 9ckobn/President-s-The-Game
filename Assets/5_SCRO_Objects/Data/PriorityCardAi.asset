@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e1d67326654d7c4e9f7394899a1877d, type: 3}
-  m_Name: EnemyAiController
+  m_Script: {fileID: 11500000, guid: fb4d2f12c6e4e0d49934506874a45b4d, type: 3}
+  m_Name: PriorityCardAi
   m_EditorClassIdentifier: 
-  NeedInstantiate: 0
-  priorityCards: {fileID: 11400000, guid: 4fe540cdf4b9d7144acaed87d6c6a39c, type: 2}
+  attackCardsPriority:
+  - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}
+  - {fileID: 11400000, guid: 483c8b3e9fef6dd4fa921529cf6f529d, type: 2}
