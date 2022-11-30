@@ -58,6 +58,8 @@ namespace Tutorial
 
         private void EndTutorial()
         {
+            BoxController.GetController<CardsController>().UnblockAllCardsExceptOne();
+
             Debug.Log("END TUTOR !!!!!!");
         }
 
@@ -192,8 +194,6 @@ namespace Tutorial
             }
             else if (action == TypeActionTutor.UnblockFightCards)
             {
-                BoxController.GetController<CardsController>().UnblockAllCardsExceptOne();
-
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Economic, true);
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Food, true);
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, true);

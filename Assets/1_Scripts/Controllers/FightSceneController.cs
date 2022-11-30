@@ -1,5 +1,6 @@
 using Core;
 using EffectSystem;
+using EnemyAI;
 using Tutorial;
 using UI;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "FightSceneController", menuName = "Controllers/Gameplay/FightSceneController")]
     public class FightSceneController : BaseController
     {
-        private const int MAX_USE_CARDS = 1;        
+        private const int MAX_USE_CARDS = 3;
 
         private int countUseCards = 0;
 
@@ -26,12 +27,15 @@ namespace Gameplay
 
             BoxController.GetController<CardsController>().CreateCards();
             BoxController.GetController<CharactersDataController>().CreateCharactersData();
-            //BoxController.GetController<CardsController>().ShowCardsCharacter(isPlayer);
-            BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
+            //BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
 
             if (IsTutorNow)
             {
                 BoxController.GetController<TutorialController>().StartTutorial();
+            }
+            else
+            {
+                BoxController.GetController<CardsController>().SetCanUseCard = true;
             }
         }
 
@@ -39,22 +43,34 @@ namespace Gameplay
         {
             countUseCards++;
 
-            if(countUseCards >= MAX_USE_CARDS)
+            if (countUseCards >= MAX_USE_CARDS)
             {
-                EndRound();
+                BoxController.GetController<EffectsController>().EndRound();
+                BoxController.GetController<CharactersDataController>().ChangeCurrentCharacter();
+
+                countUseCards = 0;
+
+                bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
+                //BoxController.GetController<CardsController>().HighlightPlayerPresidentCards(isPlayer);
+                BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
+
+                NewRound();
             }
         }
 
-        private void EndRound()
+        private void NewRound()
         {
-            BoxController.GetController<EffectsController>().EndRound();
-            BoxController.GetController<CharactersDataController>().ChangeCurrentCharacter();
-
-            countUseCards = 0;
-
             bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
-            BoxController.GetController<CardsController>().HighlightPlayerPresidentCards(isPlayer);
-            BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
+
+            if (isPlayer)
+            {
+                BoxController.GetController<CardsController>().SetCanUseCard = true;
+            }
+            else
+            {
+                BoxController.GetController<CardsController>().SetCanUseCard = false;
+                BoxController.GetController<EnemyAiController>().StartRound();
+            }
         }
     }
 }

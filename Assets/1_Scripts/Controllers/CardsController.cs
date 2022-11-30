@@ -21,7 +21,7 @@ namespace Gameplay
         private List<CardPresidentModel> enemyPresidentCards = new List<CardPresidentModel>();
 
         private List<CardFightModel> playerFightCards = new List<CardFightModel>();
-        private List<CardFightModel> enemyFightCards = new List<CardFightModel>();
+        public List<CardFightModel> EnemyFightCards { get; private set; }
 
         private CardFightModel selectedFightCard, useFightCard;
 
@@ -84,7 +84,7 @@ namespace Gameplay
             foreach (var cardData in cardsEnemyFightData)
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
-                enemyFightCards.Add(card);
+                EnemyFightCards.Add(card);
                 card.SetIsPlayerCard = false;
                 card.SetBlockPosition = new Vector3(20, 180, 0);
                 card.SetUnblockPosition = new Vector3(-20, 0, 0);
@@ -95,10 +95,10 @@ namespace Gameplay
                 containerEnemyPresidentCards.AddCard(enemyPresidentCards[i]);
             }
 
-            for (int i = 0; i < enemyFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
+            for (int i = 0; i < EnemyFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
             {
-                containerEnemyFightCards.AddCard(enemyFightCards[i]);
-                enemyFightCards[i].transform.localScale = new Vector3(0.45f, 0.45f, 1f);
+                containerEnemyFightCards.AddCard(EnemyFightCards[i]);
+                EnemyFightCards[i].transform.localScale = new Vector3(0.45f, 0.45f, 1f);
             }
         }
 
@@ -163,7 +163,7 @@ namespace Gameplay
             }
             else
             {
-                foreach (var card in enemyFightCards)
+                foreach (var card in EnemyFightCards)
                 {
                     card.DecreaseReloading();
                 }
