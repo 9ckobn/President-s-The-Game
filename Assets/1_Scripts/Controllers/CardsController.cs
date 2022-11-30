@@ -7,12 +7,16 @@ using EffectSystem;
 using SceneObjects;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Gameplay
 {
     [CreateAssetMenu(fileName = "CardsController", menuName = "Controllers/Gameplay/CardsController")]
     public class CardsController : BaseController
     {
+        [HideInInspector]
+        public UnityAction EndUseFightCardEvent;
+
         private List<CardPresidentModel> playerPresidentCards = new List<CardPresidentModel>();
         private List<CardPresidentModel> enemyPresidentCards = new List<CardPresidentModel>();
 
@@ -144,6 +148,8 @@ namespace Gameplay
             useFightCard = null;
 
             BoxController.GetController<FightSceneController>().AddCountUseCards();
+
+            EndUseFightCardEvent?.Invoke();
         }
 
         public void DecreaseReloadingCharacterCards(bool isPlayer)

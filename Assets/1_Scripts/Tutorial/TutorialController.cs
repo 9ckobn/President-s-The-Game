@@ -45,7 +45,7 @@ namespace Tutorial
 
         private void EndStep()
         {
-            if(counterSteps + 1 < stepsTutorial.Length)
+            if (counterSteps + 1 < stepsTutorial.Length)
             {
                 counterSteps++;
                 NextStep();
@@ -180,22 +180,23 @@ namespace Tutorial
             }
             else if (action == TypeActionTutor.BlockFightCards)
             {
+                BoxController.GetController<CardsController>().EndUseFightCardEvent += UseFightCard;
                 BoxController.GetController<CardsController>().SetCanUseCard = true;
                 BoxController.GetController<CardsController>().BlockAllCardsExceptOne();
 
-                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Economic, false);
-                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Food, false);
-                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, false);
+                BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Economic, false);
+                BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Food, false);
+                BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, false);
 
-                EndStep();
+
             }
             else if (action == TypeActionTutor.UnblockFightCards)
             {
                 BoxController.GetController<CardsController>().UnblockAllCardsExceptOne();
 
-                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Economic, true);
-                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Food, true);
-                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, true);
+                BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Economic, true);
+                BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Food, true);
+                BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, true);
 
                 EndStep();
             }
@@ -204,6 +205,12 @@ namespace Tutorial
         private void ClickStartGame()
         {
             UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.RemoveListener(ClickStartGame);
+            EndStep();
+        }
+
+        private void UseFightCard()
+        {
+            BoxController.GetController<CardsController>().EndUseFightCardEvent -= UseFightCard;
             EndStep();
         }
     }

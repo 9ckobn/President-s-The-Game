@@ -27,7 +27,7 @@ namespace Buildings
         [BoxGroup("UI")]
         [SerializeField] private BuildingCanvas canvas;
 
-        private bool canSelectedForTarget, isTarget;
+        private bool canSelectedForTarget = true, isTarget;
         private Tween tween;
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
@@ -54,7 +54,7 @@ namespace Buildings
         {
             if (canSelectedForTarget && isTarget)
             {
-                DisableStateTarget();
+                DisableHighlight();
             }
         }
 
@@ -91,6 +91,11 @@ namespace Buildings
         {
             isTarget = false;
 
+            DisableHighlight();
+        }
+
+        private void DisableHighlight()
+        {
             foreach (var mesh in meshsLight)
             {
                 mesh.material = defaultMaterial;
