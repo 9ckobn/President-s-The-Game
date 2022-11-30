@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bac28b733f64934c8e55120de186db4, type: 3}
-  m_Name: 22_DescriptionFightCards_Text
+  m_Name: 23_DescriptionFightCards_Text
   m_EditorClassIdentifier: 
   Texts:
   - "\u041E\u0442\u043B\u0438\u0447\u043D\u043E, \u0442\u044B \u0443\u0436\u0435

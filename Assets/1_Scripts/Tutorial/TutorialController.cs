@@ -1,5 +1,6 @@
 using Buildings;
 using Core;
+using EffectSystem;
 using Gameplay;
 using SceneObjects;
 using UI;
@@ -181,11 +182,21 @@ namespace Tutorial
             {
                 BoxController.GetController<CardsController>().SetCanUseCard = true;
                 BoxController.GetController<CardsController>().BlockAllCardsExceptOne();
+
+                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Economic, false);
+                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Food, false);
+                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, false);
+
                 EndStep();
             }
             else if (action == TypeActionTutor.UnblockFightCards)
             {
                 BoxController.GetController<CardsController>().UnblockAllCardsExceptOne();
+
+                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Economic, true);
+                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.Food, true);
+                BoxController.GetController<CharactersDataController>().GetPlayerData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, true);
+
                 EndStep();
             }
         }

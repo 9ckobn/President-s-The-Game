@@ -63,6 +63,12 @@ namespace Data
             GetBuilding(type).DisableStateTarget();
         }
 
+        // For tutorial
+        public void ChangeCanSelectBuilding(TypeAttribute type, bool canSelect)
+        {
+            GetBuilding(type).SetCanSelectedForTarget = canSelect;
+        }
+
         private AttributeData GetAttribute(TypeAttribute type)
         {
             foreach (var attribute in attributes)

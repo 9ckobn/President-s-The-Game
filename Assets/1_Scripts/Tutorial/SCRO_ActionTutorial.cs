@@ -23,6 +23,6 @@ namespace Tutorial
         HidePopupCardFightDescription,
         ShowBlackout,
         BlockFightCards,
-        UnblockFightCards
+        UnblockFightCards,        
     }
 }

@@ -27,10 +27,12 @@ namespace Buildings
         [BoxGroup("UI")]
         [SerializeField] private BuildingCanvas canvas;
 
-        private bool isTarget;
+        private bool canSelectedForTarget, isTarget;
         private Tween tween;
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
+
+        public bool SetCanSelectedForTarget { set => canSelectedForTarget = value; }
 
         private void Awake()
         {
@@ -39,7 +41,7 @@ namespace Buildings
 
         public void OnMouseOver()
         {
-            if (isTarget)
+            if (canSelectedForTarget && isTarget)
             {
                 foreach (var mesh in meshsLight)
                 {
@@ -50,15 +52,15 @@ namespace Buildings
 
         public void OnMouseExit()
         {
-            if (isTarget)
+            if (canSelectedForTarget && isTarget)
             {
-                EnableHighlight();
+                DisableStateTarget();
             }
         }
 
         public void OnMouseDown()
         {
-            if (isTarget)
+            if (canSelectedForTarget && isTarget)
             {
                 BoxController.GetController<EffectsController>().SelectTargetBuilding(typeBuilding);
             }
@@ -66,7 +68,7 @@ namespace Buildings
 
         public void EnableStateTarget()
         {
-            if (!isTarget)
+            if (canSelectedForTarget && !isTarget)
             {
                 isTarget = true;
                 //Vector3 rotate = new Vector3(logo.transform.rotation.x, 360, logo.transform.rotation.z);
