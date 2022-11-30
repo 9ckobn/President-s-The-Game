@@ -18,7 +18,7 @@ namespace Gameplay
 
         public override void OnInitialize()
         {
-            IsTutorNow = AppManager.Instance.IsTutorNow;
+            IsTutorNow =  AppManager.Instance.IsTutorNow;
         }
 
         public void StartGame()
@@ -27,7 +27,6 @@ namespace Gameplay
 
             BoxController.GetController<CardsController>().CreateCards();
             BoxController.GetController<CharactersDataController>().CreateCharactersData();
-            //BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
 
             if (IsTutorNow)
             {
@@ -35,8 +34,16 @@ namespace Gameplay
             }
             else
             {
-                BoxController.GetController<CardsController>().SetCanUseCard = true;
+                UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.AddListener(SlickStartGame);
+                UIManager.ShowWindow<SelectBuffAttributeWindow>();
             }
+        }
+
+        private void SlickStartGame()
+        {
+            UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.RemoveListener(SlickStartGame);
+            UIManager.HideWindow<BlackoutWindow>();
+            BoxController.GetController<CardsController>().SetCanUseCard = true;
         }
 
         public void AddCountUseCards()

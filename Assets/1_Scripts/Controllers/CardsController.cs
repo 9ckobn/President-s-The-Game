@@ -81,6 +81,7 @@ namespace Gameplay
                 enemyPresidentCards.Add(card);
             }
 
+            EnemyFightCards = new List<CardFightModel>();
             foreach (var cardData in cardsEnemyFightData)
             {
                 CardFightModel card = creator.CreateCardFight(cardData);

@@ -36,7 +36,7 @@ namespace Cards
             cardController = BoxController.GetController<CardsController>();
         }
 
-        private void OnMouseEnter()
+        public void OnMouseEnter()
         {
             if (CheckMouseEnter())
             {
@@ -46,7 +46,7 @@ namespace Cards
             }
         }
 
-        private void OnMouseExit()
+        public void OnMouseExit()
         {
             if (CheckMouseExit())
             {
@@ -56,7 +56,7 @@ namespace Cards
             }
         }
 
-        private void OnMouseDown()
+        public void OnMouseDown()
         {
             if (CheckMouseDown())
             {
