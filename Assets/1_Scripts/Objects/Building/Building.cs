@@ -26,9 +26,11 @@ namespace Buildings
         [SerializeField] private Material defaultMaterial, lightMaterial;
         [BoxGroup("UI")]
         [SerializeField] private BuildingCanvas canvas;
+        [BoxGroup("Arrow pointer")]
+        [SerializeField] private GameObject arrowPointer;
 
         private bool canSelectedForTarget = true, isTarget;
-        private Tween tween;
+        private Sequence sequence;
 
         public TypeAttribute GetTypeBuilding { get => typeBuilding; }
 
@@ -174,6 +176,36 @@ namespace Buildings
             effect.SetActive(true);
             yield return new WaitForSeconds(1.5f);
             effect.SetActive(false);
+        }
+
+        public void EnableArrowPointer()
+        {
+            if (arrowPointer != null)
+            {
+                arrowPointer.SetActive(true);
+                Vector3 positionUp = arrowPointer.transform.localPosition;
+                Vector3 positionDowm = arrowPointer.transform.localPosition;
+                positionDowm.y -= 0.2f;
+
+                sequence = DOTween.Sequence();
+                sequence.Append(arrowPointer.transform.DOLocalMove(positionDowm, 0.8f))
+                    .Append(arrowPointer.transform.DOLocalMove(positionUp, 0.6f))
+                    .SetLoops(-1, LoopType.Restart);
+            }
+            else
+            {
+                LogManager.LogError($"Arrow pointer in building {typeBuilding} null!");
+            }
+        }
+
+        public void DisableArrowPointer()
+        {
+            if (arrowPointer != null)
+            {
+                arrowPointer.SetActive(false);
+
+                sequence.Kill();
+            }
         }
 
         #endregion

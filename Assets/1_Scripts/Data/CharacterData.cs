@@ -69,6 +69,16 @@ namespace Data
             GetBuilding(type).SetCanSelectedForTarget = canSelect;
         }
 
+        public void EnableArrowPointerOnBuilding(TypeAttribute typeBuilding)
+        {
+            GetBuilding(typeBuilding).EnableArrowPointer();
+        }
+
+        public void DisableArrowPointerOnBuilding(TypeAttribute typeBuilding)
+        {
+            GetBuilding(typeBuilding).DisableArrowPointer();
+        }
+
         private AttributeData GetAttribute(TypeAttribute type)
         {
             foreach (var attribute in attributes)

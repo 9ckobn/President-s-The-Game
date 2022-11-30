@@ -188,7 +188,7 @@ namespace Tutorial
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Food, false);
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, false);
 
-
+                BoxController.GetController<CharactersDataController>().GetEnemyData.EnableArrowPointerOnBuilding(TypeAttribute.Medicine);
             }
             else if (action == TypeActionTutor.UnblockFightCards)
             {
@@ -197,6 +197,8 @@ namespace Tutorial
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Economic, true);
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.Food, true);
                 BoxController.GetController<CharactersDataController>().GetEnemyData.ChangeCanSelectBuilding(TypeAttribute.RawMaterials, true);
+
+                BoxController.GetController<CharactersDataController>().GetEnemyData.DisableArrowPointerOnBuilding(TypeAttribute.Medicine);
 
                 EndStep();
             }
