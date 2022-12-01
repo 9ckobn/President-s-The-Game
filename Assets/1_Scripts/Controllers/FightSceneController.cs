@@ -10,7 +10,7 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "FightSceneController", menuName = "Controllers/Gameplay/FightSceneController")]
     public class FightSceneController : BaseController
     {
-        private const int MAX_USE_CARDS = 1;
+        private const int MAX_USE_CARDS = 3;
 
         private int countUseCards = 0;
 
@@ -67,6 +67,10 @@ namespace Gameplay
                 BoxController.GetController<CardsController>().DecreaseReloadingCharacterCards(!isPlayer);
 
                 NewRound();
+            }
+            else if (!BoxController.GetController<CharactersDataController>().GetIsPlayerNow)
+            {
+                BoxController.GetController<EnemyAiController>().NextCard();
             }
         }
 

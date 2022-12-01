@@ -223,7 +223,6 @@ namespace Data
         {
             // TODO: check if effect alredy add are update duration this effect
 
-            Debug.Log("Add TemporaryEffect");
             temporaryEffects.Add(effect);
         }
 

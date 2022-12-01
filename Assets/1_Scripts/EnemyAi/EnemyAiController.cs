@@ -21,18 +21,25 @@ namespace EnemyAI
         private List<CardFightModel> myCards;
         private List<CardFightModel> activeCards;
         private CardFightModel selectedCard;
+        private CardFightModel prevCard;
 
         private int countAttack = 0;
 
         public void StartRound()
         {
             myCards = BoxController.GetController<CardsController>().EnemyFightCards;
+            countAttack = 0;
 
-            LogManager.Log("enemy start round");
+            NextCard();
+        }
+
+        public void NextCard()
+        {
             SelectCard();
 
             if (selectedCard != null)
             {
+                Debug.Log($"selectedCard = {selectedCard.GetId}");
                 Coroutines.StartRoutine(CoUseCard());
             }
             else
@@ -60,18 +67,44 @@ namespace EnemyAI
                 {
                     foreach (var priorityCard in priorityCards.AttackCardsPriority)
                     {
-                        if (card.GetId == priorityCard.Id)
+                        if (card.GetId == priorityCard.Id && (prevCard == null || prevCard.GetId != card.GetId))
                         {
                             countAttack++;
-                            selectedCard = card;
+                            prevCard = selectedCard = card;
                             return;
                         }
                     }
                 }
                 else
                 {
-                    LogManager.Log("Not have logic select card not attack");
-                    countAttack = 0;
+                    activeCards = new List<CardFightModel>();
+
+                    foreach (var checkCard in myCards)
+                    {
+                        bool needAdd = true;
+                        foreach (var priorityCard in priorityCards.AttackCardsPriority)
+                        {
+                            if (checkCard.GetId == priorityCard.Id)
+                            {
+                                needAdd = false;
+                                break;
+                            }
+                        }
+
+                        if (needAdd)
+                        {
+                            activeCards.Add(checkCard);
+                        }
+                    }
+
+                    // TODO: Check need use Strategic Loan 
+
+                    foreach (var priorityCard in priorityCards.HealthCardsPriority)
+                    {
+                        activeCards.Remove(activeCards.FirstOrDefault(card => card.GetId == priorityCard.Id));
+                    }
+
+                    selectedCard = activeCards[Random.Range(0, activeCards.Count - 1)];
                 }
             }
         }
@@ -85,31 +118,42 @@ namespace EnemyAI
 
         public void SelectTarget(Effect effect)
         {
-            CharacterData playerData = BoxController.GetController<CharactersDataController>().GetPlayerData;
+            CharacterData characterData = null;
+
+            if (effect is AttackEffect)
+            {
+                characterData = BoxController.GetController<CharactersDataController>().GetPlayerData;
+            }
+            else if (effect is OtherEffect)
+            {
+                Debug.Log($"OtherEffect select target");
+
+                characterData = BoxController.GetController<CharactersDataController>().GetEnemyData;
+            }
+
             TypeAttribute target = MainData.TYPE_BUILDINGS[0];
-            int valueTarget = playerData.GetValueAttribute(target) + playerData.GetValueDefend(target);
+            int valueTarget = characterData.GetValueAttribute(target) + characterData.GetValueDefend(target);
 
             for (int i = 0; i < MainData.TYPE_BUILDINGS.Length; i++)
             {
-                TypeAttribute attribute = MainData.TYPE_BUILDINGS[0];
+                TypeAttribute attribute = MainData.TYPE_BUILDINGS[i];
                 if (i != 0)
                 {
-                    if (playerData.GetValueAttribute(attribute) + playerData.GetValueDefend(attribute) < valueTarget)
+                    if (characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute) < valueTarget)
                     {
                         break;
                     }
                 }
 
                 target = attribute;
-                valueTarget = playerData.GetValueAttribute(attribute) + playerData.GetValueDefend(attribute);
+                valueTarget = characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute);
             }
 
-            Coroutines.StartRoutine(CoSelectTarget(playerData.GetBuilding(target)));
+            Coroutines.StartRoutine(CoUseCard(characterData.GetBuilding(target)));
         }
 
-        private IEnumerator CoSelectTarget(Building building)
+        private IEnumerator CoUseCard(Building building)
         {
-            yield return new WaitForSeconds(1.5f);
             building.EnableStateTarget();
             building.OnMouseOver();
 

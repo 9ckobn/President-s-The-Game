@@ -7,5 +7,6 @@ namespace EnemyAI
     public class SCRO_PriorityCardAi : ScriptableObject
     {
         public SCRO_CardFight[] AttackCardsPriority;
+        public SCRO_CardFight[] HealthCardsPriority;
     }
 }
