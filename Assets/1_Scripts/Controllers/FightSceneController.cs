@@ -40,6 +40,7 @@ namespace Gameplay
                 // DELETE!!!!!!!!!!!!!!!!!!!!
                 UIManager.HideWindow<BlackoutWindow>();
                 BoxController.GetController<CardsController>().SetCanUseCard = true;
+                UIManager.ShowWindow<AttributesCharactersWindow>();
             }
         }
 

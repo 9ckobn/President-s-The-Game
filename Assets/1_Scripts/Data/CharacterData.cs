@@ -28,7 +28,6 @@ namespace Data
                 temporaryEffects = value;
             }
         }
-        public Building[] GetBuildings { get => myBuildings; }
 
         public CharacterData(List<AttributeData> attributes, Building[] buildings, bool isPlayer)
         {
@@ -39,7 +38,7 @@ namespace Data
             RedrawData();
         }
 
-        private Building GetBuilding(TypeAttribute typeBuilding)
+        public Building GetBuilding(TypeAttribute typeBuilding)
         {
             foreach (var building in myBuildings)
             {

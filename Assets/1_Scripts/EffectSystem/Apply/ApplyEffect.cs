@@ -16,7 +16,7 @@ namespace EffectSystem
 
         protected void ShowTargetBuildings(CharacterData characterData, Effect effect)
         {
-            if (BoxController.GetController<CharactersDataController>().GetIsPlayerNow)
+            if (isPlayer)
             {
                 targetAttributes = new List<TypeAttribute>();
 
@@ -38,9 +38,12 @@ namespace EffectSystem
 
         protected void HideTargetBuildings(CharacterData characterData)
         {
-            foreach (var target in targetAttributes)
+            if (isPlayer)
             {
-                characterData.HideTargetAttribute(target);
+                foreach (var target in targetAttributes)
+                {
+                    characterData.HideTargetAttribute(target);
+                }
             }
         }
 

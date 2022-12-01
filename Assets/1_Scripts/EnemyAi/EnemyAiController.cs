@@ -4,6 +4,7 @@ using Core;
 using Data;
 using EffectSystem;
 using Gameplay;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace EnemyAI
 
             if (selectedCard != null)
             {
-                UseCard();
+                Coroutines.StartRoutine(CoUseCard());
             }
             else
             {
@@ -75,30 +76,46 @@ namespace EnemyAI
             }
         }
 
-        private void UseCard()
+        private IEnumerator CoUseCard()
         {
+            yield return new WaitForSeconds(1f);
+
             selectedCard.AiUseCard();
         }
 
         public void SelectTarget(Effect effect)
         {
             CharacterData playerData = BoxController.GetController<CharactersDataController>().GetPlayerData;
-            TypeAttribute target;
-            int valueTarget;
+            TypeAttribute target = MainData.TYPE_BUILDINGS[0];
+            int valueTarget = playerData.GetValueAttribute(target) + playerData.GetValueDefend(target);
 
             for (int i = 0; i < MainData.TYPE_BUILDINGS.Length; i++)
             {
                 TypeAttribute attribute = MainData.TYPE_BUILDINGS[0];
-                if (i == 0)
+                if (i != 0)
                 {
-                    target = attribute;
-                    valueTarget = playerData.GetValueAttribute(attribute) + playerData.GetValueDefend(;
+                    if (playerData.GetValueAttribute(attribute) + playerData.GetValueDefend(attribute) < valueTarget)
+                    {
+                        break;
+                    }
                 }
-                else
-                {
 
-                }
+                target = attribute;
+                valueTarget = playerData.GetValueAttribute(attribute) + playerData.GetValueDefend(attribute);
             }
+
+            Coroutines.StartRoutine(CoSelectTarget(playerData.GetBuilding(target)));
+        }
+
+        private IEnumerator CoSelectTarget(Building building)
+        {
+            yield return new WaitForSeconds(1.5f);
+            building.EnableStateTarget();
+            building.OnMouseOver();
+
+            yield return new WaitForSeconds(1.5f);
+            building.OnMouseDown();
+            building.DisableStateTarget();
         }
     }
 }
