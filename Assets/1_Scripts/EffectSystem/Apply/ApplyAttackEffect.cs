@@ -1,8 +1,6 @@
 using Core;
 using Data;
 using Gameplay;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace EffectSystem
 {
@@ -35,7 +33,7 @@ namespace EffectSystem
             }
             else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
             {
-                ShowTargetBuildings(defendData);
+                ShowTargetBuildings(defendData, effect);
             }
         }
 

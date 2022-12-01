@@ -15,9 +15,9 @@ namespace EffectSystem
             effect = currentEffect as OtherEffect;
             characterData = BoxController.GetController<CharactersDataController>().GetCurrentCharacter;
 
-            if(effect.TypeOtherEffect == TypeOtherEffect.Loan)
+            if (effect.TypeOtherEffect == TypeOtherEffect.Loan)
             {
-                ShowTargetBuildings(characterData);
+                ShowTargetBuildings(characterData, effect);
             }
             else
             {

@@ -4,8 +4,10 @@ using Core;
 using DG.Tweening;
 using EffectSystem;
 using Gameplay;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Cards
 {
@@ -57,7 +59,7 @@ namespace Cards
         {
             bool playerCheck = false;
 
-            if((isPlayerCard && !isBlocked) ||(!isPlayerCard && isBlocked))
+            if ((isPlayerCard && !isBlocked) || (!isPlayerCard && isBlocked))
             {
                 playerCheck = true;
             }
@@ -74,32 +76,14 @@ namespace Cards
         {
             BoxController.GetController<CardsController>().SelectFightCard(this);
 
-            float scale = startScale;
-            Vector3 position = startPosition;
-
-            mySequence = DOTween.Sequence();
-
-            mySequence.AppendCallback(() =>
-            {
-                transform.DOScale(new Vector3(scale * SCALE_ANIM_VALUE, scale * SCALE_ANIM_VALUE, scale * SCALE_ANIM_VALUE), 0.15f);
-                transform.DOLocalMove(new Vector3(position.x, position.y + POS_Z, position.z + POS_Z), 0.3f);
-            });
+            IncreaseAnimation();
         }
 
         protected override void MouseExit()
         {
             BoxController.GetController<CardsController>().DeselectFightCard(this);
 
-            float scale = startScale;
-            Vector3 position = startPosition;
-
-            mySequence = DOTween.Sequence();
-
-            mySequence.AppendCallback(() =>
-            {
-                transform.DOScale(new Vector3(scale, scale, scale), 0.15f);
-                transform.DOLocalMove(new Vector3(position.x, position.y, position.z), 0.3f);
-            });
+            DecreaseAnimation();
         }
 
         protected override void UseCard()
@@ -161,6 +145,40 @@ namespace Cards
 
             Tween tween = transform.DORotate(unblockPosition, 0.7f);
             tween.Play();
+        }
+
+        private void IncreaseAnimation()
+        {
+            mySequence = DOTween.Sequence();
+
+            mySequence.AppendCallback(() =>
+            {
+                transform.DOScale(new Vector3(startScale * SCALE_ANIM_VALUE, startScale * SCALE_ANIM_VALUE, startScale * SCALE_ANIM_VALUE), 0.15f);
+                transform.DOLocalMove(new Vector3(startPosition.x, startPosition.y + POS_Z, startPosition.z + POS_Z), 0.3f);
+            });
+        }
+
+        private void DecreaseAnimation()
+        {
+            mySequence = DOTween.Sequence();
+
+            mySequence.AppendCallback(() =>
+            {
+                transform.DOScale(new Vector3(startScale, startScale, startScale), 0.15f);
+                transform.DOLocalMove(new Vector3(startPosition.x, startPosition.y, startPosition.z), 0.3f);
+            });
+        }
+
+        #endregion
+
+        #region ENEMY_AI
+
+        public void AiUseCard()
+        {
+            ChangeHighlight(true);
+            IncreaseAnimation();
+
+            BoxController.GetController<EffectsController>().ClickFightCard(this);
         }
 
         #endregion

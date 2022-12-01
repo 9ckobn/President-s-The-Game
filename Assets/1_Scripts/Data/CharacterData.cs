@@ -15,6 +15,7 @@ namespace Data
         private Building[] myBuildings;
 
         private List<Effect> temporaryEffects = new List<Effect>();
+
         public List<Effect> TemporaryEffects
         {
             get
@@ -27,6 +28,7 @@ namespace Data
                 temporaryEffects = value;
             }
         }
+        public Building[] GetBuildings { get => myBuildings; }
 
         public CharacterData(List<AttributeData> attributes, Building[] buildings, bool isPlayer)
         {

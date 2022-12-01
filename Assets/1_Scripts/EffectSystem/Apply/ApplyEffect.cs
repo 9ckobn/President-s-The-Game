@@ -1,5 +1,6 @@
 using Core;
 using Data;
+using EnemyAI;
 using Gameplay;
 using System.Collections.Generic;
 
@@ -13,18 +14,25 @@ namespace EffectSystem
         protected bool isPlayer;
         protected List<TypeAttribute> targetAttributes;
 
-        protected void ShowTargetBuildings(CharacterData characterData)
+        protected void ShowTargetBuildings(CharacterData characterData, Effect effect)
         {
-            targetAttributes = new List<TypeAttribute>();
-
-            targetAttributes.Add(TypeAttribute.Economic);
-            targetAttributes.Add(TypeAttribute.Food);
-            targetAttributes.Add(TypeAttribute.Medicine);
-            targetAttributes.Add(TypeAttribute.RawMaterials);
-
-            foreach (var target in targetAttributes)
+            if (BoxController.GetController<CharactersDataController>().GetIsPlayerNow)
             {
-                characterData.ShowTargetAttribute(target);
+                targetAttributes = new List<TypeAttribute>();
+
+                targetAttributes.Add(TypeAttribute.Economic);
+                targetAttributes.Add(TypeAttribute.Food);
+                targetAttributes.Add(TypeAttribute.Medicine);
+                targetAttributes.Add(TypeAttribute.RawMaterials);
+
+                foreach (var target in targetAttributes)
+                {
+                    characterData.ShowTargetAttribute(target);
+                }
+            }
+            else
+            {
+                BoxController.GetController<EnemyAiController>().SelectTarget(effect);
             }
         }
 
@@ -46,7 +54,7 @@ namespace EffectSystem
         }
 
         public abstract void StopApplyEffect();
-        protected abstract void Apply(Effect currentEffect);        
+        protected abstract void Apply(Effect currentEffect);
 
         protected void EndApply()
         {

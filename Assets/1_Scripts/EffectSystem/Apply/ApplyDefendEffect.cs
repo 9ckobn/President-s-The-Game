@@ -28,7 +28,7 @@ namespace EffectSystem
             }
             else if (effect.TypeSelectTarget == TypeSelectTarget.Player)
             {
-                ShowTargetBuildings(characterData);
+                ShowTargetBuildings(characterData, effect);
             }
         }
 

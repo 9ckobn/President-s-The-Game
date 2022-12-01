@@ -1,5 +1,8 @@
+using Buildings;
 using Cards;
 using Core;
+using Data;
+using EffectSystem;
 using Gameplay;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +23,10 @@ namespace EnemyAI
 
         private int countAttack = 0;
 
-        public override void OnStart()
-        {
-            myCards = BoxController.GetController<CardsController>().EnemyFightCards;
-        }
-
         public void StartRound()
         {
+            myCards = BoxController.GetController<CardsController>().EnemyFightCards;
+
             LogManager.Log("enemy start round");
             SelectCard();
 
@@ -36,7 +36,7 @@ namespace EnemyAI
             }
             else
             {
-                LogManager.Log("Not have selected card!");
+                LogManager.Log($"Not have selected card are selected targets!");
             }
         }
 
@@ -55,11 +55,6 @@ namespace EnemyAI
 
             foreach (var card in activeCards)
             {
-                if(selectedCard != null)
-                {
-                    return;
-                }
-
                 if (countAttack < MAX_ATTACK)
                 {
                     foreach (var priorityCard in priorityCards.AttackCardsPriority)
@@ -68,7 +63,7 @@ namespace EnemyAI
                         {
                             countAttack++;
                             selectedCard = card;
-                            break;
+                            return;
                         }
                     }
                 }
@@ -82,7 +77,28 @@ namespace EnemyAI
 
         private void UseCard()
         {
-            selectedCard.OnMouseEnter();
+            selectedCard.AiUseCard();
+        }
+
+        public void SelectTarget(Effect effect)
+        {
+            CharacterData playerData = BoxController.GetController<CharactersDataController>().GetPlayerData;
+            TypeAttribute target;
+            int valueTarget;
+
+            for (int i = 0; i < MainData.TYPE_BUILDINGS.Length; i++)
+            {
+                TypeAttribute attribute = MainData.TYPE_BUILDINGS[0];
+                if (i == 0)
+                {
+                    target = attribute;
+                    valueTarget = playerData.GetValueAttribute(attribute) + playerData.GetValueDefend(;
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }

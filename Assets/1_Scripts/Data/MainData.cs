@@ -1,3 +1,6 @@
+using EffectSystem;
+using System.Collections.Generic;
+
 namespace Data
 {
     public static class MainData
@@ -10,5 +13,7 @@ namespace Data
         public const float MULTIPLIER_BUFF = 0.5f;
         public const int MULTIPLIER_BUILDING = 4;
 
+        public static TypeAttribute[] TYPE_BUILDINGS = new TypeAttribute[4]
+        { TypeAttribute.Medicine, TypeAttribute.Economic, TypeAttribute.Food, TypeAttribute.RawMaterials };
     }
 }
