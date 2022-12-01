@@ -10,7 +10,7 @@ namespace Gameplay
     [CreateAssetMenu(fileName = "FightSceneController", menuName = "Controllers/Gameplay/FightSceneController")]
     public class FightSceneController : BaseController
     {
-        private const int MAX_USE_CARDS = 3;
+        private const int MAX_USE_CARDS = 1;
 
         private int countUseCards = 0;
 
@@ -18,7 +18,7 @@ namespace Gameplay
 
         public override void OnInitialize()
         {
-            IsTutorNow =  AppManager.Instance.IsTutorNow;
+            IsTutorNow = false;// AppManager.Instance.IsTutorNow;
         }
 
         public void StartGame()
@@ -34,8 +34,12 @@ namespace Gameplay
             }
             else
             {
-                UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.AddListener(SlickStartGame);
-                UIManager.ShowWindow<SelectBuffAttributeWindow>();
+                //UIManager.GetWindow<SelectBuffAttributeWindow>().OnClickStartGame.AddListener(SlickStartGame);
+                //UIManager.ShowWindow<SelectBuffAttributeWindow>();
+
+                // DELETE!!!!!!!!!!!!!!!!!!!!
+                UIManager.HideWindow<BlackoutWindow>();
+                BoxController.GetController<CardsController>().SetCanUseCard = true;
             }
         }
 

@@ -24,9 +24,11 @@ namespace Cards
 
             List<CardPresidentDataSerialize> serializePresidents = DataBaseManager.Instance.CardsPresidentsData;
 
-            if (BoxController.GetController<FightSceneController>().IsTutorNow)
-            {
-                SCRO_TutorialData tutorData = BoxController.GetController<TutorialController>().GetTutorialData;
+            // USE after create multiplayer logic
+
+            //if (BoxController.GetController<FightSceneController>().IsTutorNow)
+            //{
+            SCRO_TutorialData tutorData = BoxController.GetController<TutorialController>().GetTutorialData;
 
                 foreach (var president in tutorData.PlayerPresidentCards)
                 {
@@ -47,12 +49,13 @@ namespace Cards
                 {
                     idEnemyFightsCards.Add(fight.Id);
                 }
-            }
-            else
-            {
-                idPresidents = DataBaseManager.Instance.SelectedDeck.PresidentsId;
-                idFightsCards = DataBaseManager.Instance.SelectedDeck.FightsId;
-            }
+            //}
+            //else
+            //{
+
+                //idPresidents = DataBaseManager.Instance.SelectedDeck.PresidentsId;
+                //idFightsCards = DataBaseManager.Instance.SelectedDeck.FightsId;
+            //}
 
 
             foreach (var idPresident in idPresidents)

@@ -2,6 +2,7 @@ using Cards;
 using Core;
 using Gameplay;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EnemyAI
