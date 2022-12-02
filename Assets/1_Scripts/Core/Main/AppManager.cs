@@ -22,7 +22,7 @@ namespace Core
         [BoxGroup("Moralis")]
         [SerializeField] private GameObject qrObject, buttonObject;
 
-        public bool IsTutorNow { get; private set; }
+        public bool IsTutorNow { get; set; }
 
         #region START_APP
 

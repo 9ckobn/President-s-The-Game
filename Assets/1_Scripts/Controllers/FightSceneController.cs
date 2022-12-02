@@ -18,7 +18,7 @@ namespace Gameplay
 
         public override void OnInitialize()
         {
-            IsTutorNow = false;// AppManager.Instance.IsTutorNow;
+            IsTutorNow = false;//AppManager.Instance.IsTutorNow;
         }
 
         public void StartGame()
@@ -95,6 +95,23 @@ namespace Gameplay
                 BoxController.GetController<CardsController>().SetCanUseCard = false;
                 BoxController.GetController<EnemyAiController>().StartRound();
             }
+        }
+
+        public void PlayerLoseGame()
+        {
+            UIManager.GetWindow<EndGameWindow>().SetData("Your lose!");
+        }
+
+        public void EnemyLoseGame()
+        {
+            UIManager.GetWindow<EndGameWindow>().SetData("Your win!");
+        }
+
+        public void RestartGame()
+        {
+            AppManager.Instance.IsTutorNow = false;
+
+            LoadSceneManager.Instance.LoadFightScene();
         }
     }
 }

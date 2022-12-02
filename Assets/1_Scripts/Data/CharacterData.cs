@@ -1,6 +1,7 @@
 using Buildings;
 using Core;
 using EffectSystem;
+using Gameplay;
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
@@ -149,7 +150,14 @@ namespace Data
         {
             if (GetAttribute(TypeAttribute.Morality).Value <= 0)
             {
-                LogManager.LogError($"Character DEATH. Need logic death!");
+                if (isPlayer)
+                {
+                    BoxController.GetController<FightSceneController>().PlayerLoseGame();
+                }
+                else
+                {
+                    BoxController.GetController<FightSceneController>().EnemyLoseGame();
+                }
             }
         }
 
