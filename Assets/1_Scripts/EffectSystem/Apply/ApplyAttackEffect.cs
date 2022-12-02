@@ -165,8 +165,6 @@ namespace EffectSystem
             {
                 if (effect.TypeOtherEffect == TypeOtherEffect.VampirismAfterAttack)
                 {
-                    Debug.Log($"ID vampirism effect = {effect.Id}");
-
                     int value = (int)(damage / 100f * effect.ProcentAttack);
                     attackData.UpAttribute(effect.UpAttribute, value);
                 }
