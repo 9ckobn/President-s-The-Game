@@ -1,6 +1,7 @@
 using Core;
 using Data;
 using Gameplay;
+using UnityEngine;
 
 namespace EffectSystem
 {
@@ -162,8 +163,13 @@ namespace EffectSystem
         {
             foreach (var effect in attackData.GetOtherEffects())
             {
-                int value = (int)(damage / 100f * effect.ProcentAttack);
-                attackData.UpAttribute(effect.UpAttribute, value);
+                if (effect.TypeOtherEffect == TypeOtherEffect.VampirismAfterAttack)
+                {
+                    Debug.Log($"ID vampirism effect = {effect.Id}");
+
+                    int value = (int)(damage / 100f * effect.ProcentAttack);
+                    attackData.UpAttribute(effect.UpAttribute, value);
+                }
             }
         }
     }

@@ -184,8 +184,6 @@ namespace EnemyAI
                 }
             }
 
-            Debug.Log($"stategic lion - target = {target}");
-
             Coroutines.StartRoutine(CoUseCard(characterData.GetBuilding(target)));
         }
 
@@ -209,7 +207,7 @@ namespace EnemyAI
             building.EnableStateTarget();
             building.OnMouseOver();
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             building.OnMouseDown();
             building.DisableStateTarget();
         }
