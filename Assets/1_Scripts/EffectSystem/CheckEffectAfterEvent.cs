@@ -74,7 +74,6 @@ namespace EffectSystem
 
         private void RemoveEffect(Effect effect)
         {
-            Debug.Log($"remove effect {effect.Id}");
             activeEffects.Remove(effect);
             cancelEffect.Cancel(currentCharacterData, effect);
         }

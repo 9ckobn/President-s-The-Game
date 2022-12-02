@@ -74,6 +74,14 @@ namespace Gameplay
             }
         }
 
+        public void EnemyAiSkipRound()
+        {
+            LogManager.Log($"Not have selected card. Ai skip round!");
+
+            countUseCards = 3;
+            AddCountUseCards();
+        }
+
         private void NewRound()
         {
             bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;

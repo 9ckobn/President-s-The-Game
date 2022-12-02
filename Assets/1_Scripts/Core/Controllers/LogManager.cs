@@ -35,6 +35,8 @@ namespace Core
         {
             if (instance.isNeedLog)
             {
+                Debug.Log($"<color=red>ERROR {error}</color>");
+
                 instance.logWindow.LogError(error);
             }
         }

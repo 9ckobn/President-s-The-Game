@@ -45,7 +45,7 @@ namespace EnemyAI
             }
             else
             {
-                LogManager.Log($"Not have selected card are selected targets!");
+                BoxController.GetController<FightSceneController>().EnemyAiSkipRound();
             }
         }
 
@@ -117,7 +117,14 @@ namespace EnemyAI
                 }
             }
 
-            selectedCard = activeCards[Random.Range(0, activeCards.Count - 1)];
+            if (activeCards.Count == 0)
+            {
+                selectedCard = myCards.FirstOrDefault(card => card.CheckCanUseCard());
+            }
+            else
+            {
+                selectedCard = activeCards[Random.Range(0, activeCards.Count - 1)];
+            }
         }
 
         private IEnumerator CoUseCard()
@@ -141,22 +148,43 @@ namespace EnemyAI
             }
 
             TypeAttribute target = MainData.TYPE_BUILDINGS[0];
-            int valueTarget = characterData.GetValueAttribute(target) + characterData.GetValueDefend(target);
 
-            for (int i = 0; i < MainData.TYPE_BUILDINGS.Length; i++)
+            if (effect is AttackEffect)
             {
-                TypeAttribute attribute = MainData.TYPE_BUILDINGS[i];
-                if (i != 0)
+                int valueTarget = characterData.GetValueAttribute(target) + characterData.GetValueDefend(target);
+
+                for (int i = 1; i < MainData.TYPE_BUILDINGS.Length; i++)
                 {
+                    TypeAttribute attribute = MainData.TYPE_BUILDINGS[i];
+
                     if (characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute) < valueTarget)
                     {
                         break;
                     }
-                }
 
-                target = attribute;
-                valueTarget = characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute);
+                    target = attribute;
+                    valueTarget = characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute);
+                }
             }
+            else if (effect is OtherEffect && (effect as OtherEffect).TypeOtherEffect == TypeOtherEffect.Loan)
+            {
+                int valueDifference = characterData.GetStartValueAttribute(target) - characterData.GetValueAttribute(target);
+
+                for (int i = 1; i < MainData.TYPE_BUILDINGS.Length; i++)
+                {
+                    TypeAttribute attribute = MainData.TYPE_BUILDINGS[i];
+
+                    if (valueDifference > characterData.GetStartValueAttribute(attribute) - characterData.GetValueAttribute(attribute))
+                    {
+                        break;
+                    }
+
+                    target = attribute;
+                    valueDifference = characterData.GetStartValueAttribute(target) - characterData.GetValueAttribute(target);
+                }
+            }
+
+            Debug.Log($"stategic lion - target = {target}");
 
             Coroutines.StartRoutine(CoUseCard(characterData.GetBuilding(target)));
         }
@@ -167,10 +195,8 @@ namespace EnemyAI
 
             foreach (var typeBuilding in MainData.TYPE_BUILDINGS)
             {
-                if(characterData.GetStartValueAttribute(typeBuilding) * VALUE_USE_HEALTH > characterData.GetValueAttribute(typeBuilding))
+                if (characterData.GetStartValueAttribute(typeBuilding) * VALUE_USE_HEALTH > characterData.GetValueAttribute(typeBuilding))
                 {
-                    Debug.Log($"type = {typeBuilding} 1 = {characterData.GetStartValueAttribute(typeBuilding) * VALUE_USE_HEALTH} 2 = {characterData.GetValueAttribute(typeBuilding)}");
-
                     return true;
                 }
             }

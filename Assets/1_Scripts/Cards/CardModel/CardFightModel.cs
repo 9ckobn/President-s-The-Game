@@ -131,6 +131,8 @@ namespace Cards
         public void BlockCard(bool needRotate = false)
         {
             isBlocked = true;
+            isUse = false;
+            isSelected = false;
 
             if (needRotate)
             {
