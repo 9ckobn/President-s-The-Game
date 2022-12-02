@@ -7,6 +7,7 @@ namespace Data
     public class AttributeData
     {
         public TypeAttribute TypeAttribute { get; private set; }
+        public int StartValue { get; private set; }
         public int Value { get; private set; }
 
         public bool IsHaveDefend { get; private set; }
@@ -21,6 +22,7 @@ namespace Data
         {
             TypeAttribute = type;
             Value = value;
+            StartValue = value;
             IsHaveDefend = false;
             IsGodDefend = false;
             ValueDefend = 0;

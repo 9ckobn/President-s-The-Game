@@ -14,6 +14,7 @@ namespace EnemyAI
     [CreateAssetMenu(fileName = "EnemyAiController", menuName = "Controllers/Gameplay/EnemyAiController")]
     public class EnemyAiController : BaseController
     {
+        private const float VALUE_USE_HEALTH = 0.7f;
         private const int MAX_ATTACK = 2;
 
         [SerializeField] private SCRO_PriorityCardAi priorityCards;
@@ -61,6 +62,8 @@ namespace EnemyAI
                 }
             }
 
+
+            // Check use fight card
             foreach (var card in activeCards)
             {
                 if (countAttack < MAX_ATTACK)
@@ -75,38 +78,46 @@ namespace EnemyAI
                         }
                     }
                 }
-                else
+
+            }
+
+
+            // Use health card
+            if (CheckNeedUseHealth())
+            {
+                selectedCard = activeCards.FirstOrDefault(card => card.GetId == priorityCards.HealthCardsPriority[0].Id);
+
+                if (selectedCard != null)
                 {
-                    activeCards = new List<CardFightModel>();
-
-                    foreach (var checkCard in myCards)
-                    {
-                        bool needAdd = true;
-                        foreach (var priorityCard in priorityCards.AttackCardsPriority)
-                        {
-                            if (checkCard.GetId == priorityCard.Id)
-                            {
-                                needAdd = false;
-                                break;
-                            }
-                        }
-
-                        if (needAdd)
-                        {
-                            activeCards.Add(checkCard);
-                        }
-                    }
-
-                    // TODO: Check need use Strategic Loan 
-
-                    foreach (var priorityCard in priorityCards.HealthCardsPriority)
-                    {
-                        activeCards.Remove(activeCards.FirstOrDefault(card => card.GetId == priorityCard.Id));
-                    }
-
-                    selectedCard = activeCards[Random.Range(0, activeCards.Count - 1)];
+                    return;
                 }
             }
+
+
+            // Use any card except attck and health cards
+            activeCards = new List<CardFightModel>();
+
+            List<string> exceptionId = new List<string>();
+
+            foreach (var attackCard in priorityCards.AttackCardsPriority)
+            {
+                exceptionId.Add(attackCard.Id);
+            }
+
+            foreach (var healthCard in priorityCards.HealthCardsPriority)
+            {
+                exceptionId.Add(healthCard.Id);
+            }
+
+            foreach (var card in myCards)
+            {
+                if (card.CheckCanUseCard() && !exceptionId.Contains(card.GetId))
+                {
+                    activeCards.Add(card);
+                }
+            }
+
+            selectedCard = activeCards[Random.Range(0, activeCards.Count - 1)];
         }
 
         private IEnumerator CoUseCard()
@@ -126,8 +137,6 @@ namespace EnemyAI
             }
             else if (effect is OtherEffect)
             {
-                Debug.Log($"OtherEffect select target");
-
                 characterData = BoxController.GetController<CharactersDataController>().GetEnemyData;
             }
 
@@ -150,6 +159,23 @@ namespace EnemyAI
             }
 
             Coroutines.StartRoutine(CoUseCard(characterData.GetBuilding(target)));
+        }
+
+        private bool CheckNeedUseHealth()
+        {
+            CharacterData characterData = BoxController.GetController<CharactersDataController>().GetEnemyData;
+
+            foreach (var typeBuilding in MainData.TYPE_BUILDINGS)
+            {
+                if(characterData.GetStartValueAttribute(typeBuilding) * VALUE_USE_HEALTH > characterData.GetValueAttribute(typeBuilding))
+                {
+                    Debug.Log($"type = {typeBuilding} 1 = {characterData.GetStartValueAttribute(typeBuilding) * VALUE_USE_HEALTH} 2 = {characterData.GetValueAttribute(typeBuilding)}");
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private IEnumerator CoUseCard(Building building)

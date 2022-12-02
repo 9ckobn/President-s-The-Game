@@ -99,6 +99,11 @@ namespace Data
             return GetAttribute(type).Value;
         }
 
+        public int GetStartValueAttribute(TypeAttribute type)
+        {
+            return GetAttribute(type).StartValue;
+        }
+
         public int GetValueDefend(TypeAttribute type)
         {
             return GetAttribute(type).ValueDefend;

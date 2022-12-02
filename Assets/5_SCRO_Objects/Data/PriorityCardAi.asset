@@ -15,3 +15,5 @@ MonoBehaviour:
   AttackCardsPriority:
   - {fileID: 11400000, guid: b5223cbb11c859f45af79328e6ebcdb9, type: 2}
   - {fileID: 11400000, guid: 483c8b3e9fef6dd4fa921529cf6f529d, type: 2}
+  HealthCardsPriority:
+  - {fileID: 11400000, guid: 14232931eae1bf34d8f583c0172dcf3f, type: 2}
