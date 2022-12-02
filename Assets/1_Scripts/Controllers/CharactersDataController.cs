@@ -73,7 +73,7 @@ namespace Gameplay
             int medicine = (defend + diplomatic) * MainData.MULTIPLIER_BUILDING + buffController.GetBuffValue(TypeAttribute.Medicine);
             int[] statesMedicine = new int[3] { medicine - medicine / 4, medicine / 3, 0 };
 
-            int morality = 10;//economic + food + rawMaterials + medicine;
+            int morality = 100;//economic + food + rawMaterials + medicine;
 
             attributes.Add(new AttributeData(TypeAttribute.Attack, attack));
             attributes.Add(new AttributeData(TypeAttribute.Defend, defend));
