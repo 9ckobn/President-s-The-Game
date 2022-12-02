@@ -149,6 +149,16 @@ namespace Cards
             tween.Play();
         }
 
+        public void ShowHighlightRandom(bool luck)
+        {
+            (view as CardFightView).ShowHighlightRandom(luck);
+        }
+
+        public void HideHighlightRandom()
+        {
+            (view as CardFightView).HideHighlight();
+        }
+
         private void IncreaseAnimation()
         {
             mySequence = DOTween.Sequence();

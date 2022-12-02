@@ -1,5 +1,6 @@
 using Core;
 using Gameplay;
+using System.Collections;
 using UnityEngine;
 
 namespace EffectSystem
@@ -21,7 +22,9 @@ namespace EffectSystem
                 chanceValue += characterData.GetValueAttribute(effect.TypeAttribute);
             }
 
-            if (BoxController.GetController<RandomController>().CountRandom(chanceValue))
+            bool luck = BoxController.GetController<RandomController>().CountRandom(chanceValue);
+
+            if (luck)
             {
                 int procent = (int)(characterData.GetValueAttribute(effect.TypeWinAttribute) / 100f * effect.WinProcent);
 
@@ -34,7 +37,17 @@ namespace EffectSystem
                 characterData.DownAttribute(effect.TypeLoseAttribute, procent);
             }
 
+            Coroutines.StartRoutine(CoShowRandom(luck));
+        }
+
+        private IEnumerator CoShowRandom(bool luck)
+        {
+            BoxController.GetController<CardsController>().GetSelectedCard.ShowHighlightRandom(luck);
+            yield return new WaitForSeconds(1.5f);
+            BoxController.GetController<CardsController>().GetSelectedCard.HideHighlightRandom();
+
             EndApply();
+
         }
 
         public override void StopApplyEffect()

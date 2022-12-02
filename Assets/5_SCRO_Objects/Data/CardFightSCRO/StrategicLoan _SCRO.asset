@@ -24,4 +24,4 @@ MonoBehaviour:
   MaxCountInDeck: 2
   Effects:
   - {fileID: 11400000, guid: cef6e72a8f1516244b60971c43b60f98, type: 2}
-  Reloading: 3
+  Reloading: 2

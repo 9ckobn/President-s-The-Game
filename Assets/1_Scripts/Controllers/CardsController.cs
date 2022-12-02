@@ -28,6 +28,7 @@ namespace Gameplay
         private bool canUseCard = false;
         public bool CanSelectedCard { get => canUseCard && useFightCard == null; }
         public bool SetCanUseCard { set => canUseCard = value; }
+        public CardFightModel GetSelectedCard { get => selectedFightCard; }
 
         public void CreateCards()
         {

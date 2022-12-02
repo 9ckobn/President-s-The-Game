@@ -36,7 +36,7 @@ namespace EffectSystem
                 messageText += $"<color=red>Рандом не сработал</color>\n";
             }
 
-            UIManager.GetWindow<InfoWindow>().ShowText(messageText);
+            //UIManager.GetWindow<InfoWindow>().ShowText(messageText);
 
             return lucky;
         }

@@ -18,7 +18,7 @@ namespace Gameplay
 
         public override void OnInitialize()
         {
-            IsTutorNow = AppManager.Instance.IsTutorNow;
+            IsTutorNow = false;// AppManager.Instance.IsTutorNow;
         }
 
         public void StartGame()
