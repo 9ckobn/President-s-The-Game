@@ -116,7 +116,7 @@ namespace Buildings
         {
             if (numberState >= modelStates.Length)
             {
-                LogManager.LogError($"Number state building > count models!");
+                //LogManager.LogError($"Number state building > count models!");
             }
             else
             {

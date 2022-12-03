@@ -85,17 +85,17 @@ namespace Core
             CardsPresidentsData = new List<CardPresidentDataSerialize>();
             DecksData = new List<DeckData>();
 
-            if (isUseMoralis)
-            {
+            //if (isUseMoralis)
+            //{
                 // TODO: Get id presidents card data from base Moralis
 
                 // TODO: Get deka data from base Moralis
 
                 // TODO: Get id fight cards from server
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 // Load data from json
 
                 try
@@ -143,7 +143,7 @@ namespace Core
                 {
                     Debug.Log($"Error load file save - {ex}");
                 }
-            }
+            //}
 
             OnInit?.Invoke();
         }

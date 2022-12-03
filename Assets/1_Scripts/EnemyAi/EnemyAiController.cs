@@ -40,7 +40,6 @@ namespace EnemyAI
 
             if (selectedCard != null)
             {
-                Debug.Log($"selectedCard = {selectedCard.GetId}");
                 Coroutines.StartRoutine(CoUseCard());
             }
             else
