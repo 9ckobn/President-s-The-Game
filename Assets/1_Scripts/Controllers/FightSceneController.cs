@@ -23,6 +23,8 @@ namespace Gameplay
 
         public void StartGame()
         {
+            Debug.Log($"DEBUG Start fight scene controller");
+
             bool isPlayer = BoxController.GetController<CharactersDataController>().GetIsPlayerNow;
 
             BoxController.GetController<CardsController>().CreateCards();
