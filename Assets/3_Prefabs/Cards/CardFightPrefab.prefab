@@ -90,7 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startScale: 0.45
   parentModel: {fileID: 315088790040291171}
-  highlight: {fileID: 5112559404141285417}
 --- !u!114 &450274328717428919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +108,7 @@ MonoBehaviour:
   highlightRandomImage: {fileID: 8807986114755483169}
   greenHighlightSprite: {fileID: 21300000, guid: b53601ebe72a5e84bb62698dc785fa1a, type: 3}
   redHighlightSprite: {fileID: 21300000, guid: ef5f6c7121e6c9c4cb1bcae3803d093e, type: 3}
+  whiteHighlightSprite: {fileID: 21300000, guid: c9ce21dbccc18d34b897f67fef5f5890, type: 3}
 --- !u!65 &1139406022201793000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4025880977613824922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4025880978271401686}
@@ -290,8 +290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -97}
-  m_SizeDelta: {x: 25, y: 25}
+  m_AnchoredPosition: {x: 2, y: -99}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4025880977613824925
 CanvasRenderer:
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.55
+  m_fontSize: 16.25
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -729,11 +729,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b117cb41d8a1b684697ca3a8fdb0cdd8, type: 3}
---- !u!1 &5112559404141285417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8916911343516626073, guid: b117cb41d8a1b684697ca3a8fdb0cdd8, type: 3}
-  m_PrefabInstance: {fileID: 4416991299573988528}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5112559404141285416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8916911343516626072, guid: b117cb41d8a1b684697ca3a8fdb0cdd8, type: 3}

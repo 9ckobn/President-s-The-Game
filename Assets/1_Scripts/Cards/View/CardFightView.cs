@@ -14,13 +14,19 @@ namespace Cards.View
         [BoxGroup("Highlight image")]
         [SerializeField] private Image highlightRandomImage;
         [BoxGroup("Highlight image")]
-        [SerializeField] private Sprite greenHighlightSprite, redHighlightSprite;
+        [SerializeField] private Sprite greenHighlightSprite, redHighlightSprite, whiteHighlightSprite;
 
         public void SetData(CardFightData data)
         {
             nameText.text = data.Name;
             descriptionText.text = data.Description;
             costText.text = data.Cost.ToString();
+        }
+
+        public void ShowWhiteHighlight()
+        {
+            highlightRandomImage.sprite = whiteHighlightSprite;
+            highlightRandomImage.gameObject.SetActive(true);
         }
 
         public void ShowHighlightRandom(bool luck)

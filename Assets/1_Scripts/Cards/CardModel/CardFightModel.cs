@@ -100,6 +100,18 @@ namespace Cards
 
         #region CHANGE_STATE
 
+        public override void ChangeHighlight(bool isActive)
+        {
+            if (isActive)
+            {
+                (view as CardFightView).ShowWhiteHighlight();
+            }
+            else
+            {
+                (view as CardFightView).HideHighlight();
+            }
+        }
+
         public void EndUseCard()
         {
             MouseExit();

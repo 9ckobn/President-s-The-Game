@@ -11,8 +11,6 @@ namespace Cards
         [SerializeField] protected float startScale = 1f;
         [BoxGroup("Parent model")]
         [SerializeField] private GameObject parentModel;
-        [BoxGroup("Highlight")]
-        [SerializeField] private GameObject highlight;
 
         protected GameObject model;
         protected bool isSelected = false, isUse;
@@ -83,10 +81,7 @@ namespace Cards
             isUse = false;
         }
 
-        public void ChangeHighlight(bool isActive)
-        {
-            highlight.gameObject.SetActive(isActive);
-        }
+        public virtual void ChangeHighlight(bool isActive) { }
 
         protected virtual bool CheckMouseEnter()
         {
