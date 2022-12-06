@@ -1,0 +1,15 @@
+{
+	"id": "2",
+	"name": "N.B.",
+	"rarityrank": "13474",
+	"image": "https://nft.raritygram.io/presedents/2.png",
+	"attack": "11,36",
+	"defend": "10,44",
+	"luck": "10",
+	"economy": "false",
+	"health_care": "false",
+	"raw_materials": "true",
+	"food": "true",
+	"diplomatic": "10,013",
+	"climate_zone": "equatarial"
+}

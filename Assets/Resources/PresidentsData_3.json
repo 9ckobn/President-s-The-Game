@@ -1,0 +1,15 @@
+{
+	"id": "3",
+	"name": "A.II.",
+	"rarityrank": "639",
+	"image": "https://nft.raritygram.io/presedents/3.png",
+	"attack": "13,86",
+	"defend": "10,56",
+	"luck": "11,43",
+	"diplomatic": "10,013",
+	"economy": "true",
+	"health_care": "false",
+	"raw_materials": "false",
+	"food": "true",
+	"climate_zone": "temperate"
+}

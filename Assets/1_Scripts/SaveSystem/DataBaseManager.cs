@@ -70,13 +70,11 @@ namespace Core
 
         public void Initialize()
         {
-            StartCoroutine(LoadDataFromServer());
+            LoadDataFromServer();
         }
 
-        private IEnumerator LoadDataFromServer()
+        private void LoadDataFromServer()
         {
-            Debug.Log($"DEBUG load data");
-
             List<string> idPresidents = new List<string>();
             CardsPresidentsData = new List<CardPresidentDataSerialize>();
             DecksData = new List<DeckData>();
@@ -126,52 +124,43 @@ namespace Core
                 idPresidents.Add(i.ToString());
             }
 
-            Debug.Log($"DEBUG before for");
-
             // Get data presidents from base
-            //using (var httpClient = new HttpClient())
+
+            //for (int i = 0; i < idPresidents.Count; i++)
             //{
-            //    for (int i = 0; i < idPresidents.Count; i++)
+            //    Debug.Log($"DEBUG before http {i}");
+            //    string path = PATH_PRESIDENTS + idPresidents[i];
+
+            //    var request = UnityWebRequest.Get(path);
+
+            //    yield return request.SendWebRequest();
+            //    Debug.Log($"DEBUG after http {i}");
+
+            //    if (request.result == UnityWebRequest.Result.ConnectionError)
             //    {
-            //        Debug.Log($"DEBUG before http {i}");
+            //        LogManager.LogError($"{request.result}");
+            //    }
 
-            //        var json = httpClient.GetStringAsync(PATH_PRESIDENTS + idPresidents[i]);
+            //    if (request.result == UnityWebRequest.Result.ProtocolError)
+            //    {
+            //        LogManager.LogError($"Protocol error!");
+            //    }
 
-            //        CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(json.ToString());
+            //    if (request.result == UnityWebRequest.Result.Success)
+            //    {
+            //        Debug.Log($"url = {request.downloadHandler.text}");
+
+            //        CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(request.downloadHandler.text);
             //        CardsPresidentsData.Add(cardData);
-
-            //        Debug.Log($"DEBUG after http {i}");
-
             //    }
             //}
 
-            for (int i = 0; i < idPresidents.Count; i++)
+            for (int i = 1; i < 7; i++)
             {
-                Debug.Log($"DEBUG before http {i}");
-                string path = PATH_PRESIDENTS + idPresidents[i];
+                string jsonFile = Resources.Load("PresidentsData_" + i).ToString();
+                CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(jsonFile);
 
-                var request = UnityWebRequest.Get(path);
-
-                yield return request.SendWebRequest();
-                Debug.Log($"DEBUG after http {i}");
-
-                if (request.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    LogManager.LogError($"Connection error! path = {path}");
-                }
-
-                if (request.result == UnityWebRequest.Result.ProtocolError)
-                {
-                    LogManager.LogError($"Protocol error!");
-                }
-
-                if (request.result == UnityWebRequest.Result.Success)
-                {
-                    Debug.Log($"url = {request.downloadHandler.text}");
-
-                    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(request.downloadHandler.text);
-                    CardsPresidentsData.Add(cardData);
-                }
+                CardsPresidentsData.Add(cardData);
             }
 
             //}

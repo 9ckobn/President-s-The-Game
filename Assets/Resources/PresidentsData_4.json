@@ -1,0 +1,15 @@
+{
+	"id": "4",
+	"name": "W.C.",
+	"rarityrank": "7",
+	"image": "https://nft.raritygram.io/presedents/4.png",
+	"attack": "11,49",
+	"defend": "11,97",
+	"luck": "10",
+	"diplomatic": "10,013",
+	"economy": "false",
+	"health_care": "true",
+	"raw_materials": "true",
+	"food": "false",
+	"climate_zone": "equatarial"
+}

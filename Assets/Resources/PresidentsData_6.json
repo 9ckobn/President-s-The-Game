@@ -1,0 +1,15 @@
+{
+	"id": "6",
+	"name": "J.B.",
+	"rarityrank": "365",
+	"image": "https://nft.raritygram.io/presedents/6.png",
+	"attack": "11,86",
+	"defend": "12,44",
+	"luck": "10",
+	"diplomatic": "10,013",
+	"economy": "true",
+	"health_care": "false",
+	"raw_materials": "true",
+	"food": "false",
+	"climate_zone": "tropical"
+}

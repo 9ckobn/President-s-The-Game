@@ -1,0 +1,15 @@
+{
+	"id": "5",
+	"name": "E.M.",
+	"rarityrank": "1138",
+	"image": "https://nft.raritygram.io/presedents/5.png",
+	"attack": "18,98",
+	"defend": "10,76",
+	"luck": "10",
+	"diplomatic": "10,013",
+	"economy": "false",
+	"health_care": "true",
+	"raw_materials": "false",
+	"food": "true",
+	"climate_zone": "temperate"
+}

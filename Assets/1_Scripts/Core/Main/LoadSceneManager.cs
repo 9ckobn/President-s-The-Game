@@ -20,8 +20,6 @@ namespace Core
 
         private IEnumerator CoLoadScene(int numberScene)
         {
-            Debug.Log($"DEBUG Start load scene {numberScene}");
-
             loadCanvas.SetActive(true);
 
             AsyncOperation loadScene = SceneManager.LoadSceneAsync(numberScene);
@@ -32,8 +30,6 @@ namespace Core
             }
 
             loadCanvas.SetActive(false);
-
-            Debug.Log($"DEBUG End load scene");
 
             StarterScene.instance.StartScene();
         }

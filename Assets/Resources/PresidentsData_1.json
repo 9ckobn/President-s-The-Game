@@ -1,0 +1,15 @@
+{
+	"id": "1",
+	"name": "B.O.",
+	"rarityrank": "1156",
+	"image": "https://nft.raritygram.io/presedents/1.png",
+	"attack": "11,99",
+	"defend": "14,98",
+	"luck": "11,89",
+	"diplomatic": "10,187",
+	"economy": "true",
+	"health_care": "true",
+	"raw_materials": "false",
+	"food": "false",
+	"climate_zone": "temperate"
+}
