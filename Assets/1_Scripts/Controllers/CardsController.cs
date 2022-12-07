@@ -196,7 +196,7 @@ namespace Gameplay
                 {
                     if (card.GetValueCost < dataMy.GetValueAttribute(typeCost))
                     {
-                        canPay = false;
+                        canPay = true;
                     }
                 }
 
@@ -212,6 +212,11 @@ namespace Gameplay
                             }
                             else if (effect is BuffEffect)
                             {
+                                if((effect as BuffEffect).TypeBuff == TypeBuff.UpAttack)
+                                {
+                                    canUse = true;
+                                }
+
                                 CheckCanUse((effect as BuffEffect).TypesTargetObjects, dataMy);
                             }
                             else if (effect is DefendEffect)
@@ -228,7 +233,18 @@ namespace Gameplay
                                         CheckCanUse((otherEffect).TypeAttributesAfterLoan, dataEnemy);
                                     }
                                 }
+                                else if (otherEffect.TypeOtherEffect == TypeOtherEffect.VampirismAfterAttack)
+                                {
+                                    canUse = true;
+                                }
                             }
+                            else
+                            {
+                                canUse = true;
+                            }
+                        }else
+                        {
+                            canUse = true;
                         }
                     }
                 }
@@ -244,11 +260,6 @@ namespace Gameplay
                     }
 
                     return false;
-                }
-
-                if (!canUse)
-                {
-                    Debug.Log($"<color=red>Block card {card.GetId}</color>");
                 }
 
                 card.SetCanUseCard = canUse;

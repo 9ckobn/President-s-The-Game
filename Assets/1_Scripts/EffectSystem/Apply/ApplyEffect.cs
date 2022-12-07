@@ -27,7 +27,10 @@ namespace EffectSystem
 
                 foreach (var target in targetAttributes)
                 {
-                    characterData.ShowTargetAttribute(target);
+                    if (characterData.GetIsActiveAttribute(target))
+                    {
+                        characterData.ShowTargetAttribute(target);
+                    }
                 }
             }
             else

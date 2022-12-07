@@ -14,7 +14,7 @@ namespace Cards.View
         [BoxGroup("Highlight image")]
         [SerializeField] private Image highlightRandomImage;
         [BoxGroup("Highlight image")]
-        [SerializeField] private Sprite greenHighlightSprite, redHighlightSprite, whiteHighlightSprite;
+        [SerializeField] private Sprite greenHighlightSprite, redHighlightSprite, whiteHighlightSprite, blackHighlightSprite;
 
         public void SetData(CardFightData data)
         {
@@ -26,6 +26,12 @@ namespace Cards.View
         public void ShowWhiteHighlight()
         {
             highlightRandomImage.sprite = whiteHighlightSprite;
+            highlightRandomImage.gameObject.SetActive(true);
+        }
+
+        public void ShowBlackHighlight()
+        {
+            highlightRandomImage.sprite = blackHighlightSprite;
             highlightRandomImage.gameObject.SetActive(true);
         }
 

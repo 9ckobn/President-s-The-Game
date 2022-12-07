@@ -61,6 +61,16 @@ namespace EnemyAI
                 }
             }
 
+            int blockCards = 0;
+            foreach (var card in myCards)
+            {
+                if (!card.GetCanUseCard)
+                {
+                    blockCards++;
+                }
+            }
+            Debug.Log($"blockCards = {blockCards}");
+
 
             // Check use fight card
             foreach (var card in activeCards)
@@ -145,44 +155,65 @@ namespace EnemyAI
                 characterData = BoxController.GetController<CharactersDataController>().GetEnemyData;
             }
 
-            TypeAttribute target = MainData.TYPE_BUILDINGS[0];
+            TypeAttribute target = TypeAttribute.All;
 
             if (effect is AttackEffect)
             {
-                int valueTarget = characterData.GetValueAttribute(target) + characterData.GetValueDefend(target);
+                int valueTarget = -1;
 
                 for (int i = 1; i < MainData.TYPE_BUILDINGS.Length; i++)
                 {
                     TypeAttribute attribute = MainData.TYPE_BUILDINGS[i];
 
-                    if (characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute) < valueTarget)
+                    if (characterData.GetIsActiveAttribute(attribute))
                     {
-                        break;
-                    }
+                        if (valueTarget != -1)
+                        {
+                            if (characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute) < valueTarget)
+                            {
+                                break;
+                            }
+                        }
 
-                    target = attribute;
-                    valueTarget = characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute);
+                        target = attribute;
+                        valueTarget = characterData.GetValueAttribute(attribute) + characterData.GetValueDefend(attribute);
+                    }
                 }
             }
             else if (effect is OtherEffect && (effect as OtherEffect).TypeOtherEffect == TypeOtherEffect.Loan)
             {
-                int valueDifference = characterData.GetStartValueAttribute(target) - characterData.GetValueAttribute(target);
+                int valueDifference = -1;
 
-                for (int i = 1; i < MainData.TYPE_BUILDINGS.Length; i++)
+                for (int i = 0; i < MainData.TYPE_BUILDINGS.Length; i++)
                 {
                     TypeAttribute attribute = MainData.TYPE_BUILDINGS[i];
 
-                    if (valueDifference > characterData.GetStartValueAttribute(attribute) - characterData.GetValueAttribute(attribute))
+                    if (characterData.GetIsActiveAttribute(attribute))
                     {
-                        break;
-                    }
+                        if (valueDifference != -1)
+                        {
+                            if (valueDifference > characterData.GetStartValueAttribute(attribute) - characterData.GetValueAttribute(attribute))
+                            {
+                                break;
+                            }
+                        }
 
-                    target = attribute;
-                    valueDifference = characterData.GetStartValueAttribute(target) - characterData.GetValueAttribute(target);
+                        target = attribute;
+                        valueDifference = characterData.GetStartValueAttribute(target) - characterData.GetValueAttribute(target);
+                    }
                 }
             }
 
-            Coroutines.StartRoutine(CoUseCard(characterData.GetBuilding(target)));
+            if (target == TypeAttribute.All)
+            {
+                Debug.Log($"Not have target = {target}");
+
+                selectedCard.AiSkipCard();
+            }
+            else
+            {
+                Coroutines.StartRoutine(CoUseCard(characterData.GetBuilding(target)));
+            }
         }
 
         private bool CheckNeedUseHealth()

@@ -109,6 +109,7 @@ MonoBehaviour:
   greenHighlightSprite: {fileID: 21300000, guid: b53601ebe72a5e84bb62698dc785fa1a, type: 3}
   redHighlightSprite: {fileID: 21300000, guid: ef5f6c7121e6c9c4cb1bcae3803d093e, type: 3}
   whiteHighlightSprite: {fileID: 21300000, guid: c9ce21dbccc18d34b897f67fef5f5890, type: 3}
+  blackHighlightSprite: {fileID: 21300000, guid: 2fc3482188eedfb47b6d977050bf8273, type: 3}
 --- !u!65 &1139406022201793000
 BoxCollider:
   m_ObjectHideFlags: 0

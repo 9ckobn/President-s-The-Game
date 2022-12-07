@@ -28,7 +28,18 @@ namespace Cards
         public Vector3 SetBlockPosition { set => blockPosition = value; }
         public Vector3 SetUnblockPosition { set => unblockPosition = value; }
         public bool GetCanUseCard { get => canUseCard; }
-        public bool SetCanUseCard { set => canUseCard = value; }
+        public bool SetCanUseCard 
+        {
+            set
+            {
+                canUseCard = value;
+
+                if (!canUseCard)
+                {
+                    (view as CardFightView).ShowBlackHighlight();
+                }
+            }
+        }
 
         public CardFightData SetCardData
         {
@@ -206,6 +217,14 @@ namespace Cards
             IncreaseAnimation();
 
             BoxController.GetController<EffectsController>().ClickFightCard(this);
+        }
+
+        public void AiSkipCard()
+        {
+            ChangeHighlight(false);
+            DecreaseAnimation();
+
+            BoxController.GetController<EffectsController>().StopUseFightCard();
         }
 
         #endregion
