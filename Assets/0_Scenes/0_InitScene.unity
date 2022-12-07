@@ -1615,9 +1615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lobbyManager: {fileID: 6741899433120345840}
-  isNeedLog: 1
+  isNeedLog: 0
   authenticationKit: {fileID: 1836545556}
-  isUseMoralis: 0
+  isUseMoralis: 1
   isQrStartMoralis: 0
   qrObject: {fileID: 6741899432761100302}
   buttonObject: {fileID: 21258640}
