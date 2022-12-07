@@ -18,6 +18,9 @@ namespace Data
 
         private List<int> idMyEffect = new List<int>();
 
+        private bool isActive = true;
+        public bool GetIsActive { get => isActive; }
+
         public AttributeData(TypeAttribute type, int value, int[] valueStates = null)
         {
             TypeAttribute = type;
@@ -75,6 +78,12 @@ namespace Data
         public void DecreaseValue(int value)
         {
             Value -= value;
+
+            if(Value <= 0)
+            {
+                Value = 0;
+                isActive = false;
+            }
         }
 
         public void GetDefend(int valueDefend)

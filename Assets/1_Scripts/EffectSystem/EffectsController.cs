@@ -167,7 +167,7 @@ namespace EffectSystem
             List<BuffEffect> buffEffects = BoxController.GetController<CharactersDataController>().GetCurrentCharacter.GetBuffEffects();
 
             // Pay cost fight card
-            foreach (var typeCost in currentCardFight.GetTypeCost)
+            foreach (var typeCost in currentCardFight.GetTypesCost)
             {
                 bool haveDiscount = false;
 
@@ -175,7 +175,7 @@ namespace EffectSystem
                 {
                     if (effect.TypeBuff == TypeBuff.Discount)
                     {
-                        foreach (var type in effect.TypesTargetObject)
+                        foreach (var type in effect.TypesTargetObjects)
                         {
                             if (type == typeCost)
                             {

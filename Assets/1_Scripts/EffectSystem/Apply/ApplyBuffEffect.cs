@@ -27,7 +27,7 @@ namespace EffectSystem
                 int buff = effect.BaseValue;
                 buff += (int)(characterData.GetValueAttribute(effect.TypeAttribute) / 100f * effect.ValueAttribute);
 
-                foreach (var typeTarget in effect.TypesTargetObject)
+                foreach (var typeTarget in effect.TypesTargetObjects)
                 {
                     characterData.UpAttribute(typeTarget, buff);
                 }

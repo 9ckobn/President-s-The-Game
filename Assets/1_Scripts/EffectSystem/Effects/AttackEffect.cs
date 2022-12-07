@@ -4,7 +4,7 @@ namespace EffectSystem
 {
     public class AttackEffect : Effect
     {
-        public TypeAttribute[] TypeTargetObject { get; private set; }
+        public TypeAttribute[] TypeTargetObjects { get; private set; }
         public int BaseValue { get; private set; }
         public bool IsNeedAttribute { get; private set; }
         public TypeAttribute TypeAttribute { get; private set; }
@@ -12,7 +12,7 @@ namespace EffectSystem
 
         public AttackEffect(SCRO_AttackEffect data) : base(data)
         {
-            TypeTargetObject = data.TypeTargetObject;
+            TypeTargetObjects = data.TypeTargetObject;
             BaseValue = data.BaseValue;
             IsNeedAttribute = data.IsNeedAttribute;
             TypeAttribute = data.TypeAttribute;

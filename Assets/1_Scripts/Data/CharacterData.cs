@@ -95,6 +95,11 @@ namespace Data
             return null;
         }
 
+        public bool GetIsActiveAttribute(TypeAttribute type)
+        {
+            return GetAttribute(type).GetIsActive;
+        }
+
         public int GetValueAttribute(TypeAttribute type)
         {
             return GetAttribute(type).Value;

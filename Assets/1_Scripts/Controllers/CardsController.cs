@@ -20,12 +20,12 @@ namespace Gameplay
         private List<CardPresidentModel> playerPresidentCards = new List<CardPresidentModel>();
         private List<CardPresidentModel> enemyPresidentCards = new List<CardPresidentModel>();
 
-        private List<CardFightModel> playerFightCards = new List<CardFightModel>();
+        private List<CardFightModel> playerFightcards = new List<CardFightModel>();
         public List<CardFightModel> EnemyFightCards { get; private set; }
 
         private CardFightModel selectedFightCard, useFightCard;
-
         private bool canUseCard = false;
+
         public bool CanSelectedCard { get => canUseCard && useFightCard == null; }
         public bool SetCanUseCard { set => canUseCard = value; }
         public CardFightModel GetSelectedCard { get => selectedFightCard; }
@@ -51,7 +51,7 @@ namespace Gameplay
             foreach (var cardData in cardsFightData)
             {
                 CardFightModel card = creator.CreateCardFight(cardData);
-                playerFightCards.Add(card);
+                playerFightcards.Add(card);
                 card.SetIsPlayerCard = true;
             }
 
@@ -60,9 +60,9 @@ namespace Gameplay
                 containerPlayerPresidents.AddCard(playerPresidentCards[i]);
             }
 
-            for (int i = 0; i < playerFightCards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
+            for (int i = 0; i < playerFightcards.Count && i < MainData.MAX_FIGHT_CARDS; i++)
             {
-                containerFightCards.AddCard(playerFightCards[i]);
+                containerFightCards.AddCard(playerFightcards[i]);
             }
 
 
@@ -149,6 +149,11 @@ namespace Gameplay
             selectedFightCard = null;
             useFightCard = null;
 
+            CharacterData playerData = BoxController.GetController<CharactersDataController>().GetPlayerData;
+            CharacterData enemyData = BoxController.GetController<CharactersDataController>().GetEnemyData;
+            CheckCanUseCards(playerFightcards, playerData, enemyData);
+            CheckCanUseCards(EnemyFightCards, enemyData, playerData);
+
             BoxController.GetController<FightSceneController>().AddCountUseCards();
 
             EndUseFightCardEvent?.Invoke();
@@ -158,7 +163,7 @@ namespace Gameplay
         {
             if (isPlayer)
             {
-                foreach (var card in playerFightCards)
+                foreach (var card in playerFightcards)
                 {
                     card.DecreaseReloading();
                 }
@@ -174,20 +179,90 @@ namespace Gameplay
 
         public void HighlightPlayerFightCards(bool highlight)
         {
-            foreach (var card in playerFightCards)
+            foreach (var card in playerFightcards)
             {
                 card.ChangeHighlight(highlight);
+            }
+        }
+
+        private void CheckCanUseCards(List<CardFightModel> cards, CharacterData dataMy, CharacterData dataEnemy)
+        {
+            foreach (var card in cards)
+            {
+                bool canPay = true;
+                bool canUse = false;
+
+                foreach (var typeCost in card.GetTypesCost)
+                {
+                    if (card.GetValueCost < dataMy.GetValueAttribute(typeCost))
+                    {
+                        canPay = false;
+                    }
+                }
+
+                if (canPay)
+                {
+                    foreach (var effect in card.GetEffects)
+                    {
+                        if (effect.TypeSelectTarget == TypeSelectTarget.Game)
+                        {
+                            if (effect is AttackEffect)
+                            {
+                                CheckCanUse((effect as AttackEffect).TypeTargetObjects, dataEnemy);
+                            }
+                            else if (effect is BuffEffect)
+                            {
+                                CheckCanUse((effect as BuffEffect).TypesTargetObjects, dataMy);
+                            }
+                            else if (effect is DefendEffect)
+                            {
+                                CheckCanUse((effect as DefendEffect).TypeDefends, dataMy);
+                            }
+                            else if (effect is OtherEffect)
+                            {
+                                OtherEffect otherEffect = effect as OtherEffect;
+                                if (otherEffect.TypeOtherEffect == TypeOtherEffect.Loan)
+                                {
+                                    if (dataMy.GetIsActiveAttribute(otherEffect.UpAttribute))
+                                    {
+                                        CheckCanUse((otherEffect).TypeAttributesAfterLoan, dataEnemy);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                bool CheckCanUse(TypeAttribute[] attributes, CharacterData data)
+                {
+                    foreach (var target in attributes)
+                    {
+                        if (data.GetIsActiveAttribute(target))
+                        {
+                            canUse = true;
+                        }
+                    }
+
+                    return false;
+                }
+
+                if (!canUse)
+                {
+                    Debug.Log($"<color=red>Block card {card.GetId}</color>");
+                }
+
+                card.SetCanUseCard = canUse;
             }
         }
 
         // For tutorial
         public void BlockAllCardsExceptOne()
         {
-            for (int i = 0; i < playerFightCards.Count; i++)
+            for (int i = 0; i < playerFightcards.Count; i++)
             {
                 if (i > 0)
                 {
-                    playerFightCards[i].BlockCard(true);
+                    playerFightcards[i].BlockCard(true);
                 }
             }
         }
@@ -195,11 +270,11 @@ namespace Gameplay
         // For tutorial
         public void UnblockAllCardsExceptOne()
         {
-            for (int i = 0; i < playerFightCards.Count; i++)
+            for (int i = 0; i < playerFightcards.Count; i++)
             {
                 if (i != 0)
                 {
-                    playerFightCards[i].UnBlockCard();
+                    playerFightcards[i].UnBlockCard();
                 }
             }
         }

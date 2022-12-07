@@ -18,7 +18,7 @@ namespace EffectSystem
 
             if (effect.TypeSelectTarget == TypeSelectTarget.Game)
             {
-                foreach (var type in effect.TypeTargetObject)
+                foreach (var type in effect.TypeTargetObjects)
                 {
                     if (defendData.AttributeHaveGodDefend(type))
                     {
@@ -151,7 +151,7 @@ namespace EffectSystem
 
                 if (additionalDamage > 0)
                 {
-                    foreach (var typeTarget in effect.TypesTargetObject)
+                    foreach (var typeTarget in effect.TypesTargetObjects)
                     {
                         defendData.DownAttribute(typeTarget, additionalDamage);
                     }

@@ -77,7 +77,6 @@ namespace EnemyAI
                         }
                     }
                 }
-
             }
 
 

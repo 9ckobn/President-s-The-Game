@@ -21,11 +21,14 @@ namespace Cards
 
         private Sequence mySequence;
 
+        private bool canUseCard = true;
         private bool isPlayerCard;
-        public bool SetIsPlayerCard { set => isPlayerCard = value; }
 
+        public bool SetIsPlayerCard { set => isPlayerCard = value; }
         public Vector3 SetBlockPosition { set => blockPosition = value; }
         public Vector3 SetUnblockPosition { set => unblockPosition = value; }
+        public bool GetCanUseCard { get => canUseCard; }
+        public bool SetCanUseCard { set => canUseCard = value; }
 
         public CardFightData SetCardData
         {
@@ -43,7 +46,7 @@ namespace Cards
 
         public string GetId { get => getFightData.Id; }
         public List<Effect> GetEffects { get => getFightData.GetEffects; }
-        public TypeAttribute[] GetTypeCost { get => getFightData.TypeCost; }
+        public TypeAttribute[] GetTypesCost { get => getFightData.TypeCost; }
         public int GetValueCost { get => getFightData.Cost; }
 
         #endregion
@@ -127,7 +130,7 @@ namespace Cards
 
         public bool CheckCanUseCard()
         {
-            return !isBlocked && getFightData.CurrentReloading == 0;
+            return canUseCard && !isBlocked && getFightData.CurrentReloading == 0;
         }
 
         public void DecreaseReloading()
