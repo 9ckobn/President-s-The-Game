@@ -2,6 +2,7 @@ using Cards;
 using Cards.Data;
 using Cards.DeckBuild;
 using Cards.Type;
+using Cysharp.Threading.Tasks;
 using MoralisUnity.Platform.Objects;
 using SaveSystem;
 using System;
@@ -73,7 +74,7 @@ namespace Core
             LoadDataFromServer();
         }
 
-        private void LoadDataFromServer()
+        private async void LoadDataFromServer()
         {
             List<string> idPresidents = new List<string>();
             CardsPresidentsData = new List<CardPresidentDataSerialize>();
@@ -92,83 +93,82 @@ namespace Core
             //{
             // Load data from json
 
-            //try
-            //{
-            AllDecksDataJson deckDataJson;
+            try
+            {
+                AllDecksDataJson deckDataJson;
 
 #if UNITY_EDITOR
 
-            if (File.Exists(Application.persistentDataPath + PATH_LOCAL_DECK_DATA))
-            {
-                string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
-                deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
-                DeckData deck = null;
-
-                foreach (var deckJson in deckDataJson.Decks)
+                if (File.Exists(Application.persistentDataPath + PATH_LOCAL_DECK_DATA))
                 {
-                    deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IsComplete, deckJson.IsSelected, deckJson.IdPresidentCards, deckJson.IdFightCards);
-                    DecksData.Add(deck);
-                }
-            }
-            else
-            {
-                // TODO: Error LogController because init logController after this comit
+                    string strLoadJson = File.ReadAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA);
+                    deckDataJson = JsonUtility.FromJson<AllDecksDataJson>(strLoadJson);
+                    DeckData deck = null;
 
-                Debug.Log($"Not have file save");
-            }
+                    foreach (var deckJson in deckDataJson.Decks)
+                    {
+                        deck = new DeckData(deckJson.Id, deckJson.NameDeck, deckJson.IsComplete, deckJson.IsSelected, deckJson.IdPresidentCards, deckJson.IdFightCards);
+                        DecksData.Add(deck);
+                    }
+                }
+                else
+                {
+                    // TODO: Error LogController because init logController after this comit
+
+                    Debug.Log($"Not have file save");
+                }
 #endif
 
-            // Create Fake id presidents 
-            for (int i = 1; i < 7; i++)
-            {
-                idPresidents.Add(i.ToString());
+                // Create Fake id presidents 
+                for (int i = 1; i < 7; i++)
+                {
+                    idPresidents.Add(i.ToString());
+                }
+
+                // Get data presidents from base
+
+                for (int i = 0; i < idPresidents.Count; i++)
+                {
+                    Debug.Log($"DEBUG before http {i}");
+                    string path = PATH_PRESIDENTS + idPresidents[i];
+
+                    var request = UnityWebRequest.Get(path);
+
+                    await request.SendWebRequest();
+                    Debug.Log($"DEBUG after http {i}");
+
+                    if (request.result == UnityWebRequest.Result.ConnectionError)
+                    {
+                        LogManager.LogError($"{request.result}");
+                    }
+
+                    if (request.result == UnityWebRequest.Result.ProtocolError)
+                    {
+                        LogManager.LogError($"Protocol error!");
+                    }
+
+                    if (request.result == UnityWebRequest.Result.Success)
+                    {
+                        Debug.Log($"url = {request.downloadHandler.text}");
+
+                        CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(request.downloadHandler.text);
+                        CardsPresidentsData.Add(cardData);
+                    }
+                }
+
+                //for (int i = 1; i < 7; i++)
+                //{
+                //    string jsonFile = Resources.Load("PresidentsData_" + i).ToString();
+                //    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(jsonFile);
+
+                //    CardsPresidentsData.Add(cardData);
+                //}
+
             }
-
-            // Get data presidents from base
-
-            //for (int i = 0; i < idPresidents.Count; i++)
-            //{
-            //    Debug.Log($"DEBUG before http {i}");
-            //    string path = PATH_PRESIDENTS + idPresidents[i];
-
-            //    var request = UnityWebRequest.Get(path);
-
-            //    yield return request.SendWebRequest();
-            //    Debug.Log($"DEBUG after http {i}");
-
-            //    if (request.result == UnityWebRequest.Result.ConnectionError)
-            //    {
-            //        LogManager.LogError($"{request.result}");
-            //    }
-
-            //    if (request.result == UnityWebRequest.Result.ProtocolError)
-            //    {
-            //        LogManager.LogError($"Protocol error!");
-            //    }
-
-            //    if (request.result == UnityWebRequest.Result.Success)
-            //    {
-            //        Debug.Log($"url = {request.downloadHandler.text}");
-
-            //        CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(request.downloadHandler.text);
-            //        CardsPresidentsData.Add(cardData);
-            //    }
-            //}
-
-            for (int i = 1; i < 7; i++)
+            catch (Exception ex)
             {
-                string jsonFile = Resources.Load("PresidentsData_" + i).ToString();
-                CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(jsonFile);
-
-                CardsPresidentsData.Add(cardData);
+                Debug.Log($"Error load file save - {ex}");
             }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.Log($"Error load file save - {ex}");
-            //}
-            //}
 
             OnInit?.Invoke();
         }
