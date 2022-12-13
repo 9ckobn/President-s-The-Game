@@ -187,8 +187,7 @@ namespace MoralisUnity.Kits.AuthenticationKit
                 Dictionary<string, object> serverTimeResponse =
                     await Moralis.Cloud.RunAsync<Dictionary<string, object>>("getServerTime", new Dictionary<string, object>());
 
-                if (serverTimeResponse == null || !serverTimeResponse.ContainsKey("dateTime") ||
-                    !long.TryParse(serverTimeResponse["dateTime"].ToString(), out serverTime))
+                if (serverTimeResponse != null)
                 {
                     Debug.LogError("Failed to retrieve server time from Moralis Server!");
                 }
@@ -261,8 +260,7 @@ namespace MoralisUnity.Kits.AuthenticationKit
             Dictionary<string, object> serverTimeResponse = await Moralis.Cloud
                 .RunAsync<Dictionary<string, object>>("getServerTime", new Dictionary<string, object>());
 
-            if (serverTimeResponse == null || !serverTimeResponse.ContainsKey("dateTime") ||
-                !long.TryParse(serverTimeResponse["dateTime"].ToString(), out serverTime))
+            if (serverTimeResponse != null)
             {
                 Debug.LogError("Failed to retrieve server time from Moralis Server!");
             }
