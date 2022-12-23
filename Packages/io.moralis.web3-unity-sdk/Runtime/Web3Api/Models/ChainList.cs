@@ -21,7 +21,9 @@ namespace MoralisUnity.Web3Api.Models
 		bsc_testnet = 0x61,
 		avalanche = 0xa86a,
 		avalanche_testnet = 0xa869,
-		fantom = 0xfa
+		fantom = 0xfa,
+		cronos = 0x19,
+		cronos_testnet = 0x152
 	};
 
 }

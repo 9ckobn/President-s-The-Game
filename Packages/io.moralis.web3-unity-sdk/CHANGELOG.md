@@ -1,12 +1,80 @@
-# Change Log
+# Changelog
+## 1.2.11 (2022-10-03)
+- Added Use Moralis back-end integration and disable MoralisClient option.
+
+## 1.2.10 (2022-09-13)
+- Added x-moralis-platform and x-moralis-platform-version to the allowHeaders
+
+## 1.2.9 (2022-09-08)
+- Issue 68 - Solana throws nul reference error
+- Issue 96 - SolanaAPI thrown NullReferencec Exception
+
+## 1.2.6 (2022-08-01)
+- Added sign and login to Moralis option. This option is enabled by default but can be disabled to allow for custom sign and authentication solutions.
+
+## 1.2.5 (2022-07-25)
+- Add Cronos Testnet support to Web3Api
+
+## 1.2.4 (2022-07-11)
+- Fixed WalletConnect not persisting on a scene change
+- Fixed HexBigInteger not return the right value in Unity 2021.3.34f
+
+## 1.2.3 (2022-07-06)
+- Fixed WalletConnect instabilities
+```
+Always do a full authentication cycle (Connecting,Signing,GetUser) There currently is no way to check if a WalletConnect session is still valid and not broken so we always need to do a full authentication cycle to be sure.
+```
+- Fixed UnityWebRequest memory leaks
+- Fixed WebSocket.jslib naming conflict with Photon
+- Improved menu items for better exposure of the AuthenticationKit
+- Issue #125 Update MoralisUserService to send signin with username/password from GET to POST
+
+## 1.2.2 (2022-06-20)
+- Issue #64 BUG: MoralisLiveQueryController logs runtime warning
+- Issue #104 No Response When obj.SaveAsync() Fails
+- Issue #105 MoralisWeb3SdkEditor Spelling error in Warning Message
+- Issue #107 WebGL - Multiple Livequeries Does not connect
+```
+The requestId was not being updated properly for WebGL so connections created close together had the same requestId in WebGL.
+```
+- Issue #112 SignUpAsync always throws an exception
+- Improved WalletConnect process in the Authentication Kit to make it more reliable
+- Added retry button for connecting and signing on Android and iOS
+- Updated WalletConnect to latest version and enable timeout refresh and QR loading animation
+- Change State names to better reflect the state
+- Fixed Web3 not getting set up on stored session
+- Added extra ReadyForUserPrompt check on Android and iOS with 15 seconds timeout to help with unresponsive WalletConnect bridges
+- Only download medium wallet images to speed up iOS wallet list
+- Updated default server settings
+
+## 1.2.1 (2022-05-30)
+- Issue #84 Web3Api Token Endpoint Missing Operations
+```
+The Web3Api Token Endpoint is missing the SyncNftContract and ResyncMetadata oppperations
+```
+- Issue #87 MoralisUser Should be Fully Functional Using Default Constructor
+```
+Update MoralisObject so that MoralisUser and other objects derived from MoralisObject are
+fully function when an instance is created from the default constructor when in a Unity context
+
+_MoralisUser user = new MoralisUser();_ now is the same as _MoralisUser user = Moralis.Create<MoralisUser>();_
+```
+
+- Issue #88 TaskQueue Causes Unexpected Behavior but is No Longer Needed
+```
+When _user.SignUpAsync()_ is called, if _user.LogInAsync()_ is called immediately, the login was being called before the SignUpAsync was complete.
+```
+
+- Issue #89 Cronos Integration - Added support for Cronos chain.
+
 ## 1.2.0 (2022-04-19)
 - Changed namespace from MoralisWeb3ApiSdk to MoralisUnity
-- Package now is visible in the Unity Editor as �Moralis Web3 Unity SDK�
-- No need to set the Allow �unsafe� code in the project. This now gets handled in the new Assembly Definitions
+- Package now is visible in the Unity Editor as Moralis Web3 Unity SDK
+- No need to set the Allow unsafe code in the project. This now gets handled in the new Assembly Definitions
 - Removed all the Unity specific code from the Dotnet SDK and moved it to the Runtime/Core folder
 - All external libraries are now under the Runtime/External folder
 - Renamed Samples folder to Samples~ to hide the folder in the package
-- Updated Newtonsoft dependency to 3.0.1
+- Updated Newtonsoft dependency to 3.0.2
 - Updated WalletConnect
 - Fixed warnings messages
 
@@ -22,7 +90,7 @@
 ## 1.0.9 (2022-03-09)
 - Issue #82 - Web3Api Native RunContractFunction Deserialization fails
 - Issue #80 - WebGL, LiveQuery - DELETE: Good response has an Empty content
-- Issue #75 - eature Request: CreateAsync
+- Issue #75 - Feature Request: CreateAsync
 - Issue #69 - Detecting failed SaveAsync
 - Issue #50 - On Object Create ACL not instantiated
 

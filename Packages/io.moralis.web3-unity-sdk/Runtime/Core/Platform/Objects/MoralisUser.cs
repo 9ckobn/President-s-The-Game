@@ -8,6 +8,7 @@ using Cysharp.Threading.Tasks;
 using MoralisUnity.Platform.Abstractions;
 using Newtonsoft.Json;
 using UnityEngine;
+using MoralisUnity.Core.Exceptions;
 
 namespace MoralisUnity.Platform.Objects
 {
@@ -92,8 +93,6 @@ namespace MoralisUnity.Platform.Objects
        
         internal ICurrentUserService<MoralisUser> CurrentUserService { get; set; }
 
-
-        // internal Task SignUpAsync(Task toAwait, CancellationToken cancellationToken) => throw new NotFiniteNumberException();
         internal async UniTask SignUpAsync(UniTask toAwait, CancellationToken cancellationToken)
         {
             if (String.IsNullOrEmpty(this.objectId))
@@ -168,50 +167,23 @@ namespace MoralisUnity.Platform.Objects
         /// password must be set before calling SignUpAsync.
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
-        public UniTask SignUpAsync(CancellationToken cancellationToken) => TaskQueue.Enqueue(toAwait => SignUpAsync(toAwait, cancellationToken), cancellationToken);
+        public async UniTask SignUpAsync(CancellationToken cancellationToken) //=> TaskQueue.Enqueue(toAwait => SignUpAsync(toAwait, cancellationToken), cancellationToken);
+        {
+            if (String.IsNullOrEmpty(this.objectId))
+            {
+                if (String.IsNullOrEmpty(this.username)) throw new ArgumentException("User username required for this action.");
+                if (String.IsNullOrEmpty(this.password)) throw new ArgumentException("User password required for this action.");
 
-        //protected override Task SaveAsync(Task toAwait, CancellationToken cancellationToken)
-        //{
-        //    lock (Mutex)
-        //    {
-        //        if (ObjectId is null)
-        //        {
-        //            throw new InvalidOperationException("You must call SignUpAsync before calling SaveAsync.");
-        //        }
-
-        //        return base.SaveAsync(toAwait, cancellationToken).OnSuccess(_ => Services.CurrentUserController.IsCurrent(this) ? Services.SaveCurrentUserAsync(this) : Task.CompletedTask).Unwrap();
-        //    }
-        //}
-
-        // If this is already the current user, refresh its state on disk.
-        //internal override Task<ParseObject> FetchAsyncInternal(Task toAwait, CancellationToken cancellationToken) => base.FetchAsyncInternal(toAwait, cancellationToken).OnSuccess(t => !Services.CurrentUserController.IsCurrent(this) ? Task.FromResult(t.Result) : Services.SaveCurrentUserAsync(this).OnSuccess(_ => t.Result)).Unwrap();
-
-        //internal Task LogOutAsync(Task toAwait, CancellationToken cancellationToken)
-        //{
-        //    string oldSessionToken = SessionToken;
-        //    if (oldSessionToken == null)
-        //    {
-        //        return Task.FromResult(0);
-        //    }
-
-        //    // Cleanup in-memory session.
-        //    this.SessionToken = null;
-        //    return Task.WhenAll(CurrentUserService.LogOutAsync();
-        //}
-
-        //internal Task UpgradeToRevocableSessionAsync() => UpgradeToRevocableSessionAsync(CancellationToken.None);
-
-        //internal Task UpgradeToRevocableSessionAsync(CancellationToken cancellationToken) => TaskQueue.Enqueue(toAwait => UpgradeToRevocableSessionAsync(toAwait, cancellationToken), cancellationToken);
-
-        //internal Task UpgradeToRevocableSessionAsync(Task toAwait, CancellationToken cancellationToken)
-        //{
-        //    string sessionToken = SessionToken;
-
-        //    return toAwait.OnSuccess(_ => Services.UpgradeToRevocableSessionAsync(sessionToken, cancellationToken)).Unwrap().OnSuccess(task => SetSessionTokenAsync(task.Result)).Unwrap();
-        //}
-
-
-
+                try
+                {
+                    await this.SaveAsync();
+                }
+                catch (MoralisSaveException msexp)
+                {
+                    throw new MoralisSignupException(msexp.Message);
+                }
+            }
+        }
 
         /// <summary>
         /// Removes null values from authData (which exist temporarily for unlinking)
@@ -278,33 +250,7 @@ namespace MoralisUnity.Platform.Objects
                     restorationSuccess = provider.RestoreAuthentication(data);
                 }
             }
-
-            //if (!restorationSuccess)
-            //{
-            //    UnlinkFromAsync(provider.AuthType, CancellationToken.None);
-            //}
         }
-
-        //internal Task LinkWithAsync(string authType, IDictionary<string, object> data, CancellationToken cancellationToken) => TaskQueue.Enqueue(toAwait =>
-        //{
-        //    IDictionary<string, IDictionary<string, object>> authData = AuthData;
-
-        //    if (authData == null)
-        //    {
-        //        authData = AuthData = new Dictionary<string, IDictionary<string, object>>();
-        //    }
-
-        //    authData[authType] = data;
-        //    AuthData = authData;
-
-        //    return SaveAsync(cancellationToken);
-        //}, cancellationToken);
-
-
-        /// <summary>
-        /// Unlinks a user from a service.
-        /// </summary>
-        //internal Task UnlinkFromAsync(string authType, CancellationToken cancellationToken) => LinkWithAsync(authType, null, cancellationToken);
 
         /// <summary>
         /// Checks whether a user is linked to a service.

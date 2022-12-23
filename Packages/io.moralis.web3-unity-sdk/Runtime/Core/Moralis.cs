@@ -380,9 +380,10 @@ namespace MoralisUnity
 
                 await u.SignUpAsync();
             }
-
-            throw new MoralisFailureException(MoralisFailureException.ErrorCode.NotInitialized, "Moralis must be started before accessing this object.");
-
+            else
+            {
+                throw new MoralisFailureException(MoralisFailureException.ErrorCode.NotInitialized, "Moralis must be started before accessing this object.");
+            }
         }
 
         #region MoralisClient and other objects direct calls
@@ -575,18 +576,14 @@ namespace MoralisUnity
         /// <returns></returns>
         public static async UniTask SetupWeb3()
         {
-            // Don't create a new web3 client if there is one
-            if (Web3Client != null)
-            {
-                return;
-            }
-            
-            if (clientMetaData == null)
-            {
-                Debug.LogError("Metadata not provided.");
-            }
 #if UNITY_WEBGL
-            await Web3GL.Connect(clientMetaData);
+            await Web3GL.Connect(new ClientMeta()
+            {
+                Name = MoralisSettings.MoralisData.DappName,
+                Description = MoralisSettings.MoralisData.DappDescription,
+                Icons = new[] { MoralisSettings.MoralisData.DappIconUrl },
+                URL = MoralisSettings.MoralisData.DappWebsiteUrl
+            });
 #else
             await UniTask.Run(() =>
             {

@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lobbyManager: {fileID: 6741899433120345840}
-  isNeedLog: 0
+  isNeedLog: 1
   authenticationKit: {fileID: 1836545556}
   isUseMoralis: 1
   isQrStartMoralis: 0
@@ -2437,6 +2437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76715672e638354bb16f1a0cf190f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loader: {fileID: 0}
   walletConnect: {fileID: 1758397254}
 --- !u!224 &6741899432702635787
 RectTransform:
@@ -2556,6 +2557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76715672e638354bb16f1a0cf190f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loader: {fileID: 0}
   walletConnect: {fileID: 1758397254}
 --- !u!222 &6741899432761100299
 CanvasRenderer:

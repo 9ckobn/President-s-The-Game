@@ -32,7 +32,7 @@ namespace WalletConnectSharp.Unity.Network
         {
             get
             {
-                return client != null && client.State == WebSocketState.Open && opened;
+                return client != null && (client.State == WebSocketState.Open || client.State == WebSocketState.Closing) && opened;
             }
         }
 
@@ -108,7 +108,7 @@ namespace WalletConnectSharp.Unity.Network
 #endif
             nextClient.OnError += (e) => {
 
-                Debug.LogError("[WebSocket] OnError " + e);
+                Debug.Log("[WebSocket] OnError " + e);
                 HandleError(new Exception(e));
             };
 

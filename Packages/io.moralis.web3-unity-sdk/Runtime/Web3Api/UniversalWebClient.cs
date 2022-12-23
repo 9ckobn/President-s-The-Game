@@ -37,7 +37,9 @@ namespace MoralisUnity.Web3Api
             "x-parse-application-id",
             "x-parse-installation-id",
             "x-parse-session-token",
-            "content-type"
+            "content-type",
+            "x-moralis-platform",
+            "x-moralis-platform-version"
         };
 
         public UniversalWebClient() { }
@@ -105,6 +107,9 @@ namespace MoralisUnity.Web3Api
             }
             
             result = new Tuple<HttpStatusCode, Dictionary<string, string>, string>(responseStatus, webRequest.GetResponseHeaders(), responseText);
+            
+            // Signals that this UnityWebRequest is no longer being used, and should clean up any resources it is using.
+            webRequest.Dispose();
 
             return result;
         }

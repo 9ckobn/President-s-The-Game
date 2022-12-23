@@ -36,7 +36,9 @@ namespace MoralisUnity.SolanaApi
         {
             "x-parse-application-id",
             "x-parse-installation-id",
-            "content-type"
+            "content-type",
+            "x-moralis-platform",
+            "x-moralis-platform-version"
         };
 
         public UniversalWebClient() { }
@@ -107,6 +109,9 @@ namespace MoralisUnity.SolanaApi
             }
             
             result = new Tuple<HttpStatusCode, Dictionary<string, string>, string>(responseStatus, webRequest.GetResponseHeaders(), responseText);
+            
+            // Signals that this UnityWebRequest is no longer being used, and should clean up any resources it is using.
+            webRequest.Dispose();
 
             return result;
         }
