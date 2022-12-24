@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fef308ab711a6439bb086b5265f83e, type: 3}
   m_Name: MoralisServerSettings
   m_EditorClassIdentifier: 
-  DappUrl: http://128.199.55.123:1337/server
+  DisableMoralisClient: 0
+  DappUrl: https://api.mlab.digital/server
   DappId: 001
   DappName: Moralis SDK Application
   DappDescription: This application provides an example of how to you Moralis in

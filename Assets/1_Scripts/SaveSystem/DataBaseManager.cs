@@ -16,7 +16,7 @@ namespace Core
 {
     public class DataBaseManager : Singleton<DataBaseManager>
     {
-        private const string PATH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json"; // C:\Users\unity\AppData\LocalLow\DefaultCompany
+        private const string PATH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json";
 
         public static event Action OnInit;
 
@@ -76,6 +76,9 @@ namespace Core
 
         private async void LoadDataFromServer()
         {
+            Debug.Log($"DEBUG Start load");
+
+
             List<string> idPresidents = new List<string>();
             CardsPresidentsData = new List<CardPresidentDataSerialize>();
             DecksData = new List<DeckData>();
@@ -169,6 +172,8 @@ namespace Core
             {
                 Debug.Log($"Error load file save - {ex}");
             }
+
+            Debug.Log($"DEBUG on init");
 
             OnInit?.Invoke();
         }
