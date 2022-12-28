@@ -3,6 +3,7 @@ using Cards.Data;
 using Cards.DeckBuild;
 using Cards.Type;
 using Cysharp.Threading.Tasks;
+using MoralisUnity;
 using MoralisUnity.Platform.Objects;
 using SaveSystem;
 using System;
@@ -14,6 +15,14 @@ using UnityEngine.Networking;
 
 namespace Core
 {
+    public class TestUserData : MoralisObject
+    {
+        public int Id { get; set; }
+        public string NickName { get; set; }
+
+        public TestUserData() : base("UserData") { }
+    }
+
     public class DataBaseManager : Singleton<DataBaseManager>
     {
         private const string PATH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json";
@@ -71,14 +80,25 @@ namespace Core
 
         public void Initialize()
         {
+            TestSave();
+
             LoadDataFromServer();
+        }
+
+        private async void TestSave()
+        {
+            try
+            {
+                TestUserData userData = await Moralis.Create<TestUserData>();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private async void LoadDataFromServer()
         {
-            Debug.Log($"DEBUG Start load");
-
-
             List<string> idPresidents = new List<string>();
             CardsPresidentsData = new List<CardPresidentDataSerialize>();
             DecksData = new List<DeckData>();
@@ -123,22 +143,22 @@ namespace Core
 #endif
 
                 // Create Fake id presidents 
-                for (int i = 1; i < 7; i++)
-                {
-                    idPresidents.Add(i.ToString());
-                }
+                //for (int i = 1; i < 7; i++)
+                //{
+                //    idPresidents.Add(i.ToString());
+                //}
+
+
+
 
                 // Get data presidents from base
-
                 for (int i = 0; i < idPresidents.Count; i++)
                 {
-                    Debug.Log($"DEBUG before http {i}");
                     string path = PATH_PRESIDENTS + idPresidents[i];
 
                     var request = UnityWebRequest.Get(path);
 
                     await request.SendWebRequest();
-                    Debug.Log($"DEBUG after http {i}");
 
                     if (request.result == UnityWebRequest.Result.ConnectionError)
                     {
@@ -172,8 +192,6 @@ namespace Core
             {
                 Debug.Log($"Error load file save - {ex}");
             }
-
-            Debug.Log($"DEBUG on init");
 
             OnInit?.Invoke();
         }
