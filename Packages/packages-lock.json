@@ -54,13 +54,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.0.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.postprocessing": {
       "version": "3.2.2",
       "depth": 0,
@@ -168,14 +161,6 @@
         "com.unity.render-pipelines.core": "10.8.1"
       },
       "url": "https://packages.unity.com"
-    },
-    "io.moralis.web3-unity-sdk": {
-      "version": "file:io.moralis.web3-unity-sdk",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.0.2"
-      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

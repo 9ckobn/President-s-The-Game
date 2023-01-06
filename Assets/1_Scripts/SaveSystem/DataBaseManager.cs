@@ -2,9 +2,6 @@ using Cards;
 using Cards.Data;
 using Cards.DeckBuild;
 using Cards.Type;
-using Cysharp.Threading.Tasks;
-using MoralisUnity;
-using MoralisUnity.Platform.Objects;
 using SaveSystem;
 using System;
 using System.Collections;
@@ -15,14 +12,6 @@ using UnityEngine.Networking;
 
 namespace Core
 {
-    public class TestUserData : MoralisObject
-    {
-        public int Id { get; set; }
-        public string NickName { get; set; }
-
-        public TestUserData() : base("UserData") { }
-    }
-
     public class DataBaseManager : Singleton<DataBaseManager>
     {
         private const string PATH_PRESIDENTS = "https://nft.raritygram.io/nfts/presidents/", PATH_LOCAL_DECK_DATA = "DeckData.json";
@@ -30,7 +19,6 @@ namespace Core
         public static event Action OnInit;
 
         private bool isUseMoralis;
-        private MoralisUser moralisUser;
 
         public List<CardPresidentDataSerialize> CardsPresidentsData { get; private set; }
         public List<DeckData> DecksData { get; private set; }
@@ -65,36 +53,11 @@ namespace Core
         /// 
 
 
-        public bool SetIsUseMoralis { set => isUseMoralis = value; }
-
-        public MoralisUser SetMoralisUser
-        {
-            set
-            {
-                moralisUser = value;
-                UpdateDataUser();
-            }
-        }
-
         #region INITIALIZE
 
         public void Initialize()
         {
-            TestSave();
-
             LoadDataFromServer();
-        }
-
-        private async void TestSave()
-        {
-            try
-            {
-                TestUserData userData = await Moralis.Create<TestUserData>();
-            }
-            catch(Exception ex)
-            {
-
-            }
         }
 
         private async void LoadDataFromServer()
@@ -158,7 +121,7 @@ namespace Core
 
                     var request = UnityWebRequest.Get(path);
 
-                    await request.SendWebRequest();
+                    //await request.SendWebRequest();
 
                     if (request.result == UnityWebRequest.Result.ConnectionError)
                     {
@@ -259,18 +222,18 @@ namespace Core
             {
                 LogManager.Log($"?????? ???");
 
-                moralisUser.username = newNick;
+                //moralisUser.username = newNick;
 
-                var result = await moralisUser.SaveAsync();
+                //var result = await moralisUser.SaveAsync();
 
-                if (result)
-                {
-                    LogManager.Log($"???????? ??? ?? {newNick}");
-                }
-                else
-                {
-                    LogManager.LogError($"?????? ?????????? ?????? ????!");
-                }
+                //if (result)
+                //{
+                //    LogManager.Log($"???????? ??? ?? {newNick}");
+                //}
+                //else
+                //{
+                //    LogManager.LogError($"?????? ?????????? ?????? ????!");
+                //}
             }
         }
 

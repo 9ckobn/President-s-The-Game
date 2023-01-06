@@ -1,6 +1,3 @@
-using MoralisUnity;
-using MoralisUnity.Kits.AuthenticationKit;
-using MoralisUnity.Platform.Objects;
 using NaughtyAttributes;
 using System.Collections;
 using UI;
@@ -16,8 +13,6 @@ namespace Core
         [SerializeField] private bool isNeedLog;
 
         [BoxGroup("Moralis")]
-        [SerializeField] private AuthenticationKit authenticationKit;
-        [BoxGroup("Moralis")]
         [SerializeField] private bool isUseMoralis, isQrStartMoralis = false;
         [BoxGroup("Moralis")]
         [SerializeField] private GameObject qrObject, buttonObject;
@@ -31,7 +26,7 @@ namespace Core
             // TODO: Load from base Moralis
             IsTutorNow = true;
 
-            DataBaseManager.Instance.SetIsUseMoralis = isUseMoralis;
+            //DataBaseManager.Instance.SetIsUseMoralis = isUseMoralis;
             SceneControllers.OnInit += AfterControllersInit;
             SceneControllers.InitControllers();
         }
@@ -47,7 +42,7 @@ namespace Core
             {
                 LogManager.Log("Before InitializeAsync");
 
-                await authenticationKit.InitializeAsync();
+                //await authenticationKit.InitializeAsync();
 
                 LogManager.Log("After InitializeAsync");
 
@@ -66,7 +61,7 @@ namespace Core
             }
             else
             {
-                authenticationKit.gameObject.SetActive(false);
+                //authenticationKit.gameObject.SetActive(false);
 
                 UIManager.GetWindow<ConnectMetamaskWindow>().SetMethodConnect(false);
             }
@@ -80,12 +75,12 @@ namespace Core
 
             if (isUseMoralis)
             {
-                authenticationKit.Connect();
+                //authenticationKit.Connect();
             }
             else
             {
                 DataBaseManager.OnInit += AfterInitDataBase;
-                DataBaseManager.Instance.SetMoralisUser = null;
+                //DataBaseManager.Instance.SetMoralisUser = null;
                 DataBaseManager.Instance.Initialize();
             }
         }
@@ -94,18 +89,18 @@ namespace Core
         {
             LogManager.Log("On connect to moralis");
 
-            MoralisUser moralisUser = await Moralis.GetUserAsync();
+            //MoralisUser moralisUser = await Moralis.GetUserAsync();
 
-            if (moralisUser != null)
-            {
-                DataBaseManager.OnInit += AfterInitDataBase;
-                DataBaseManager.Instance.SetMoralisUser = moralisUser;
-                DataBaseManager.Instance.Initialize();
-            }
-            else
-            {
-                LogManager.LogError($"User not connect to moralis!");
-            }
+            //if (moralisUser != null)
+            //{
+            //    DataBaseManager.OnInit += AfterInitDataBase;
+            //    DataBaseManager.Instance.SetMoralisUser = moralisUser;
+            //    DataBaseManager.Instance.Initialize();
+            //}
+            //else
+            //{
+            //    LogManager.LogError($"User not connect to moralis!");
+            //}
         }
 
         private void AfterInitDataBase()
