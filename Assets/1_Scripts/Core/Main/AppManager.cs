@@ -1,5 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
+using System.Collections.Generic;
+using Thirdweb;
 using UI;
 using UnityEngine;
 
@@ -12,95 +14,71 @@ namespace Core
         [BoxGroup("Parameters app")]
         [SerializeField] private bool isNeedLog;
 
-        [BoxGroup("Moralis")]
-        [SerializeField] private bool isUseMoralis, isQrStartMoralis = false;
-        [BoxGroup("Moralis")]
-        [SerializeField] private GameObject qrObject, buttonObject;
-
         public bool IsTutorNow { get; set; }
+
+        private ThirdwebSDK sdk;
+
 
         #region START_APP
 
         private void Start()
         {
-            // TODO: Load from base Moralis
+            sdk = new ThirdwebSDK("goerli");
+
             IsTutorNow = true;
 
-            //DataBaseManager.Instance.SetIsUseMoralis = isUseMoralis;
             SceneControllers.OnInit += AfterControllersInit;
             SceneControllers.InitControllers();
         }
 
-        public async void AfterControllersInit()
+        public void AfterControllersInit()
         {
             SceneControllers.OnInit -= AfterControllersInit;
 
             LogManager.SetIsNeedLog = isNeedLog;
-            LogManager.Log("AfterControllersInit");
-
-            if (isUseMoralis)
-            {
-                LogManager.Log("Before InitializeAsync");
-
-                //await authenticationKit.InitializeAsync();
-
-                LogManager.Log("After InitializeAsync");
-
-                if (isQrStartMoralis)
-                {
-                    qrObject.SetActive(true);
-                    buttonObject.SetActive(false);
-                }
-                else
-                {
-                    qrObject.SetActive(false);
-                    buttonObject.SetActive(true);
-                }
-
-                UIManager.GetWindow<ConnectMetamaskWindow>().SetMethodConnect(isQrStartMoralis);
-            }
-            else
-            {
-                //authenticationKit.gameObject.SetActive(false);
-
-                UIManager.GetWindow<ConnectMetamaskWindow>().SetMethodConnect(false);
-            }
+            LogManager.Log("After Controllers Init");
 
             UIManager.ShowWindow<ConnectMetamaskWindow>();
         }
 
-        public void MetamaskConnect()
+        public async void MetamaskConnect()
         {
             UIManager.HideWindow<ConnectMetamaskWindow>();
 
-            if (isUseMoralis)
+            try
             {
-                //authenticationKit.Connect();
+                string address = await sdk.wallet.Connect(new WalletConnection()
+                {
+                    provider = WalletProvider.MetaMask,
+                    chainId = 5 // Switch the wallet Goerli on connection
+                });
+
+                LogManager.Log("Connected as: " + address);
+                OnConnectMetamask();
             }
-            else
+            catch (System.Exception e)
             {
-                DataBaseManager.OnInit += AfterInitDataBase;
-                //DataBaseManager.Instance.SetMoralisUser = null;
-                DataBaseManager.Instance.Initialize();
+                LogManager.LogError("Error (see console): " + e.Message);
             }
         }
 
-        public async void OnConnectMoralis()
+        public async void OnConnectMetamask()
         {
-            LogManager.Log("On connect to moralis");
+            LogManager.Log("On connect to metamask");
 
-            //MoralisUser moralisUser = await Moralis.GetUserAsync();
+            CurrencyValue balance = await sdk.wallet.GetBalance();
+            Debug.Log($"Balance = {balance}");
 
-            //if (moralisUser != null)
-            //{
-            //    DataBaseManager.OnInit += AfterInitDataBase;
-            //    DataBaseManager.Instance.SetMoralisUser = moralisUser;
-            //    DataBaseManager.Instance.Initialize();
-            //}
-            //else
-            //{
-            //    LogManager.LogError($"User not connect to moralis!");
-            //}
+
+            //var contract = sdk.GetContract("0x2e01763fA0e15e07294D74B63cE4b526B321E389"); // NFT Drop
+            //int count = 0;
+            //NFT result = await contract.ERC721.Get(count.ToString());
+            //Debug.Log("GetERC721   " + result.metadata.name + "\nowned by " + result.owner.Substring(0, 6) + "...");
+            //Debug.Log($"RESULT   =   {result}");
+
+
+            DataBaseManager.OnInit += AfterInitDataBase;
+            DataBaseManager.Instance.Initialize();
         }
 
         private void AfterInitDataBase()

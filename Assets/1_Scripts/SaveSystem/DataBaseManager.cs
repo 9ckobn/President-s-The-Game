@@ -18,8 +18,6 @@ namespace Core
 
         public static event Action OnInit;
 
-        private bool isUseMoralis;
-
         public List<CardPresidentDataSerialize> CardsPresidentsData { get; private set; }
         public List<DeckData> DecksData { get; private set; }
 
@@ -47,12 +45,7 @@ namespace Core
         }
 
         public TypeClimate TypeClimate { get; private set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// 
-
-
+        
         #region INITIALIZE
 
         public void Initialize()
@@ -66,24 +59,21 @@ namespace Core
             CardsPresidentsData = new List<CardPresidentDataSerialize>();
             DecksData = new List<DeckData>();
 
-            //if (isUseMoralis)
-            //{
-            // TODO: Get id presidents card data from base Moralis
 
-            // TODO: Get deka data from base Moralis
+            // Load from editor for test
+            for (int i = 1; i < 7; i++)
+            {
+                string jsonFile = Resources.Load("PresidentsData_" + i).ToString();
+                CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(jsonFile);
 
-            // TODO: Get id fight cards from server
-
-            //}
-            //else
-            //{
-            // Load data from json
+                CardsPresidentsData.Add(cardData);
+            }
 
             try
             {
                 AllDecksDataJson deckDataJson;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR // Load save from local json
 
                 if (File.Exists(Application.persistentDataPath + PATH_LOCAL_DECK_DATA))
                 {
@@ -102,14 +92,8 @@ namespace Core
                     // TODO: Error LogController because init logController after this comit
 
                     Debug.Log($"Not have file save");
-                }
+                }               
 #endif
-
-                // Create Fake id presidents 
-                //for (int i = 1; i < 7; i++)
-                //{
-                //    idPresidents.Add(i.ToString());
-                //}
 
 
 
@@ -141,15 +125,6 @@ namespace Core
                         CardsPresidentsData.Add(cardData);
                     }
                 }
-
-                //for (int i = 1; i < 7; i++)
-                //{
-                //    string jsonFile = Resources.Load("PresidentsData_" + i).ToString();
-                //    CardPresidentDataSerialize cardData = JsonUtility.FromJson<CardPresidentDataSerialize>(jsonFile);
-
-                //    CardsPresidentsData.Add(cardData);
-                //}
-
             }
             catch (Exception ex)
             {
@@ -163,54 +138,47 @@ namespace Core
 
         public void SaveDecksData()
         {
-            if (isUseMoralis)
+            // Save data on disk
+
+            List<DeckData> decks = BoxController.GetController<DeckBuildController>().Decks;
+            AllDecksDataJson decksData = new AllDecksDataJson();
+            decksData.Decks = new DeckDataJson[decks.Count];
+
+            for (int d = 0; d < decks.Count; d++)
             {
-                // TODO: save data in moralis base
+                DeckDataJson deckJson = new DeckDataJson();
+                List<string> idPresidentsCards = new List<string>();
+                List<string> idFightCards = new List<string>();
+
+                for (int i = 0; i < decks[d].PresidentsId.Count; i++)
+                {
+                    idPresidentsCards.Add(decks[d].PresidentsId[i]);
+                }
+
+                for (int i = 0; i < decks[d].FightsId.Count; i++)
+                {
+                    idFightCards.Add(decks[d].FightsId[i]);
+                }
+
+                deckJson.NameDeck = decks[d].Name;
+                deckJson.Id = decks[d].Id;
+                deckJson.IdPresidentCards = idPresidentsCards;
+                deckJson.IdFightCards = idFightCards;
+                deckJson.IsComplete = decks[d].IsComplete;
+                deckJson.IsSelected = decks[d].IsSelected;
+
+                decksData.Decks[d] = deckJson;
             }
-            else
+
+            string jsonString = JsonUtility.ToJson(decksData);
+
+            try
             {
-                // Save data on disk
-
-                List<DeckData> decks = BoxController.GetController<DeckBuildController>().Decks;
-                AllDecksDataJson decksData = new AllDecksDataJson();
-                decksData.Decks = new DeckDataJson[decks.Count];
-
-                for (int d = 0; d < decks.Count; d++)
-                {
-                    DeckDataJson deckJson = new DeckDataJson();
-                    List<string> idPresidentsCards = new List<string>();
-                    List<string> idFightCards = new List<string>();
-
-                    for (int i = 0; i < decks[d].PresidentsId.Count; i++)
-                    {
-                        idPresidentsCards.Add(decks[d].PresidentsId[i]);
-                    }
-
-                    for (int i = 0; i < decks[d].FightsId.Count; i++)
-                    {
-                        idFightCards.Add(decks[d].FightsId[i]);
-                    }
-
-                    deckJson.NameDeck = decks[d].Name;
-                    deckJson.Id = decks[d].Id;
-                    deckJson.IdPresidentCards = idPresidentsCards;
-                    deckJson.IdFightCards = idFightCards;
-                    deckJson.IsComplete = decks[d].IsComplete;
-                    deckJson.IsSelected = decks[d].IsSelected;
-
-                    decksData.Decks[d] = deckJson;
-                }
-
-                string jsonString = JsonUtility.ToJson(decksData);
-
-                try
-                {
-                    File.WriteAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA, jsonString);
-                }
-                catch (Exception ex)
-                {
-                    LogManager.LogError($"Error save Deck data - {ex}");
-                }
+                File.WriteAllText(Application.persistentDataPath + PATH_LOCAL_DECK_DATA, jsonString);
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogError($"Error save Deck data - {ex}");
             }
         }
 
@@ -218,23 +186,18 @@ namespace Core
 
         public async void ChangeNick(string newNick)
         {
-            if (isUseMoralis)
-            {
-                LogManager.Log($"?????? ???");
+            //moralisUser.username = newNick;
 
-                //moralisUser.username = newNick;
+            //var result = await moralisUser.SaveAsync();
 
-                //var result = await moralisUser.SaveAsync();
-
-                //if (result)
-                //{
-                //    LogManager.Log($"???????? ??? ?? {newNick}");
-                //}
-                //else
-                //{
-                //    LogManager.LogError($"?????? ?????????? ?????? ????!");
-                //}
-            }
+            //if (result)
+            //{
+            //    LogManager.Log($"???????? ??? ?? {newNick}");
+            //}
+            //else
+            //{
+            //    LogManager.LogError($"?????? ?????????? ?????? ????!");
+            //}
         }
 
         private void UpdateDataUser()
@@ -262,24 +225,21 @@ namespace Core
 
         public async void GetTestData()
         {
-            if (isUseMoralis)
-            {
-                //MoralisQuery<TestMoralisObject> query = await Moralis.GetClient().Query<TestMoralisObject>();
-                //IEnumerable<TestMoralisObject> getData = await query.FindAsync();
+            //MoralisQuery<TestMoralisObject> query = await Moralis.GetClient().Query<TestMoralisObject>();
+            //IEnumerable<TestMoralisObject> getData = await query.FindAsync();
 
-                //var testObjects = getData.ToList();
+            //var testObjects = getData.ToList();
 
-                //Debug.Log($"COUNT TEST OBJECT = {testObjects.Count}");
+            //Debug.Log($"COUNT TEST OBJECT = {testObjects.Count}");
 
-                //if (!testObjects.Any())
-                //    return;
+            //if (!testObjects.Any())
+            //    return;
 
 
-                //foreach (var testObj in testObjects)
-                //{
-                //    Debug.Log($"string = {testObj.StringTest} int = {testObj.IntTest}");
-                //}
-            }
+            //foreach (var testObj in testObjects)
+            //{
+            //    Debug.Log($"string = {testObj.StringTest} int = {testObj.IntTest}");
+            //}
         }
 
         public async void CreateTestObjects()
