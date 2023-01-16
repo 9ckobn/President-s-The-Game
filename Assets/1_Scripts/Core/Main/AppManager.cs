@@ -23,7 +23,7 @@ namespace Core
 
         private void Start()
         {
-            sdk = new ThirdwebSDK("goerli");
+            sdk = new ThirdwebSDK("binance");
 
             IsTutorNow = true;
 
@@ -50,7 +50,7 @@ namespace Core
                 string address = await sdk.wallet.Connect(new WalletConnection()
                 {
                     provider = WalletProvider.MetaMask,
-                    chainId = 5 // Switch the wallet Goerli on connection
+                    chainId = 56 // Switch the wallet Goerli on connection
                 });
 
                 LogManager.Log("Connected as: " + address);
